@@ -9,6 +9,8 @@ lerna-debug.log*
 
 Web/node_modules
 Web/dist
+Frontend/node_modules
+Frontend/dist
 dist-ssr
 *.local
 

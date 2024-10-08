@@ -3,7 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply dark;
+  }
+
   :root {
-    @apply bg-zinc-800 text-zinc-50;
+    @apply bg-zinc-800 text-zinc-50 font-roboto;
+  }
+
+  button {
+    @apply !outline-none;
   }
 }

@@ -1,3 +1,4 @@
+import '@fontsource-variable/roboto-mono';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AppRouter } from './router';

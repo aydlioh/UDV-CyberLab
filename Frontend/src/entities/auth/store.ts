@@ -1,4 +1,4 @@
-import { ADMIN, AUTHORIZED, UNAUTHORIZED, USER } from '@/shared/common/const';
+import { ADMIN, AUTHORIZED, UNAUTHORIZED, USER } from './constants';
 import { create } from 'zustand';
 
 type AuthStatus = typeof AUTHORIZED | typeof UNAUTHORIZED;

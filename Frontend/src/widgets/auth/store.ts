@@ -1,4 +1,4 @@
-import { LOGIN, REGISTRATION } from '@/shared/common/const';
+import { LOGIN, REGISTRATION } from './constants';
 import { create } from 'zustand';
 
 type FormAuthStatus = typeof LOGIN | typeof REGISTRATION;

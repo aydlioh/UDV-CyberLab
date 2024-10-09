@@ -1,6 +1,6 @@
 import { Button, Input, Link } from '@nextui-org/react';
 import { useFormAuth } from '../store';
-import { PasswordInput } from '@/features/auth';
+import { PasswordInput } from './PasswordInput';
 
 export const RegistrationForm = () => {
   const switchToLogin = useFormAuth(state => state.switchToLogin);

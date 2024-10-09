@@ -1,3 +1,2 @@
-export * from './ui/LoginForm';
-export * from './ui/RegistrationForm';
+export * from './ui/Authorization';
 export * from './store';

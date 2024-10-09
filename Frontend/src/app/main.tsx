@@ -8,7 +8,7 @@ import './styles/index.css';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider>
-      <AppRouter />
+      <AppRouter/>
     </Provider>
   </StrictMode>
 );

@@ -2,7 +2,7 @@ import { Button, Input, Link } from '@nextui-org/react';
 import { useFormAuth } from '../store';
 import { useAuth } from '@/entities/auth';
 import { useNavigate } from 'react-router-dom';
-import { PasswordInput } from '@/features/auth';
+import { PasswordInput } from './PasswordInput';
 
 export const LoginForm = () => {
   const switchToRegistration = useFormAuth(state => state.switchToRegistration);

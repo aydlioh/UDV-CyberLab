@@ -9,9 +9,32 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        background: '#DDE0F1',
+        foreground: '#343976',
+        white: '#FDFDFD',
+        gray: '#B9BACA',
+        link: '#3568FF',
+        orange: '#F29F26',
+      },
       fontFamily: {
-        roboto: ['Roboto Mono Variable', 'monospace']
-      }
+        inter: ['Inter Variable', 'sans-serif'],
+        w3ip: ['W3-ip', 'sans-serif'],
+      },
+      backgroundImage: {
+        'main-gradient': 'linear-gradient(90deg, #343976, #9599CC)',
+      },
+      container: {
+        center: true,
+      },
+      screens: {
+        mobile: '440px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1440px',
+      },
     },
   },
   darkMode: 'class',

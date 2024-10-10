@@ -8,12 +8,25 @@ export const Tabs = extendVariants(TabsNextUI, {
   variants: {
     color: {
       default: {
-        cursor: 'bg-[#3F3F46]',
+        cursor: 'bg-main-gradient !hover:bg-black',
+        tabContent: 'group-data-[selected=true]:text-white text-foreground',
+      },
+    },
+    variant: {
+      bordered: {
+        tabList: 'border-gray',
+      }
+    },
+    size: {
+      lg: {
+        tab: 'py-5 mobile:px-10 px-7',
       },
     },
   },
   defaultVariants: {
     color: 'default',
+    size: 'lg',
+    radius: 'sm',
   },
 });
 

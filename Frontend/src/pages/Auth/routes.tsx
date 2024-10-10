@@ -1,9 +1,20 @@
 import { RouteObject } from 'react-router-dom';
-import { AuthPage } from './ui/AuthPage';
+import { LoginPage } from './ui/LoginPage';
+import { RegistrationPage } from './ui/RegistrationPage';
+import { AuthLayout } from './ui/AuthLayout';
 
 export const authRoutes: RouteObject[] = [
   {
-    path: '/auth',
-    element: <AuthPage />,
+    element: <AuthLayout />,
+    children: [
+      {
+        path: '/login',
+        element: <LoginPage />,
+      },
+      {
+        path: '/registration',
+        element: <RegistrationPage />,
+      },
+    ],
   },
 ];

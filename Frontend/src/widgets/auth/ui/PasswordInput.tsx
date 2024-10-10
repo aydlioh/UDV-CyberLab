@@ -1,5 +1,4 @@
-import { Input } from '@nextui-org/react';
-import { InputProps } from '@/shared/ui';
+import { Input, InputProps } from '@/shared/ui';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 

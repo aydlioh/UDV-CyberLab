@@ -8,5 +8,5 @@ export const AuthGuard = () => {
     return <Outlet />;
   }
 
-  return <Navigate to="/auth" replace />;
+  return <Navigate to="/login" replace />;
 };

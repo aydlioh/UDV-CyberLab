@@ -1,17 +1,21 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply dark;
-  }
-
   :root {
-    @apply bg-zinc-800 text-zinc-50 font-roboto;
+    @apply bg-background text-foreground font-inter;
   }
 
   button {
     @apply !outline-none;
+  }
+}
+
+@layer components {
+  .auth-container {
+    @apply mx-auto max-w-[1200px];
   }
 }

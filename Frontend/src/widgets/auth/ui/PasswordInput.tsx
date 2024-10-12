@@ -1,6 +1,6 @@
 import { Input, InputProps } from '@/shared/ui';
 import { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 export const PasswordInput = (props: InputProps) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,9 +17,9 @@ export const PasswordInput = (props: InputProps) => {
           aria-label="toggle password visibility"
         >
           {isVisible ? (
-            <FaEyeSlash className="text-2xl text-default-400 pointer-events-none" />
+            <AiOutlineEyeInvisible className="text-2xl text-foreground pointer-events-none" />
           ) : (
-            <FaEye className="text-2xl text-default-400 pointer-events-none" />
+            <AiOutlineEye className="text-2xl text-foreground pointer-events-none" />
           )}
         </button>
       }

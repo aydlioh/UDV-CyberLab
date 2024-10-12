@@ -2,9 +2,9 @@ import { LoginForm } from '@/widgets/auth';
 
 export const LoginPage = () => {
   return (
-    <section className="py-[50px] h-full w-full px-[71px] sm:rounded-[35px] bg-white flex">
+    <section className="sm:py-[50px] py-[30px] h-full w-full sm:px-[71px] mobile:px-[36px] px-[30px] rounded-[35px] bg-white flex justify-center">
       <div className="z-10">
-        <h1 className="text-2xl mb-5 text-center">Авторизация</h1>
+        <h1 className="text-[24px] mb-5 text-center">Авторизация</h1>
         <LoginForm />
       </div>
     </section>

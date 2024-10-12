@@ -23,7 +23,6 @@ export const LoginForm = () => {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <StatusSwitcher status={userStatus} setStatus={setUserStatus} />
       <Input
-        variant="bordered"
         isRequired
         label="E-mail"
         placeholder="Введите почту"
@@ -31,14 +30,17 @@ export const LoginForm = () => {
         autoComplete="current-email"
       />
       <PasswordInput
-        variant="bordered"
         isRequired
         label="Password"
         autoComplete="current-password"
         placeholder="Введите пароль"
         type="password"
       />
-      <p className="text-small">Забыли пароль?</p>
+      <p>
+        <span className="text-small duration-200 hover:text-orange cursor-pointer">
+          Забыли пароль?
+        </span>
+      </p>
       <Button type="submit" fullWidth>
         Войти
       </Button>
@@ -46,7 +48,7 @@ export const LoginForm = () => {
         Ещё нет аккаунта?{' '}
         <Link
           to="/registration"
-          className="text-link relative after:rounded-sm after:duration-200 after:w-0 after:h-0.5 hover:after:w-full after:left-1/2 hover:after:left-0 after:absolute after:-bottom-1  after:bg-link"
+          className="text-link duration-200 hover:text-orange"
         >
           Зарегистрироваться
         </Link>

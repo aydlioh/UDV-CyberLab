@@ -7,13 +7,13 @@ import {
 export const Button = extendVariants(ButtonNextUI, {
   variants: {
     color: {
-      default: 'bg-main-gradient text-white',
+      default: 'bg-gradient-to-r from-foreground to-second text-white',
     },
   },
   defaultVariants: {
     color: 'default',
     size: 'lg',
-    radius: 'sm',
+    radius: 'md',
   },
 });
 

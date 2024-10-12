@@ -10,7 +10,6 @@ type StatusSwitcherProps = {
 export const StatusSwitcher = ({ status, setStatus }: StatusSwitcherProps) => {
   return (
     <Tabs
-      variant="bordered"
       aria-label="User status"
       selectedKey={status}
       onSelectionChange={key => setStatus(key as typeof status)}

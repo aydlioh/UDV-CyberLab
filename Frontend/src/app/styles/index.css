@@ -6,16 +6,29 @@
 
 @layer base {
   :root {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-inter overflow-x-hidden;
   }
 
   button {
     @apply !outline-none;
   }
+
+  *::-webkit-scrollbar {
+    @apply w-[11px];
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-second hover:bg-gradient-to-b hover:from-second hover:via-foreground hover:to-second rounded-[7px] bg-clip-padding border-[3px] border-solid border-transparent transition-all duration-300 active:border-[2px]; 
+  }
+
 }
 
 @layer components {
   .auth-container {
-    @apply mx-auto max-w-[1200px];
+    @apply xl:mx-auto max-w-[1200px] h-svh overflow-x-hidden w-full xl:px-0 px-5;
   }
 }

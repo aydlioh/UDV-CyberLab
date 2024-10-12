@@ -12,9 +12,12 @@ export default {
       colors: {
         background: '#DDE0F1',
         foreground: '#343976',
+        second: '#9599CC',
+        link: '#3568FF',
+
+        controls: '#E9E9F1',
         white: '#FDFDFD',
         gray: '#B9BACA',
-        link: '#3568FF',
         orange: '#F29F26',
       },
       fontFamily: {

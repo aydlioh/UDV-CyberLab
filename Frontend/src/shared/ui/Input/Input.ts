@@ -17,6 +17,12 @@ export const Input = extendVariants(InputNextUI, {
         input:
           'placeholder:text-foreground focus:placeholder:text-[#A2A4C2] group-data-[has-value=true]:text-foreground !text-foreground',
       },
+      underlined: {
+        inputWrapper:
+          'border-b-[1px] shadow-none border-[#CDCDE3] !rounded-none hover:border-second after:bg-foreground ',
+        input:
+          'placeholder:text-foreground focus:placeholder:text-[#A2A4C2] group-data-[has-value=true]:text-foreground !text-foreground',
+      },
     },
   },
   defaultVariants: {

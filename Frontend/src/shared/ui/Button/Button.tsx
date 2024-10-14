@@ -8,6 +8,8 @@ export const Button = extendVariants(ButtonNextUI, {
   variants: {
     color: {
       default: 'bg-gradient-to-r from-foreground to-second text-white',
+      primary: 'bg-foreground text-white',
+      secondary: 'bg-controls text-foreground',
     },
   },
   defaultVariants: {

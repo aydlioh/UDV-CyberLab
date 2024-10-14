@@ -29,6 +29,6 @@
 
 @layer components {
   .auth-container {
-    @apply xl:mx-auto max-w-[1200px] h-svh overflow-x-hidden w-full xl:px-0 px-5;
+    @apply xl:mx-auto max-w-[1200px] h-svh md:overflow-x-visible overflow-x-hidden w-full xl:px-0 px-5;
   }
 }

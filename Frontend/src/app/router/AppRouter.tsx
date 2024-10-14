@@ -1,4 +1,4 @@
-import { mainRoutes, authRoutes } from '@/pages';
+import { mainRoutes, authRoutes, testRoutes } from '@/pages';
 import { AuthGuard, NoAuthGuard } from './guards';
 import { useRoutes } from 'react-router-dom';
 import { NotFountPage } from '@/pages/Error';
@@ -6,7 +6,7 @@ import { NotFountPage } from '@/pages/Error';
 const routes = [
   {
     element: <NoAuthGuard />,
-    children: [...authRoutes],
+    children: [...authRoutes, ...testRoutes],
   },
   {
     element: <AuthGuard />,

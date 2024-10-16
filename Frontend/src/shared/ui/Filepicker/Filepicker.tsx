@@ -69,21 +69,7 @@ export const Filepicker = ({ onFileSelect, currentFile }: FilepickerProps) => {
     if (fileUrl && currentFile) {
       const link = document.createElement('a');
       link.href = fileUrl;
-
-      const date = new Date();
-
-      const year = date.getFullYear();
-      const months = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-
-      const hours = String(date.getHours()).padStart(2, '0');
-      const minutes = String(date.getMinutes()).padStart(2, '0');
-      const seconds = String(date.getSeconds()).padStart(2, '0');
-
-      const timestamp = `${day}.${months}.${year} ${hours}-${minutes}-${seconds}`;
-      const newFileName = `${timestamp} ${currentFile.name}`;
-      link.download = newFileName;
-
+      link.download = currentFile.name;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

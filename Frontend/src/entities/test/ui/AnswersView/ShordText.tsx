@@ -10,8 +10,9 @@ export const ShortTextAnswer = ({
 }) => {
   const [value, setValue] = useState(currentAnswer || '');
 
+  // TODO debounce for zustand?
   useEffect(() => {
-    setAnswer(value as string);
+    setAnswer(value);
   }, [setAnswer, value]);
 
   return (

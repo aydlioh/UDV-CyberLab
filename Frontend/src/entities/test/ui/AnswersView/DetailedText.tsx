@@ -10,6 +10,7 @@ export const DetailedTextAnswer = ({
 }) => {
   const [value, setValue] = useState(currentAnswer || '');
 
+  // TODO debounce for zustand?
   useEffect(() => {
     setAnswer(value);
   }, [setAnswer, value]);

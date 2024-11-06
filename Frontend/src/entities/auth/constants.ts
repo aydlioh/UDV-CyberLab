@@ -1,5 +1,15 @@
-export const ADMIN = 'admin';
-export const USER = 'user';
+export enum AuthStatus {
+  AUTHORIZED = 'authorized',
+  UNAUTHORIZED = 'unauthorized',
+}
 
-export const AUTHORIZED = 'authorized';
-export const UNAUTHORIZED = 'unauthorized';
+export enum AuthRole {
+  ADMIN = 'admin',
+  TEACHER = 'teacher',
+  USER = 'user',
+}
+
+export enum UserStatus {
+  STUDENT = 0,
+  TEACHER = 1,
+}

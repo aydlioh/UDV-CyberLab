@@ -6,11 +6,11 @@ import { NotFountPage } from '@/pages/Error';
 const routes = [
   {
     element: <NoAuthGuard />,
-    children: [...authRoutes, ...testRoutes],
+    children: [...authRoutes],
   },
   {
     element: <AuthGuard />,
-    children: [...mainRoutes],
+    children: [...mainRoutes, ...testRoutes],
   },
   {
     path: '*',

@@ -1,4 +1,4 @@
-import { RegistrationForm } from '@/widgets/auth';
+import { RegistrationForm } from '@/widgets/registration-form';
 
 export const RegistrationPage = () => {
   return (

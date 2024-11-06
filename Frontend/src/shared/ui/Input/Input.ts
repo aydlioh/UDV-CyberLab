@@ -24,6 +24,7 @@ export const Input = extendVariants(InputNextUI, {
           'placeholder:text-foreground focus:placeholder:text-[#A2A4C2] group-data-[has-value=true]:text-foreground !text-foreground',
       },
     },
+    
   },
   defaultVariants: {
     variant: 'flat',

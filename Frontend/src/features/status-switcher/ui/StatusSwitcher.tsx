@@ -1,5 +1,5 @@
+import { UserStatus } from '@/entities/auth';
 import { Tabs } from '@/shared/ui';
-import { STUDENT, TEACHER, UserStatus } from '../constants';
 import { Tab } from '@nextui-org/react';
 
 type StatusSwitcherProps = {
@@ -14,8 +14,8 @@ export const StatusSwitcher = ({ status, setStatus }: StatusSwitcherProps) => {
       selectedKey={status}
       onSelectionChange={key => setStatus(key as typeof status)}
     >
-      <Tab className="w-1/2" key={STUDENT} title="Студент" />
-      <Tab className="w-1/2" key={TEACHER} title="Преподаватель" />
+      <Tab className="w-1/2" key={UserStatus.STUDENT} title="Студент" />
+      <Tab className="w-1/2" key={UserStatus.TEACHER} title="Преподаватель" />
     </Tabs>
   );
 };

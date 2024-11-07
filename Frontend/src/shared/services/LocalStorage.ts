@@ -3,10 +3,17 @@ export class LocalStorageService<T> {
 
   get(): T | null {
     const value = localStorage.getItem(this.key);
-    if (value) {
-      return JSON.parse(value) as T;
+
+    if (value === null || value === 'undefined') {
+      return null;
     }
-    return null;
+
+    try {
+      return JSON.parse(value) as T;
+    } catch (e) {
+      console.error('Ошибка при парсинге JSON из LocalStorage:', e);
+      return null;
+    }
   }
 
   save(value: T) {
@@ -17,7 +24,7 @@ export class LocalStorageService<T> {
     localStorage.removeItem(this.key);
   }
 
-  has() {
+  hasValue() {
     return Boolean(this.get());
   }
 }

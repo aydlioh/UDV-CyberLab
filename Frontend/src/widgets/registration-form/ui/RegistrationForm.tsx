@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { UserStatus } from '@/entities/auth';
 import { StatusSwitcher } from '@/features/status-switcher';
 import { PasswordInput } from '@/features/password-input';
-import { RegisterType } from '../type';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from '../schema';
 import { useRegister } from '../mutation';
+import { z } from 'zod';
+
+type RegisterType = z.infer<typeof registerSchema>;
 
 export const RegistrationForm = () => {
   const [userStatus, setUserStatus] = useState<UserStatus>(UserStatus.STUDENT);

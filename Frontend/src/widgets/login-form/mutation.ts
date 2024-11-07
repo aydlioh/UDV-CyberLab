@@ -13,8 +13,10 @@ export const useLogin = () => {
     mutationFn: authApi.login,
     onSuccess: (response: AccessTokenType) => {
       login();
-      navigate('/');
       tokenService.save(response);
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectPath = urlParams.get('redirect') || '/';
+      navigate(redirectPath);
     },
   });
 

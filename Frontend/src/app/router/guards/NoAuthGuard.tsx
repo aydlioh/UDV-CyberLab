@@ -5,6 +5,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 export const NoAuthGuard = () => {
   const login = useAuth(state => state.login);
+  const isAuthorized = useAuth(state => state.isAuthorized);
 
   useEffect(() => {
     if (tokenService.hasValue()) {
@@ -12,7 +13,7 @@ export const NoAuthGuard = () => {
     }
   }, [login]);
 
-  if (tokenService.hasValue()) {
+  if (tokenService.hasValue() || isAuthorized) {
     return <Navigate to="/" replace />;
   }
 

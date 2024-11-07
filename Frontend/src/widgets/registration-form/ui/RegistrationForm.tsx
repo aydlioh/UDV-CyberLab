@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
-import { Button, Input } from '@/shared/ui';
-import { useState } from 'react';
-import { UserStatus } from '@/entities/auth';
-import { StatusSwitcher } from '@/features/status-switcher';
 import { PasswordInput } from '@/features/password-input';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { StatusSwitcher } from '@/features/status-switcher';
+import { UserStatus } from '@/entities/auth';
+import { Button, Input } from '@/shared/ui';
 import { registerSchema } from '../schema';
 import { useRegister } from '../mutation';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 type RegisterType = z.infer<typeof registerSchema>;

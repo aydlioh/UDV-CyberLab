@@ -5,6 +5,7 @@ import { Navigate, Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 export const AuthGuard = () => {
   const login = useAuth(state => state.login);
+  const isAuthorized = useAuth(state => state.isAuthorized);
   const logout = useAuth(state => state.logout);
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,14 +26,9 @@ export const AuthGuard = () => {
     }
   }, [login]);
 
-  if (tokenService.hasValue()) {
+  if (tokenService.hasValue() || isAuthorized) {
     return <Outlet />;
   }
 
-  return (
-    <Navigate
-      to={`/login?redirect=${location.pathname}`}
-      replace
-    />
-  );
+  return <Navigate to={`/login?redirect=${location.pathname}`} replace />;
 };

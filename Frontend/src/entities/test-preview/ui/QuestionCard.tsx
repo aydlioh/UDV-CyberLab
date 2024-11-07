@@ -1,7 +1,8 @@
 import { TestCard } from '@/shared/ui';
-import { AnswerType, IQuestion } from '../models';
 import { AnswersView } from './AnswersView';
 import { useState } from 'react';
+import { AnswerType } from '../models/types';
+import { IQuestion } from '../models';
 
 interface QuestionCardProps extends IQuestion {
   totalCount: number;

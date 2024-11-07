@@ -1,5 +1,4 @@
-import { QuestionCard, TitleCard } from '@/entities/test-preview';
-import { IQuestion } from '@/entities/test-preview/models';
+import { QuestionCard, TitleCard, IQuestion } from '@/entities/test-preview';
 
 const titleMock = {
   id: '1',

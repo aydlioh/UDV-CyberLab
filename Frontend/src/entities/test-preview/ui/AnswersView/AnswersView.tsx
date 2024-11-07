@@ -1,10 +1,10 @@
-import { AnswerType, QuestionType } from '../../models';
 import { SelectAnswer } from './Select';
 import { FileAnswer } from './File';
 import { CheckboxAnswer } from './Checkbox';
 import { RadioAnswer } from './Radio';
 import { ShortTextAnswer } from './ShordText';
 import { DetailedTextAnswer } from './DetailedText';
+import { AnswerType, QuestionType } from '../../models/types';
 
 type AnswersViewProps = {
   setAnswer: (answer: AnswerType) => void;

@@ -1,18 +1,16 @@
-import { AuthRole, AuthStatus } from './constants';
+import { AuthRole } from './constants';
 import { create } from 'zustand';
 
 type AuthState = {
-  status: AuthStatus;
+  isAuthorized: boolean;
   role: AuthRole | null;
   login: () => void;
   logout: () => void;
-  isAuthorized: () => boolean;
 };
 
-export const useAuth = create<AuthState>((set, get) => ({
-  status: AuthStatus.UNAUTHORIZED,
+export const useAuth = create<AuthState>(set => ({
+  isAuthorized: false,
   role: null,
-  login: () => set({ status: AuthStatus.AUTHORIZED, role: AuthRole.USER }),
-  logout: () => set({ status: AuthStatus.UNAUTHORIZED, role: null }),
-  isAuthorized: () => get().status === AuthStatus.AUTHORIZED,
+  login: () => set({ isAuthorized: true, role: AuthRole.USER }),
+  logout: () => set({ isAuthorized: false, role: null }),
 }));

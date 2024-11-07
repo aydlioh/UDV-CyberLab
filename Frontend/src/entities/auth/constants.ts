@@ -1,8 +1,3 @@
-export enum AuthStatus {
-  AUTHORIZED = 'authorized',
-  UNAUTHORIZED = 'unauthorized',
-}
-
 export enum AuthRole {
   ADMIN = 'admin',
   TEACHER = 'teacher',

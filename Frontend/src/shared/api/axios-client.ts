@@ -5,12 +5,13 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
-import { createAxiosWithInterceptors } from './core/helpers';
+import { createAxiosWithInterceptors } from './common/helpers';
 
 export class AxiosClient {
+  private static instance: AxiosClient;
   private client: AxiosInstance;
 
-  constructor(baseURL: string) {
+  private constructor(baseURL: string) {
     axios.defaults.timeout = 5000;
     axios.defaults.withCredentials = true;
     axios.defaults.headers.post['Content-Type'] =
@@ -18,6 +19,13 @@ export class AxiosClient {
     axios.defaults.headers.post['Accept'] = 'text/plain';
 
     this.client = createAxiosWithInterceptors(baseURL);
+  }
+
+  public static getInstance(baseURL: string): AxiosClient {
+    if (!AxiosClient.instance) {
+      AxiosClient.instance = new AxiosClient(baseURL);
+    }
+    return AxiosClient.instance;
   }
 
   private async handleRequest<T>(

@@ -1,4 +1,4 @@
-export * from './Test/routes';
-export * from './Main/routes';
-export * from './Auth/routes';
+export * from './Test';
+export * from './Main';
+export * from './Auth';
 export * from './Error';

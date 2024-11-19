@@ -1,16 +1,15 @@
-import { PasswordInput } from '@/features/password-input';
+import { PasswordInput } from '@/features/inputs';
 import { StatusSwitcher } from '@/features/status-switcher';
-import { UserStatus } from '@/entities/auth';
+import { useLogin, UserStatus } from '@/entities/user';
 import { Button, Input } from '@/shared/ui';
-import { loginSchema } from '../schema';
-import { useLogin } from '../mutation';
+import { loginSchema } from '../lib/login-schema';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-type LoginType = z.infer<typeof loginSchema>
+type LoginType = z.infer<typeof loginSchema>;
 
 export const LoginForm = () => {
   const [userStatus, setUserStatus] = useState<UserStatus>(UserStatus.STUDENT);

@@ -7,3 +7,6 @@ export * from './Radio';
 export * from './Checkbox';
 export * from './Select';
 export * from './Filepicker';
+export * from './CircularProgress';
+export * from './Spinner';
+export * from './Modal';

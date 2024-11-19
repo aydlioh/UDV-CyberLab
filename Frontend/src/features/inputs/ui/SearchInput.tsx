@@ -1,0 +1,44 @@
+import { useEffect, useState } from 'react';
+import { Input } from '@/shared/ui';
+import { MdSearch } from 'react-icons/md';
+
+const DELAY = 400;
+
+export const SearchInput = ({
+  search,
+  setSearch,
+}: {
+  search: string | null;
+  setSearch: (search: string | null) => void;
+}) => {
+  const [value, setValue] = useState(search ?? '');
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (value !== search) {
+        setSearch(value);
+      }
+    }, DELAY);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, search, setSearch]);
+
+  return (
+    <Input
+      startContent={<MdSearch className="text-foreground text-[28px]" />}
+      size="lg"
+      placeholder="Поиск..."
+      value={value}
+      onChange={e => setValue(e.target.value)}
+      isClearable
+      onClear={() => setValue('')}
+      classNames={{
+        inputWrapper:
+          'bg-search data-[hover=true]:bg-white group-data-[focus=true]:bg-white group-data-[has-value=true]:bg-white',
+        input: 'text-[14px]',
+      }}
+    />
+  );
+};

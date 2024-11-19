@@ -1,4 +1,4 @@
-import { useAuth, useSessionTimeout } from '@/entities/auth';
+import { useAuth, useSessionTimeout } from '@/entities/user';
 import { tokenService } from '@/shared/services';
 import { useEffect } from 'react';
 import { Navigate, Outlet, useNavigate, useLocation } from 'react-router-dom';
@@ -13,10 +13,9 @@ export const AuthGuard = () => {
   useSessionTimeout({
     expirationTime: tokenService.get()?.expiration,
     onExpire: () => {
-      console.log(`Token expired /login?redirect=${location.pathname}`);
       tokenService.destroy();
       logout();
-      navigate(`/login?redirect=${location.pathname}`);
+      navigate(`/login?redirect_path=${location.pathname}`);
     },
   });
 
@@ -30,5 +29,5 @@ export const AuthGuard = () => {
     return <Outlet />;
   }
 
-  return <Navigate to={`/login?redirect=${location.pathname}`} replace />;
+  return <Navigate to={`/login?redirect_path=${location.pathname}`} replace />;
 };

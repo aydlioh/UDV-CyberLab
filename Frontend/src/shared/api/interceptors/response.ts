@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
-import { publicBackendUrls } from '../core/urls';
+import { publicBackendUrls } from '../common/urls';
 import { tokenService } from '@/shared/services';
-import { useAuth } from '@/entities/auth';
+import { useAuth } from '@/entities/user';
 
 export const notAuthorizedInterceptor = async (error: AxiosError) => {
   if (

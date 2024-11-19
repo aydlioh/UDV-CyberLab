@@ -22,13 +22,30 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    @apply bg-second hover:bg-gradient-to-b hover:from-second hover:via-foreground hover:to-second rounded-[7px] bg-clip-padding border-[3px] border-solid border-transparent transition-all duration-300 active:border-[2px]; 
+    @apply bg-second hover:bg-gradient-to-b hover:from-second hover:via-foreground hover:to-second rounded-[7px] bg-clip-padding border-[3px] border-solid border-transparent transition-all duration-300 active:border-[2px];
   }
 
+  *::spelling-error {
+    @apply underline underline-offset-2 decoration-rose-400 decoration-solid;
+  }
 }
 
 @layer components {
   .auth-container {
     @apply xl:mx-auto max-w-[1200px] h-svh md:overflow-x-visible overflow-x-hidden w-full xl:px-0 px-5;
+  }
+
+  .container {
+    @apply max-w-[1200px] xl:mx-auto xl:px-0 px-5;
+  }
+}
+
+@layer utilities {
+  .input-errors-underline::spelling-error {
+    @apply underline underline-offset-2 decoration-rose-400 decoration-solid;
+  }
+
+  .input-errors-bg::spelling-error {
+    @apply bg-rose-400/10;
   }
 }

@@ -15,6 +15,8 @@ export default {
         second: '#9599CC',
         link: '#3568FF',
 
+        search: '#EDEDFC',
+
         controls: '#E9E9F1',
         white: '#FDFDFD',
         gray: '#B9BACA',
@@ -26,6 +28,9 @@ export default {
       },
       backgroundImage: {
         'main-gradient': 'linear-gradient(90deg, #343976, #9599CC)',
+      },
+      dropShadow: {
+        base: '0 4px 4px rgba(0,0,0,0.15)',
       },
       container: {
         center: true,

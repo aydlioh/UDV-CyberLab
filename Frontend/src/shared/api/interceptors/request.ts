@@ -1,5 +1,5 @@
 import { InternalAxiosRequestConfig } from 'axios';
-import { publicBackendUrls } from '../core/urls';
+import { publicBackendUrls } from '../common/urls';
 import { tokenService } from '@/shared/services';
 
 export const addTokenInterceptor = (config: InternalAxiosRequestConfig) => {

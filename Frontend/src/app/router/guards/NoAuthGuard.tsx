@@ -1,4 +1,4 @@
-import { useAuth } from '@/entities/auth';
+import { useAuth } from '@/entities/user';
 import { tokenService } from '@/shared/services';
 import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';

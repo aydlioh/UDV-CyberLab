@@ -1,17 +1,17 @@
-export enum AuthRole {
-  STUDENT = 'student',
-  ADMIN = 'admin',
-  TEACHER = 'teacher',
-}
-
-export enum UserStatus {
+export enum AuthStatus {
   STUDENT = 0,
   ADMIN = 1,
   TEACHER = 2,
 }
 
+export enum UserRole {
+  STUDENT = 'student',
+  ADMIN = 'admin',
+  TEACHER = 'teacher',
+}
+
 export type UserInfo = {
   email: string;
   login: string;
-  role: AuthRole;
+  role: UserRole;
 };

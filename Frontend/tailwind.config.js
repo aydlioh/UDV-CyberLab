@@ -12,6 +12,7 @@ export default {
       colors: {
         background: '#DDE0F1',
         foreground: '#343976',
+        secondary: '#EDEDFC',
         second: '#9599CC',
         link: '#3568FF',
 

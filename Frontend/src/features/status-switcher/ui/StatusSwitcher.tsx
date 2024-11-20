@@ -1,9 +1,9 @@
-import { UserStatus } from '@/entities/user';
+import { AuthStatus } from '@/entities/user';
 import { Tabs, Tab } from '@/shared/ui';
 
 type StatusSwitcherProps = {
-  status: UserStatus;
-  setStatus: (status: UserStatus) => void;
+  status: AuthStatus;
+  setStatus: (status: AuthStatus) => void;
 };
 
 export const StatusSwitcher = ({ status, setStatus }: StatusSwitcherProps) => {
@@ -18,8 +18,8 @@ export const StatusSwitcher = ({ status, setStatus }: StatusSwitcherProps) => {
         tabList: 'bg-controls',
       }}
     >
-      <Tab className="w-1/2" key={UserStatus.STUDENT} title="Студент" />
-      <Tab className="w-1/2" key={UserStatus.TEACHER} title="Преподаватель" />
+      <Tab className="w-1/2" key={AuthStatus.STUDENT} title="Студент" />
+      <Tab className="w-1/2" key={AuthStatus.TEACHER} title="Преподаватель" />
     </Tabs>
   );
 };

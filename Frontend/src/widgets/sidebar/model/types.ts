@@ -5,4 +5,5 @@ export type SidebarItemType = {
   label: string;
   path: string;
   icon?: IconType;
+  enabledList: string[];
 };

@@ -1,5 +1,5 @@
-import { RouteObject } from 'react-router-dom';
-import { TestLayout } from './ui/layouts';
+import { Navigate, RouteObject } from 'react-router-dom';
+import { ManageTestLayout, MyTestLayout, TestLayout } from './ui/layouts';
 import { TeacherGuard, TestGuard } from './ui/guards';
 import {
   TestsPage,
@@ -8,11 +8,14 @@ import {
   MyCreatedTestsPage,
   MyPassedTestsPage,
   MyTestsPage,
-  TestEditPage,
   TestPreviewPage,
   TestResultPage,
   TestSettingsPage,
   TestStatisticsPage,
+  TestResultListPage,
+  EditCustomPage,
+  EditGeneratePage,
+  EditAIPage,
 } from './ui/routes';
 
 export const testRoutes: RouteObject[] = [
@@ -25,7 +28,7 @@ export const testRoutes: RouteObject[] = [
         element: <TestsPage />,
       },
       {
-        path: ':id',
+        path: ':testId',
         children: [
           {
             element: <TestGuard />,
@@ -42,39 +45,76 @@ export const testRoutes: RouteObject[] = [
           },
           {
             path: 'result',
-            element: <TestResultPage />,
+            children: [
+              {
+                path: '',
+                element: <TestResultListPage />,
+              },
+              {
+                path: ':resultId',
+                element: <TestResultPage />,
+              },
+            ],
           },
         ],
       },
       {
         path: 'my',
-        element: <MyTestsPage />,
-      },
-      {
-        path: 'my/passed',
-        element: <MyPassedTestsPage />,
+        element: <MyTestLayout />,
+        children: [
+          {
+            path: '',
+            element: <MyTestsPage />,
+          },
+          {
+            path: 'passed',
+            element: <MyPassedTestsPage />,
+          },
+          {
+            element: <TeacherGuard />,
+            children: [
+              {
+                path: 'created',
+                element: <MyCreatedTestsPage />,
+              },
+            ],
+          },
+        ],
       },
       {
         element: <TeacherGuard />,
         children: [
           {
-            path: 'my/created',
-            element: <MyCreatedTestsPage />,
+            element: <ManageTestLayout />,
+            children: [
+              {
+                path: 'manage/:testId/edit',
+                element: <Navigate replace to="custom" />,
+              },
+              {
+                path: 'manage/:testId/edit/custom',
+                element: <EditCustomPage />,
+              },
+              {
+                path: 'manage/:testId/edit/generate',
+                element: <EditGeneratePage />,
+              },
+              {
+                path: 'manage/:testId/edit/ai',
+                element: <EditAIPage />,
+              },
+              {
+                path: 'manage/:testId/settings',
+                element: <TestSettingsPage />,
+              },
+              {
+                path: 'manage/:testId/preview',
+                element: <TestPreviewPage />,
+              },
+            ],
           },
           {
-            path: 'manage/:id/edit',
-            element: <TestEditPage />,
-          },
-          {
-            path: 'manage/:id/settings',
-            element: <TestSettingsPage />,
-          },
-          {
-            path: 'manage/:id/preview',
-            element: <TestPreviewPage />,
-          },
-          {
-            path: 'manage/:id/statistics',
+            path: 'manage/:testId/statistics',
             element: <TestStatisticsPage />,
           },
         ],

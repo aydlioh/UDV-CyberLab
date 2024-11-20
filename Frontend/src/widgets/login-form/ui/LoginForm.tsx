@@ -1,6 +1,6 @@
 import { PasswordInput } from '@/features/inputs';
 import { StatusSwitcher } from '@/features/status-switcher';
-import { useLogin, UserStatus } from '@/entities/user';
+import { useLogin, AuthStatus } from '@/entities/user';
 import { Button, Input } from '@/shared/ui';
 import { loginSchema } from '../lib/login-schema';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { z } from 'zod';
 type LoginType = z.infer<typeof loginSchema>;
 
 export const LoginForm = () => {
-  const [userStatus, setUserStatus] = useState<UserStatus>(UserStatus.STUDENT);
+  const [userStatus, setUserStatus] = useState<AuthStatus>(AuthStatus.STUDENT);
   const { login, isPending, error } = useLogin();
 
   const {

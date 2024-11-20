@@ -10,11 +10,20 @@ export const Select = extendVariants(SelectNextUI, {
     variant: {
       flat: {
         trigger:
-          'group-data-[filled=true]:text-foreground bg-controls data-[hover=true]:bg-[#CDCDE3] duration-200',
+          'group-data-[filled=true]:text-foreground bg-controls data-[hover=true]:bg-[#CDCDE3] duration-200 text-foreground',
         label: 'text-foreground',
         value: 'group-data-[has-value=true]:text-foreground',
         popoverContent: 'bg-controls max-h-[190px]',
       },
+    },
+    color: {
+      secondary: {
+        trigger:
+          'group-data-[filled=true]:text-foreground bg-secondary',
+        label: 'text-foreground',
+        value: 'group-data-[has-value=true]:text-foreground',
+        popoverContent: 'bg-secondary max-h-[190px]',
+      }
     },
     radius: {
       sm: {

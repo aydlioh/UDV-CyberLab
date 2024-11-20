@@ -2,6 +2,7 @@ import { getTestStatus, ITestDetails, TestDetails } from '@/entities/test';
 import { useTestDetailsModalStore } from '../model/store';
 import { Modal, ModalBody, ModalContent } from '@/shared/ui';
 import { TestDetailsActions } from './actions/TestDetailsActions';
+import { useAuth } from '@/entities/user';
 
 export const tests: ITestDetails[] = [
   {
@@ -71,17 +72,17 @@ export const tests: ITestDetails[] = [
 ];
 
 export const TestDetailsModal = () => {
+  const user = useAuth(state => state.user?.login);
   const { isOpen, close, testId } = useTestDetailsModalStore();
 
   const test = tests.find(test => test.id === testId);
 
   if (!test) return null;
 
-  // TODO useAuth.user.login
   const testStatus = getTestStatus(
     { status: test.status, owner: test.owner },
     {
-      user: 'aydlioh',
+      user,
     }
   );
 

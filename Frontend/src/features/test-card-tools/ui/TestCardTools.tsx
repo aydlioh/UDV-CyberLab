@@ -2,15 +2,16 @@ import { getTestStatus, ITestCard } from '@/entities/test';
 import { OwnerTools } from './owner/OwnerTools';
 import { CircularProgress } from '@/shared/ui';
 import { getPercentage } from '@/shared/common/utils';
+import { useAuth } from '@/entities/user';
 
 type TestCardProps = {
   test: ITestCard;
 };
 
 export const TestCardTools = ({ test }: TestCardProps) => {
-  // TODO useAuth.user.login
+  const user = useAuth(state => state.user?.login);
   const { isOwner, isRunning, isOver } = getTestStatus(test, {
-    user: 'aydlioh',
+    user,
   });
 
   if (isOwner) return <OwnerTools id={test.id} />;

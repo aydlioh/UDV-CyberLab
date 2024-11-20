@@ -1,17 +1,13 @@
 import { Tabs, Tab } from '@/shared/ui';
-import { SidebarItemType } from '../model/types';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { SidebarItem } from './SidebarItem';
-import { logoutTabData } from '../const/logoutTab';
-import { useAuth } from '@/entities/user';
+import { TopbarItemType } from '../model/types';
+import { TopbarItem } from './TopbarItem';
 
-type SidebarProps = {
-  links: SidebarItemType[];
-  withLogout?: boolean;
+type TopbarProps = {
+  links: TopbarItemType[];
 };
 
-export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
-  const logout = useAuth(state => state.logout);
+export const Topbar = ({ links }: TopbarProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -19,11 +15,6 @@ export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
     links.find(l => l.enabledList.includes(key));
 
   const handleSwitch = (key: string) => {
-    if (key === 'logout') {
-      logout();
-      return;
-    }
-
     if (hasEnabledKey(key)) {
       navigate(key);
     }
@@ -33,25 +24,20 @@ export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
     <aside>
       <Tabs
         size="lg"
-        isVertical
-        fullWidth
+        color="secondary"
         onSelectionChange={key => handleSwitch(key as string)}
         selectedKey={hasEnabledKey(pathname)?.path || 'default'}
-        className="w-[224px]"
         aria-label="Sidebar"
         classNames={{
           tabContent: 'w-full',
-          tab: 'px-[13px]',
+          tab: 'px-[13px] min-w-[151px]',
           cursor: 'drop-shadow-base',
         }}
       >
         <Tab key="default" className="hidden" />
-        {links.map(({ path, label, icon }) => (
-          <Tab key={path} title={<SidebarItem icon={icon} label={label} />} />
+        {links.map(({ path, label }) => (
+          <Tab key={path} title={<TopbarItem label={label} />} />
         ))}
-        {withLogout && (
-          <Tab key="logout" title={<SidebarItem {...logoutTabData} />} />
-        )}
       </Tabs>
     </aside>
   );

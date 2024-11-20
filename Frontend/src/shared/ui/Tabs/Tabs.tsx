@@ -13,6 +13,11 @@ export const Tabs = extendVariants(TabsNextUI, {
         tabContent: 'group-data-[selected=true]:text-white text-foreground',
         tabList: 'bg-white',
       },
+      secondary: {
+        cursor: 'bg-white text-foreground',
+        tabContent: 'text-foreground group-data-[selected=true]:text-foreground',
+        tabList: 'bg-secondary',
+      },
     },
     variant: {
       bordered: {

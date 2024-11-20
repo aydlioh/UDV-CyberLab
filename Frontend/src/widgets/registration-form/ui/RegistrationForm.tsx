@@ -1,6 +1,6 @@
 import { PasswordInput } from '@/features/inputs';
 import { StatusSwitcher } from '@/features/status-switcher';
-import { UserStatus, useRegister } from '@/entities/user';
+import { AuthStatus, useRegister } from '@/entities/user';
 import { Button, Input } from '@/shared/ui';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ import { z } from 'zod';
 type RegisterType = z.infer<typeof registerSchema>;
 
 export const RegistrationForm = () => {
-  const [userStatus, setUserStatus] = useState<UserStatus>(UserStatus.STUDENT);
+  const [userStatus, setUserStatus] = useState<AuthStatus>(AuthStatus.STUDENT);
   const { register, isPending, error } = useRegister();
 
   const {

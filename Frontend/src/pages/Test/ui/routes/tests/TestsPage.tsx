@@ -1,51 +1,8 @@
 import { TestFilters } from '@/widgets/test-filters';
 import { TestList } from '@/widgets/test-list';
 import { SearchInput } from '@/features/inputs';
-import { ITestCard } from '@/entities/test';
 import { useQueryState } from 'nuqs';
-
-export const mockTests: ITestCard[] = [
-  {
-    id: '1',
-    owner: 'aydlioh',
-    title: 'Тест по стереометрии',
-    totalPoints: 10,
-    currentPoints: undefined,
-    status: 'idle',
-  },
-  {
-    id: '2',
-    owner: 'qwerty',
-    title: 'Тест по английскому языку',
-    totalPoints: 12,
-    currentPoints: undefined,
-    status: 'idle',
-  },
-  {
-    id: '3',
-    owner: 'zzz',
-    title: 'Тест по математике',
-    totalPoints: 15,
-    currentPoints: undefined,
-    status: 'run',
-  },
-  {
-    id: '4',
-    owner: 'zzz',
-    title: 'Тест по физике',
-    totalPoints: 15,
-    currentPoints: 7,
-    status: 'over',
-  },
-  {
-    id: '5',
-    owner: 'russian_bear',
-    title: 'Тест по физике с 2 попытками',
-    totalPoints: 10,
-    currentPoints: 8,
-    status: 'over',
-  },
-];
+import { testsMOCK } from '@/entities/test/MOCK';
 
 const TestsPage = () => {
   const [search, setSearch] = useQueryState('search', { defaultValue: '' });
@@ -54,19 +11,32 @@ const TestsPage = () => {
   });
   const [subject, setSubject] = useQueryState('subject', { defaultValue: '' });
 
+  const filteredTests = testsMOCK.filter(
+    test =>
+      (difficulty === '' || test.difficulty === difficulty) &&
+      (subject === '' || test.subject === subject) &&
+      (search === '' || test.title.toLowerCase().includes(search.toLowerCase()))
+  );
+
   return (
     <section className="flex flex-row gap-5 w-full">
       <div className="w-full flex flex-col gap-3">
-        <SearchInput search={search} setSearch={setSearch} />
-        <TestList tests={mockTests} />
+        <div className="px-2 sticky top-10 z-10">
+          <div className="p-4 bg-background/40 backdrop-blur-sm rounded-lg">
+            <SearchInput search={search} setSearch={setSearch} />
+          </div>
+        </div>
+        <TestList tests={filteredTests} />
       </div>
       <div className="max-w-[224px] w-full">
-        <TestFilters
-          difficulty={difficulty}
-          setDifficulty={setDifficulty}
-          subject={subject}
-          setSubject={setSubject}
-        />
+        <div className="sticky top-10">
+          <TestFilters
+            difficulty={difficulty}
+            setDifficulty={setDifficulty}
+            subject={subject}
+            setSubject={setSubject}
+          />
+        </div>
       </div>
     </section>
   );

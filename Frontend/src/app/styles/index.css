@@ -9,6 +9,10 @@
     @apply bg-background text-foreground font-inter overflow-x-hidden;
   }
 
+  body, html {
+    scrollbar-gutter: stable;
+  }
+
   button {
     @apply !outline-none;
   }

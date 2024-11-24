@@ -1,13 +1,13 @@
+import { useNavigation } from '@/shared/hooks';
 import { Button } from '@/shared/ui';
-import { useNavigate } from 'react-router-dom';
 import { useModalCloseHandler } from '../../model/hooks/useCloseHandler';
 
 export const StartAction = ({ testId }: { testId: string }) => {
   const closeHandler = useModalCloseHandler();
-  const navigate = useNavigate();
+  const { scrollNavigate } = useNavigation();
 
   const handleStart = () => {
-    navigate(`/tests/${testId}`);
+    scrollNavigate(`/tests/${testId}`);
   };
 
   return (

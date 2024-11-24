@@ -1,12 +1,12 @@
 import { useTestDetailsModalStore } from '../store';
 
 export const useModalCloseHandler = () => {
-  const close = useTestDetailsModalStore(state => state.close);
+  const setOpen = useTestDetailsModalStore(state => state.setOpen);
 
   const closeHandler = (callback: () => void) => {
     return () => {
-      close();
-      setTimeout(callback, 0);
+      setOpen(false);
+      callback();
     };
   };
 

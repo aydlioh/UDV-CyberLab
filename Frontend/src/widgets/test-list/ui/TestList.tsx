@@ -10,7 +10,7 @@ export const TestList = ({ tests }: { tests: ITestCard[] }) => {
 
   return (
     <>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 mb-10">
         {tests.map(test => (
           <TestCard
             onClick={() => open(test.id)}

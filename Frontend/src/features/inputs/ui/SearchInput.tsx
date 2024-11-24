@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Input } from '@/shared/ui';
+import { Input, InputProps } from '@/shared/ui';
 import { MdSearch } from 'react-icons/md';
 
 const DELAY = 400;
 
-export const SearchInput = ({
-  search,
-  setSearch,
-}: {
+type SearchInputProps = InputProps & {
   search: string | null;
   setSearch: (search: string | null) => void;
-}) => {
+};
+
+export const SearchInput = ({ search, setSearch, ...props }: SearchInputProps) => {
   const [value, setValue] = useState(search ?? '');
 
   useEffect(() => {
@@ -39,6 +38,7 @@ export const SearchInput = ({
           'bg-search data-[hover=true]:bg-white group-data-[focus=true]:bg-white group-data-[has-value=true]:bg-white',
         input: 'text-[14px]',
       }}
+      {...props}
     />
   );
 };

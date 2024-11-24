@@ -1,19 +1,18 @@
 import { Divider } from '@nextui-org/react';
 import { ToolButton } from './ToolButton';
-import { useNavigate } from 'react-router-dom';
-
 import { MdModeEdit, MdDelete, MdSettings } from 'react-icons/md';
 import { IoStatsChart } from 'react-icons/io5';
 import { IoMdList } from 'react-icons/io';
+import { useNavigation } from '@/shared/hooks';
 
 export const ToolsContent = ({ id }: { id: string }) => {
-  const navigate = useNavigate();
+  const { scrollNavigate } = useNavigation();
 
   return (
     <div>
       <div>
         <ToolButton
-          onClick={() => navigate(`/tests/manage/${id}/statistics`)}
+          onClick={() => scrollNavigate(`/tests/manage/${id}/statistics`)}
           startContent={<IoStatsChart size={17} />}
         >
           Статистика
@@ -22,19 +21,19 @@ export const ToolsContent = ({ id }: { id: string }) => {
       <Divider className="my-1 bg-background" />
       <div className="flex flex-col gap-0.5">
         <ToolButton
-          onClick={() => navigate(`/tests/manage/${id}/edit`)}
+          onClick={() => scrollNavigate(`/tests/manage/${id}/edit`)}
           startContent={<MdModeEdit size={17} />}
         >
           Редактировать
         </ToolButton>
         <ToolButton
-          onClick={() => navigate(`/tests/manage/${id}/settings`)}
+          onClick={() => scrollNavigate(`/tests/manage/${id}/settings`)}
           startContent={<MdSettings size={17} />}
         >
           Настройки
         </ToolButton>
         <ToolButton
-          onClick={() => navigate(`/tests/manage/${id}/preview`)}
+          onClick={() => scrollNavigate(`/tests/manage/${id}/preview`)}
           startContent={<IoMdList size={17} />}
         >
           Предпросмотр

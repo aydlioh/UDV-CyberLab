@@ -1,18 +1,18 @@
-import { useNavigate } from 'react-router-dom';
 import { Divider } from '@nextui-org/react';
-import { useModalCloseHandler } from '../../model/hooks/useCloseHandler';
 import { Button } from '@/shared/ui';
+import { useNavigation } from '@/shared/hooks';
+import { useModalCloseHandler } from '../../model/hooks/useCloseHandler';
 
 export const OwnerActions = ({ testId }: { testId: string }) => {
   const closeHandler = useModalCloseHandler();
-  const navigate = useNavigate();
+  const { scrollNavigate } = useNavigation();
 
   const handleViewStatistics = () => {
-    navigate(`/tests/manage/${testId}/statistics`);
+    scrollNavigate(`/tests/manage/${testId}/statistics`);
   };
 
   const handleEdit = () => {
-    navigate(`/tests/manage/${testId}/edit`);
+    scrollNavigate(`/tests/manage/${testId}/edit`);
   };
 
   return (

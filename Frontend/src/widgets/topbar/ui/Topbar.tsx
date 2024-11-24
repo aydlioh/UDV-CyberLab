@@ -1,14 +1,15 @@
 import { Tabs, Tab } from '@/shared/ui';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { TopbarItemType } from '../model/types';
 import { TopbarItem } from './TopbarItem';
+import { useNavigation } from '@/shared/hooks';
 
 type TopbarProps = {
   links: TopbarItemType[];
 };
 
 export const Topbar = ({ links }: TopbarProps) => {
-  const navigate = useNavigate();
+  const { navigate, scrollNavigate } = useNavigation();
   const { pathname } = useLocation();
 
   const hasEnabledKey = (key: string) =>
@@ -16,7 +17,11 @@ export const Topbar = ({ links }: TopbarProps) => {
 
   const handleSwitch = (key: string) => {
     if (hasEnabledKey(key)) {
-      navigate(key);
+      if (window.scrollY > 0) {
+        scrollNavigate(key);
+      } else {
+        navigate(key);
+      }
     }
   };
 

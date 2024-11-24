@@ -10,7 +10,9 @@ export const TestLayout = () => {
         <h1 className="font-w3ip text-[32px]">NEO Lab</h1>
       </div>
       <div className="flex flex-row justify-start gap-[20px] mt-[12px] min-h-[calc(100vh-200px)]">
-        <Sidebar links={testRoutes} withLogout />
+        <div className="sticky top-10 h-[200px]">
+          <Sidebar links={testRoutes} withLogout />
+        </div>
         <Suspense
           fallback={
             <div className="flex justify-center items-center w-full">

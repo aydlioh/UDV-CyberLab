@@ -1,7 +1,7 @@
+import { useNavigation } from '@/shared/hooks';
 import { Button } from '@/shared/ui';
-import { useModalCloseHandler } from '../../model/hooks/useCloseHandler';
-import { useNavigate } from 'react-router-dom';
 import { Divider } from '@nextui-org/react';
+import { useModalCloseHandler } from '../../model/hooks/useCloseHandler';
 
 export const FinishedActions = ({
   testId,
@@ -11,14 +11,14 @@ export const FinishedActions = ({
   withRepeat: boolean;
 }) => {
   const closeHandler = useModalCloseHandler();
-  const navigate = useNavigate();
+  const { scrollNavigate } = useNavigation();
 
   const handleViewResults = () => {
-    navigate(`/tests/${testId}/result`);
+    scrollNavigate(`/tests/${testId}/result`);
   };
 
   const handleRepeat = () => {
-    navigate(`/tests/${testId}`);
+    scrollNavigate(`/tests/${testId}`);
   };
 
   return (

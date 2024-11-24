@@ -1,9 +1,10 @@
 import { Tabs, Tab } from '@/shared/ui';
 import { SidebarItemType } from '../model/types';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { SidebarItem } from './SidebarItem';
 import { logoutTabData } from '../const/logoutTab';
 import { useAuth } from '@/entities/user';
+import { useNavigation } from '@/shared/hooks';
 
 type SidebarProps = {
   links: SidebarItemType[];
@@ -12,7 +13,7 @@ type SidebarProps = {
 
 export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
   const logout = useAuth(state => state.logout);
-  const navigate = useNavigate();
+  const { navigate, scrollNavigate } = useNavigation();
   const { pathname } = useLocation();
 
   const hasEnabledKey = (key: string) =>
@@ -25,7 +26,11 @@ export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
     }
 
     if (hasEnabledKey(key)) {
-      navigate(key);
+      if (window.scrollY > 0) {
+        scrollNavigate(key);
+      } else {
+        navigate(key);
+      }
     }
   };
 

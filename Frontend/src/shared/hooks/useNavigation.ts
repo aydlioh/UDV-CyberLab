@@ -21,11 +21,10 @@ export const useNavigation = () => {
 
   const scrollNavigate = useCallback(
     (key: string) => {
-      const navigateToKey = () => nav(key);
       if (window.scrollY > 0) {
-        scrollToTop().then(() => setTimeout(navigateToKey, 75));
+        scrollToTop().then(() => setTimeout(() => nav(key), 50));
       } else {
-        navigateToKey();
+        setTimeout(() => nav(key), 0);
       }
     },
     [nav]

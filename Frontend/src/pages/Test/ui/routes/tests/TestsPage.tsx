@@ -21,10 +21,8 @@ const TestsPage = () => {
   return (
     <section className="flex flex-row gap-5 w-full">
       <div className="w-full flex flex-col gap-3">
-        <div className="px-2 sticky top-10 z-10">
-          <div className="p-4 bg-background/40 backdrop-blur-sm rounded-lg">
-            <SearchInput search={search} setSearch={setSearch} />
-          </div>
+        <div className="sticky top-10 z-10">
+          <SearchInput search={search} setSearch={setSearch} />
         </div>
         <TestList tests={filteredTests} />
       </div>

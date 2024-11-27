@@ -2,7 +2,7 @@ import { TestFilters } from '@/widgets/test-filters';
 import { TestList } from '@/widgets/test-list';
 import { SearchInput } from '@/features/inputs';
 import { useQueryState } from 'nuqs';
-import { testsMOCK } from '@/entities/test/MOCK';
+import { testsMOCK } from '@/entities/test-info/MOCK';
 
 const TestsPage = () => {
   const [search, setSearch] = useQueryState('search', { defaultValue: '' });

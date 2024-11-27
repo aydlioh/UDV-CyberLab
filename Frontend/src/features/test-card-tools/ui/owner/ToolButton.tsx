@@ -5,7 +5,6 @@ export const ToolButton = ({ className, ...props }: ButtonProps) => {
     <Button
       type="button"
       fullWidth
-      color="primary"
       variant="light"
       size="md"
       radius="sm"

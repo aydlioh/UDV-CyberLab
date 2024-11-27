@@ -1,9 +1,9 @@
-import { getTestStatus, TestDetails } from '@/entities/test';
+import { getTestStatus, TestDetails } from '@/entities/test-info';
 import { useTestDetailsModalStore } from '../model/store';
 import { Modal, ModalBody, ModalContent } from '@/shared/ui';
 import { TestDetailsActions } from './actions/TestDetailsActions';
 import { useAuth } from '@/entities/user';
-import { testsMOCK } from '@/entities/test/MOCK';
+import { testsMOCK } from '@/entities/test-info/MOCK';
 
 export const TestDetailsModal = () => {
   const user = useAuth(state => state.user?.login);

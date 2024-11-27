@@ -11,7 +11,12 @@ export const CreateTestButton = () => {
   };
 
   return (
-    <Button onClick={handleCreate} size="md" endContent={<MdAdd size={22} />}>
+    <Button
+      color="gradient"
+      onClick={handleCreate}
+      size="md"
+      endContent={<MdAdd size={22} />}
+    >
       Создать тест
     </Button>
   );

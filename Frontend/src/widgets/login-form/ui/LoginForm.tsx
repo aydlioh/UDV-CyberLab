@@ -66,7 +66,7 @@ export const LoginForm = () => {
           Забыли пароль?
         </span>
       </p>
-      <Button type="submit" fullWidth isDisabled={isPending}>
+      <Button color="gradient" type="submit" fullWidth isDisabled={isPending}>
         Войти
       </Button>
       <p className="text-small">

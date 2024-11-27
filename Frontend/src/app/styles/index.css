@@ -9,7 +9,8 @@
     @apply bg-background text-foreground font-inter overflow-x-hidden;
   }
 
-  body, html {
+  body,
+  html {
     scrollbar-gutter: stable;
   }
 
@@ -51,5 +52,13 @@
 
   .input-errors-bg::spelling-error {
     @apply bg-rose-400/10;
+  }
+
+  .without-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .without-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

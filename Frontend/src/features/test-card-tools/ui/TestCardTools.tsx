@@ -1,4 +1,4 @@
-import { getTestStatus, ITestCard } from '@/entities/test';
+import { getTestStatus, ITestCard } from '@/entities/test-info';
 import { OwnerTools } from './owner/OwnerTools';
 import { CircularProgress } from '@/shared/ui';
 import { getPercentage } from '@/shared/common/utils';

@@ -1,4 +1,4 @@
-import { ITestCard, TestStatus } from '@/entities/test';
+import { ITestCard, TestStatus } from '@/entities/test-info';
 
 type TestStatusOptions = {
   user?: string;

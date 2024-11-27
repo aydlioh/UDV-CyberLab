@@ -17,7 +17,7 @@ export const OwnerActions = ({ testId }: { testId: string }) => {
 
   return (
     <div className="flex flex-row gap-4 items-center justify-center px-10">
-      <Button className="w-1/2" onClick={closeHandler(handleEdit)}>
+      <Button color="gradient" className="w-1/2" onClick={closeHandler(handleEdit)}>
         Редактировать
       </Button>
       <Divider orientation="vertical" className="h-16 bg-foreground/30" />

@@ -14,7 +14,7 @@ export const OwnerTools = ({ id }: { id: string }) => {
       }}
     >
       <PopoverTrigger>
-        <Button isIconOnly color="primary" variant="light">
+        <Button isIconOnly color="default" variant="light">
           <TestToolsIcon />
         </Button>
       </PopoverTrigger>

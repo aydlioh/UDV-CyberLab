@@ -1,4 +1,4 @@
-import { getTestStatus, ITestDetails } from '@/entities/test';
+import { getTestStatus, ITestDetails } from '@/entities/test-info';
 import { OwnerActions } from './OwnerActions';
 import { ResumeAction } from './ResumeAction';
 import { StartAction } from './StartAction';

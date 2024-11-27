@@ -75,7 +75,7 @@ export const RegistrationForm = () => {
         type="password"
         autoComplete="new-password"
       />
-      <Button type="submit" fullWidth isDisabled={isPending}>
+      <Button color="gradient" type="submit" fullWidth isDisabled={isPending}>
         Зарегистрироваться
       </Button>
       <p className="text-small">

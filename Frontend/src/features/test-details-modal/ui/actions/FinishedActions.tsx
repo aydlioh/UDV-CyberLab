@@ -23,7 +23,11 @@ export const FinishedActions = ({
 
   return (
     <div className="flex flex-row gap-4 items-center justify-center px-10">
-      <Button className="w-1/2" onClick={closeHandler(handleViewResults)}>
+      <Button
+        color="gradient"
+        className="w-1/2"
+        onClick={closeHandler(handleViewResults)}
+      >
         Посмотреть результат
       </Button>
       {withRepeat && (

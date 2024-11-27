@@ -11,7 +11,7 @@ export const Radio = extendVariants(RadioNextUI, {
       default: {
         base: 'text-foreground',
         wrapper:
-          'border-second group-data-[hover-unselected=true]:bg-second/15  group-data-[selected=true]:border-foreground ',
+          'border-second group-data-[hover-unselected=true]:bg-second/15 group-data-[selected=true]:border-foreground ',
         control: 'bg-foreground',
       },
     },

@@ -1,4 +1,4 @@
-import { testsMOCK } from '@/entities/test/MOCK';
+import { testsMOCK } from '@/entities/test-info/MOCK';
 import { TestList } from '@/widgets/test-list';
 
 const MyPassedTestsPage = () => {

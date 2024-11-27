@@ -12,7 +12,9 @@ export const StartAction = ({ testId }: { testId: string }) => {
 
   return (
     <div className="flex justify-center">
-      <Button onClick={closeHandler(handleStart)}>Начать прохождение</Button>
+      <Button color="gradient" onClick={closeHandler(handleStart)}>
+        Начать прохождение
+      </Button>
     </div>
   );
 };

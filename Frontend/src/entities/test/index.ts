@@ -1,9 +1,4 @@
-export * from './ui/TestCard';
-export * from './ui/TestDetails';
+export * from './model/dto/ITest';
 
-export * from './model/dto/ITestCard';
-export * from './model/dto/ITestDetails';
-
-export * from './utils/getTestDifficulty';
-export * from './utils/getTestStatus';
-export * from './utils/getTestSubject';
+export * from './ui/TestTitle';
+export * from './ui/TestStatus';

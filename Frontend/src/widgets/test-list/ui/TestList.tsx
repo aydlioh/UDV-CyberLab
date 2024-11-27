@@ -1,4 +1,4 @@
-import { ITestCard, TestCard } from '@/entities/test';
+import { ITestCard, TestCard } from '@/entities/test-info';
 import { TestCardTools } from '@/features/test-card-tools';
 import {
   TestDetailsModal,

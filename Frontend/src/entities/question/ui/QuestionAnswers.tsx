@@ -9,17 +9,19 @@ import {
 } from './answers';
 import { AnswersInputType } from '../model/types';
 
+type QuestionAnswersProps = {
+  type: string;
+  answers?: QuestionAnswersType[];
+  setCurrent: (answer: AnswersInputType) => void;
+  current: AnswersInputType;
+};
+
 export const QuestionAnswers = ({
   type,
   answers,
   setCurrent,
   current,
-}: {
-  type: string;
-  answers?: QuestionAnswersType[];
-  setCurrent: (answer: AnswersInputType) => void;
-  current: AnswersInputType;
-}) => {
+}: QuestionAnswersProps) => {
   switch (type) {
     case QuestionType.Checkbox:
       return (
@@ -51,10 +53,7 @@ export const QuestionAnswers = ({
       );
     case QuestionType.File:
       return (
-        <FileAnswer
-          currentAnswer={current as File}
-          setAnswer={setCurrent}
-        />
+        <FileAnswer currentAnswer={current as File} setAnswer={setCurrent} />
       );
     default:
       return <></>;

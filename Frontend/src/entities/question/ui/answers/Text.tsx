@@ -10,7 +10,7 @@ export const TextAnswer = ({
   setAnswer: (answer: string) => void;
   currentAnswer: string;
 }) => {
-  const [value, setValue] = useState(currentAnswer || '');
+  const [value, setValue] = useState(currentAnswer ?? '');
 
   useEffect(() => {
     const handler = setTimeout(() => {

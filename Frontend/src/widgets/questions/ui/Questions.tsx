@@ -9,9 +9,14 @@ type QuestionsProps = {
   id: string;
   questions: IQuestion[];
   totalQuestions: number;
+  endContent: React.ReactNode;
 };
 
-export const Questions = ({ questions, totalQuestions }: QuestionsProps) => {
+export const Questions = ({
+  questions,
+  totalQuestions,
+  endContent,
+}: QuestionsProps) => {
   const [currentQuestion, setCurrentQuestion] = useQueryState(
     'question',
     parseAsInteger.withDefault(1).withOptions({ history: 'push' })
@@ -28,19 +33,28 @@ export const Questions = ({ questions, totalQuestions }: QuestionsProps) => {
   if (!questions.length) return null;
 
   return (
-    <div className="flex flex-col gap-[12px] w-full pb-10">
-      <QuestionsPaginator
-        ids={questions.map(q => q.id)}
-        current={currentQuestion}
-        total={totalQuestions}
-        setCurrent={setCurrentQuestion}
-      />
-      <QuestionCard {...questions[currentQuestion - 1]} />
-      <QuestionsSwitcher
-        current={currentQuestion}
-        total={totalQuestions}
-        setCurrent={setCurrentQuestion}
-      />
+    <div className="flex flex-col w-full pb-10">
+      <div className="w-full max-w-[712px] mb-[8px]">
+        <QuestionsPaginator
+          ids={questions.map(q => q.id)}
+          current={currentQuestion}
+          total={totalQuestions}
+          setCurrent={setCurrentQuestion}
+        />
+      </div>
+      <div className="flex flex-row gap-1 items-start mb-[12px]">
+        <div className="w-full max-w-[712px] ">
+          <QuestionCard {...questions[currentQuestion - 1]} />
+        </div>
+        {endContent}
+      </div>
+      <div className="w-full max-w-[712px]">
+        <QuestionsSwitcher
+          current={currentQuestion}
+          total={totalQuestions}
+          setCurrent={setCurrentQuestion}
+        />
+      </div>
     </div>
   );
 };

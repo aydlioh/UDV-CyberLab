@@ -4,9 +4,9 @@ import { ITest } from '../model/dto/ITest';
 export const testWithQuestionsMOCK: ITest = {
   id: '1',
   title: 'Тест по программированию на JavaScript',
-  duration: 3600000, // 1 hour in milliseconds
+  duration: 60 * 60 * 1000,
   totalQuestions: 5,
-  currentTime: 0,
+  currentTime: 32 * 1000,
   questions: [
     {
       id: '1',

@@ -17,6 +17,7 @@ export default {
         link: '#3568FF',
 
         search: '#EDEDFC',
+        header: '#EDEDFC',
 
         controls: '#E9E9F1',
         white: '#FDFDFD',

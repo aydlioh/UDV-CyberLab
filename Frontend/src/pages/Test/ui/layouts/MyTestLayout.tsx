@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Spinner } from '@/shared/ui';
 import { useUserStatus } from '@/entities/user';
-import { CreateTestButton } from '@/features/create-test-button';
+import { CreateTestButton } from '@/features/test-create-button';
 
 export const MyTestLayout = () => {
   const { pathname } = useLocation();

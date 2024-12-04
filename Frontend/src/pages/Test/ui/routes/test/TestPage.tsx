@@ -1,4 +1,4 @@
-import { Questions } from '@/widgets/questions';
+import { Questions } from '@/widgets/test-questions';
 import { TestStatus, TestTitle } from '@/entities/test';
 import { testWithQuestionsMOCK } from '@/entities/test/MOCK';
 import { useParams } from 'react-router-dom';

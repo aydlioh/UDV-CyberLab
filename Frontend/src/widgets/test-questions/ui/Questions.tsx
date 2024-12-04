@@ -1,9 +1,9 @@
 import { parseAsInteger, useQueryState } from 'nuqs';
 import { useEffect } from 'react';
 import { QuestionsPaginator } from './QuestionsPaginator';
-import { QuestionCard } from '@/entities/question';
-import { QuestionsSwitcher } from './QuestionsSwitcher';
+import { QuestionCard, useAnswers } from '@/entities/test-question';
 import { IQuestion } from '@/shared/types';
+import { QuestionsSwitcher } from './QuestionsSwitcher';
 
 type QuestionsProps = {
   id: string;
@@ -13,10 +13,13 @@ type QuestionsProps = {
 };
 
 export const Questions = ({
+  id,
   questions,
   totalQuestions,
   endContent,
 }: QuestionsProps) => {
+  useAnswers(state => state.setCount)(totalQuestions);
+
   const [currentQuestion, setCurrentQuestion] = useQueryState(
     'question',
     parseAsInteger.withDefault(1).withOptions({ history: 'push' })
@@ -38,7 +41,6 @@ export const Questions = ({
         <QuestionsPaginator
           ids={questions.map(q => q.id)}
           current={currentQuestion}
-          total={totalQuestions}
           setCurrent={setCurrentQuestion}
         />
       </div>
@@ -50,6 +52,7 @@ export const Questions = ({
       </div>
       <div className="w-full max-w-[712px]">
         <QuestionsSwitcher
+          id={id}
           current={currentQuestion}
           total={totalQuestions}
           setCurrent={setCurrentQuestion}

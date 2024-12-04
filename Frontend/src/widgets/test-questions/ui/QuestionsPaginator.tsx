@@ -1,14 +1,19 @@
-import { QuestionNavigationProps } from '../model/types';
 import { Button } from '@/shared/ui';
 import clsx from 'clsx';
 import { useScrollContainer } from '@/shared/hooks';
-import { useAnswers } from '@/entities/question';
+import { useAnswers } from '@/entities/test-question';
+
+type QuestionsPaginatorProps = {
+  ids: string[];
+  current: number;
+  setCurrent: (value: number) => void;
+};
 
 export const QuestionsPaginator = ({
   ids,
   current,
   setCurrent,
-}: QuestionNavigationProps & { ids: string[] }) => {
+}: QuestionsPaginatorProps) => {
   const answers = useAnswers(state => state.answers);
   const container = useScrollContainer();
 

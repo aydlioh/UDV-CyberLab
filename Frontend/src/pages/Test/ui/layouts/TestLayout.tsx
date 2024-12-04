@@ -5,10 +5,8 @@ import { Outlet } from 'react-router-dom';
 
 export const TestLayout = () => {
   return (
-    <main className="container min-h-svh">
-      <div className="pt-[44px]">
-        <h1 className="font-w3ip text-[32px] pl-2">NEO Lab</h1>
-      </div>
+    <main className="container min-h-[calc(100vh-80px)]">
+
       <div className="flex flex-row justify-start gap-[20px] mt-[12px] min-h-[calc(100vh-200px)]">
         <div className="sticky top-10 h-[200px]">
           <Sidebar links={testRoutes} withLogout />

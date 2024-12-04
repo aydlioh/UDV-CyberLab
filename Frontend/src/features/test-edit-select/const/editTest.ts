@@ -1,4 +1,4 @@
-import { EditTestNavigation } from '@/entities/edit-test-nav';
+import { EditTestNavigation } from '@/entities/test-edit-nav';
 
 export const editTestSelect = [
   {

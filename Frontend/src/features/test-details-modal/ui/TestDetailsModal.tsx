@@ -7,9 +7,7 @@ import { testsMOCK } from '@/entities/test-info/MOCK';
 
 export const TestDetailsModal = () => {
   const user = useAuth(state => state.user?.login);
-  const { isOpen, setOpen, testId } = useTestDetailsModalStore();
-
-  if (!isOpen) return null;
+  const { isOpen, close, setOpen, testId } = useTestDetailsModalStore();
 
   const test = testsMOCK.find(test => test.id === testId);
 
@@ -20,8 +18,17 @@ export const TestDetailsModal = () => {
     { user }
   );
 
+  const handleClose = () => {
+    setTimeout(close, 300);
+  };
+
   return (
-    <Modal isOpen={isOpen} onOpenChange={setOpen} size="lg">
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={setOpen}
+      onClose={handleClose}
+      size="lg"
+    >
       <ModalContent>
         <ModalBody>
           <section className="w-full flex flex-col gap-[80px]">

@@ -1,8 +1,8 @@
 import {
   convertEditTestTypeToString,
   useEditTestNavigation,
-} from '@/entities/edit-test-nav';
-import { EditTestSelect } from '@/features/edit-test-select';
+} from '@/entities/test-edit-nav';
+import { EditTestSelect } from '@/features/test-edit-select';
 import { Spinner } from '@/shared/ui';
 import { manageTestRoutes, Topbar } from '@/widgets/topbar';
 import { Suspense, useMemo } from 'react';

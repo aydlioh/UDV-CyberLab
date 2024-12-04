@@ -10,3 +10,4 @@ export * from './Filepicker';
 export * from './CircularProgress';
 export * from './Spinner';
 export * from './Modal';
+export * from './Scrollbar';

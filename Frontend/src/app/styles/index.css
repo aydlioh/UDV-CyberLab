@@ -9,29 +9,8 @@
     @apply bg-background text-foreground font-inter overflow-x-hidden;
   }
 
-  body,
-  html {
-    scrollbar-gutter: stable;
-  }
-
   button {
     @apply !outline-none;
-  }
-
-  *::-webkit-scrollbar {
-    @apply w-[11px];
-  }
-
-  *::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    @apply bg-second hover:bg-gradient-to-b hover:from-second hover:via-foreground hover:to-second rounded-[7px] bg-clip-padding border-[3px] border-solid border-transparent transition-all duration-300 active:border-[2px];
-  }
-
-  *::spelling-error {
-    @apply underline underline-offset-2 decoration-rose-400 decoration-solid;
   }
 }
 
@@ -61,4 +40,8 @@
   .without-scrollbar::-webkit-scrollbar {
     display: none;
   }
+}
+
+.simplebar-scrollbar::before {
+  @apply bg-foreground w-[6px];
 }

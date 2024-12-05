@@ -9,7 +9,7 @@ type TopbarProps = {
 };
 
 export const Topbar = ({ links }: TopbarProps) => {
-  const { navigate, scrollNavigate } = useNavigation();
+  const { scrollNavigate } = useNavigation();
   const { pathname } = useLocation();
 
   const hasEnabledKey = (key: string) =>
@@ -17,11 +17,7 @@ export const Topbar = ({ links }: TopbarProps) => {
 
   const handleSwitch = (key: string) => {
     if (hasEnabledKey(key)) {
-      if (window.scrollY > 0) {
-        scrollNavigate(key);
-      } else {
-        navigate(key);
-      }
+      scrollNavigate(key);
     }
   };
 

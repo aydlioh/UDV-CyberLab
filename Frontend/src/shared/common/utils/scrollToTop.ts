@@ -1,17 +1,17 @@
-export const scrollToTop = (): Promise<void> => {
+export const scrollToTop = (scroll: HTMLElement): Promise<void> => {
   return new Promise(resolve => {
     const handleScroll = () => {
-      if (window.scrollY === 0) {
-        window.removeEventListener('scroll', handleScroll);
+      if (scroll?.scrollTop === 0) {
+        scroll?.removeEventListener('scroll', handleScroll);
         resolve();
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scroll?.addEventListener('scroll', handleScroll);
+    scroll?.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (window.scrollY === 0) {
-      window.removeEventListener('scroll', handleScroll);
+    if (scroll?.scrollTop === 0) {
+      scroll?.removeEventListener('scroll', handleScroll);
       resolve();
     }
   });

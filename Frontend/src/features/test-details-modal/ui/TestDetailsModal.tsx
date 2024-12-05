@@ -1,22 +1,11 @@
-import { getTestStatus, TestDetails } from '@/entities/test-info';
 import { useTestDetailsModalStore } from '../model/store';
-import { Modal, ModalBody, ModalContent } from '@/shared/ui';
-import { TestDetailsActions } from './actions/TestDetailsActions';
-import { useAuth } from '@/entities/user';
-import { testsMOCK } from '@/entities/test-info/MOCK';
+import { Modal } from '@/shared/ui';
+import { TestDetailsContent } from './TestDetailsContent';
 
 export const TestDetailsModal = () => {
-  const user = useAuth(state => state.user?.login);
   const { isOpen, close, setOpen, testId } = useTestDetailsModalStore();
 
-  const test = testsMOCK.find(test => test.id === testId);
-
-  if (!test) return null;
-
-  const testStatus = getTestStatus(
-    { status: test.status, owner: test.owner },
-    { user }
-  );
+  if (!testId) return null;
 
   const handleClose = () => {
     setTimeout(close, 300);
@@ -29,14 +18,7 @@ export const TestDetailsModal = () => {
       onClose={handleClose}
       size="lg"
     >
-      <ModalContent>
-        <ModalBody>
-          <section className="w-full flex flex-col gap-[80px]">
-            <TestDetails {...test} testStatus={testStatus} />
-            <TestDetailsActions {...test} testStatus={testStatus} />
-          </section>
-        </ModalBody>
-      </ModalContent>
+      <TestDetailsContent />
     </Modal>
   );
 };

@@ -15,3 +15,10 @@ export type UserInfo = {
   login: string;
   role: UserRole;
 };
+
+export type UserCardType = {
+  login: string;
+  email: string;
+  img: string;
+  role: UserRole;
+}

@@ -1,15 +1,20 @@
-import { Scrollbar } from '@/shared/ui';
+import { LogoutModal } from '@/features/logout-modal';
+import { PageScrollbar } from '@/shared/ui';
 import { Header } from '@/widgets/header';
 import { Outlet } from 'react-router-dom';
 
 const AppLayout = () => {
   return (
-    <Scrollbar>
+    <PageScrollbar>
       <div>
         <Header />
-        <Outlet />
+        <div className='container'>
+          <Outlet />
+        </div>
       </div>
-    </Scrollbar>
+
+      <LogoutModal />
+    </PageScrollbar>
   );
 };
 

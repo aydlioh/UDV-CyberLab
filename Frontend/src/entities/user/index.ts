@@ -7,3 +7,5 @@ export * from './model/hooks/useSessionTimeout';
 export * from './api/mutations/useLogin';
 export * from './api/mutations/useRegister';
 export * from './api/mutations/useLogout';
+
+export * from './ui/UserCard';

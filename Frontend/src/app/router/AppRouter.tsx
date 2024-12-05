@@ -4,6 +4,9 @@ import { useRoutes } from 'react-router-dom';
 import { NotFountPage } from '@/pages/Error';
 
 import { lazy } from 'react';
+import { eventsRoutes } from '@/pages/Event';
+import { labsRoutes } from '@/pages/Lab';
+import { materialsRoutes } from '@/pages/Materials';
 const AppLayout = lazy(() => import('./AppLayout'));
 
 const routes = [
@@ -16,7 +19,13 @@ const routes = [
     children: [
       {
         element: <AppLayout />,
-        children: [...mainRoutes, ...testRoutes],
+        children: [
+          ...mainRoutes,
+          ...testRoutes,
+          ...eventsRoutes,
+          ...labsRoutes,
+          ...materialsRoutes,
+        ],
       },
     ],
   },

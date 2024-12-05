@@ -6,7 +6,7 @@ export const useModalCloseHandler = () => {
   const closeHandler = (callback: () => void) => {
     return () => {
       setOpen(false);
-      callback();
+      setTimeout(callback, 200);
     };
   };
 

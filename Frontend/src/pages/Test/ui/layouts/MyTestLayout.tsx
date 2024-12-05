@@ -13,7 +13,7 @@ export const MyTestLayout = () => {
 
   return (
     <div className="w-full max-w-[712px]">
-      <div className="sticky top-10 z-10">
+      <div className="sticky top-[75px] z-10">
         <div className="flex flex-row justify-between items-center mb-[12px]">
           <Topbar links={isTeacher ? myTestTeacherRoutes : myTestRoutes} />
           <div className="bg-background rounded-xl">

@@ -29,7 +29,7 @@ export const ManageTestLayout = () => {
 
   return (
     <div className="w-full max-w-[712px]">
-      <div className='sticky top-10'>
+      <div className='sticky  top-[75px]'>
         <div className="flex flex-row justify-between items-center gap-[20px] mb-[12px]">
           <Topbar links={topbarList} />
           {withEditSelect && <EditTestSelect />}

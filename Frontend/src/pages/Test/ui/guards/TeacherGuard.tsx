@@ -1,14 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth, UserRole } from '@/entities/user';
-
+import { useUserStatus } from '@/entities/user';
 
 export const TeacherGuard = () => {
-  const user = useAuth(state => state.user);
+  const { isTeacher } = useUserStatus();
 
-  if (user?.role === UserRole.TEACHER) {
+  if (isTeacher) {
     return <Outlet />;
   }
 
   return <Navigate to="/tests" />;
 };
-

@@ -3,8 +3,9 @@ import { SidebarItemType } from '../model/types';
 import { useLocation } from 'react-router-dom';
 import { SidebarItem } from './SidebarItem';
 import { logoutTabData } from '../const/logoutTab';
-import { useAuth } from '@/entities/user';
 import { useNavigation } from '@/shared/hooks';
+import { useLogoutModal } from '@/features/logout-modal';
+import { useAuth } from '@/entities/user';
 
 type SidebarProps = {
   links: SidebarItemType[];
@@ -12,8 +13,9 @@ type SidebarProps = {
 };
 
 export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
-  const logout = useAuth(state => state.logout);
-  const { navigate, scrollNavigate } = useNavigation();
+  const open = useLogoutModal(state => state.open);
+  const isAuthorized = useAuth(state => state.isAuthorized);
+  const { scrollNavigate } = useNavigation();
   const { pathname } = useLocation();
 
   const hasEnabledKey = (key: string) =>
@@ -21,16 +23,12 @@ export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
 
   const handleSwitch = (key: string) => {
     if (key === 'logout') {
-      logout();
+      open();
       return;
     }
 
     if (hasEnabledKey(key)) {
-      if (window.scrollY > 0) {
-        scrollNavigate(key);
-      } else {
-        navigate(key);
-      }
+      scrollNavigate(key);
     }
   };
 
@@ -54,7 +52,7 @@ export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
         {links.map(({ path, label, icon }) => (
           <Tab key={path} title={<SidebarItem icon={icon} label={label} />} />
         ))}
-        {withLogout && (
+        {withLogout && isAuthorized && (
           <Tab key="logout" title={<SidebarItem {...logoutTabData} />} />
         )}
       </Tabs>

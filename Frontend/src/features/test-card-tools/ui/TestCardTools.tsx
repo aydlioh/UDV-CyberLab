@@ -1,5 +1,5 @@
 import { getTestStatus, ITestCard } from '@/entities/test-info';
-import { OwnerTools } from './owner/OwnerTools';
+import { ToolsPopover } from './owner/ToolsPopover';
 import { CircularProgress } from '@/shared/ui';
 import { getPercentage } from '@/shared/common/utils';
 import { useAuth } from '@/entities/user';
@@ -14,7 +14,7 @@ export const TestCardTools = ({ test }: TestCardProps) => {
     user,
   });
 
-  if (isOwner) return <OwnerTools id={test.id} />;
+  if (isOwner) return <ToolsPopover id={test.id} />;
 
   if (isRunning)
     return <CircularProgress aria-label="progress" strokeWidth={2.5} />;

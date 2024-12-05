@@ -3,14 +3,14 @@ import { Button } from '@/shared/ui';
 import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 import { ToolsContent } from './ToolsContent';
 
-export const OwnerTools = ({ id }: { id: string }) => {
+export const ToolsPopover = ({ id }: { id: string }) => {
   return (
     <Popover
       radius="sm"
       key="right-start"
       placement="right-start"
       classNames={{
-        content: 'p-1 overflow-hidden',
+        content: 'p-1 overflow-hidden bg-white',
       }}
     >
       <PopoverTrigger>

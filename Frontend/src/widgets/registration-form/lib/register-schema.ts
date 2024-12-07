@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const registerSchema = z.object({
-  login: z.string().nonempty('Пожалуйста, введите логин'),
+  userName: z.string().nonempty('Пожалуйста, введите логин'),
   email: z
     .string()
     .nonempty('Пожалуйста, введите почту')

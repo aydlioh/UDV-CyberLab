@@ -1,3 +1,3 @@
 export const config = {
-  BACKEND_URL: 'http://90.156.168.7:5215',
+  BACKEND_URL: 'https://neolab-backend.aydlioh.ru/',
 };

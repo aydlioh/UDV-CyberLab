@@ -32,7 +32,7 @@ export const LoginForm = () => {
   };
 
   const onSubmit: SubmitHandler<LoginType> = data => {
-    login({ ...data, role: userStatus }).then(onReset);
+    login({ ...data, role: Number(userStatus) }).then(onReset);
   };
 
   const isEmailError = errors.email !== undefined || Boolean(error);

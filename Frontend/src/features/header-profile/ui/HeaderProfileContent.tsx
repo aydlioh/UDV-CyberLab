@@ -19,11 +19,11 @@ export const HeaderProfileContent = ({
 
   if (!user) return null;
 
-  return (
+  return (  
     <div>
       <UserCard
         role={user.role}
-        login={user.login}
+        login={user.userName}
         email={user.email}
         img="https://i.pravatar.cc/150?u=a042581f4e29026024d"
       />

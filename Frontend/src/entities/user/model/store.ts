@@ -1,6 +1,7 @@
 import { tokenService } from '@/shared/services';
 import { UserRole, UserInfo } from './types';
 import { create } from 'zustand';
+import { IProfile } from './dto/IProfile';
 
 type AuthState = {
   isAuthorized: boolean;
@@ -9,13 +10,14 @@ type AuthState = {
   isTeacher: () => boolean;
   login: () => void;
   logout: () => void;
-  setUser: (user: UserInfo) => void;
+  setUser: (user: IProfile) => void;
 };
 
 export const useAuth = create<AuthState>((set, get) => ({
   isAuthorized: false,
   user: null,
-  setUser: user => set({ user }),
+  setUser: (user: IProfile) =>
+    set({ user: { ...user, role: String(user.role) as UserRole } }),
   login: () => set({ isAuthorized: true }),
   logout: () => {
     tokenService.destroy();
@@ -34,29 +36,3 @@ export const useUserStatus = () => {
     isAdmin: role === UserRole.ADMIN,
   };
 };
-
-// Убрать
-useAuth.getState().setUser({
-  email: 'pavel_biryuchev@inbox.ru',
-  login: 'aydlioh',
-  role: UserRole.ADMIN,
-});
-
-const now = new Date();
-const nowUTC = new Date(
-  Date.UTC(
-    now.getUTCFullYear(),
-    now.getUTCMonth(),
-    now.getUTCDate(),
-    now.getUTCHours() + 5,
-    now.getUTCMinutes(),
-    now.getUTCSeconds()
-  )
-);
-localStorage.setItem(
-  'token',
-  JSON.stringify({
-    token: 'qwerty',
-    expiration: nowUTC.toISOString(),
-  })
-);

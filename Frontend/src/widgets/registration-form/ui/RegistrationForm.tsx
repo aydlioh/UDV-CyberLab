@@ -32,7 +32,7 @@ export const RegistrationForm = () => {
   };
 
   const onSubmit: SubmitHandler<RegisterType> = data => {
-    register({ ...data, role: userStatus }).then(onReset);
+    register({ ...data, role: Number(userStatus) }).then(onReset);
   };
 
   const isEmailError = errors.email !== undefined || Boolean(error);
@@ -48,8 +48,8 @@ export const RegistrationForm = () => {
       <Input
         isRequired
         isInvalid={isLoginError}
-        errorMessage={errors.login?.message}
-        {...registerInput('login')}
+        errorMessage={errors.userName?.message}
+        {...registerInput('userName')}
         label="Login"
         placeholder="Введите логин"
         type="text"

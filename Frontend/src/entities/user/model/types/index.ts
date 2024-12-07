@@ -12,7 +12,7 @@ export enum UserRole {
 
 export type UserInfo = {
   email: string;
-  login: string;
+  userName: string;
   role: UserRole;
 };
 

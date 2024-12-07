@@ -7,38 +7,55 @@ import {
 } from '@nextui-org/react';
 import { HeaderProfileContent } from './HeaderProfileContent';
 import { useState } from 'react';
+import { useProfile } from '@/entities/user';
 
 export const HeaderProfile = () => {
   const [open, setOpen] = useState(false);
+  const { isPending } = useProfile();
 
   return (
-    <Popover
-      isOpen={open}
-      onOpenChange={setOpen}
-      radius="sm"
-      key="bottom-end"
-      placement="bottom-end"
-      classNames={{
-        content: 'p-1 overflow-hidden bg-white',
-      }}
-    >
-      <PopoverTrigger>
-        <Button
-          type="button"
-          variant="light"
-          radius="sm"
-          className="min-w-0 w-[50px] h-[50px] p-1"
-        >
+    <>
+      {isPending ? (
+        <div className='h-[50px] w-[50px] flex justify-center items-center'>
           <Avatar
+            fallback={
+              <div className="animate-pulse bg-gradient-to-r from-foreground/30 to-second/30 h-[100px] w-[100px]" />
+            }
+            showFallback={isPending}
             isBordered
             className="transition-transform"
-            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
           />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="z-0">
-        <HeaderProfileContent setPopoverOpen={setOpen} />
-      </PopoverContent>
-    </Popover>
+        </div>
+      ) : (
+        <Popover
+          isOpen={open}
+          onOpenChange={setOpen}
+          radius="sm"
+          key="bottom-end"
+          placement="bottom-end"
+          classNames={{
+            content: 'p-1 overflow-hidden bg-white',
+          }}
+        >
+          <PopoverTrigger>
+            <Button
+              type="button"
+              variant="light"
+              radius="sm"
+              className="min-w-0 w-[50px] h-[50px] p-1"
+            >
+              <Avatar
+                isBordered
+                className="transition-transform"
+                src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+              />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="z-0">
+            <HeaderProfileContent setPopoverOpen={setOpen} />
+          </PopoverContent>
+        </Popover>
+      )}
+    </>
   );
 };

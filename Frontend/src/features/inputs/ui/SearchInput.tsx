@@ -9,7 +9,11 @@ type SearchInputProps = InputProps & {
   setSearch: (search: string | null) => void;
 };
 
-export const SearchInput = ({ search, setSearch, ...props }: SearchInputProps) => {
+export const SearchInput = ({
+  search,
+  setSearch,
+  ...props
+}: SearchInputProps) => {
   const [value, setValue] = useState(search ?? '');
 
   useEffect(() => {
@@ -26,6 +30,7 @@ export const SearchInput = ({ search, setSearch, ...props }: SearchInputProps) =
 
   return (
     <Input
+      {...props}
       startContent={<MdSearch className="text-foreground text-[28px]" />}
       size="lg"
       placeholder="Поиск..."
@@ -34,11 +39,9 @@ export const SearchInput = ({ search, setSearch, ...props }: SearchInputProps) =
       isClearable
       onClear={() => setValue('')}
       classNames={{
-        inputWrapper:
-          'bg-search data-[hover=true]:bg-white group-data-[focus=true]:bg-white group-data-[has-value=true]:bg-white',
+        inputWrapper: `bg-search data-[hover=true]:bg-white group-data-[focus=true]:bg-white group-data-[has-value=true]:bg-white ${props.classNames?.inputWrapper}`,
         input: 'text-[14px]',
       }}
-      {...props}
     />
   );
 };

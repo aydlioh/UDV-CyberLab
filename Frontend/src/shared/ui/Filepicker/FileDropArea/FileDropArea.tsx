@@ -30,7 +30,7 @@ export const FileDropArea = ({
   return (
     <button
       className={clsx(
-        'relative cursor-pointer h-[342px] w-full custom-outline border-dashed rounded-[20px] duration-200',
+        'relative cursor-pointer h-[342px] w-full custom-outline border-second border-2 border-dashed rounded-[20px] duration-200',
         isDragOver
           ? 'border-foreground animate-pulse duration-300'
           : 'border-second'

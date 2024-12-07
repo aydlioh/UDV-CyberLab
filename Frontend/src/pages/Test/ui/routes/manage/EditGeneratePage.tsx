@@ -1,13 +1,12 @@
 import { TestTitleEdit } from '@/features/test-edit';
-import { EditTestSwitcher } from './EditTestSwitcher';
+import { EditTestSwitcher } from './ui/EditTestSwitcher';
 
 const EditGeneratePage = () => {
-
   return (
-    <div className="flex flex-col gap-[12px]">
+    <section className="flex flex-col gap-[12px]">
       <TestTitleEdit />
       <EditTestSwitcher />
-    </div>
+    </section>
   );
 };
 

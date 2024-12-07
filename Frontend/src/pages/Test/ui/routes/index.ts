@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 
-export const EditAIPage = lazy(() => import('./manage/edit/EditAIPage'));
-export const EditCustomPage = lazy(() => import('./manage/edit/EditCustomPage'));
-export const EditGeneratePage = lazy(() => import('./manage/edit/EditGeneratePage'));
+export const EditAIPage = lazy(() => import('./manage/EditAIPage'));
+export const EditCustomPage = lazy(() => import('./manage/EditCustomPage'));
+export const EditGeneratePage = lazy(() => import('./manage/EditGeneratePage'));
 export const TestPreviewPage = lazy(() => import('./manage/TestPreviewPage'));
 export const TestSettingsPage = lazy(() => import('./manage/TestSettingsPage'));
 export const TestStatisticsPage = lazy(

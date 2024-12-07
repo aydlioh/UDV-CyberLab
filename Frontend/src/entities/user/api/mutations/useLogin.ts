@@ -5,6 +5,7 @@ import { AccessTokenType, ErrorResponse } from '@/shared/types';
 import { useAuth } from '../../model/store';
 import { authApi } from '../services/authAPI';
 import { useEffect, useState } from 'react';
+import { getRedirectPath } from '@/shared/common/utils';
 
 export const useLogin = () => {
   const [fetchError, setFetchError] = useState<ErrorResponse | null>(null);
@@ -25,8 +26,7 @@ export const useLogin = () => {
     onSuccess: (response: AccessTokenType) => {
       tokenService.save(response);
       login();
-      const urlParams = new URLSearchParams(window.location.search);
-      const redirectPath = urlParams.get('redirect_path') || '/';
+      const redirectPath = getRedirectPath();
       setTimeout(() => navigate(redirectPath), 10);
     },
   });

@@ -9,7 +9,7 @@ type TestCardProps = {
 };
 
 export const TestCardTools = ({ test }: TestCardProps) => {
-  const user = useAuth(state => state.user?.login);
+  const user = useAuth(state => state.user?.userName);
   const { isOwner, isRunning, isOver } = getTestStatus(test, {
     user,
   });

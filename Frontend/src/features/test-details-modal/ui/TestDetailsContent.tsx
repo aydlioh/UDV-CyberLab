@@ -6,7 +6,7 @@ import { useAuth } from '@/entities/user';
 import { useTestDetailsModalStore } from '../model/store';
 
 export const TestDetailsContent = () => {
-  const user = useAuth(state => state.user?.login);
+  const user = useAuth(state => state.user?.userName);
   const testId = useTestDetailsModalStore(state => state.testId);
 
   const test = testsMOCK.find(test => test.id === testId);

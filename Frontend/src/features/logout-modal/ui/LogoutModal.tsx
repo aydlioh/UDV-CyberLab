@@ -26,7 +26,7 @@ export const LogoutModal = () => {
               color="danger"
               size="md"
               className="w-1/2 text-white bg-rose-500"
-              onClick={handleLogout}
+              onPress={handleLogout}
             >
               Выйти
             </Button>
@@ -36,7 +36,7 @@ export const LogoutModal = () => {
               className="w-1/2"
               size="md"
               variant="bordered"
-              onClick={handleReturn}
+              onPress={handleReturn}
             >
               Отмена
             </Button>

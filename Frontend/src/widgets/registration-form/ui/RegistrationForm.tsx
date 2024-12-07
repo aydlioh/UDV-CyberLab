@@ -80,7 +80,10 @@ export const RegistrationForm = () => {
       </Button>
       <p className="text-small">
         Уже есть аккаунт?{' '}
-        <Link to="/login" className="text-link duration-200 hover:text-orange">
+        <Link
+          to="/login"
+          className="text-link duration-200 hover:text-orange custom-outline outline-offset-4 rounded-sm"
+        >
           Войти
         </Link>
       </p>

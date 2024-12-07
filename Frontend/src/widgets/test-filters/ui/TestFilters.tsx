@@ -1,11 +1,12 @@
+import { difficultyFilters, subjectFilters } from '@/entities/filter';
 import { Filter } from '@/features/filter';
+import { Scrollbar } from '@/shared/ui';
 import { Accordion, AccordionItem } from '@nextui-org/react';
-import { difficultyFilters } from '../const/difficultyFilters';
-import { subjectFilters } from '../const/subjectFilters';
 
 const accordionClassNames = {
   title: 'text-[14px] text-foreground',
   indicator: 'text-foreground',
+  content: 'py-1.5',
 };
 
 export interface TestFiltersProps {
@@ -19,7 +20,7 @@ export const TestFilters = ({
   difficulty,
   setDifficulty,
   subject,
-  setSubject
+  setSubject,
 }: TestFiltersProps) => {
   return (
     <Accordion
@@ -34,11 +35,13 @@ export const TestFilters = ({
         title="Сложность"
         classNames={accordionClassNames}
       >
-        <Filter
-          onChange={setDifficulty}
-          currentValue={difficulty}
-          listItems={difficultyFilters}
-        />
+        <Scrollbar className="max-h-[250px]">
+          <Filter
+            onChange={setDifficulty}
+            currentValue={difficulty}
+            listItems={difficultyFilters}
+          />
+        </Scrollbar>
       </AccordionItem>
       <AccordionItem
         key="Тематика"
@@ -46,11 +49,13 @@ export const TestFilters = ({
         title="Тематика"
         classNames={accordionClassNames}
       >
-        <Filter
-          onChange={setSubject}
-          currentValue={subject}
-          listItems={subjectFilters}
-        />
+        <Scrollbar className="max-h-[250px]">
+          <Filter
+            onChange={setSubject}
+            currentValue={subject}
+            listItems={subjectFilters}
+          />
+        </Scrollbar>
       </AccordionItem>
     </Accordion>
   );

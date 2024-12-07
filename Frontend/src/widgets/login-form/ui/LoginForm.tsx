@@ -73,7 +73,7 @@ export const LoginForm = () => {
         Ещё нет аккаунта?{' '}
         <Link
           to="/registration"
-          className="text-link duration-200 hover:text-orange"
+          className="text-link duration-200 hover:text-orange custom-outline outline-offset-4 rounded-sm"
         >
           Зарегистрироваться
         </Link>

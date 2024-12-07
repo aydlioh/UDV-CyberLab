@@ -19,10 +19,13 @@ export default {
         search: '#EDEDFC',
         header: '#EDEDFC',
 
-        controls: '#E9E9F1',
         white: '#FDFDFD',
         gray: '#B9BACA',
         orange: '#F29F26',
+        focus: '#9599CC',
+        
+        controls: '#E9E9F1',
+        controlsPrimary: '#F4F4F5'
       },
       fontFamily: {
         inter: ['Inter Variable', 'sans-serif'],

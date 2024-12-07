@@ -39,7 +39,7 @@ export const QuestionsPaginator = ({
                   ? 'bg-secondary'
                   : 'bg-white text-foreground'
             )}
-            onClick={() => setCurrent(index)}
+            onPress={() => setCurrent(index)}
           >
             {index}
           </Button>

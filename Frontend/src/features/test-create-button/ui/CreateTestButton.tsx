@@ -13,7 +13,7 @@ export const CreateTestButton = () => {
   return (
     <Button
       color="gradient"
-      onClick={handleCreate}
+      onPress={handleCreate}
       size="md"
       endContent={<MdAdd size={22} />}
     >

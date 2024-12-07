@@ -1,8 +1,15 @@
+import clsx from 'clsx';
 import SimpleBar from 'simplebar-react';
 
-export const Scrollbar = ({ children }: { children: React.ReactNode }) => {
+export const Scrollbar = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
-    <SimpleBar className="max-h-svh" forceVisible="y">
+    <SimpleBar className={clsx('max-h-svh', className)} forceVisible="y">
       {children}
     </SimpleBar>
   );

@@ -14,7 +14,7 @@ export const Header = () => {
       <div className="container h-full">
         <div className="flex flex-row justify-between items-center h-full">
           <Button
-            onClick={() => scrollNavigate('/')}
+            onPress={() => scrollNavigate('/')}
             variant="light"
             radius="sm"
           >

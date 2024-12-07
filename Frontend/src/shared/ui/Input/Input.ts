@@ -8,7 +8,13 @@ export const Input = extendVariants(InputNextUI, {
   variants: {
     color: {
       default: {
-        inputWrapper: 'bg-controls',
+        inputWrapper: 'bg-controls data-[hover=true]:bg-[#CDCDE3] group-data-[focus=true]:bg-[#CDCDE3]',
+        label: 'text-foreground',
+        input:
+          'placeholder:text-foreground focus:placeholder:text-[#A2A4C2] group-data-[has-value=true]:text-foreground !text-foreground',
+      },
+      white: {
+        inputWrapper: 'bg-controlsPrimary data-[hover=true]:bg-controls group-data-[focus=true]:bg-controls',
         label: 'text-foreground',
         input:
           'placeholder:text-foreground focus:placeholder:text-[#A2A4C2] group-data-[has-value=true]:text-foreground !text-foreground',
@@ -17,10 +23,6 @@ export const Input = extendVariants(InputNextUI, {
     variant: {
       bordered: {
         inputWrapper: 'border-gray',
-      },
-      flat: {
-        inputWrapper:
-          'data-[hover=true]:bg-[#CDCDE3] group-data-[focus=true]:bg-[#CDCDE3]',
       },
       underlined: {
         inputWrapper:

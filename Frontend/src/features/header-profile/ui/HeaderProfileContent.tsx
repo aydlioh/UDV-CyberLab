@@ -29,7 +29,7 @@ export const HeaderProfileContent = ({
       />
       <Divider className="my-1 bg-background" />
       <Button
-        onClick={handleLogout}
+        onPress={handleLogout}
         startContent={<CiLogout size={22} />}
         color="danger"
         className="data-[hover=true]:bg-rose-500/10"

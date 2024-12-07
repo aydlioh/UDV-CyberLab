@@ -8,7 +8,7 @@ export const TestExit = ({ id }: { id: string }) => {
   return (
     <Card className="w-[90px] h-[70px] rounded-[8px] flex flex-col justify-between p-1">
       <Button
-        onClick={() => navigate(`/tests/${id}/overview`)}
+        onPress={() => navigate(`/tests/${id}/overview`)}
         className="rounded-[8px] p-0 h-full min-w-0 bg-white hover:bg-background/50"
       >
         <div className='flex flex-col items-center'>

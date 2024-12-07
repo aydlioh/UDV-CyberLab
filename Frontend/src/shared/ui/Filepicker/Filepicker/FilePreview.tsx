@@ -1,39 +1,17 @@
-import { useState } from 'react';
 import { MdFileDownload, MdFileDownloadDone } from 'react-icons/md';
-import { Button } from '../Button';
+import { Button } from '../../Button';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
   Tooltip,
 } from '@nextui-org/react';
-import { getFileIcon, isImage } from './utils';
+import { getFileIcon, isImage } from '../utils';
+import { useFilePreview } from '../hooks';
 
-export const FilePreview = ({
-  fileUrl,
-  currentFile,
-}: {
-  fileUrl: string | null;
-  currentFile: File;
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDownloadDone, setIsDownloadDone] = useState(false);
-
-  const handleDownloadClick = () => {
-    if (fileUrl && currentFile) {
-      const link = document.createElement('a');
-      link.href = fileUrl;
-      link.download = currentFile.name;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      setIsDownloadDone(true);
-      setTimeout(() => {
-        setIsDownloadDone(false);
-      }, 4000);
-    }
-  };
+export const FilePreview = ({ currentFile }: { currentFile: File }) => {
+  const { isOpen, setIsOpen, fileUrl, isDownloadDone, handleDownloadClick } =
+    useFilePreview(currentFile);
 
   const FileIcon = getFileIcon(currentFile.type);
 
@@ -57,7 +35,7 @@ export const FilePreview = ({
             placement="right"
           >
             <Button
-              onClick={() => setIsOpen(true)}
+              onPress={() => setIsOpen(true)}
               radius="sm"
               color="primary"
               isIconOnly
@@ -82,7 +60,7 @@ export const FilePreview = ({
               radius="sm"
               size="sm"
               isIconOnly
-              onClick={handleDownloadClick}
+              onPress={handleDownloadClick}
             >
               {isDownloadDone ? (
                 <MdFileDownloadDone size={25} />
@@ -106,7 +84,7 @@ export const FilePreview = ({
         radius="sm"
         color="primary"
         isIconOnly
-        onClick={handleDownloadClick}
+        onPress={handleDownloadClick}
       >
         <FileIcon size={34} />
       </Button>

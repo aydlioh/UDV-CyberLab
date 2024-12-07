@@ -19,7 +19,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
             onClick={toggleVisibility}
             aria-label="toggle password visibility"
             className={clsx(
-              'text-2xl duration-200',
+              'text-2xl duration-200 custom-outline rounded-md',
               props.isInvalid
                 ? 'text-danger hover:text-danger-300'
                 : ' text-foreground hover:text-foreground/80'

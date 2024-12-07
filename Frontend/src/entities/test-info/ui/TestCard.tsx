@@ -8,10 +8,18 @@ type TestCardProps = {
 };
 
 export const TestCard = ({ test, onClick, rightContent }: TestCardProps) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLLIElement>) => {
+    if (event.key === 'Enter') {
+      onClick?.();
+    }
+  };
+
   return (
     <li
+      tabIndex={0}
       onClick={onClick}
-      className="bg-white h-[64px] rounded-[10px] cursor-pointer hover:bg-white/65 duration-200 drop-shadow-base"
+      onKeyPress={handleKeyPress}
+      className="bg-white custom-outline h-[64px] rounded-[10px] cursor-pointer hover:bg-white/65 duration-200 drop-shadow-base"
     >
       <div className="flex flex-row justify-between items-center px-4 py-3 h-full">
         <div className="flex flex-row justify-start items-center gap-[10px]">

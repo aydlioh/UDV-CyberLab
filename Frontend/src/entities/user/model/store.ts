@@ -16,8 +16,7 @@ type AuthState = {
 export const useAuth = create<AuthState>((set, get) => ({
   isAuthorized: false,
   user: null,
-  setUser: (user: IProfile) =>
-    set({ user: { ...user, role: String(user.role) as UserRole } }),
+  setUser: (user: IProfile) => set({ user: { ...user, role: 2 } }),
   login: () => set({ isAuthorized: true }),
   logout: () => {
     tokenService.destroy();

@@ -8,10 +8,6 @@
   :root {
     @apply bg-background text-foreground font-inter overflow-x-hidden;
   }
-
-  button {
-    @apply !outline-none;
-  }
 }
 
 @layer components {
@@ -39,6 +35,10 @@
   }
   .without-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  .custom-outline {
+    @apply focus-visible:outline-second outline-none outline-2;
   }
 }
 

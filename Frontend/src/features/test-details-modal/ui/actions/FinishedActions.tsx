@@ -26,7 +26,7 @@ export const FinishedActions = ({
       <Button
         color="gradient"
         className="w-1/2"
-        onClick={closeHandler(handleViewResults)}
+        onPress={closeHandler(handleViewResults)}
       >
         Посмотреть результат
       </Button>
@@ -36,7 +36,7 @@ export const FinishedActions = ({
           <Button
             className="w-1/2"
             variant="bordered"
-            onClick={closeHandler(handleRepeat)}
+            onPress={closeHandler(handleRepeat)}
           >
             Пройти заново
           </Button>

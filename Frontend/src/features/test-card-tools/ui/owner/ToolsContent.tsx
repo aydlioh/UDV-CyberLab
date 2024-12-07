@@ -12,7 +12,7 @@ export const ToolsContent = ({ id }: { id: string }) => {
     <div>
       <div>
         <ToolButton
-          onClick={() => scrollNavigate(`/tests/manage/${id}/statistics`)}
+          onPress={() => scrollNavigate(`/tests/manage/${id}/statistics`)}
           startContent={<IoStatsChart size={17} />}
         >
           Статистика
@@ -21,19 +21,19 @@ export const ToolsContent = ({ id }: { id: string }) => {
       <Divider className="my-1 bg-background" />
       <div className="flex flex-col gap-0.5">
         <ToolButton
-          onClick={() => scrollNavigate(`/tests/manage/${id}/edit`)}
+          onPress={() => scrollNavigate(`/tests/manage/${id}/edit`)}
           startContent={<MdModeEdit size={17} />}
         >
           Редактировать
         </ToolButton>
         <ToolButton
-          onClick={() => scrollNavigate(`/tests/manage/${id}/settings`)}
+          onPress={() => scrollNavigate(`/tests/manage/${id}/settings`)}
           startContent={<MdSettings size={17} />}
         >
           Настройки
         </ToolButton>
         <ToolButton
-          onClick={() => scrollNavigate(`/tests/manage/${id}/preview`)}
+          onPress={() => scrollNavigate(`/tests/manage/${id}/preview`)}
           startContent={<IoMdList size={17} />}
         >
           Предпросмотр

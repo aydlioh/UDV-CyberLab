@@ -18,12 +18,17 @@ export const Select = extendVariants(SelectNextUI, {
     },
     color: {
       secondary: {
-        trigger:
-          'group-data-[filled=true]:text-foreground bg-secondary',
+        trigger: 'group-data-[filled=true]:text-foreground bg-secondary',
         label: 'text-foreground',
         value: 'group-data-[has-value=true]:text-foreground',
         popoverContent: 'bg-secondary max-h-[190px]',
-      }
+      },
+      white: {
+        trigger: 'group-data-[filled=true]:text-foreground bg-controlsPrimary data-[hover=true]:bg-controls',
+        label: 'text-foreground',
+        value: 'group-data-[has-value=true]:text-foreground',
+        popoverContent: 'bg-controlsPrimary max-h-[190px]',
+      },
     },
     radius: {
       sm: {

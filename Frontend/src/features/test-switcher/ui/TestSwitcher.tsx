@@ -35,7 +35,7 @@ export const TestSwitcher = ({
   return (
     <div
       className={clsx(
-        'flex flex-row',
+        'flex flex-row mb-10  ',
         !isPrev && 'justify-end',
         !isNext && 'justify-start',
         isPrev && isNext && 'justify-between',

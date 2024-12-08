@@ -4,9 +4,10 @@ import { useAnswers } from '@/entities/test-question';
 import { testWithQuestionsMOCK } from '@/entities/test/MOCK';
 import { Card } from '@/shared/ui';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const TestOverviewPage = () => {
+  const { testId } = useParams();
   const navigate = useNavigate();
   const test = testWithQuestionsMOCK;
 
@@ -15,11 +16,11 @@ const TestOverviewPage = () => {
   const handlePrevClick = () => navigate(-1);
   const handleNextClick = () => {
     clearAnswers();
-    navigate('/tests/my/passed', { replace: true });
+    navigate(`/tests/${testId}/results`, { replace: true });
   };
 
   return (
-    <div className=" max-w-[712px] w-full flex flex-col gap-[12px]">
+    <div className="max-w-[712px] w-full flex flex-col gap-[12px]">
       <Card className="py-[40px] px-[64px]">
         <h2 className="text-[24px] pb-3">{test.title}</h2>
         <AnswersTable />
@@ -28,8 +29,8 @@ const TestOverviewPage = () => {
         <TestSwitcher
           handlePrev={handlePrevClick}
           handleNext={handleNextClick}
-          prevLabel='Вернуться'
-          nextLabel='Завершить'
+          prevLabel="Вернуться"
+          nextLabel="Завершить"
         />
       </div>
     </div>
@@ -37,4 +38,3 @@ const TestOverviewPage = () => {
 };
 
 export default TestOverviewPage;
-

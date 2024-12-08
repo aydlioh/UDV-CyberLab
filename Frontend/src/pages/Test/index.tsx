@@ -44,7 +44,7 @@ export const testRoutes: RouteObject[] = [
             ],
           },
           {
-            path: 'result',
+            path: 'results',
             children: [
               {
                 path: '',

@@ -7,23 +7,34 @@ import { QuestionsSwitcher } from './QuestionsSwitcher';
 
 type QuestionsProps = {
   id: string;
+  isPreview?: boolean;
   questions: IQuestion[];
   totalQuestions: number;
-  endContent: React.ReactNode;
+  endContent?: React.ReactNode;
 };
 
 export const Questions = ({
   id,
+  isPreview = false,
   questions,
   totalQuestions,
   endContent,
 }: QuestionsProps) => {
   useAnswers(state => state.setCount)(totalQuestions);
+  const clearAnswers = useAnswers(state => state.clearAnswers);
 
   const [currentQuestion, setCurrentQuestion] = useQueryState(
     'question',
     parseAsInteger.withDefault(1).withOptions({ history: 'push' })
   );
+
+  useEffect(() => {
+    return () => {
+      if (isPreview) {
+        clearAnswers();
+      }
+    };
+  }, [clearAnswers, isPreview]);
 
   useEffect(() => {
     if (currentQuestion < 1) {
@@ -52,6 +63,7 @@ export const Questions = ({
       </div>
       <div className="w-full max-w-[712px]">
         <QuestionsSwitcher
+          isPreview={isPreview}
           id={id}
           current={currentQuestion}
           total={totalQuestions}

@@ -10,7 +10,7 @@ export const SelectAnswer = ({
     title: string;
     items: string[];
   }[];
-  setAnswer: (answer: Record<string, string>) => void;
+  setAnswer?: (answer: Record<string, string>) => void;
   currentAnswer: Record<string, string>;
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -19,7 +19,9 @@ export const SelectAnswer = ({
     event: React.ChangeEvent<HTMLSelectElement>,
     title: string
   ) => {
-    setAnswer({ ...currentAnswer, [title]: event.target.value });
+    if (setAnswer) {
+      setAnswer({ ...currentAnswer, [title]: event.target.value });
+    }
   };
 
   return (

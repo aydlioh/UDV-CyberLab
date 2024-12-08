@@ -7,7 +7,7 @@ export const TextAnswer = ({
   setAnswer,
   currentAnswer,
 }: {
-  setAnswer: (answer: string) => void;
+  setAnswer?: (answer: string) => void;
   currentAnswer: string;
 }) => {
   const [value, setValue] = useState(currentAnswer ?? '');
@@ -15,7 +15,9 @@ export const TextAnswer = ({
   useEffect(() => {
     const handler = setTimeout(() => {
       if (value !== currentAnswer) {
-        setAnswer(value);
+        if (setAnswer) {
+          setAnswer(value);
+        }
       }
     }, DELAY);
 
@@ -26,6 +28,7 @@ export const TextAnswer = ({
 
   return (
     <Textarea
+      isDisabled={!setAnswer}
       minRows={1}
       maxRows={6}
       placeholder="Развернутый ответ"

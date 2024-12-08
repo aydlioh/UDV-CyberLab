@@ -2,7 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 
 type UseFilepickerProps = {
   currentFile: File | null;
-  onFileSelect: (file: File) => void;
+  onFileSelect?: (file: File) => void;
 };
 
 export const useFilepicker = ({
@@ -22,8 +22,10 @@ export const useFilepicker = ({
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
       if (file) {
-        setIsSelected(true);
-        onFileSelect(file);
+        if (onFileSelect) {
+          setIsSelected(true);
+          onFileSelect(file);
+        }
       }
       if (fileInputRef.current) {
         fileInputRef.current.value = '';

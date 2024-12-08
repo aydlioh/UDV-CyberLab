@@ -6,7 +6,7 @@ export const CheckboxAnswer = ({
   currentAnswers,
 }: {
   answers: string[];
-  setAnswer: (answer: string[]) => void;
+  setAnswer?: (answer: string[]) => void;
   currentAnswers: string[];
 }) => {
   return (

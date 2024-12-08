@@ -6,7 +6,7 @@ export const RadioAnswer = ({
   currentAnswer,
 }: {
   answers: string[];
-  setAnswer: (answer: string) => void;
+  setAnswer?: (answer: string) => void;
   currentAnswer: string;
 }) => {
   return (
@@ -14,7 +14,7 @@ export const RadioAnswer = ({
       classNames={{
         wrapper: 'gap-[10px]',
       }}
-      value={currentAnswer}
+      value={currentAnswer || ''}
       onValueChange={setAnswer}
     >
       {answers.map((answer: string, index: number) => (

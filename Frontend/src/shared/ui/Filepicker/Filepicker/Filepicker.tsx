@@ -4,7 +4,7 @@ import { useFilepicker } from '../hooks';
 
 type FilepickerProps = {
   currentFile: File | null;
-  onFileSelect: (file: File) => void;
+  onFileSelect?: (file: File) => void;
 };
 
 export const Filepicker = ({ onFileSelect, currentFile }: FilepickerProps) => {

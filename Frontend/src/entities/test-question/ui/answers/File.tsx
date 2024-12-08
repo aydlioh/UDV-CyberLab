@@ -4,12 +4,15 @@ export const FileAnswer = ({
   setAnswer,
   currentAnswer,
 }: {
-  setAnswer: (answer: File) => void;
+  setAnswer?: (answer: File) => void;
   currentAnswer: File;
 }) => {
   return (
     <>
-      <Filepicker currentFile={currentAnswer} onFileSelect={setAnswer} />
+      <Filepicker
+        currentFile={currentAnswer}
+        onFileSelect={setAnswer}
+      />
     </>
   );
 };

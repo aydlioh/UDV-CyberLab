@@ -4,7 +4,7 @@ type UseDragAndDropProps = {
   currentFile: File | null;
   isSelected: boolean;
   setIsSelected: (value: boolean) => void;
-  handleFileChange: (file: File) => void;
+  handleFileChange?: (file: File) => void;
 };
 
 export const useDragAndDrop = ({
@@ -21,8 +21,10 @@ export const useDragAndDrop = ({
       setIsDragOver(false);
       const file = event.dataTransfer.files?.[0];
       if (file) {
-        setIsSelected(true);
-        handleFileChange(file);
+        if (handleFileChange) {
+          setIsSelected(true);
+          handleFileChange(file);
+        }
       }
     },
     [handleFileChange, setIsSelected]

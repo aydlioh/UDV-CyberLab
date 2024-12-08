@@ -8,7 +8,7 @@ type FilepickerButtonProps = {
   fileInputRef: React.RefObject<HTMLInputElement>;
   isSelected: boolean;
   setIsSelected: (value: boolean) => void;
-  handleFileChange: (file: File) => void;
+  handleFileChange?: (file: File) => void;
   handleClick?: () => void;
 };
 
@@ -29,6 +29,7 @@ export const FilepickerButton = ({
 
   return (
     <Button
+      isDisabled={!handleFileChange}
       className={clsx(
         'border-2 duration-300 border-dashed',
         isDragOver ? 'border-foreground' : 'border-foreground/60'

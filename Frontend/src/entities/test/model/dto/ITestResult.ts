@@ -1,4 +1,4 @@
-export type ITestResult = {
+export interface ITestResult {
   id: string;
   attempt: number;
   maxScore: number;

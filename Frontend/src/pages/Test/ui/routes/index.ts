@@ -19,5 +19,8 @@ export const TestResultPage = lazy(() => import('./test/TestResultPage'));
 export const TestResultListPage = lazy(
   () => import('./test/TestResultListPage')
 );
+export const TestResultPreviewPage = lazy(
+  () => import('./test/TestResultPreviewPage')
+);
 
 export const TestsPage = lazy(() => import('./tests/TestsPage'));

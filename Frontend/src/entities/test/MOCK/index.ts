@@ -17,7 +17,6 @@ export const testWithQuestionsMOCK: ITest = {
         'Выполнение задачи на стороне сервера',
         'Выполнение задачи на стороне базы данных',
       ],
-      saved: [],
     },
     {
       id: '2',
@@ -33,14 +32,12 @@ export const testWithQuestionsMOCK: ITest = {
         'Array',
         'Function',
       ],
-      saved: [],
     },
     {
       id: '3',
       question:
         'Взломайте пентагон, в качестве доказательства прикрепите скриншот',
       type: QuestionType.File,
-      saved: [],
     },
     {
       id: '4',
@@ -69,25 +66,21 @@ export const testWithQuestionsMOCK: ITest = {
           items: ['2', '4', '6'],
         },
       ],
-      saved: [],
     },
     {
       id: '5',
       question: 'Какова разница между null и undefined?',
       type: QuestionType.Text,
-      saved: [],
     },
     {
       id: '6',
       question: 'Какова разница между == и ===?',
       type: QuestionType.Text,
-      saved: [],
     },
     {
       id: '7',
       question: 'Какова разница между var, let, const?',
       type: QuestionType.Text,
-      saved: [],
     },
     {
       id: '8',
@@ -99,7 +92,6 @@ export const testWithQuestionsMOCK: ITest = {
         'null - это тип данных, undefined - это тип данных',
         'null - это значение, undefined - это значение',
       ],
-      saved: [],
     },
     {
       id: '9',
@@ -112,7 +104,6 @@ export const testWithQuestionsMOCK: ITest = {
         ' == - это нестрогий тип',
         ' === - это строгий тип',
       ],
-      saved: [],
     },
     {
       id: '10',
@@ -132,7 +123,6 @@ export const testWithQuestionsMOCK: ITest = {
           items: ['const - это тип данных', 'const - это значение', 'const - это тип данных, но с кое-чем еще'],
         },
       ],
-      saved: [],
     },
     {
       id: '11',
@@ -144,7 +134,6 @@ export const testWithQuestionsMOCK: ITest = {
         'null - это тип данных, undefined - это тип данных 3',
         'null - это тип данных, undefined - это тип данных 4',
       ],
-      saved: [],
     },
     {
       id: '12',
@@ -157,7 +146,6 @@ export const testWithQuestionsMOCK: ITest = {
         ' == - это тип данных 5',
         ' === - это тип данных 12',
       ],
-      saved: [],
     },
     {
       id: '13',
@@ -177,19 +165,16 @@ export const testWithQuestionsMOCK: ITest = {
           items: ['const - это тип данных 22323', 'const - это тип данных 2323', 'const - это тип данных, но с кое-чем еще23232323'],
         },
       ],
-      saved: [],
     },
     {
       id: '14',
       question: 'Какова разница между null и undefined?',
       type: QuestionType.Text,
-      saved: [],
     },
     {
       id: '15',
       question: 'Какова разница между == и ===?',
       type: QuestionType.Text,
-      saved: [],
     }
   ],
 };

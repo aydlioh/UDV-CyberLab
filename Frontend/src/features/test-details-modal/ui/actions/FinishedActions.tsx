@@ -14,7 +14,7 @@ export const FinishedActions = ({
   const { scrollNavigate } = useNavigation();
 
   const handleViewResults = () => {
-    scrollNavigate(`/tests/${testId}/result`);
+    scrollNavigate(`/tests/${testId}/results`);
   };
 
   const handleRepeat = () => {

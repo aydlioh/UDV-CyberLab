@@ -5,11 +5,11 @@ import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const TestPreviewPage = () => {
-  const { testId } = useParams();
+  const { testId, resultId } = useParams();
   const navigate = useNavigate();
 
-  const handleFinishClick = () => navigate('/tests/my/created');
-  const handleStartClick = () => navigate(`/tests/manage/${testId}/settings`);
+  const handlePreviewFinish = () =>
+    navigate(`/tests/${testId}/results/${resultId}`);
 
   const memoizedTestId = useMemo(() => testId, [testId]);
 
@@ -27,8 +27,8 @@ const TestPreviewPage = () => {
         id={data.id}
         questions={data.questions}
         totalQuestions={data.totalQuestions}
-        handleFinish={handleFinishClick}
-        handleStart={handleStartClick}
+        handleStart={handlePreviewFinish}
+        handleFinish={handlePreviewFinish}
       />
     </section>
   );

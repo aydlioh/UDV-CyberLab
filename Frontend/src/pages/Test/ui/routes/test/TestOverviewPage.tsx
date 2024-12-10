@@ -1,5 +1,5 @@
 import { AnswersTable } from '@/widgets/test-answers-table';
-import { TestSwitcher } from '@/features/test-switcher';
+import { ContentSwitcher } from '@/features/content-switcher';
 import { useAnswers } from '@/entities/test-question';
 import { testWithQuestionsMOCK } from '@/entities/test/MOCK';
 import { Card } from '@/shared/ui';
@@ -26,7 +26,7 @@ const TestOverviewPage = () => {
         <AnswersTable />
       </Card>
       <div>
-        <TestSwitcher
+        <ContentSwitcher
           handlePrev={handlePrevClick}
           handleNext={handleNextClick}
           prevLabel="Вернуться"

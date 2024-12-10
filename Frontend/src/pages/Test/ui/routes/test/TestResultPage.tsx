@@ -1,5 +1,5 @@
 import { testResultsMOCK } from '@/entities/test/MOCK/testResults';
-import { TestSwitcher } from '@/features/test-switcher';
+import { ContentSwitcher } from '@/features/content-switcher';
 import { TestAttemptTable } from '@/widgets/test-attempt-table';
 import { Card } from '@nextui-org/react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,10 +22,13 @@ const TestResultPage = () => {
 
         <TestAttemptTable result={data} />
       </Card>
-      <TestSwitcher
+      <ContentSwitcher
         nextLabel="Подробнее"
         isPrev={testResultsMOCK.totalAttempts > 1}
         handlePrev={() => navigate(`/tests/${testId}/results`)}
+        handleNext={() =>
+          navigate(`/tests/${testId}/results/${resultId}/preview`)
+        }
       />
     </section>
   );

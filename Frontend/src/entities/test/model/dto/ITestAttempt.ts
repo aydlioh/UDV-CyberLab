@@ -1,6 +1,6 @@
 import { ITestResult } from './ITestResult';
 
-export type ITestAttempt = {
+export interface ITestAttempt {
   id: string;
   testId: string;
   title: string;

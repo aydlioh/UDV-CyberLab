@@ -1,25 +1,29 @@
 import { parseAsInteger, useQueryState } from 'nuqs';
 import { useEffect } from 'react';
-import { QuestionsPaginator } from './QuestionsPaginator';
-import { QuestionCard, useAnswers } from '@/entities/test-question';
+import { QuestionPreviewCard } from '@/entities/test-question';
 import { IQuestion } from '@/shared/types';
-import { QuestionsSwitcher } from './QuestionsSwitcher';
+import { QuestionsPreviewPaginator } from './QuestionPreviewPaginator';
+import { QuestionsPreviewSwitcher } from './QuestionPreviewSwitcher';
 
-type QuestionsProps = {
+type QuestionsPreviewProps = {
   id: string;
+  isPreview?: boolean;
   questions: IQuestion[];
   totalQuestions: number;
   endContent?: React.ReactNode;
+  handleFinish?: () => void;
+  handleStart?: () => void;
 };
 
-export const Questions = ({
+export const QuestionsPreview = ({
   id,
+  isPreview = false,
   questions,
   totalQuestions,
   endContent,
-}: QuestionsProps) => {
-  useAnswers(state => state.setCount)(totalQuestions);
-
+  handleFinish,
+  handleStart,
+}: QuestionsPreviewProps) => {
   const [currentQuestion, setCurrentQuestion] = useQueryState(
     'question',
     parseAsInteger.withDefault(1).withOptions({ history: 'push' })
@@ -38,7 +42,7 @@ export const Questions = ({
   return (
     <div className="flex flex-col w-full pb-10">
       <div className="w-full max-w-[712px] mb-[8px]">
-        <QuestionsPaginator
+        <QuestionsPreviewPaginator
           ids={questions.map(q => q.id)}
           current={currentQuestion}
           setCurrent={setCurrentQuestion}
@@ -46,16 +50,18 @@ export const Questions = ({
       </div>
       <div className="flex flex-row gap-1 items-start mb-[12px]">
         <div className="w-full max-w-[712px] ">
-          <QuestionCard {...questions[currentQuestion - 1]} />
+          <QuestionPreviewCard {...questions[currentQuestion - 1]} />
         </div>
         {endContent}
       </div>
       <div className="w-full max-w-[712px]">
-        <QuestionsSwitcher
+        <QuestionsPreviewSwitcher
           id={id}
           current={currentQuestion}
           total={totalQuestions}
           setCurrent={setCurrentQuestion}
+          handleFinish={handleFinish}
+          handleStart={handleStart}
         />
       </div>
     </div>

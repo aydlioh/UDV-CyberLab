@@ -12,6 +12,5 @@ export interface IQuestion {
   id: string;
   question: string;
   answers?: QuestionAnswersType[];
-  saved: string[];
   type: QuestionType;
 }

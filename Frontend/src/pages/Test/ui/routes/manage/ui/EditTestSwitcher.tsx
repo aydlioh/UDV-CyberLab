@@ -1,4 +1,4 @@
-import { TestSwitcher } from '@/features/test-switcher';
+import { ContentSwitcher } from '@/features/content-switcher';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const EditTestSwitcher = () => {
@@ -6,7 +6,7 @@ export const EditTestSwitcher = () => {
   const navigate = useNavigate();
 
   return (
-    <TestSwitcher
+    <ContentSwitcher
       isPrev={false}
       nextLabel="Далее"
       handleNext={() => navigate(`/tests/manage/${testId}/settings`)}

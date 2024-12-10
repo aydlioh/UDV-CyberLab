@@ -13,7 +13,10 @@ type QuestionAnswersProps = {
   type: string;
   answers?: QuestionAnswersType[];
   setCurrent?: (answer: AnswersInputType) => void;
-  current: AnswersInputType;
+  current?: AnswersInputType;
+
+  userAnswers?: Record<string, AnswersInputType>;
+  correctAnswers?: Record<string, AnswersInputType>;
 };
 
 export const QuestionAnswers = ({
@@ -21,6 +24,9 @@ export const QuestionAnswers = ({
   answers,
   setCurrent,
   current,
+
+  userAnswers,
+  correctAnswers,
 }: QuestionAnswersProps) => {
   switch (type) {
     case QuestionType.Checkbox:
@@ -41,10 +47,7 @@ export const QuestionAnswers = ({
       );
     case QuestionType.Text:
       return (
-        <TextAnswer
-          currentAnswer={current as string}
-          setAnswer={setCurrent}
-        />
+        <TextAnswer currentAnswer={current as string} setAnswer={setCurrent} />
       );
     case QuestionType.Select:
       return (
@@ -56,10 +59,7 @@ export const QuestionAnswers = ({
       );
     case QuestionType.File:
       return (
-        <FileAnswer
-          currentAnswer={current as File}
-          setAnswer={setCurrent}
-        />
+        <FileAnswer currentAnswer={current as File} setAnswer={setCurrent} />
       );
     default:
       return <></>;

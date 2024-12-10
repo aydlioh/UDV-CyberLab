@@ -1,4 +1,4 @@
-export type ITestStatistics = {
+export interface ITestStatistics {
   testId: string;
   title: string;
   totalСompleted: number;
@@ -8,4 +8,4 @@ export type ITestStatistics = {
     name: string;
     score: number;
   }>;
-};
+}

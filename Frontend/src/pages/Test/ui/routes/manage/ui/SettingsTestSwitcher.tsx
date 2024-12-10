@@ -1,5 +1,5 @@
 import { useEditTestNavigation } from '@/entities/test-edit-nav';
-import { TestSwitcher } from '@/features/test-switcher';
+import { ContentSwitcher } from '@/features/content-switcher';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const SettingsTestSwitcher = () => {
@@ -8,7 +8,7 @@ export const SettingsTestSwitcher = () => {
   const navigate = useNavigate();
 
   return (
-    <TestSwitcher
+    <ContentSwitcher
       nextLabel="Далее"
       handlePrev={() => navigate(`/tests/manage/${testId}/edit/${navType}`)}
       handleNext={() => navigate(`/tests/manage/${testId}/preview`)}

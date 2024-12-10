@@ -16,6 +16,7 @@ import {
   EditCustomPage,
   EditGeneratePage,
   EditAIPage,
+  TestResultPreviewPage,
 } from './ui/routes';
 
 export const testRoutes: RouteObject[] = [
@@ -54,6 +55,10 @@ export const testRoutes: RouteObject[] = [
                 path: ':resultId',
                 element: <TestResultPage />,
               },
+              {
+                path: ':resultId/preview',
+                element: <TestResultPreviewPage />,
+              }
             ],
           },
         ],

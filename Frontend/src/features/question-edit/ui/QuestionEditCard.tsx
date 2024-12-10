@@ -108,6 +108,8 @@ export const QuestionEditCard = ({
                 base: 'w-[50px]',
               }}
               type="number"
+              max={100}
+              min={0}
               placeholder="0"
               aria-label="Баллы за вопрос"
             />

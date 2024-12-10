@@ -16,7 +16,7 @@ const TestResultListPage = () => {
   }
 
   return (
-    <Card className="max-w-[712px] w-full h-full pt-[40px] pb-[24px] px-[32px]">
+    <Card className="max-w-[712px] w-full h-full pt-[40px] pb-[24px] px-[32px] mb-3">
       <div>
         <h2 className="text-[24px] pl-[20px]">{data.title}</h2>
         <TestResultChart results={data} />

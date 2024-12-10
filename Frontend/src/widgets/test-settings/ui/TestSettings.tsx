@@ -135,6 +135,8 @@ export const TestSettings = () => {
                   base: 'w-[60px]',
                 }}
                 type="number"
+                max={100}
+                min={0}
                 aria-label="Количество попыток"
               />
             </div>

@@ -45,9 +45,15 @@ export const FilePreview = ({ currentFile }: { currentFile: File }) => {
           </Tooltip>
         </span>
       </PopoverTrigger>
-      <PopoverContent className="max-w-[300px] overflow-hidden">
-        <div className="group relative">
-          <img src={fileUrl ?? ''} alt="Preview" />
+      <PopoverContent className="overflow-hidden">
+        <div className="group relative ">
+          <div className='w-full h-full'>
+            <img
+              src={fileUrl ?? ''}
+              alt="Preview"
+              className="h-full w-full object-cover max-h-[300px] max-w-[300px]"
+            />
+          </div>
           <Tooltip
             className="rounded-[4px] bg-white"
             showArrow

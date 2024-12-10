@@ -9,7 +9,7 @@ const TestStatisticsPage = () => {
   if (!testId) return null;
 
   return (
-    <section className="max-w-[712px] w-full h-full flex flex-col gap-[12px]">
+    <section className="max-w-[712px] w-full h-full flex flex-col gap-[12px] mb-3">
       <Card className="pt-[40px] pb-[24px] px-[32px]">
         <h2 className="text-[24px] pl-[20px] pb-3">
           {testStatisticsMOCK.title}

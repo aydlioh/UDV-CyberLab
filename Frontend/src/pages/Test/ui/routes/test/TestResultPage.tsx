@@ -8,7 +8,7 @@ const TestResultPage = () => {
   const navigate = useNavigate();
   const { resultId, testId } = useParams();
 
-  if (!resultId) return null;
+  if (!resultId || !testId) return null;
 
   const data = testResultsMOCK.attempts.filter(item => item.id === resultId)[0];
 
@@ -20,7 +20,7 @@ const TestResultPage = () => {
           <span className="text-second"> (Попытка: {data.attempt})</span>
         </h2>
 
-        <TestAttemptTable result={data} />
+        <TestAttemptTable result={data} testId={testId} />
       </Card>
       <ContentSwitcher
         nextLabel="Подробнее"

@@ -1,20 +1,13 @@
 import { Checkbox, CheckboxGroup } from '@/shared/ui';
-import { AnswersInputType } from '../../model/types';
 
 export const CheckboxAnswer = ({
   answers,
   setAnswer,
   currentAnswers,
-
-  userAnswers,
-  correctAnswers,
 }: {
   answers: string[];
   setAnswer?: (answer: string[]) => void;
   currentAnswers: string[];
-
-  userAnswers?: Record<string, AnswersInputType>;
-  correctAnswers?: Record<string, AnswersInputType>;
 }) => {
   return (
     <CheckboxGroup

@@ -25,8 +25,9 @@ export const Input = extendVariants(InputNextUI, {
         inputWrapper: 'border-gray',
       },
       underlined: {
+        input: 'pb-0',
         inputWrapper:
-          'border-b-[1px] shadow-none border-[#CDCDE3] !rounded-none hover:border-second after:bg-foreground ',
+          'pb-0 bg-transparent data-[hover=true]:bg-transparent group-data-[focus=true]:bg-transparent border-b-[1px] shadow-none border-[#CDCDE3] !rounded-none hover:border-second after:bg-foreground ',
       },
     },
   },

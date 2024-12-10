@@ -6,6 +6,17 @@ const subjectLabels: { [key: string]: string } = {
   chemistry: 'Химия',
   biology: 'Биология',
   geography: 'География',
+  informatics: 'Информатика',
+  history: 'История',
+  literature: 'Литература',
+  astronomy: 'Астрономия',
+  ecology: 'Экология',
+  'social studies': 'Обществознание',
+  programming: 'Программирование',
+  art: 'Искусство',
+  music: 'Музыка',
+  'physical education': 'Физкультура',
+  philosophy: 'Философия',
   unknown: 'Неизвестный',
 };
 

@@ -10,7 +10,7 @@ export const Header = () => {
   const { scrollNavigate } = useNavigation();
 
   return (
-    <header className="h-[60px] bg-header sticky top-0 z-10">
+    <header className="h-[60px] bg-header sticky top-0 z-[20]">
       <div className="container h-full">
         <div className="flex flex-row justify-between items-center h-full">
           <Button

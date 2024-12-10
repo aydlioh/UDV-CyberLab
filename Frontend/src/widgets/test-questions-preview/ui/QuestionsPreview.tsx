@@ -17,7 +17,7 @@ type QuestionsPreviewProps = {
 
 export const QuestionsPreview = ({
   id,
-  isPreview = false,
+  // isPreview = false,
   questions,
   totalQuestions,
   endContent,

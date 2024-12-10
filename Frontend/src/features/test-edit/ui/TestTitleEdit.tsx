@@ -53,7 +53,7 @@ export const TestTitleEdit = ({
             className="sm:max-w-[213px] w-full"
             classNames={{
               trigger: 'h-[40px] min-h-8 px-3',
-              value: 'text-[16px] text-foreground/50',
+              value: 'text-[13px] text-foreground/50',
               mainWrapper: 'h-[40px]',
             }}
           >
@@ -75,7 +75,7 @@ export const TestTitleEdit = ({
             className="sm:max-w-[213px] w-full"
             classNames={{
               trigger: 'h-[40px] min-h-8 px-3',
-              value: 'text-[16px] text-foreground/50',
+              value: 'text-[13px] text-foreground/50',
               mainWrapper: 'h-[40px]',
             }}
           >

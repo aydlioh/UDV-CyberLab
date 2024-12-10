@@ -10,7 +10,7 @@ export const HeaderItem = ({ label, path }: HeaderLinkType) => {
       }
     >
       {label}
-      <span className="after:absolute after:left-0 after:right-0 after:top-[110%] after:duration-300 after:h-[2px] after:origin-top after:rounded-md after:scale-x-0 after:bg-orange after:transition-all group-hover:after:scale-x-100 " />
+      <span className="after:absolute after:left-1/2 after:right-0 after:top-[110%] after:duration-300 after:h-[2.5px] after:origin-top after:rounded-md after:w-0 after:bg-orange after:transition-all group-hover:after:w-full group-hover:after:left-0" />
     </NavLink>
   );
 };

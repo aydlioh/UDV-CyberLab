@@ -35,13 +35,11 @@ export const TestFilters = ({
         title="Сложность"
         classNames={accordionClassNames}
       >
-        <Scrollbar className="max-h-[250px]">
-          <Filter
-            onChange={setDifficulty}
-            currentValue={difficulty}
-            listItems={difficultyFilters}
-          />
-        </Scrollbar>
+        <Filter
+          onChange={setDifficulty}
+          currentValue={difficulty}
+          listItems={difficultyFilters}
+        />
       </AccordionItem>
       <AccordionItem
         key="Тематика"
@@ -49,7 +47,7 @@ export const TestFilters = ({
         title="Тематика"
         classNames={accordionClassNames}
       >
-        <Scrollbar className="max-h-[250px]">
+        <Scrollbar className="h-[250px]">
           <Filter
             onChange={setSubject}
             currentValue={subject}

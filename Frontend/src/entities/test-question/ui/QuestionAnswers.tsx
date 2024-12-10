@@ -14,9 +14,6 @@ type QuestionAnswersProps = {
   answers?: QuestionAnswersType[];
   setCurrent?: (answer: AnswersInputType) => void;
   current?: AnswersInputType;
-
-  userAnswers?: Record<string, AnswersInputType>;
-  correctAnswers?: Record<string, AnswersInputType>;
 };
 
 export const QuestionAnswers = ({
@@ -24,9 +21,6 @@ export const QuestionAnswers = ({
   answers,
   setCurrent,
   current,
-
-  userAnswers,
-  correctAnswers,
 }: QuestionAnswersProps) => {
   switch (type) {
     case QuestionType.Checkbox:

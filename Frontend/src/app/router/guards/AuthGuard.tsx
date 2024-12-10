@@ -13,6 +13,7 @@ export const AuthGuard = () => {
   useSessionTimeout({
     expirationTime: tokenService.get()?.expiration,
     onExpire: () => {
+      console.warn('Сессия окончена!');
       tokenService.destroy();
       logout();
       navigate(`/login?redirect_path=${location.pathname}`);

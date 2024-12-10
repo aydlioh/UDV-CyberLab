@@ -22,7 +22,7 @@ export const Topbar = ({ links }: TopbarProps) => {
   };
 
   return (
-    <aside>
+    <div>
       <Tabs
         size="lg"
         color="secondary"
@@ -40,6 +40,6 @@ export const Topbar = ({ links }: TopbarProps) => {
           <Tab key={path} title={<TopbarItem label={label} />} />
         ))}
       </Tabs>
-    </aside>
+    </div>
   );
 };

@@ -4,9 +4,9 @@ export const testsMOCK: ITestDetails[] = [
   {
     id: '1',
     owner: 'aydlioh',
-    title: 'Тест по стереометрии',
+    title: 'Тест по JavaScript',
     difficulty: 'easy',
-    subject: 'english',
+    subject: 'programming',
     totalPoints: 10,
     currentPoints: undefined,
     startDate: new Date(),

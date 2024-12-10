@@ -3,7 +3,7 @@ import { ITestAttempt } from '../model/dto/ITestAttempt';
 export const testResultsMOCK: ITestAttempt = {
   id: '1',
   testId: '1',
-  title: 'Тест по английскому языку',
+  title: 'Тест по программированию на JavaScript',
   totalAttempts: 5,
   attempts: [
     {

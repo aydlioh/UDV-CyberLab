@@ -15,10 +15,12 @@ const TestResultPage = () => {
   return (
     <section className="max-w-[712px] w-full h-full flex flex-col gap-[12px]">
       <Card className="pt-[40px] pb-[24px] px-[32px]">
-        <h2 className="text-[24px] pl-[20px] pb-3">
-          {testResultsMOCK.title}
-          <span className="text-second"> (Попытка: {data.attempt})</span>
-        </h2>
+        <div className='pl-[20px] pb-3'>
+          <h2 className="text-[24px]">
+            {testResultsMOCK.title}
+          </h2>
+          <p className="text-second text-[18px]">Попытка: {data.attempt}</p>
+        </div>
 
         <TestAttemptTable result={data} testId={testId} />
       </Card>

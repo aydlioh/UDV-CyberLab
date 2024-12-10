@@ -26,7 +26,7 @@ const russianNames = [
 
 export const testStatisticsMOCK: ITestStatistics = {
   testId: '1',
-  title: 'Тест по английскому языку',
+  title: 'Тест по программированию на JavaScript',
   totalСompleted: 20,
   maxScore: 20,
   users: russianNames.map((name, index) => ({

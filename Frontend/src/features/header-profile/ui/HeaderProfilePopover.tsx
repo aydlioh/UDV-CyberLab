@@ -47,7 +47,7 @@ export const HeaderProfile = () => {
               <Avatar
                 isBordered
                 className="transition-transform"
-                src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                src="" //https://i.pravatar.cc/150?u=a042581f4e29026024d
               />
             </Button>
           </PopoverTrigger>

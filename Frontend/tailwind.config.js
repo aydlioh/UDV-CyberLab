@@ -1,4 +1,4 @@
-const { nextui } = require('@nextui-org/react');
+import { nextui } from '@nextui-org/react';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -23,9 +23,9 @@ export default {
         gray: '#B9BACA',
         orange: '#F29F26',
         focus: '#9599CC',
-        
+
         controls: '#E9E9F1',
-        controlsPrimary: '#F4F4F5'
+        controlsPrimary: '#F4F4F5',
       },
       fontFamily: {
         inter: ['Inter Variable', 'sans-serif'],

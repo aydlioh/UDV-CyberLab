@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { HeaderLinkType } from '../model/types';
+import { HeaderLinkType } from '../../model/types';
 
 export const HeaderItem = ({ label, path }: HeaderLinkType) => {
   return (

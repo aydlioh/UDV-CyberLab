@@ -7,13 +7,13 @@ import { CiLogout } from 'react-icons/ci';
 export const HeaderProfileContent = ({
   setPopoverOpen,
 }: {
-  setPopoverOpen: (open: boolean) => void;
+  setPopoverOpen?: (open: boolean) => void;
 }) => {
   const logout = useLogoutModal(state => state.open);
   const user = useAuth(state => state.user);
 
   const handleLogout = () => {
-    setPopoverOpen(false);
+    setPopoverOpen?.(false);
     logout();
   };
 

@@ -13,10 +13,10 @@ export const MyTestLayout = () => {
 
   return (
     <div className="w-full max-w-[712px]">
-      <div className="sticky top-[75px] z-10">
-        <div className="flex flex-row justify-between items-center mb-[12px]">
+      <div className="lg:sticky top-[75px] z-10">
+        <div className="flex md:flex-row flex-col justify-between md:items-center items-start mb-[12px]">
           <Topbar links={isTeacher ? myTestTeacherRoutes : myTestRoutes} />
-          <div className="bg-background rounded-xl">
+          <div className="bg-background rounded-xl self-end mt-3 sm:w-auto w-full">
             {withCreateButton && <CreateTestButton />}
           </div>
         </div>

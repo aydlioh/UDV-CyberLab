@@ -31,11 +31,12 @@ export const EditTestSelect = () => {
   return (
     <Select
       size="sm"
+      radius="md"
       color="secondary"
       listboxProps={{
         itemClasses: {
           base: 'data-[hover=true]:bg-[#CDCDE3] data-[selectable=true]:focus:text-foreground data-[hover=true]:text-foreground data-[selectable=true]:focus:bg-[#CDCDE3] !outline-none',
-          title: 'text-[13px]'
+          title: 'text-[13px]',
         },
       }}
       selectedKeys={[navType || 'custom']}

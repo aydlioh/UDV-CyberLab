@@ -16,17 +16,17 @@ export const OwnerActions = ({ testId }: { testId: string }) => {
   };
 
   return (
-    <div className="flex flex-row gap-4 items-center justify-center px-10">
+    <div className="flex sm:flex-row flex-col sm:gap-4 gap-2 items-center justify-center sm:px-10 px-2">
       <Button
         color="gradient"
-        className="w-1/2"
+        className="sm:w-1/2 w-full"
         onPress={closeHandler(handleEdit)}
       >
         Редактировать
       </Button>
-      <Divider orientation="vertical" className="h-16 bg-foreground/30" />
+      <Divider orientation="vertical" className="h-16 bg-foreground/30 sm:block hidden" />
       <Button
-        className="w-1/2"
+        className="sm:w-1/2 w-full"
         variant="bordered"
         onPress={closeHandler(handleViewStatistics)}
       >

@@ -10,6 +10,8 @@ type TestDetailsProps = ITestDetails & {
   testStatus: ReturnType<typeof getTestStatus>;
 };
 
+const progressStyles = 'w-[184px] h-[184px]';
+
 export const TestDetails = ({
   title,
   startDate,
@@ -27,18 +29,20 @@ export const TestDetails = ({
     : 0;
   return (
     <div>
-      <div className="flex flex-row gap-4 items-start">
-        <TestIcon className="w-[73px] h-auto" />
-        <div className="flex flex-col gap-[14px]">
+      <div className="flex flex-row gap-4 items-start justify-center">
+        <TestIcon className="sm:w-[73px] w-[60px] h-auto sm:block hidden" />
+        <div className="flex flex-col sm:gap-[14px]">
           <div>
-            <h3 className="text-[32px] leading-[39px] mb-[4px]">{title}</h3>
-            <p className="text-[20px] leading-[24px]">
+            <h3 className="sm:text-[32px] mobile:text-[28px] text-[24px] sm:leading-[39px] mb-[4px]">
+              {title}
+            </h3>
+            <p className="sm:text-[20px] text-[16px] leading-[24px]">
               Открыт с <TestTimeFormatter time={startDate} /> до{' '}
               <TestTimeFormatter time={endDate} />
             </p>
           </div>
-          <div className="flex flex-row gap-[15px] justify-between">
-            <div className="flex flex-col gap-[8px] text-[20px] leading-[24px] mt-[30px]">
+          <div className="flex sm:flex-row flex-col gap-[15px] justify-between">
+            <div className="flex flex-col gap-[8px] sm:text-[20px] text-[16px] sm:leading-[24px] leading-[20px] mt-[30px]">
               <p>
                 Тематика:{' '}
                 <span className="font-semibold">{getTestSubject(subject)}</span>
@@ -60,15 +64,15 @@ export const TestDetails = ({
                 />
               )}
             </div>
-            <div>
+            <div className='flex justify-center'>
               {!isOwner && (
                 <CircularProgress
                   aria-label="text progress"
                   className={isRunning ? 'animate-pulse' : ''}
                   classNames={{
-                    base: 'w-[184px] h-[184px]',
-                    svg: 'w-[184px] h-[184px]',
-                    svgWrapper: 'w-[184px] h-[184px]',
+                    base: progressStyles,
+                    svg: progressStyles,
+                    svgWrapper: progressStyles,
                     value: 'text-[40px]',
                   }}
                   value={progress}

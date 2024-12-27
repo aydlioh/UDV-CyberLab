@@ -1,8 +1,10 @@
 import { Code } from '@nextui-org/react';
 import { BsBuildingsFill } from 'react-icons/bs';
 import { IoSettingsSharp } from 'react-icons/io5';
+import { useLocation } from 'react-router-dom';
 
-export const DevelopmentPage = ({ path }: { path: string }) => {
+export const DevelopmentPage = () => {
+  const { pathname } = useLocation();
   return (
     <section className="flex justify-center mt-20">
       <div className="bg-header px-5 py-10 rounded-lg w-full max-w-[400px] flex flex-col items-center gap-8">
@@ -15,8 +17,8 @@ export const DevelopmentPage = ({ path }: { path: string }) => {
 
           <p className="text-foreground/80 text-center px-10">
             Страница{' '}
-            {path && (
-              <Code className="bg-background text-foreground">{path}</Code>
+            {pathname && (
+              <Code className="bg-background text-foreground">{pathname}</Code>
             )}{' '}
             находится в разработке
           </p>

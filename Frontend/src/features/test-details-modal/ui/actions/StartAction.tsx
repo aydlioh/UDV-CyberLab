@@ -12,7 +12,11 @@ export const StartAction = ({ testId }: { testId: string }) => {
 
   return (
     <div className="flex justify-center">
-      <Button color="gradient" onPress={closeHandler(handleStart)}>
+      <Button
+        color="gradient"
+        className="sm:w-auto w-full sm:px-8 px-2"
+        onPress={closeHandler(handleStart)}
+      >
         Начать прохождение
       </Button>
     </div>

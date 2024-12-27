@@ -17,7 +17,7 @@ export const LogoutModal = () => {
   };
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={setOpen} size="md">
+    <Modal placement='center' isOpen={isOpen} onOpenChange={setOpen} size="md">
       <ModalContent>
         <ModalBody className="py-5 px-10">
           <p className="text-[22px] mb-5 text-center">Выйти из аккаунта?</p>

@@ -4,6 +4,6 @@ import { DevelopmentPage } from '../Error';
 export const eventsRoutes: RouteObject[] = [
   {
     path: '/events',
-    element: <DevelopmentPage path='/events' />,
+    element: <DevelopmentPage />,
   },
 ];

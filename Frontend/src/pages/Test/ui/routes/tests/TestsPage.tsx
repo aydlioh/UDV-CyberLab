@@ -21,7 +21,7 @@ const TestsPage = () => {
   return (
     <section className="flex flex-row gap-5 w-full">
       <div className="w-full flex flex-col gap-3">
-        <div className="sticky top-[75px] z-10 h-[52px]">
+        <div className="lg:sticky top-[75px] z-10 h-[52px]">
           <SearchInput
             search={search}
             setSearch={setSearch}
@@ -33,7 +33,7 @@ const TestsPage = () => {
         <TestList tests={filteredTests} />
       </div>
       <div className="max-w-[224px] w-full">
-        <div className="sticky top-[75px]">
+        <div className="md:sticky top-[75px]">
           <TestFilters
             difficulty={difficulty}
             setDifficulty={setDifficulty}

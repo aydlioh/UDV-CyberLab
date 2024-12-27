@@ -1,0 +1,38 @@
+import { cn } from '@nextui-org/react';
+import { AsideContent } from './AsideContent';
+import { AsideFooter } from './AsideFooter';
+
+type AsideWrapperProps = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+};
+
+export const AsideWrapper = ({ isOpen, setIsOpen }: AsideWrapperProps) => {
+  return (
+    <div>
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed top-[60px] left-0 w-full h-full"
+        />
+      )}
+      <aside
+        className={cn(
+          'fixed left-0 bottom-0 w-full duration-200 top-[60px] bg-white flex items-center justify-center overflow-hidden drop-shadow-xl',
+          isOpen ? 'max-w-[340px]' : 'max-w-0'
+        )}
+      >
+        {isOpen && (
+          <div
+            className={cn(
+              'flex h-full w-full flex-col duration-150 justify-between p-1'
+            )}
+          >
+            <AsideContent setIsOpen={() => setIsOpen(false)} />
+            <AsideFooter />
+          </div>
+        )}
+      </aside>
+    </div>
+  );
+};

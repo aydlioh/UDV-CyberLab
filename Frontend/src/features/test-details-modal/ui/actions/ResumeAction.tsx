@@ -12,7 +12,7 @@ export const ResumeAction = ({ testId }: { testId: string }) => {
 
   return (
     <div className="flex justify-center">
-      <Button color="gradient" onPress={closeHandler(handleResume)}>
+      <Button color="gradient" className='sm:w-auto w-full sm:px-8 px-2' onPress={closeHandler(handleResume)}>
         Продолжить прохождение
       </Button>
     </div>

@@ -18,7 +18,7 @@ export const Modal = extendVariants(ModalNextUI, {
     size: {
       lg: {
         base: 'max-w-[685px]',
-        body: 'p-[44px]',
+        body: 'sm:p-[44px] py-[38px] px-[30px]',
         closeButton: 'text-[30px]',
       },
     },

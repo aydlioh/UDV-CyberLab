@@ -4,6 +4,6 @@ import { DevelopmentPage } from '../Error';
 export const labsRoutes: RouteObject[] = [
   {
     path: '/labs',
-    element: <DevelopmentPage path='/labs' />,
+    element: <DevelopmentPage />,
   },
 ];

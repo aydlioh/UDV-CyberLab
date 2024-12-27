@@ -35,7 +35,7 @@ export const Topbar = ({ links }: TopbarProps) => {
           cursor: 'drop-shadow-base',
         }}
       >
-        <Tab key="default" className="hidden" />
+        <Tab key="default" className="hidden" aria-hidden />
         {links.map(({ path, label }) => (
           <Tab key={path} title={<TopbarItem label={label} />} />
         ))}

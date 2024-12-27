@@ -1,4 +1,4 @@
-import { TestTitleEdit } from '@/features/test-edit';
+import { TestTitleEdit } from '@/features/test-title-edit';
 import { EditTestSwitcher } from './ui/EditTestSwitcher';
 import { TestEditList } from '@/widgets/test-edit-list';
 

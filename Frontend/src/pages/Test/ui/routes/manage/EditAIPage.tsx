@@ -1,4 +1,4 @@
-import { TestTitleEdit } from '@/features/test-edit';
+import { TestTitleEdit } from '@/features/test-title-edit';
 import { EditTestSwitcher } from './ui/EditTestSwitcher';
 import { FileDropArea } from '@/shared/ui/Filepicker/FileDropArea/FileDropArea';
 import { useState } from 'react';

@@ -33,9 +33,11 @@ export const useLogin = () => {
 
   useEffect(() => {
     if (fetchError) {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setFetchError(null);
       }, 5000);
+
+      return () => clearTimeout(timeoutId);
     }
   }, [fetchError]);
 

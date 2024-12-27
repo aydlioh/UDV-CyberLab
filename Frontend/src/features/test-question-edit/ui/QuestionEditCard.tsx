@@ -1,6 +1,6 @@
 import { QuestionAnswersType, QuestionType } from '@/shared/types';
 import { Button, Card, Input, Select, SelectItem, Textarea } from '@/shared/ui';
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useCallback, useState } from 'react';
 import { questionTypes } from '../const/questionTypes';
 import { QuestionEditType, SelectActionCorrectType } from '../model/types';
 import { FaTrashAlt } from 'react-icons/fa';
@@ -26,31 +26,41 @@ export const QuestionEditCard = ({
   const [currentSettings, setCurrentSettings] =
     useState<QuestionEditType>(question);
 
-  const handleDeleteQuestion = () => {
+  const handleDeleteQuestion = useCallback(() => {
     setQuestion(prev => prev.filter(q => q.id !== question.id));
-  };
+  }, [question.id, setQuestion]);
 
-  const handleChangeCorrectAnswers = (
-    value: QuestionAnswersType[] | string | SelectActionCorrectType[]
-  ) => {
-    setCurrentSettings(prev => ({ ...prev, correctAnswers: value }));
-  };
+  const handleChangeCorrectAnswers = useCallback(
+    (value: QuestionAnswersType[] | string | SelectActionCorrectType[]) => {
+      setCurrentSettings(prev => ({ ...prev, correctAnswers: value }));
+    },
+    []
+  );
 
-  const handleChangeAnswers = (value: QuestionAnswersType[]) => {
+  const handleChangeAnswers = useCallback((value: QuestionAnswersType[]) => {
     setCurrentSettings(prev => ({ ...prev, answers: value }));
-  };
+  }, []);
 
-  const handleChangeType = (value: QuestionType) => {
-    if (value === QuestionType.Checkbox || value === QuestionType.Radio) {
-      if (
-        currentSettings.type === QuestionType.Radio ||
-        currentSettings.type === QuestionType.Checkbox
-      ) {
-        setCurrentSettings(prev => ({
-          ...prev,
-          type: value as QuestionType,
-          correctAnswers: [],
-        }));
+  const handleChangeType = useCallback(
+    (value: QuestionType) => {
+      if (value === QuestionType.Checkbox || value === QuestionType.Radio) {
+        if (
+          currentSettings.type === QuestionType.Radio ||
+          currentSettings.type === QuestionType.Checkbox
+        ) {
+          setCurrentSettings(prev => ({
+            ...prev,
+            type: value as QuestionType,
+            correctAnswers: [],
+          }));
+        } else {
+          setCurrentSettings(prev => ({
+            ...prev,
+            type: value as QuestionType,
+            answers: [],
+            correctAnswers: [],
+          }));
+        }
       } else {
         setCurrentSettings(prev => ({
           ...prev,
@@ -59,15 +69,9 @@ export const QuestionEditCard = ({
           correctAnswers: [],
         }));
       }
-    } else {
-      setCurrentSettings(prev => ({
-        ...prev,
-        type: value as QuestionType,
-        answers: [],
-        correctAnswers: [],
-      }));
-    }
-  };
+    },
+    [currentSettings.type]
+  );
 
   return (
     <Card className="pt-[13px] pb-[20px] px-[41px]">

@@ -1,4 +1,4 @@
-import { QuestionEditCard, QuestionEditType } from '@/features/question-edit';
+import { QuestionEditCard, QuestionEditType } from '@/features/test-question-edit';
 import { QuestionType } from '@/shared/types';
 import { Button } from '@/shared/ui';
 import { useCallback, useState } from 'react';

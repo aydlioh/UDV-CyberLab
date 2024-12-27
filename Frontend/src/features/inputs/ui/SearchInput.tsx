@@ -30,6 +30,7 @@ export const SearchInput = ({
 
   return (
     <Input
+      role="search"
       {...props}
       startContent={<MdSearch className="text-foreground text-[28px]" />}
       size="lg"

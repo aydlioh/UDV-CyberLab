@@ -7,7 +7,7 @@ export const testRoutes: SidebarItemType[] = [
     label: 'Мои тесты',
     path: '/tests/my',
     icon: MdOutlineTaskAlt,
-    enabledList: ['/tests/my', '/tests/my/passed', '/tests/my/created'],
+    enabledList: ['/tests/my', '/tests/manage'],
   },
   {
     id: 2,

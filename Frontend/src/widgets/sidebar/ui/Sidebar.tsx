@@ -18,8 +18,11 @@ export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
   const { scrollNavigate } = useNavigation();
   const { pathname } = useLocation();
 
-  const hasEnabledKey = (key: string) =>
-    links.find(l => l.enabledList.includes(key));
+  const hasEnabledKey = (key: string) => {
+    const element = links.find(l => l.enabledList.includes(key));
+    if (element) return element;
+    return links.find(l => l.enabledList.filter(el => el === key));
+  };
 
   const handleSwitch = (key: string) => {
     if (key === 'logout') {
@@ -48,7 +51,7 @@ export const Sidebar = ({ links, withLogout = false }: SidebarProps) => {
           cursor: 'drop-shadow-base',
         }}
       >
-        <Tab key="default" className="hidden" />
+        <Tab key="default" className="hidden" aria-hidden />
         {links.map(({ path, label, icon }) => (
           <Tab key={path} title={<SidebarItem icon={icon} label={label} />} />
         ))}

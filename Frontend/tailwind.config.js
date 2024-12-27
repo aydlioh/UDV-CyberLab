@@ -33,6 +33,7 @@ export default {
       },
       backgroundImage: {
         'main-gradient': 'linear-gradient(90deg, #343976, #9599CC)',
+        'second-gradient': 'linear-gradient(90deg, #9599CC, #343976)',
       },
       dropShadow: {
         base: '0 4px 4px rgba(0,0,0,0.15)',

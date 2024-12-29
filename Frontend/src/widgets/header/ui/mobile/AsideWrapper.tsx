@@ -12,8 +12,11 @@ export const AsideWrapper = ({ isOpen, setIsOpen }: AsideWrapperProps) => {
     <>
       {isOpen && (
         <div
-          onClick={() => setIsOpen(false)}
-          className="fixed top-[60px] left-0 w-full h-full"
+          onClick={e => {
+            e.stopPropagation();
+            setIsOpen(false);
+          }}
+          className="fixed top-[60px] left-0 w-full h-full z-10"
         />
       )}
       <aside
@@ -24,9 +27,7 @@ export const AsideWrapper = ({ isOpen, setIsOpen }: AsideWrapperProps) => {
       >
         {isOpen && (
           <div
-            className={cn(
-              'flex h-full w-full flex-col justify-between p-1'
-            )}
+            className={cn('flex h-full w-full flex-col justify-between p-1')}
           >
             <AsideContent setIsOpen={() => setIsOpen(false)} />
             <AsideFooter />

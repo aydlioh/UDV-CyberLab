@@ -23,7 +23,7 @@ export const Topbar = ({ links }: TopbarProps) => {
   };
 
   return (
-    <div className="overflow-x-scroll w-full">
+    <div className="w-full">
       <Tabs
         size="lg"
         isVertical={isMobile}

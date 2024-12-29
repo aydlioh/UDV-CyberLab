@@ -34,7 +34,7 @@ export const TestFilters = ({
   return (
     <>
       {isMobile ? (
-        <div className='flex flex-col gap-1'>
+        <div className="flex flex-col gap-1">
           <Select
             color="white"
             aria-label="Сложность теста"
@@ -80,6 +80,7 @@ export const TestFilters = ({
           isCompact
           variant="shadow"
           className="bg-white rounded-lg"
+          dividerProps={{ className: 'bg-background' }}
         >
           <AccordionItem
             key="Сложность"

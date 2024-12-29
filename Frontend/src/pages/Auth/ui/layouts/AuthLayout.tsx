@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const AuthLayout = () => {
   return (
-    <Scrollbar>
+    <Scrollbar className='max-h-svh'>
       <main className="flex auth-container items-center justify-center">
         <div className="flex lg:flex-row lg:gap-0 gap-[26px] flex-col-reverse items-center xl:justify-between justify-center relative lg:w-full">
           <div className="sm:h-[580px] md:w-[500px] w-full z-10 relative">

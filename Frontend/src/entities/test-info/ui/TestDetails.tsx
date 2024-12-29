@@ -10,7 +10,7 @@ type TestDetailsProps = ITestDetails & {
   testStatus: ReturnType<typeof getTestStatus>;
 };
 
-const progressStyles = 'w-[184px] h-[184px]';
+const progressStyles = 'sm:w-[184px] sm:h-[184px] h-[150px] w-[150px]';
 
 export const TestDetails = ({
   title,
@@ -33,7 +33,7 @@ export const TestDetails = ({
         <TestIcon className="sm:w-[73px] w-[60px] h-auto sm:block hidden" />
         <div className="flex flex-col sm:gap-[14px]">
           <div>
-            <h3 className="sm:text-[32px] mobile:text-[28px] text-[24px] sm:leading-[39px] mb-[4px]">
+            <h3 className="sm:text-[32px] mobile:text-[28px] text-[24px] sm:leading-[39px] leading-[28px] mb-[8px] line-clamp-3 font-medium">
               {title}
             </h3>
             <p className="sm:text-[20px] text-[16px] leading-[24px]">
@@ -42,7 +42,7 @@ export const TestDetails = ({
             </p>
           </div>
           <div className="flex sm:flex-row flex-col gap-[15px] justify-between">
-            <div className="flex flex-col gap-[8px] sm:text-[20px] text-[16px] sm:leading-[24px] leading-[20px] mt-[30px]">
+            <div className="flex flex-col gap-[8px] sm:text-[20px] text-[16px] sm:leading-[24px] leading-[20px] sm:mt-[30px] mt-[20px]">
               <p>
                 Тематика:{' '}
                 <span className="font-semibold">{getTestSubject(subject)}</span>
@@ -73,7 +73,7 @@ export const TestDetails = ({
                     base: progressStyles,
                     svg: progressStyles,
                     svgWrapper: progressStyles,
-                    value: 'text-[40px]',
+                    value: 'sm:text-[40px] text-[30px]',
                   }}
                   value={progress}
                   showValueLabel

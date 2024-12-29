@@ -21,7 +21,7 @@ export const TestDetailsContent = () => {
   return (
     <ModalContent>
       <ModalBody>
-        <section className="w-full flex flex-col gap-[80px]">
+        <section className="w-full flex flex-col sm:gap-[80px] gap-[15px]">
           <TestDetails {...test} testStatus={testStatus} />
           <TestDetailsActions {...test} testStatus={testStatus} />
         </section>

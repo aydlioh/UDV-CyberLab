@@ -9,7 +9,7 @@ export const Scrollbar = ({
   className?: string;
 }) => {
   return (
-    <SimpleBar className={clsx('max-h-svh', className)} forceVisible="y">
+    <SimpleBar className={clsx(className)} forceVisible="y">
       {children}
     </SimpleBar>
   );

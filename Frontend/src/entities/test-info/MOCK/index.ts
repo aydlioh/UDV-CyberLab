@@ -40,7 +40,7 @@ export const testsMOCK: ITestDetails[] = [
   {
     id: '4',
     owner: 'zzz',
-    title: 'Тест по физике',
+    title: 'Тест по физике невероятно сложный с всего-лишь одной попыткой',
     difficulty: 'hard',
     subject: 'physics',
     startDate: new Date(),

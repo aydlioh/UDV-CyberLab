@@ -24,21 +24,21 @@ export const TestTitleEdit = ({
   const [subject, setSubject] = useState<string>(initSubject ?? '');
 
   return (
-    <Card className="py-[24px] px-[40px]">
-      <div className="flex flex-col gap-[24px]">
+    <Card className="py-[24px] sm:px-[40px] px-[20px]">
+      <div className="flex flex-col sm:gap-[24px] gap-4">
         <Input
           color="white"
           value={title}
           onChange={e => setTitle(e.target.value)}
           placeholder="Название теста"
-          className="max-w-[308px]"
+          className="sm:max-w-[308px]"
           classNames={{
             inputWrapper: 'h-[40px] px-3',
             input:
               'placeholder:text-[16px] text-[16px] placeholder:text-foreground/50',
           }}
         />
-        <div className="flex flex-row gap-[24px]">
+        <div className="flex sm:flex-row flex-col sm:gap-[24px] gap-2">
           <Select
             color="white"
             aria-label="Сложность теста"

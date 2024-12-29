@@ -3,12 +3,14 @@ import {
   useEditTestNavigation,
 } from '@/entities/test-edit-nav';
 import { EditTestSelect } from '@/features/test-edit-select';
-import { Spinner } from '@/shared/ui';
+import { useMediaQuery } from '@/shared/hooks';
+import { Spinner, StickyElement } from '@/shared/ui';
 import { manageTestRoutes, Topbar } from '@/widgets/topbar';
 import { Suspense, useMemo } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 export const ManageTestLayout = () => {
+  const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
   const navType = useEditTestNavigation(state => state.navType);
   const { pathname } = useLocation();
   const { testId = '' } = useParams();
@@ -29,12 +31,12 @@ export const ManageTestLayout = () => {
 
   return (
     <div className="w-full max-w-[712px]">
-      <div className="lg:sticky top-[75px] z-[20]">
+      <StickyElement shadow={!isTablet} className='top-[75px] z-[20]'>
         <div className="flex flex-col justify-between items-start gap-3 mb-3">
           <Topbar links={topbarList} />
           {withEditSelect && <EditTestSelect />}
         </div>
-      </div>
+      </StickyElement>
       <Suspense
         fallback={
           <div className="flex justify-center items-center w-full h-full">

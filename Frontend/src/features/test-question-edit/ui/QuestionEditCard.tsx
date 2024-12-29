@@ -74,7 +74,7 @@ export const QuestionEditCard = ({
   );
 
   return (
-    <Card className="pt-[13px] pb-[20px] px-[41px]">
+    <Card className="pt-[13px] pb-[20px] sm:px-[40px] px-[20px]">
       <div>
         <h4 className="text-[16px] mb-3">Вопрос {index}</h4>
         <div className="mb-[13px] flex flex-row justify-between items-center">
@@ -100,24 +100,6 @@ export const QuestionEditCard = ({
               <SelectItem key={key}>{label}</SelectItem>
             ))}
           </Select>
-          <div className="flex flex-row gap-2 items-center">
-            <p className="text-[13px]">Баллы: </p>
-            <Input
-              value={String(currentSettings.maxScore)}
-              onValueChange={e =>
-                setCurrentSettings(prev => ({ ...prev, maxScore: Number(e) }))
-              }
-              color="white"
-              classNames={{
-                base: 'w-[50px]',
-              }}
-              type="number"
-              max={100}
-              min={0}
-              placeholder="0"
-              aria-label="Баллы за вопрос"
-            />
-          </div>
         </div>
         <Textarea
           className="mb-3"
@@ -143,7 +125,25 @@ export const QuestionEditCard = ({
             changeCorrectAnswers={handleChangeCorrectAnswers}
           />
         )}
-        <div className="flex justify-end">
+        <div className="flex justify-between mt-4">
+          <div className="flex flex-row gap-2 items-center">
+            <p className="text-[13px]">Баллы: </p>
+            <Input
+              value={String(currentSettings.maxScore)}
+              onValueChange={e =>
+                setCurrentSettings(prev => ({ ...prev, maxScore: Number(e) }))
+              }
+              color="white"
+              classNames={{
+                base: 'w-[50px]',
+              }}
+              type="number"
+              max={100}
+              min={0}
+              placeholder="0"
+              aria-label="Баллы за вопрос"
+            />
+          </div>
           <Button
             onPress={handleDeleteQuestion}
             variant="light"

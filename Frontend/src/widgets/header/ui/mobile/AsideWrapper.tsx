@@ -9,7 +9,7 @@ type AsideWrapperProps = {
 
 export const AsideWrapper = ({ isOpen, setIsOpen }: AsideWrapperProps) => {
   return (
-    <div>
+    <>
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
@@ -18,14 +18,14 @@ export const AsideWrapper = ({ isOpen, setIsOpen }: AsideWrapperProps) => {
       )}
       <aside
         className={cn(
-          'fixed left-0 bottom-0 w-full duration-200 top-[60px] bg-white flex items-center justify-center overflow-hidden drop-shadow-xl',
+          'fixed left-0 bottom-0 w-full top-[60px] bg-white flex items-center justify-center overflow-hidden drop-shadow-xl z-20',
           isOpen ? 'max-w-[340px]' : 'max-w-0'
         )}
       >
         {isOpen && (
           <div
             className={cn(
-              'flex h-full w-full flex-col duration-150 justify-between p-1'
+              'flex h-full w-full flex-col justify-between p-1'
             )}
           >
             <AsideContent setIsOpen={() => setIsOpen(false)} />
@@ -33,6 +33,6 @@ export const AsideWrapper = ({ isOpen, setIsOpen }: AsideWrapperProps) => {
           </div>
         )}
       </aside>
-    </div>
+    </>
   );
 };

@@ -40,9 +40,9 @@ export const FileDropArea = ({
       onDragLeave={handleDragLeave}
       onClick={handleClick}
     >
-      <div className="flex h-full items-center justify-center gap-[10px] flex-col">
-        <h4 className="text-[24px]">Загрузите файл</h4>
-        <span>
+      <div className="flex h-full items-center justify-center sm:gap-[10px] gap-1.5 flex-col">
+        <h4 className="sm:text-[24px] text-[22px]">Загрузите файл</h4>
+        <span className='sm:text-[16px] text-[14px]'>
           {isSelected ? (
             'Файл выбран'
           ) : (

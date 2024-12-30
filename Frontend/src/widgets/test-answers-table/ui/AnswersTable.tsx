@@ -12,8 +12,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const tableClassNames = {
   wrapper: 'p-2',
-  th: 'bg-secondary font-bold text-[16px] text-foreground',
-  td: 'group-data-[odd=true]:before:bg-secondary text-[16px]',
+  th: 'bg-secondary font-bold sm:text-[16px] text-[14px] text-foreground',
+  td: 'group-data-[odd=true]:before:bg-secondary sm:text-[16px] text-[14px]',
   tr: 'px-5 outline-none outline-offset-1 outline-4 hover:outline-second/40 rounded-md',
 };
 

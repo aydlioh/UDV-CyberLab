@@ -25,7 +25,7 @@ export const TestResultChart = ({ results }: { results: ITestAttempt }) => {
   );
 
   return (
-    <ResponsiveContainer className="mt-[20px]" width="100%" height={360}>
+    <ResponsiveContainer className="sm:mt-[20px] mt-1" width="100%" height={360}>
       <LineChart
         margin={{ top: 40, right: 30, left: 0, bottom: 25 }}
         onClick={e => {

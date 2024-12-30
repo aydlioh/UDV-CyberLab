@@ -1,3 +1,4 @@
+import { TestTitle } from '@/entities/test';
 import { testStatisticsMOCK } from '@/entities/test/MOCK/testStatistics';
 import { Card } from '@/shared/ui';
 import { TestStatisticsTable } from '@/widgets/test-statistics-table';
@@ -10,11 +11,8 @@ const TestStatisticsPage = () => {
 
   return (
     <section className="max-w-[712px] w-full h-full flex flex-col gap-[12px] mb-3">
-      <Card className="pt-[40px] pb-[24px] px-[32px]">
-        <h2 className="text-[24px] pl-[20px] pb-3">
-          {testStatisticsMOCK.title}
-        </h2>
-
+      <Card className="sm:pt-[40px] sm:pb-[24px] pt-[20px] pb-[20px] sm:px-[32px] px-1">
+        <TestTitle title={testStatisticsMOCK.title} className='px-[20px] pb-3' />
         <TestStatisticsTable results={testStatisticsMOCK} />
       </Card>
     </section>

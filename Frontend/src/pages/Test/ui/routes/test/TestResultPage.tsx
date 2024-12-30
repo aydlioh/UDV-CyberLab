@@ -1,3 +1,4 @@
+import { TestTitle } from '@/entities/test';
 import { testResultsMOCK } from '@/entities/test/MOCK/testResults';
 import { ContentSwitcher } from '@/features/content-switcher';
 import { TestAttemptTable } from '@/widgets/test-attempt-table';
@@ -14,11 +15,10 @@ const TestResultPage = () => {
 
   return (
     <section className="max-w-[712px] w-full h-full flex flex-col gap-[12px]">
-      <Card className="pt-[40px] pb-[24px] px-[32px]">
+      <Card className="sm:pt-[40px] pt-[20px] sm:pb-[24px] pb-[20px] sm:px-[32px] px-2">
         <div className='pl-[20px] pb-3'>
-          <h2 className="text-[24px]">
-            {testResultsMOCK.title}
-          </h2>
+          <TestTitle title={testResultsMOCK.title} />
+
           <p className="text-second text-[18px]">Попытка: {data.attempt}</p>
         </div>
 

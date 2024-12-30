@@ -1,3 +1,16 @@
-export const TestTitle = ({ title }: { title: string }) => {
-  return <h2 className="text-[24px] pt-[4px] pb-[10px]">{title}</h2>;
+import { cn } from '@nextui-org/react';
+
+type TestTitleProps = {
+  title: string;
+  className?: string;
+};
+
+export const TestTitle = ({ title, className }: TestTitleProps) => {
+  return (
+    <h2
+      className={cn('sm:text-[24px] text-[20px] pt-[4px] pb-[10px]', className)}
+    >
+      {title}
+    </h2>
+  );
 };

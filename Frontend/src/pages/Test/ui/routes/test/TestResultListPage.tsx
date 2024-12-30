@@ -1,3 +1,4 @@
+import { TestTitle } from '@/entities/test';
 import { testResultsMOCK } from '@/entities/test/MOCK/testResults';
 import { Card } from '@/shared/ui';
 import { TestResultChart } from '@/widgets/test-result-chart';
@@ -16,9 +17,9 @@ const TestResultListPage = () => {
   }
 
   return (
-    <Card className="max-w-[712px] w-full h-full pt-[40px] pb-[24px] px-[32px] mb-3">
+    <Card className="max-w-[712px] w-full h-full pt-[40px] pb-[24px] sm:px-[32px] px-[15px] mb-3">
       <div>
-        <h2 className="text-[24px] pl-[20px]">{data.title}</h2>
+        <TestTitle title={data.title} className='px-[15px]' />
         <TestResultChart results={data} />
         <TestResultTable results={data} />
       </div>

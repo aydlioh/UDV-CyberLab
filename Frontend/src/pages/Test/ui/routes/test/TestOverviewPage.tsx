@@ -5,6 +5,7 @@ import { testWithQuestionsMOCK } from '@/entities/test/MOCK';
 import { Card } from '@/shared/ui';
 
 import { useNavigate, useParams } from 'react-router-dom';
+import { TestTitle } from '@/entities/test';
 
 const TestOverviewPage = () => {
   const { testId } = useParams();
@@ -21,8 +22,8 @@ const TestOverviewPage = () => {
 
   return (
     <div className="max-w-[712px] w-full flex flex-col gap-[12px]">
-      <Card className="py-[40px] px-[64px]">
-        <h2 className="text-[24px] pb-3">{test.title}</h2>
+      <Card className="sm:py-[40px] py-[20px] sm:px-[64px] px-2">
+        <TestTitle className='px-[20px] pb-3' title={test.title} />
         <AnswersTable />
       </Card>
       <div>

@@ -25,21 +25,20 @@ export const TestSettings = () => {
   // const [endDate, setEndDate] = useState<Date>(new Date());
 
   return (
-    <Card className="p-[40px]">
+    <Card className="sm:p-[40px] p-[25px]">
       <div className="mb-6">
-        <div className="flex flex-row gap-3 mb-4">
-          <div className="w-1/2 flex flex-col gap-4">
+        <div className="flex sm:flex-row flex-col gap-3 mb-4">
+          <div className="sm:w-1/2 flex flex-col gap-4">
             <Select
-              size="lg"
               color="white"
-              aria-label="Время закрытия теста"
+              aria-label="Время открытия теста"
+              label="Время открытия теста"
               listboxProps={selectClassNames}
               popoverProps={{
                 placement: 'bottom-end',
               }}
               selectedKeys={[startDateType]}
               onChange={e => setStartDateType(e.target.value)}
-              placeholder="Время открытия"
               className="w-full"
               classNames={{
                 value: 'text-[16px] text-foreground/50',
@@ -69,18 +68,17 @@ export const TestSettings = () => {
               />
             )}
           </div>
-          <div className="w-1/2 flex flex-col gap-4">
+          <div className="sm:w-1/2 flex flex-col gap-4">
             <Select
               color="white"
-              aria-label="Время открытия теста"
-              size="lg"
+              aria-label="Время закрытия теста"
+              label="Время закрытия теста"
               listboxProps={selectClassNames}
               popoverProps={{
                 placement: 'bottom-end',
               }}
               selectedKeys={[endDateType]}
               onChange={e => setEndDateType(e.target.value)}
-              placeholder="Время закрытия"
               className="w-full"
               classNames={{
                 value: 'text-[16px] text-foreground/50',
@@ -163,6 +161,7 @@ export const TestSettings = () => {
                 Количество попыток:
               </p>
               <Input
+                defaultValue="1"
                 isRequired
                 color="white"
                 size="sm"
@@ -171,7 +170,7 @@ export const TestSettings = () => {
                 }}
                 type="number"
                 max={100}
-                min={0}
+                min={1}
                 aria-label="Количество попыток"
               />
             </div>
@@ -218,5 +217,3 @@ export const TestSettings = () => {
     </Card>
   );
 };
-
-//  data-[unavailable=true]:line-through outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 relative overflow-visible before:content-[''] before:absolute before:inset-0 before:z-[-1] before:rounded-none data-[outside-month=true]:before:hidden data-[selected=true]:data-[range-selection=true]:data-[outside-month=true]:bg-transparent data-[selected=true]:data-[range-selection=true]:data-[outside-month=true]:text-default-300 data-[range-start=true]:before:rounded-l-full data-[selection-start=true]:before:rounded-l-full data-[range-end=true]:before:rounded-r-full data-[selection-end=true]:before:rounded-r-full data-[selected=true]:data-[selection-start=true]:data-[range-selection=true]:rounded-full data-[selected=true]:data-[selection-end=true]:data-[range-selection=true]:rounded-full shadow-none data-[selected=true]:shadow-none origin-center transition-[transform,background-color,color] !duration-150 data-[selected=true]:data-[range-selection=true]:before:bg-primary-50 data-[selected=true]:data-[range-selection=true]:text-primary data-[selected=true]:data-[selection-start=true]:data-[range-selection=true]:bg-primary data-[selected=true]:data-[selection-start=true]:data-[range-selection=true]:text-primary-foreground data-[selected=true]:data-[selection-end=true]:data-[range-selection=true]:bg-primary data-[selected=true]:data-[selection-end=true]:data-[range-selection=true]:text-primary-foreground

@@ -6,14 +6,14 @@ export const TestExit = ({ id }: { id: string }) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="w-[90px] h-[70px] rounded-[8px] flex flex-col justify-between p-1">
+    <Card className="sm:w-[90px] w-1/2 sm:h-[70px] h-[40px] rounded-[8px] flex flex-col justify-between p-1">
       <Button
         onPress={() => navigate(`/tests/${id}/overview`)}
-        className="rounded-[8px] p-0 h-full min-w-0 bg-white hover:bg-background/50"
+        className="rounded-[8px] sm:p-0 px-6 h-full min-w-0 bg-white hover:bg-background/50"
       >
-        <div className='flex flex-col items-center'>
-          <p className="text-[12px]">Завершить</p>
-          <IoClose size={32} />
+        <div className='flex sm:flex-col flex-row sm:gap-0 gap-1 items-center'>
+          <p className="text-[13px]">Завершить</p>
+          <IoClose className='sm:text-[32px] text-[20px]' />
         </div>
       </Button>
     </Card>

@@ -1,6 +1,6 @@
 import { TestTitle } from '@/entities/test';
 import { testStatisticsMOCK } from '@/entities/test/MOCK/testStatistics';
-import { Card } from '@/shared/ui';
+import { BackButton, Card } from '@/shared/ui';
 import { TestStatisticsTable } from '@/widgets/test-statistics-table';
 import { useParams } from 'react-router-dom';
 
@@ -10,9 +10,13 @@ const TestStatisticsPage = () => {
   if (!testId) return null;
 
   return (
-    <section className="max-w-[712px] w-full h-full flex flex-col gap-[12px] mb-3">
+    <section className="max-w-[712px] w-full h-full flex flex-col gap-1.5 mb-3">
+      <BackButton />
       <Card className="sm:pt-[40px] sm:pb-[24px] pt-[20px] pb-[20px] sm:px-[32px] px-1">
-        <TestTitle title={testStatisticsMOCK.title} className='px-[20px] pb-3' />
+        <TestTitle
+          title={testStatisticsMOCK.title}
+          className="px-[20px] pb-3"
+        />
         <TestStatisticsTable results={testStatisticsMOCK} />
       </Card>
     </section>

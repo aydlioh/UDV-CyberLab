@@ -76,7 +76,7 @@ export const TestFilters = ({
         </div>
       ) : (
         <Accordion
-          selectionMode="multiple"
+          // selectionMode="multiple"
           isCompact
           variant="shadow"
           className="bg-white rounded-lg"

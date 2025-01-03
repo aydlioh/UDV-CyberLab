@@ -15,8 +15,8 @@ export const TestStatus = ({
   currentTime,
 }: TestStatusProps) => {
   return (
-    <Card className="w-[90px] h-[70px] p-[6px] rounded-[8px] flex flex-col justify-between">
-      <div>
+    <Card className="sm:w-[90px] sm:h-[70px] h-[40px] w-1/2 sm:px-[6px] py-[6px] px-[15px] rounded-[8px] flex sm:flex-col flex-row sm:gap-0 gap-1 justify-between">
+      <div className='sm:w-full w-1/2'>
         <Progress
           aria-label="Test Progress"
           size="sm"

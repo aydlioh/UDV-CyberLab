@@ -24,7 +24,7 @@ const TestPage = () => {
         questions={data.questions}
         totalQuestions={data.totalQuestions}
         endContent={
-          <div className="flex flex-col gap-1 mt-2">
+          <div className="flex sm:flex-col sm:justify-start justify-between flex-row sm:gap-1 gap-2 mt-2">
             <TestStatus
               currentTime={(data.duration ?? 0) - (data.currentTime ?? 0)}
               totalQuestions={13}

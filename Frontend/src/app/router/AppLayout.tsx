@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 const AppLayout = () => {
   return (
     <PageScrollbar>
-      <div>
+      <div className='min-h-svh'>
         <Header />
         <div className='container'>
           <Outlet />

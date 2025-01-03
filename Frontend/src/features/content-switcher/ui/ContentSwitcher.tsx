@@ -1,97 +1,57 @@
 import { Button } from '@/shared/ui';
+import { cn } from '@nextui-org/react';
 import clsx from 'clsx';
 
-const btnClassname = 'text-[16px] w-[160px] h-[40px] drop-shadow-base';
+const btnClassname = 'text-[16px] w-[160px] h-[40px]';
 
 type ContentSwitcherProps = {
-  isFinished?: boolean;
-  isStarted?: boolean;
-  isPrev?: boolean;
-  isNext?: boolean;
+  isPrevDisabled?: boolean;
+  isNextDisabled?: boolean;
   handleNext?: () => void;
   handlePrev?: () => void;
-  handleFinish?: () => void;
-  handleStart?: () => void;
-  hasNext?: boolean;
-  hasPrev?: boolean;
-  hasFinish?: boolean;
   nextLabel?: string;
   prevLabel?: string;
-  finishLabel?: string;
-  startLabel?: string;
+  hasNext?: boolean;
+  hasPrev?: boolean;
 };
 
 export const ContentSwitcher = ({
-  isFinished,
-  isStarted,
-  isPrev = true,
-  isNext = true,
-  handleNext = () => {},
-  handlePrev = () => {},
-  handleFinish = () => {},
-  handleStart = () => {},
   hasNext = true,
   hasPrev = true,
-  hasFinish = true,
-  nextLabel = 'Ответить',
+  isPrevDisabled = true,
+  isNextDisabled = true,
+  handleNext = () => {},
+  handlePrev = () => {},
   prevLabel = 'Назад',
-  finishLabel = 'Завершить',
-  startLabel = 'Назад'
+  nextLabel = 'Далее',
 }: ContentSwitcherProps) => {
   return (
     <div
       className={clsx(
-        'flex flex-row mb-10  ',
-        !isPrev && 'justify-end',
-        !isNext && 'justify-start',
-        isPrev && isNext && 'justify-between'
+        'flex flex-row sm:pb-10 pb-5',
+        !hasPrev && 'justify-end',
+        !hasNext && 'justify-start',
+        hasNext && hasPrev && 'justify-between'
       )}
     >
-      {isStarted ? (
-        <Button
-          onPress={handleStart}
-          size="md"
-          className={btnClassname}
-          color="white"
-        >
-          {startLabel}
-        </Button>
-      ) : (
-        isPrev && (
-          <Button
-            isDisabled={!hasPrev}
-            onPress={handlePrev}
-            size="md"
-            className={btnClassname}
-            color="white"
-          >
-            {prevLabel}
-          </Button>
-        )
-      )}
-      {isFinished ? (
-        <Button
-          onPress={handleFinish}
-          isDisabled={!hasFinish}
-          size="md"
-          className={btnClassname}
-          color="gradient"
-        >
-          {finishLabel}
-        </Button>
-      ) : (
-        isNext && (
-          <Button
-            onPress={handleNext}
-            isDisabled={!hasNext}
-            size="md"
-            className={btnClassname}
-            color="gradient"
-          >
-            {nextLabel}
-          </Button>
-        )
-      )}
+      <Button
+        isDisabled={!isPrevDisabled}
+        onPress={handlePrev}
+        size="md"
+        className={cn(btnClassname, !hasPrev && 'hidden')}
+        color="white"
+      >
+        {prevLabel}
+      </Button>
+      <Button
+        onPress={handleNext}
+        isDisabled={!isNextDisabled}
+        size="md"
+        className={cn(btnClassname, !hasNext && 'hidden')}
+        color="gradient"
+      >
+        {nextLabel}
+      </Button>
     </div>
   );
 };

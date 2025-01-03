@@ -26,7 +26,7 @@ const TestResultPage = () => {
       </Card>
       <ContentSwitcher
         nextLabel="Подробнее"
-        isPrev={testResultsMOCK.totalAttempts > 1}
+        hasPrev={testResultsMOCK.totalAttempts > 1}
         handlePrev={() => navigate(`/tests/${testId}/results`)}
         handleNext={() =>
           navigate(`/tests/${testId}/results/${resultId}/preview`)

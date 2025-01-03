@@ -21,9 +21,9 @@ const TestOverviewPage = () => {
   };
 
   return (
-    <div className="max-w-[712px] w-full flex flex-col gap-[12px]">
+    <div className="max-w-[712px] w-full flex flex-col gap-[12px] min-h-svh">
       <Card className="sm:py-[40px] py-[20px] sm:px-[64px] px-2">
-        <TestTitle className='px-[20px] pb-3' title={test.title} />
+        <TestTitle className="px-[20px] pb-3" title={test.title} />
         <AnswersTable />
       </Card>
       <div>

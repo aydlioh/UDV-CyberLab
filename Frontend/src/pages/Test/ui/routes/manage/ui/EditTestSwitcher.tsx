@@ -7,7 +7,7 @@ export const EditTestSwitcher = () => {
 
   return (
     <ContentSwitcher
-      isPrev={false}
+      hasPrev={false}
       nextLabel="Далее"
       handleNext={() => navigate(`/tests/manage/${testId}/settings`)}
     />

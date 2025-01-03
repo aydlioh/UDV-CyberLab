@@ -16,7 +16,6 @@ export const QuestionsPreviewSwitcher = ({
   handleFinish,
   handleStart,
 }: QuestionsPreviewSwitcherProps) => {
-
   const hasNext = current < total;
   const hasPrev = current > 1;
 
@@ -25,15 +24,9 @@ export const QuestionsPreviewSwitcher = ({
 
   return (
     <ContentSwitcher
-      isStarted={!hasPrev}
-      isFinished={!hasNext}
-      handleStart={handleStart}
-      handleNext={handleNextClick}
-      handlePrev={handlePrevClick}
-      handleFinish={handleFinish}
-      hasNext={hasNext}
-      hasPrev={hasPrev}
-      nextLabel="Далее"
+      handleNext={hasNext ? handleNextClick : handleFinish}
+      handlePrev={hasPrev ? handlePrevClick : handleStart}
+      nextLabel={hasNext ? 'Далее' : 'Завершить'}
     />
   );
 };

@@ -18,7 +18,7 @@ export const QuestionsSwitcher = ({
   const hasNext = current < total;
   const hasPrev = current > 1;
 
-  const handleFinish = () => {
+  const handleFinishClick = () => {
     navigate(`/tests/${id}/overview`);
   };
 
@@ -27,12 +27,11 @@ export const QuestionsSwitcher = ({
 
   return (
     <ContentSwitcher
-      isFinished={!hasNext}
-      handleNext={handleNextClick}
+      handleNext={hasNext ? handleNextClick : handleFinishClick}
       handlePrev={handlePrevClick}
-      handleFinish={handleFinish}
-      hasNext={hasNext}
+      nextLabel={hasNext ? 'Далее' : 'Завершить'}
       hasPrev={hasPrev}
+      isPrevDisabled={hasPrev}
     />
   );
 };

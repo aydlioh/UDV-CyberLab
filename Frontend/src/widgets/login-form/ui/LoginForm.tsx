@@ -1,7 +1,7 @@
 import { PasswordInput } from '@/features/inputs';
 import { StatusSwitcher } from '@/features/status-switcher';
 import { useLogin, AuthStatus } from '@/entities/user';
-import { Button, Input } from '@/shared/ui';
+import { Button, Input, Spinner } from '@/shared/ui';
 import { loginSchema } from '../lib/login-schema';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -66,8 +66,14 @@ export const LoginForm = () => {
           Забыли пароль?
         </span>
       </p>
-      <Button color="gradient" type="submit" fullWidth isDisabled={isPending}>
-        Войти
+      <Button
+        color="gradient"
+        startContent={isPending ? <Spinner size="sm" color="white" /> : null}
+        type="submit"
+        fullWidth
+        isDisabled={isPending}
+      >
+        Вход
       </Button>
       <p className="text-small">
         Ещё нет аккаунта?{' '}

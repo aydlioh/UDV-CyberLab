@@ -1,7 +1,7 @@
 import { PasswordInput } from '@/features/inputs';
 import { StatusSwitcher } from '@/features/status-switcher';
 import { AuthStatus, useRegister } from '@/entities/user';
-import { Button, Input } from '@/shared/ui';
+import { Button, Input, Spinner } from '@/shared/ui';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -75,7 +75,13 @@ export const RegistrationForm = () => {
         type="password"
         autoComplete="new-password"
       />
-      <Button color="gradient" type="submit" fullWidth isDisabled={isPending}>
+      <Button
+        color="gradient"
+        type="submit"
+        fullWidth
+        isDisabled={isPending}
+        startContent={isPending ? <Spinner size="sm" color="white" /> : null}
+      >
         Зарегистрироваться
       </Button>
       <p className="text-small">

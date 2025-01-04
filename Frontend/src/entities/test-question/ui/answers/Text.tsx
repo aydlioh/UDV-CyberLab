@@ -1,7 +1,5 @@
 import { Textarea } from '@/shared/ui';
-import { useEffect, useState } from 'react';
-
-const DELAY = 400;
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export const TextAnswer = ({
   setAnswer,
@@ -10,21 +8,25 @@ export const TextAnswer = ({
   setAnswer?: (answer: string) => void;
   currentAnswer: string;
 }) => {
+  const isUnmounting = useRef(false);
   const [value, setValue] = useState(currentAnswer ?? '');
 
+  const saveAnswer = useCallback(() => {
+    if (isUnmounting.current) return;
+
+    if (setAnswer) {
+      setAnswer(value);
+    }
+  }, [setAnswer, value]);
+
   useEffect(() => {
-    const handler = setTimeout(() => {
-      if (value !== currentAnswer) {
-        if (setAnswer) {
-          setAnswer(value);
-        }
-      }
-    }, DELAY);
+    isUnmounting.current = false;
 
     return () => {
-      clearTimeout(handler);
+      isUnmounting.current = true;
+      saveAnswer();
     };
-  }, [value, currentAnswer, setAnswer]);
+  }, [saveAnswer]);
 
   return (
     <Textarea
@@ -35,6 +37,7 @@ export const TextAnswer = ({
       variant="underlined"
       value={value}
       onChange={e => setValue(e.target.value)}
+      onBlur={saveAnswer}
     />
   );
 };

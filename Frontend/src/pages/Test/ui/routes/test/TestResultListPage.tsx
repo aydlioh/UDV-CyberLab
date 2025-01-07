@@ -1,6 +1,6 @@
 import { TestTitle } from '@/entities/test';
 import { testResultsMOCK } from '@/entities/test/MOCK/testResults';
-import { Card } from '@/shared/ui';
+import { BackButton, Card } from '@/shared/ui';
 import { TestResultChart } from '@/widgets/test-result-chart';
 import { TestResultTable } from '@/widgets/test-result-table';
 import { Navigate, useParams } from 'react-router-dom';
@@ -17,13 +17,16 @@ const TestResultListPage = () => {
   }
 
   return (
-    <Card className="max-w-[712px] w-full h-full pt-[40px] pb-[24px] sm:px-[32px] px-[15px] mb-3">
-      <div>
-        <TestTitle title={data.title} className='px-[15px]' />
-        <TestResultChart results={data} />
-        <TestResultTable results={data} />
-      </div>
-    </Card>
+    <div className='flex flex-col gap-1.5 w-full h-full items-start max-w-[712px] '>
+      <BackButton label="Назад к тестам" to="/tests/my" />
+      <Card className="w-full h-full pt-[40px] pb-[24px] sm:px-[32px] px-[15px] mb-3">
+        <div>
+          <TestTitle title={data.title} className="px-[15px]" />
+          <TestResultChart results={data} />
+          <TestResultTable results={data} />
+        </div>
+      </Card>
+    </div>
   );
 };
 

@@ -4,9 +4,14 @@ import {
   TestDetailsModal,
   useTestDetailsModalStore,
 } from '@/features/test-details-modal';
+import { EmptyTestList } from './EmptyTestList';
 
 export const TestList = ({ tests }: { tests: ITestCard[] }) => {
   const open = useTestDetailsModalStore(state => state.open);
+
+  if (!tests.length) {
+    return <EmptyTestList />;
+  }
 
   return (
     <>

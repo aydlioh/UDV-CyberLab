@@ -1,4 +1,5 @@
 import { Button } from '../Button';
+import { MdOutlineRestartAlt } from 'react-icons/md';
 
 export const SomethingWentWrongError = ({
   error,
@@ -15,9 +16,10 @@ export const SomethingWentWrongError = ({
       </p>
       {resetErrorBoundary && (
         <Button
+          startContent={<MdOutlineRestartAlt size={22} />}
           size="md"
           radius="sm"
-          className="bg-foreground/5"
+          className="bg-foreground/5 text-foreground/90 font-semibold"
           variant="light"
           onPress={resetErrorBoundary}
         >

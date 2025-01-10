@@ -1,7 +1,7 @@
 import { mainRoutes, authRoutes, testRoutes } from '@/pages';
 import { AuthGuard, NoAuthGuard } from './guards';
 import { useRoutes } from 'react-router-dom';
-import { NotFountPage } from '@/pages/Error';
+import { NotFoundPage } from '@/pages/Error';
 
 import { lazy } from 'react';
 import { eventsRoutes } from '@/pages/Event';
@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: '*',
-    element: <NotFountPage />,
+    element: <NotFoundPage />,
   },
 ];
 

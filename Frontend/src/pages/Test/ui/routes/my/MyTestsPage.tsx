@@ -1,14 +1,12 @@
-import { testsMOCK } from '@/entities/test-info/MOCK';
+import { useMyTestList } from '@/entities/test-info';
 import { TestList } from '@/widgets/test-list';
 
 const MyTestsPage = () => {
+  const { data } = useMyTestList();
+
   return (
     <section>
-      <TestList
-        tests={testsMOCK.filter(
-          test => test.owner !== 'aydlioh' && test.status !== 'over'
-        )}
-      />
+      <TestList tests={data} />
     </section>
   );
 };

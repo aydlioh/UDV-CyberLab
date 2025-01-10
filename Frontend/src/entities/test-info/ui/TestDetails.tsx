@@ -1,4 +1,4 @@
-import { ITestDetails } from '../model/dto/ITestDetails';
+import { ITestDetails } from '../model/types/ITestDetails';
 import { TestIcon } from '@/shared/assets/svgs';
 import { TestTimeFormatter } from './TestTimeFormatter';
 import { getTestSubject, getTestDifficulty, getTestStatus } from '../';
@@ -64,7 +64,7 @@ export const TestDetails = ({
                 />
               )}
             </div>
-            <div className='flex justify-center'>
+            <div className="flex justify-center">
               {!isOwner && (
                 <CircularProgress
                   aria-label="text progress"

@@ -12,3 +12,5 @@ export interface ITestCard {
   currentPoints?: number;
   status: 'idle' | 'run' | 'over';
 }
+
+

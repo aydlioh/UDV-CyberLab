@@ -1,2 +1,2 @@
-export * from './ui/404';
+export * from './ui/NotFoundPage';
 export * from './ui/DevelopmentPage';

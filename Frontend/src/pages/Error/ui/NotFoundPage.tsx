@@ -1,6 +1,6 @@
 import { useTimerRedirect } from '@/shared/hooks';
 
-export const NotFountPage = () => {
+export const NotFoundPage = () => {
   const redirectSeconds = useTimerRedirect('/', 3);
 
   return (

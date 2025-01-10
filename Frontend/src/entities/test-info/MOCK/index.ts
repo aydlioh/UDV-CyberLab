@@ -1,4 +1,4 @@
-import { ITestDetails } from '../model/dto/ITestDetails';
+import { ITestDetails } from '../model/types/ITestDetails';
 
 export const testsMOCK: ITestDetails[] = [
   {
@@ -270,5 +270,5 @@ export const testsMOCK: ITestDetails[] = [
     endDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 11),
     totalPoints: 18,
     status: 'run',
-  }
+  },
 ];

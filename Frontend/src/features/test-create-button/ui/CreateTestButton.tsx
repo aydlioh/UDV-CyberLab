@@ -5,7 +5,7 @@ import { MdAdd } from 'react-icons/md';
 export const CreateTestButton = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
   const { scrollNavigate } = useNavigation();
-  // TODO Запрос на создание, обработка, редирект на созданный тест, гварды там всякие не забыть ну и дизейбл
+  // TODO_1 Запрос на создание
 
   const handleCreate = () => {
     scrollNavigate('/tests/manage/1/edit');

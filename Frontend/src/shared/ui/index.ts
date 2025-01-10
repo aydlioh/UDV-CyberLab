@@ -12,3 +12,4 @@ export * from './Spinner';
 export * from './Modal';
 export * from './Scrollbar';
 export * from './Sticky';
+export * from './Errors';

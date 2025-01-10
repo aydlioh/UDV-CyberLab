@@ -41,6 +41,7 @@ export const ToolsContent = ({ id }: { id: string }) => {
       </div>
       <Divider className="my-1 bg-background" />
       <div>
+        {/* TODO_1 Привязать запрос на удаление */}
         <ToolButton
           startContent={<MdDelete size={17} />}
           color="danger"

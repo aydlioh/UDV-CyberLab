@@ -1,10 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { testApi } from '../services/testAPI';
 
-export const useTestDetails = (id: string) => {
+export const useCreatedTestList = () => {
   return useSuspenseQuery({
-    queryKey: ['test', id],
-    queryFn: async () => await testApi.getTestDetails(id),
+    queryKey: ['tests', { created: true }],
+    queryFn: testApi.getCreatedTests,
     retry: false,
   });
 };

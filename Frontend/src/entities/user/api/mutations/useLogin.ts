@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { tokenService } from '@/shared/services';
 import { AccessTokenType, ErrorResponse } from '@/shared/types';
@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { getRedirectPath } from '@/shared/common/utils';
 
 export const useLogin = () => {
+  const queryClient = useQueryClient();
   const [fetchError, setFetchError] = useState<ErrorResponse | null>(null);
   const navigate = useNavigate();
   const login = useAuth(state => state.login);
@@ -24,6 +25,7 @@ export const useLogin = () => {
       } else setFetchError(error);
     },
     onSuccess: (response: AccessTokenType) => {
+      queryClient.refetchQueries({ queryKey: ['auth/profile'] });
       tokenService.save(response);
       login();
       const redirectPath = getRedirectPath();

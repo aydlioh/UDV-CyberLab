@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { userApi } from '../services/userAPI';
 import { useEffect } from 'react';
 import { useAuth } from '../../model/store';
@@ -6,9 +6,10 @@ import { useAuth } from '../../model/store';
 export const useProfile = () => {
   const setUser = useAuth(state => state.setUser);
 
-  const { data, isPending, isSuccess } = useQuery({
+  const { data, isPending, isSuccess } = useSuspenseQuery({
     queryKey: ['auth/profile'],
-    queryFn: async () => await userApi.getProfile(),
+    queryFn: userApi.getProfile,
+    retry: false,
   });
 
   useEffect(() => {

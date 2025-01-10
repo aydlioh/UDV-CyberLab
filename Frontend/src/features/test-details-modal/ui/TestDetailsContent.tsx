@@ -1,20 +1,32 @@
-import { ModalBody, ModalContent } from '@/shared/ui';
+import { ModalBody, ModalContent, Spinner } from '@/shared/ui';
 import { TestDetailsActions } from './actions/TestDetailsActions';
-import { getTestStatus, TestDetails } from '@/entities/test-info';
-import { testsMOCK } from '@/entities/test-info/MOCK';
+import {
+  getTestStatus,
+  TestDetails,
+  useTestDetails,
+} from '@/entities/test-info';
 import { useAuth } from '@/entities/user';
 import { useTestDetailsModalStore } from '../model/store';
 
 export const TestDetailsContent = () => {
-  const user = useAuth(state => state.user?.userName);
   const testId = useTestDetailsModalStore(state => state.testId);
+  const user = useAuth(state => state.user?.userName);
+  const { data, isLoading, error } = useTestDetails(testId ?? '');
 
-  const test = testsMOCK.find(test => test.id === testId);
+  if (error) return null;
 
-  if (!test) return null;
+  if (isLoading) {
+    return (
+      <ModalContent>
+        <div className="fixed inset-0 flex justify-center items-center z-10">
+          <Spinner color="white" size="page" />
+        </div>
+      </ModalContent>
+    );
+  }
 
   const testStatus = getTestStatus(
-    { status: test.status, owner: test.owner },
+    { status: data.status, owner: data.owner },
     { user }
   );
 
@@ -22,8 +34,8 @@ export const TestDetailsContent = () => {
     <ModalContent>
       <ModalBody>
         <section className="w-full flex flex-col sm:gap-[80px] gap-[15px]">
-          <TestDetails {...test} testStatus={testStatus} />
-          <TestDetailsActions {...test} testStatus={testStatus} />
+          <TestDetails {...data} testStatus={testStatus} />
+          <TestDetailsActions {...data} testStatus={testStatus} />
         </section>
       </ModalBody>
     </ModalContent>

@@ -1,5 +1,5 @@
 import { TestIcon } from '@/shared/assets/svgs';
-import { ITestCard } from '../model/dto/ITestCard';
+import { ITestCard } from '../model/types/ITestCard';
 
 type TestCardProps = {
   test: ITestCard;
@@ -24,7 +24,9 @@ export const TestCard = ({ test, onClick, rightContent }: TestCardProps) => {
       <div className="flex flex-row justify-between items-center px-4 py-3 h-full">
         <div className="flex flex-row justify-start items-center gap-[10px]">
           <TestIcon className="text-[30px]" />
-          <p className="sm:text-[16px] text-[15px] line-clamp-1 w-[calc(100%-50px)]">{test.title}</p>
+          <p className="sm:text-[16px] text-[15px] line-clamp-1 w-[calc(100%-50px)]">
+            {test.title}
+          </p>
         </div>
         <div>{rightContent}</div>
       </div>

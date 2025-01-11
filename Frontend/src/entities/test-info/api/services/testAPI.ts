@@ -4,9 +4,10 @@ import {
   CreateTestDTO,
   UpdateTestDTO,
   TestDetailsDTO,
+  TestDTO,
 } from '../../model/dto';
-import { ITestCard, ITestDetails } from '../../model/types';
-import { mapTestCard, mapTestDetails } from '../../model/mappers';
+import { ITest, ITestCard, ITestDetails } from '../../model/types';
+import { mapTest, mapTestCard, mapTestDetails } from '../../model/mappers';
 
 type UpdateTestType = {
   id: string;
@@ -33,10 +34,9 @@ class TestApi {
     return await axiosClient.put(`/api/Test/${id}`, body);
   }
 
-  // TODO_1 типизация
-  public async getTestById(id: string): Promise<ITestCard> {
-    const response = await axiosClient.get<TestCardDTO>(`/api/Test/${id}`);
-    return mapTestCard(response);
+  public async getTestById(id: string): Promise<ITest> {
+    const response = await axiosClient.get<TestDTO>(`/api/Test/${id}`);
+    return mapTest(response);
   }
 
   public async getTests(): Promise<ITestCard[]> {

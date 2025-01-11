@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // TODO_1 Использовать для Test Edit
-export interface ITestW {
+export interface ITest {
   id: string;
   title: string;
   totalQuestions: number;

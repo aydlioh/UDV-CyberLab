@@ -64,7 +64,7 @@ export class AxiosClient {
 
   public async put<R, T>(
     url: string,
-    data: T,
+    data: R,
     config?: AxiosRequestConfig
   ): Promise<T> {
     return this.handleRequest<T>(

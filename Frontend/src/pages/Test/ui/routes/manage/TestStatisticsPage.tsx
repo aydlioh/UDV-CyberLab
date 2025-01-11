@@ -1,5 +1,5 @@
-import { TestTitle } from '@/entities/test';
-import { testStatisticsMOCK } from '@/entities/test/MOCK/testStatistics';
+import { TestTitle } from '@/entities/test-info';
+import { testStatisticsMOCK } from '@/entities/test-passing/MOCK/testStatistics';
 import { BackButton, Card } from '@/shared/ui';
 import { TestStatisticsTable } from '@/widgets/test-statistics-table';
 import { useParams } from 'react-router-dom';

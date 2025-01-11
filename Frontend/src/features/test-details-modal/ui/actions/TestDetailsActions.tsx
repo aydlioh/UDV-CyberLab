@@ -10,13 +10,10 @@ type TestDetailsActionsProps = ITestDetails & {
 
 export const TestDetailsActions = ({
   id,
-  totalAttempts,
-  remainingAttempts,
+  leftAttempts,
   testStatus: { isOwner, isRunning, isOver },
 }: TestDetailsActionsProps) => {
-  const hasAttempts = Boolean(
-    totalAttempts ? remainingAttempts && remainingAttempts > 0 : true
-  );
+  const hasAttempts = Boolean(leftAttempts && leftAttempts > 0);
 
   if (isOwner) return <OwnerActions testId={id} />;
   if (isRunning) return <ResumeAction testId={id} />;

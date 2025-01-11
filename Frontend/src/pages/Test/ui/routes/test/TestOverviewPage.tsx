@@ -1,11 +1,11 @@
 import { AnswersTable } from '@/widgets/test-answers-table';
 import { ContentSwitcher } from '@/features/content-switcher';
 import { useAnswers } from '@/entities/test-question';
-import { testWithQuestionsMOCK } from '@/entities/test/MOCK';
+import { testWithQuestionsMOCK } from '@/entities/test-passing/MOCK';
 import { Card } from '@/shared/ui';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { TestTitle } from '@/entities/test';
+import { TestTitle } from '@/entities/test-info';
 
 const TestOverviewPage = () => {
   const { testId } = useParams();

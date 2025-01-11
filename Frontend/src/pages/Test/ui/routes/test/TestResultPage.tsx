@@ -1,5 +1,5 @@
-import { TestTitle } from '@/entities/test';
-import { testResultsMOCK } from '@/entities/test/MOCK/testResults';
+import { TestTitle } from '@/entities/test-info';
+import { testResultsMOCK } from '@/entities/test-passing/MOCK/testResults';
 import { ContentSwitcher } from '@/features/content-switcher';
 import { TestAttemptTable } from '@/widgets/test-attempt-table';
 import { Card } from '@nextui-org/react';
@@ -16,7 +16,7 @@ const TestResultPage = () => {
   return (
     <section className="max-w-[712px] w-full h-full flex flex-col gap-[12px]">
       <Card className="sm:pt-[40px] pt-[20px] sm:pb-[24px] pb-[20px] sm:px-[32px] px-2">
-        <div className='pl-[20px] pb-3'>
+        <div className="pl-[20px] pb-3">
           <TestTitle title={testResultsMOCK.title} />
 
           <p className="text-second text-[18px]">Попытка: {data.attempt}</p>

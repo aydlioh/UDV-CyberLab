@@ -1,5 +1,5 @@
-import { TestTitle } from '@/entities/test';
-import { testWithQuestionsMOCK } from '@/entities/test/MOCK';
+import { TestTitle } from '@/entities/test-info';
+import { testWithQuestionsMOCK } from '@/entities/test-passing/MOCK';
 import { QuestionsPreview } from '@/widgets/test-questions-preview';
 import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';

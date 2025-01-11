@@ -5,6 +5,5 @@ export const useCreatedTestList = () => {
   return useSuspenseQuery({
     queryKey: ['tests', { created: true }],
     queryFn: testApi.getCreatedTests,
-    retry: false,
   });
 };

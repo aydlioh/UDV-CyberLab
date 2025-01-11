@@ -1,4 +1,4 @@
-import { ITestStatistics } from '@/entities/test';
+import { ITestStatistics } from '@/entities/test-passing';
 import { getPercentage } from '@/shared/common/utils';
 import {
   Table,

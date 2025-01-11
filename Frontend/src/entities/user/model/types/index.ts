@@ -11,6 +11,7 @@ export enum UserRole {
 }
 
 export type UserInfo = {
+  userId: string;
   email: string;
   userName: string;
   role: UserRole;

@@ -9,7 +9,6 @@ export const useProfile = () => {
   const { data, isPending, isSuccess } = useSuspenseQuery({
     queryKey: ['auth/profile'],
     queryFn: userApi.getProfile,
-    retry: false,
   });
 
   useEffect(() => {

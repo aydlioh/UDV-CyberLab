@@ -1,7 +1,7 @@
 import { QuestionType } from '@/shared/types';
-import { ITest } from '../model/dto/ITest';
+import { ITestPassing } from '../model/dto/ITestPassing';
 
-export const testWithQuestionsMOCK: ITest = {
+export const testWithQuestionsMOCK: ITestPassing = {
   id: '1',
   title: 'Тест по программированию на JavaScript',
   duration: 60 * 60 * 1000,
@@ -112,15 +112,27 @@ export const testWithQuestionsMOCK: ITest = {
       answers: [
         {
           title: 'var',
-          items: ['var - это тип данных', 'var - это значение', 'var - это тип данных, но с кое-чем еще'],
+          items: [
+            'var - это тип данных',
+            'var - это значение',
+            'var - это тип данных, но с кое-чем еще',
+          ],
         },
         {
           title: 'let',
-          items: ['let - это тип данных', 'let - это значение', 'let - это тип данных, но с кое-чем еще'],
+          items: [
+            'let - это тип данных',
+            'let - это значение',
+            'let - это тип данных, но с кое-чем еще',
+          ],
         },
         {
           title: 'const',
-          items: ['const - это тип данных', 'const - это значение', 'const - это тип данных, но с кое-чем еще'],
+          items: [
+            'const - это тип данных',
+            'const - это значение',
+            'const - это тип данных, но с кое-чем еще',
+          ],
         },
       ],
     },
@@ -154,15 +166,27 @@ export const testWithQuestionsMOCK: ITest = {
       answers: [
         {
           title: 'var 1',
-          items: ['var - это тип данных 1', 'var - это тип данных 1wdwd', 'var - это тип данных, но с кое-чем еще 23'],
+          items: [
+            'var - это тип данных 1',
+            'var - это тип данных 1wdwd',
+            'var - это тип данных, но с кое-чем еще 23',
+          ],
         },
         {
           title: 'let 2',
-          items: ['let - это тип данных 232323', 'let - это тип данных 2323', 'let - это тип данных, но с кое-чем еще 2323 '],
+          items: [
+            'let - это тип данных 232323',
+            'let - это тип данных 2323',
+            'let - это тип данных, но с кое-чем еще 2323 ',
+          ],
         },
         {
           title: 'const 3',
-          items: ['const - это тип данных 22323', 'const - это тип данных 2323', 'const - это тип данных, но с кое-чем еще23232323'],
+          items: [
+            'const - это тип данных 22323',
+            'const - это тип данных 2323',
+            'const - это тип данных, но с кое-чем еще23232323',
+          ],
         },
       ],
     },
@@ -175,6 +199,6 @@ export const testWithQuestionsMOCK: ITest = {
       id: '15',
       question: 'Какова разница между == и ===?',
       type: QuestionType.Text,
-    }
+    },
   ],
 };

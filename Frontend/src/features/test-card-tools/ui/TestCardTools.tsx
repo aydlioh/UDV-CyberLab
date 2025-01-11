@@ -9,9 +9,9 @@ type TestCardProps = {
 };
 
 export const TestCardTools = ({ test }: TestCardProps) => {
-  const user = useAuth(state => state.user?.userName);
+  const userId = useAuth(state => state.user?.userId);
   const { isOwner, isRunning, isOver } = getTestStatus(test, {
-    user,
+    userId,
   });
 
   if (isOwner) return <ToolsPopover id={test.id} />;

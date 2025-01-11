@@ -5,6 +5,5 @@ export const useMyTestList = () => {
   return useSuspenseQuery({
     queryKey: ['tests', { my: true }],
     queryFn: testApi.getMyTests,
-    retry: false,
   });
 };

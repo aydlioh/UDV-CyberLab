@@ -1,6 +1,6 @@
 import { IQuestion } from '@/shared/types';
 
-export interface ITest {
+export interface ITestPassing {
   id: string;
   title: string;
   totalQuestions: number;

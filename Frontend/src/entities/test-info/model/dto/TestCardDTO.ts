@@ -1,8 +1,8 @@
 export interface TestCardDTO {
   id: string;
-  test: string;
+  name: string;
   testId: string;
-  userId: string;
+  ownerId: string;
   state: number;
   attemptNumber: number;
   leftAttemptsCount: number;

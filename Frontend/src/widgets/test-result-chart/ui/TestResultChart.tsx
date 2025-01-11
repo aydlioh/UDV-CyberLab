@@ -1,4 +1,4 @@
-import { ITestAttempt } from '@/entities/test';
+import { ITestAttempt } from '@/entities/test-passing';
 import { getPercentage } from '@/shared/common/utils';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';

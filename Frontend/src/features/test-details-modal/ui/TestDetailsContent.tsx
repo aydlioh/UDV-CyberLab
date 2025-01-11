@@ -1,4 +1,4 @@
-import { ModalBody, ModalContent, Spinner } from '@/shared/ui';
+import { ModalBody, ModalContent, ModalSpinner } from '@/shared/ui';
 import { TestDetailsActions } from './actions/TestDetailsActions';
 import {
   getTestStatus,
@@ -7,27 +7,34 @@ import {
 } from '@/entities/test-info';
 import { useAuth } from '@/entities/user';
 import { useTestDetailsModalStore } from '../model/store';
+import { useEffect } from 'react';
 
 export const TestDetailsContent = () => {
   const testId = useTestDetailsModalStore(state => state.testId);
-  const user = useAuth(state => state.user?.userName);
+  const userId = useAuth(state => state.user?.userId);
   const { data, isLoading, error } = useTestDetails(testId ?? '');
 
-  if (error) return null;
+  useEffect(() => {
+    return () => {
+      if (testId) {
+        close();
+      }
+    };
+  }, []);
 
-  if (isLoading) {
+  if (error || !testId) return null;
+
+  if (!data || isLoading) {
     return (
       <ModalContent>
-        <div className="fixed inset-0 flex justify-center items-center z-10">
-          <Spinner color="white" size="page" />
-        </div>
+        <ModalSpinner />
       </ModalContent>
     );
   }
 
   const testStatus = getTestStatus(
     { status: data.status, owner: data.owner },
-    { user }
+    { userId }
   );
 
   return (

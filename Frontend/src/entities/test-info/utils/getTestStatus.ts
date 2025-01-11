@@ -1,19 +1,21 @@
 import { ITestCard, TestStatus } from '@/entities/test-info';
 
 type TestStatusOptions = {
-  user?: string;
+  userId?: string;
+};
+
+type TestStatusResult = {
+  isOwner: boolean;
+  isRunning: boolean;
+  isOver: boolean;
+  isIdle: boolean;
 };
 
 export const getTestStatus = (
   { owner, status }: Pick<ITestCard, 'owner' | 'status'>,
   options?: TestStatusOptions
-): {
-  isOwner: boolean;
-  isRunning: boolean;
-  isOver: boolean;
-  isIdle: boolean;
-} => {
-  const isOwner = owner === options?.user;
+): TestStatusResult => {
+  const isOwner = owner === options?.userId;
   const isRunning = status === TestStatus.RUN;
   const isOver = status === TestStatus.OVER;
   const isIdle = status === TestStatus.IDLE;

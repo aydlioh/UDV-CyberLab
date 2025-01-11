@@ -4,15 +4,14 @@ export interface ITestDetails {
   title: string;
   difficulty: string;
   subject: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: Date | string;
+  endDate: Date | string;
   duration?: number;
-  
-  totalAttempts?: number;
-  remainingAttempts?: number;
+
+  leftAttempts?: number;
 
   totalPoints: number;
-  currentPoints?: number;      
-  
+  currentPoints?: number;
+
   status: 'idle' | 'run' | 'over';
 }

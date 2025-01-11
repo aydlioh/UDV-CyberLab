@@ -1,7 +1,7 @@
 import { ITestDetails } from '../model/types/ITestDetails';
 import { TestIcon } from '@/shared/assets/svgs';
 import { TestTimeFormatter } from './TestTimeFormatter';
-import { getTestSubject, getTestDifficulty, getTestStatus } from '../';
+import { getTestStatus } from '../';
 import { CircularProgress } from '@/shared/ui';
 import { getPercentage } from '@/shared/common/utils';
 import { TestAttemptsStatus } from './TestAttemptsStatus';
@@ -18,8 +18,7 @@ export const TestDetails = ({
   endDate,
   subject,
   difficulty,
-  totalAttempts,
-  remainingAttempts,
+  leftAttempts,
   totalPoints,
   currentPoints,
   testStatus: { isRunning, isOwner },
@@ -27,6 +26,7 @@ export const TestDetails = ({
   const progress = currentPoints
     ? getPercentage(currentPoints, totalPoints)
     : 0;
+
   return (
     <div>
       <div className="flex flex-row gap-4 items-start justify-center">
@@ -44,25 +44,16 @@ export const TestDetails = ({
           <div className="flex sm:flex-row flex-col gap-[15px] justify-between">
             <div className="flex flex-col gap-[8px] sm:text-[20px] text-[16px] sm:leading-[24px] leading-[20px] sm:mt-[30px] mt-[20px]">
               <p>
-                Тематика:{' '}
-                <span className="font-semibold">{getTestSubject(subject)}</span>
+                Тематика: <span className="font-semibold">{subject}</span>
               </p>
               <p>
-                Сложность:{' '}
-                <span className="font-semibold">
-                  {getTestDifficulty(difficulty)}
-                </span>
+                Сложность: <span className="font-semibold">{difficulty}</span>
               </p>
               <p>
                 Макс. баллов:{' '}
                 <span className="font-semibold">{totalPoints}</span>
               </p>
-              {!isOwner && (
-                <TestAttemptsStatus
-                  totalAttempts={totalAttempts}
-                  remainingAttempts={remainingAttempts}
-                />
-              )}
+              {!isOwner && <TestAttemptsStatus leftAttempts={leftAttempts} />}
             </div>
             <div className="flex justify-center">
               {!isOwner && (

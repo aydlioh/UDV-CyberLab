@@ -4,8 +4,11 @@ import { MdModeEdit, MdDelete, MdSettings } from 'react-icons/md';
 import { IoStatsChart } from 'react-icons/io5';
 import { IoMdList } from 'react-icons/io';
 import { useNavigation } from '@/shared/hooks';
+import { useDeleteTest } from '@/entities/test-info';
+import { Spinner } from '@/shared/ui';
 
 export const ToolsContent = ({ id }: { id: string }) => {
+  const { mutate, isPending } = useDeleteTest();
   const { scrollNavigate } = useNavigation();
 
   return (
@@ -41,9 +44,16 @@ export const ToolsContent = ({ id }: { id: string }) => {
       </div>
       <Divider className="my-1 bg-background" />
       <div>
-        {/* TODO_1 Привязать запрос на удаление */}
         <ToolButton
-          startContent={<MdDelete size={17} />}
+          isDisabled={isPending}
+          onPress={() => mutate(id)}
+          startContent={
+            isPending ? (
+              <Spinner size="sm" color="danger" />
+            ) : (
+              <MdDelete size={17} />
+            )
+          }
           color="danger"
           className="data-[hover=true]:bg-rose-500/10"
         >

@@ -17,7 +17,7 @@ const subjectLabels: { [key: string]: string } = {
   music: 'Музыка',
   'physical education': 'Физкультура',
   philosophy: 'Философия',
-  unknown: 'Неизвестный',
+  unknown: 'Неизвестная',
 };
 
 export const getTestSubject = (subject: string): string => {

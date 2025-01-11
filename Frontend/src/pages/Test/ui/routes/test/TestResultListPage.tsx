@@ -1,5 +1,5 @@
-import { TestTitle } from '@/entities/test';
-import { testResultsMOCK } from '@/entities/test/MOCK/testResults';
+import { TestTitle } from '@/entities/test-info';
+import { testResultsMOCK } from '@/entities/test-passing/MOCK/testResults';
 import { BackButton, Card } from '@/shared/ui';
 import { TestResultChart } from '@/widgets/test-result-chart';
 import { TestResultTable } from '@/widgets/test-result-table';
@@ -17,7 +17,7 @@ const TestResultListPage = () => {
   }
 
   return (
-    <div className='flex flex-col gap-1.5 w-full h-full items-start max-w-[712px] '>
+    <div className="flex flex-col gap-1.5 w-full h-full items-start max-w-[712px] ">
       <BackButton label="Назад к тестам" to="/tests/my" />
       <Card className="w-full h-full pt-[40px] pb-[24px] sm:px-[32px] px-[15px] mb-3">
         <div>

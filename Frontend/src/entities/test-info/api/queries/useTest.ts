@@ -1,9 +1,9 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { testApi } from '../services/testAPI';
 
-export const usePassedTestList = () => {
+export const useTest = (id: string) => {
   return useSuspenseQuery({
-    queryKey: ['tests', { passed: true }],
-    queryFn: testApi.getPassedTests,
+    queryKey: ['test', id],
+    queryFn: async () => await testApi.getTestById(id),
   });
 };

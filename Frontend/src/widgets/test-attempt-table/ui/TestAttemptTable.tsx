@@ -1,4 +1,4 @@
-import { ITestResult } from '@/entities/test';
+import { ITestResult } from '@/entities/test-passing';
 import {
   Table,
   TableBody,

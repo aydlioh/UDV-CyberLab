@@ -1,11 +1,19 @@
+import { useCreateTest } from '@/entities/test-info';
 import { useUserStatus } from '@/entities/user';
-import { Button } from '@/shared/ui';
+import { useNavigation } from '@/shared/hooks';
+import { Button, Spinner } from '@/shared/ui';
 import { MdAdd } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
 
 export const EmptyTestList = () => {
-  const navigate = useNavigate();
+  const { mutateAsync, isPending } = useCreateTest();
+  const { scrollNavigate } = useNavigation();
   const { isTeacher } = useUserStatus();
+
+  const handleCreate = () => {
+    mutateAsync().then(response => {
+      scrollNavigate(`/tests/manage/${response}/edit`);
+    });
+  };
 
   return (
     <div className="flex justify-center mt-[20px] w-full">
@@ -16,13 +24,19 @@ export const EmptyTestList = () => {
         <p className="text-second mb-3">Тесты не найдены</p>
         {isTeacher && (
           <Button
-            startContent={<MdAdd size={22} />}
+            isDisabled={isPending}
+            startContent={
+              isPending ? (
+                <Spinner size="sm" color="white" />
+              ) : (
+                <MdAdd size={22} />
+              )
+            }
             size="md"
             radius="sm"
             className="bg-foreground/5 text-foreground/90 font-semibold"
             variant="light"
-            // TODO_1 Запрос на создание
-            onPress={() => navigate('/tests/manage/1/edit')}
+            onPress={handleCreate}
           >
             Создать тест
           </Button>

@@ -1,4 +1,4 @@
-import { TestSettings } from '@/widgets/test-settings';
+import { TestSettings } from '@/widgets/test-settings-edit';
 import { SettingsTestSwitcher } from './ui/SettingsTestSwitcher';
 
 const TestSettingsPage = () => {

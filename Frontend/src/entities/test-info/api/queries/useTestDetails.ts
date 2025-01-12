@@ -4,6 +4,6 @@ import { testApi } from '../services/testAPI';
 export const useTestDetails = (id: string) => {
   return useQuery({
     queryKey: ['test/details', id],
-    queryFn: async () => await testApi.getTestDetails(id),
+    queryFn: async () => await testApi.getTestDetailsById(id),
   });
 };

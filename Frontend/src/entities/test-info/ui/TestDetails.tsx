@@ -38,7 +38,7 @@ export const TestDetails = ({
             <h3 className="sm:text-[32px] mobile:text-[28px] text-[24px] sm:leading-[39px] leading-[28px] mb-[8px] line-clamp-3 font-medium">
               {title}
             </h3>
-            <p className="sm:text-[20px] text-[16px] leading-[24px]">
+            <p className="md:text-[20px] sm:text-[16px] text-[14px] leading-[24px]">
               Открыт с <TestTimeFormatter time={startDate} /> до{' '}
               <TestTimeFormatter time={endDate} />
             </p>

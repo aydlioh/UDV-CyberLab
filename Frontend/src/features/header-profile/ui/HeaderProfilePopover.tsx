@@ -16,7 +16,7 @@ export const HeaderProfile = () => {
   return (
     <>
       {isPending ? (
-        <div className='h-[50px] w-[50px] flex justify-center items-center'>
+        <div className="h-[50px] w-[50px] flex justify-center items-center">
           <Avatar
             fallback={
               <div className="animate-pulse bg-gradient-to-r from-foreground/30 to-second/30 h-[100px] w-[100px]" />
@@ -47,6 +47,7 @@ export const HeaderProfile = () => {
               <Avatar
                 isBordered
                 className="transition-transform"
+                // TODO Аватарка для профиля
                 src="" //https://i.pravatar.cc/150?u=a042581f4e29026024d
               />
             </Button>

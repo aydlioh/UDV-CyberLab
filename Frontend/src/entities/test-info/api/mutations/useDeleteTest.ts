@@ -5,7 +5,7 @@ export const useDeleteTest = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ['test/delete'],
-    mutationFn: testApi.deleteTest,
+    mutationFn: testApi.deleteTestById,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tests'] });
     },

@@ -9,7 +9,21 @@ export interface UpdateTestDTO {
 
   startTestTime: string;
   endTestTime: string;
-  passTestTime: string;
+  passTestTime?: string;
 
   maxPoints: number;
+}
+
+export interface UpdateTestTitleDTO {
+  name: string;
+  test: string;
+  theme: string;
+  difficulty: string;
+}
+
+export interface UpdateTestSettingsDTO {
+  name: string;
+  test: string;
+  theme: string;
+  difficulty: string;
 }

@@ -9,7 +9,7 @@ export interface CreateTestDTO {
 
   startTestTime: string;
   endTestTime: string;
-  passTestTime: string;
+  passTestTime?: string;
 
   maxPoints: number;
   questions: Array<unknown>;

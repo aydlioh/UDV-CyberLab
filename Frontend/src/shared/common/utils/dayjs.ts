@@ -31,10 +31,7 @@ const parseDurationTime = (duration: string | number) => {
   return d;
 };
 
-export const getDurationFormat = (
-  duration: string | number,
-  regex: string = 'HH:mm'
-) => {
+export const getDurationFormat = (duration: string | number, regex: string) => {
   return parseDurationTime(duration).format(regex);
 };
 

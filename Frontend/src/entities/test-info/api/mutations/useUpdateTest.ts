@@ -7,7 +7,7 @@ export const useUpdateTest = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ['test/update'],
-    mutationFn: testApi.updateTest,
+    mutationFn: testApi.updateTestById,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tests'] });
     },

@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { testApi } from '../services/testAPI';
+import { CreateTestDTO } from '../../model/dto';
 
-const createTestMock = {
+const createTestMock: CreateTestDTO = {
   name: 'Новый тест',
   test: '',
   description: '',
@@ -11,6 +12,7 @@ const createTestMock = {
   attemptsCount: 0,
   startTestTime: '2025-01-11T08:53:45.619Z',
   endTestTime: '2025-02-11T08:53:45.619Z',
+  passTestTime: '2025-02-11T08:53:45.619Z',
   maxPoints: 0,
   questions: [],
 };

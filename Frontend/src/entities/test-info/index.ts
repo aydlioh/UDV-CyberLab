@@ -7,6 +7,8 @@ export * from './model/types/ITestDetails';
 
 export * from './utils/getTestStatus';
 
+export * from './api/services/testAPI';
+
 export * from './api/queries/useMyTestList';
 export * from './api/queries/usePassedTestList';
 export * from './api/queries/useCreatedTestList';

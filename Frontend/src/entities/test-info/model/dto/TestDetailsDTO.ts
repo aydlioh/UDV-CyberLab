@@ -10,8 +10,11 @@ export interface TestDetailsDTO {
   leftAttemptsCount: number;
   scoredPoints: number;
   maxPoints: number;
+
   leftTestTime: string;
   startTestTime: string;
   endTestTime: string;
+  passTestTime: string;
+
   isChecked: boolean;
 }

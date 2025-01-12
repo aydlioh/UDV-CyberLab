@@ -6,9 +6,11 @@ export interface CreateTestDTO {
   difficulty: string;
   ownerId: string;
   attemptsCount: number;
+
   startTestTime: string;
   endTestTime: string;
+  passTestTime: string;
+
   maxPoints: number;
   questions: Array<unknown>;
 }
-

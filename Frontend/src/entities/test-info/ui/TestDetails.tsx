@@ -5,6 +5,7 @@ import { getTestStatus } from '../';
 import { CircularProgress } from '@/shared/ui';
 import { getPercentage } from '@/shared/common/utils';
 import { TestAttemptsStatus } from './TestAttemptsStatus';
+import { TestDurationFormatter } from './TestDurationFormatter';
 
 type TestDetailsProps = ITestDetails & {
   testStatus: ReturnType<typeof getTestStatus>;
@@ -21,6 +22,7 @@ export const TestDetails = ({
   leftAttempts,
   totalPoints,
   currentPoints,
+  duration,
   testStatus: { isRunning, isOwner },
 }: TestDetailsProps) => {
   const progress = currentPoints
@@ -49,6 +51,14 @@ export const TestDetails = ({
               <p>
                 Сложность: <span className="font-semibold">{difficulty}</span>
               </p>
+              {duration && (
+                <p>
+                  Длительность:{' '}
+                  <span className="font-semibold">
+                    <TestDurationFormatter duration={duration} />
+                  </span>
+                </p>
+              )}
               <p>
                 Макс. баллов:{' '}
                 <span className="font-semibold">{totalPoints}</span>

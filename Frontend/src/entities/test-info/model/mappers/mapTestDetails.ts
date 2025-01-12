@@ -12,6 +12,7 @@ export const mapTestDetails = (dto: TestDetailsDTO): ITestDetails => ({
   subject: getTestSubject(dto.theme),
   startDate: dto.startTestTime,
   endDate: dto.endTestTime,
+  duration: dto.passTestTime,
   leftAttempts: dto.leftAttemptsCount,
   totalPoints: dto.maxPoints,
   currentPoints: dto.scoredPoints,

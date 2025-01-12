@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
-
-dayjs.extend(duration);
+import { getDurationFormat } from '@/shared/common/utils/dayjs';
 
 export const TestTimer = ({ time }: { time: number | undefined }) => {
   const [remainingTime, setRemainingTime] = useState(time ?? 0);
@@ -24,7 +21,7 @@ export const TestTimer = ({ time }: { time: number | undefined }) => {
     return () => clearInterval(interval);
   }, [time]);
 
-  const formattedTime = dayjs.duration(remainingTime).format('HH:mm:ss');
+  const formattedTime = getDurationFormat(remainingTime, 'HH:mm:ss');
 
   return <p className="text-[16px] text-center">{formattedTime}</p>;
 };

@@ -6,8 +6,10 @@ export interface UpdateTestDTO {
   difficulty: string;
   ownerId: string;
   attemptsCount: number;
+
   startTestTime: string;
   endTestTime: string;
+  passTestTime: string;
+
   maxPoints: number;
 }
-

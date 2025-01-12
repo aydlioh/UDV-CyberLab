@@ -4,9 +4,9 @@ export interface ITestDetails {
   title: string;
   difficulty: string;
   subject: string;
-  startDate: Date | string;
-  endDate: Date | string;
-  duration?: number;
+  startDate: string;
+  endDate: string;
+  duration?: string;
 
   leftAttempts?: number;
 

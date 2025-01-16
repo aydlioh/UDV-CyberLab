@@ -1,35 +1,33 @@
-import { Card, Input, Select, SelectItem } from '@/shared/ui';
+import { Card, Input } from '@/shared/ui';
 import { useState } from 'react';
-import { startDates } from '../const/startDates';
-import { endDates } from '../const/endDates';
-import {
-  DatePicker,
-  DateRangePicker,
-  Switch,
-  TimeInput,
-} from '@nextui-org/react';
+import { DatePicker, Switch, TimeInput } from '@nextui-org/react';
 
-const selectClassNames = {
-  itemClasses: {
-    base: 'data-[hover=true]:bg-controls data-[selectable=true]:focus:text-foreground data-[hover=true]:text-foreground data-[selectable=true]:focus:bg-controls',
-  },
-};
+// TODO_1 добавить когда время начала/конца будет опциональным
+// const selectClassNames = {
+//   itemClasses: {
+//     base: 'data-[hover=true]:bg-controls data-[selectable=true]:focus:text-foreground data-[hover=true]:text-foreground data-[selectable=true]:focus:bg-controls',
+//   },
+// };
 
 export const TestSettings = () => {
-  const [startDateType, setStartDateType] = useState<string>('');
-  const [endDateType, setEndDateType] = useState<string>('');
+  // TODO_1 добавить когда время начала/конца будет опциональным
+  // const [startDateType, setStartDateType] = useState<string>('');
+  // const [endDateType, setEndDateType] = useState<string>('');
   const [isLimited, setIsLimited] = useState<boolean>(false);
   const [withTimeLimit, setWithTimeLimit] = useState<boolean>(false);
 
-  // const [startDate, setStartDate] = useState<DateValue>(parseDate("2024-04-04"));
-  // const [endDate, setEndDate] = useState<Date>(new Date());
+  const [startDate, setStartDate] = useState<string | null>(null);
+  const [endDate, setEndDate] = useState<string | null>(null);
+  const [attemptsCount, setAttemptsCount] = useState<number>(1);
+  const [testDuration, setTestDuration] = useState<string | null>(null);
 
   return (
     <Card className="sm:p-[40px] p-[25px]">
       <div className="mb-6">
         <div className="flex sm:flex-row flex-col gap-3 mb-4">
           <div className="sm:w-1/2 flex flex-col gap-4">
-            <Select
+            {/* // TODO_1 добавить когда время начала/конца будет опциональным */}
+            {/* <Select
               color="white"
               aria-label="Время открытия теста"
               label="Время открытия теста"
@@ -48,28 +46,29 @@ export const TestSettings = () => {
                 <SelectItem key={key}>{label}</SelectItem>
               ))}
             </Select>
-            {startDateType === 'fixed' && endDateType !== 'fixed' && (
-              <DatePicker
-                isRequired
-                errorMessage="Заполните дату и время открытия"
-                dateInputClassNames={{
-                  input: 'text-[16px] text-foreground',
-                  inputWrapper:
-                    'hover:bg-controls focus-within:hover:bg-controls',
-                }}
-                classNames={{
-                  timeInput: 'text-[16px] text-foreground',
-                  selectorIcon:
-                    'text-foreground/90 group-data-[invalid=true]:text-rose-500',
-                }}
-                radius="sm"
-                size="lg"
-                aria-label="Время открытия"
-              />
-            )}
+            {startDateType === 'fixed' && endDateType !== 'fixed' && ( */}
+            <DatePicker
+              isRequired
+              errorMessage="Заполните дату и время открытия"
+              dateInputClassNames={{
+                input: 'text-[16px] text-foreground',
+                inputWrapper:
+                  'hover:bg-controls focus-within:hover:bg-controls',
+              }}
+              classNames={{
+                timeInput: 'text-[16px] text-foreground',
+                selectorIcon:
+                  'text-foreground/90 group-data-[invalid=true]:text-rose-500',
+              }}
+              radius="sm"
+              size="lg"
+              aria-label="Время открытия"
+            />
+            {/* )} */}
           </div>
           <div className="sm:w-1/2 flex flex-col gap-4">
-            <Select
+            {/* // TODO_1 добавить когда время начала/конца будет опциональным */}
+            {/* <Select
               color="white"
               aria-label="Время закрытия теста"
               label="Время закрытия теста"
@@ -88,28 +87,29 @@ export const TestSettings = () => {
                 <SelectItem key={key}>{label}</SelectItem>
               ))}
             </Select>
-            {endDateType === 'fixed' && startDateType !== 'fixed' && (
-              <DatePicker
-                isRequired
-                errorMessage="Заполните дату и время закрытия"
-                dateInputClassNames={{
-                  input: 'text-[16px] text-foreground',
-                  inputWrapper:
-                    'hover:bg-controls focus-within:hover:bg-controls',
-                }}
-                classNames={{
-                  timeInput: 'text-[16px] text-foreground',
-                  selectorIcon:
-                    'text-foreground/90 group-data-[invalid=true]:text-rose-500',
-                }}
-                radius="sm"
-                size="lg"
-                aria-label="Время закрытия"
-              />
-            )}
+            {endDateType === 'fixed' && startDateType !== 'fixed' && ( */}
+            <DatePicker
+              isRequired
+              errorMessage="Заполните дату и время закрытия"
+              dateInputClassNames={{
+                input: 'text-[16px] text-foreground',
+                inputWrapper:
+                  'hover:bg-controls focus-within:hover:bg-controls',
+              }}
+              classNames={{
+                timeInput: 'text-[16px] text-foreground',
+                selectorIcon:
+                  'text-foreground/90 group-data-[invalid=true]:text-rose-500',
+              }}
+              radius="sm"
+              size="lg"
+              aria-label="Время закрытия"
+            />
+            {/* )} */}
           </div>
         </div>
-        {startDateType === 'fixed' && endDateType === 'fixed' && (
+        {/* // TODO_1 добавить когда время начала/конца будет опциональным */}
+        {/* {startDateType === 'fixed' && endDateType === 'fixed' && (
           <div>
             <DateRangePicker
               isRequired
@@ -136,7 +136,7 @@ export const TestSettings = () => {
               aria-label="Время"
             />
           </div>
-        )}
+        )} */}
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">

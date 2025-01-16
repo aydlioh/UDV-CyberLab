@@ -2,6 +2,7 @@ import { useNavigation } from '@/shared/hooks';
 import { Button } from '@/shared/ui';
 import { Divider } from '@nextui-org/react';
 import { useModalCloseHandler } from '../../model/hooks/useCloseHandler';
+import { useTestStart } from '@/entities/test-passing';
 
 export const FinishedActions = ({
   testId,
@@ -10,6 +11,7 @@ export const FinishedActions = ({
   testId: string;
   withRepeat: boolean;
 }) => {
+  const { mutateAsync: startTest, isPending } = useTestStart();
   const closeHandler = useModalCloseHandler();
   const { scrollNavigate } = useNavigation();
 
@@ -18,7 +20,7 @@ export const FinishedActions = ({
   };
 
   const handleRepeat = () => {
-    scrollNavigate(`/tests/${testId}`);
+    startTest(testId).then(() => scrollNavigate(`/tests/${testId}`));
   };
 
   return (
@@ -32,8 +34,12 @@ export const FinishedActions = ({
       </Button>
       {withRepeat && (
         <>
-          <Divider orientation="vertical" className="h-16 bg-foreground/30 sm:block hidden" />
+          <Divider
+            orientation="vertical"
+            className="h-16 bg-foreground/30 sm:block hidden"
+          />
           <Button
+            isDisabled={isPending}
             className="sm:w-1/2 w-full"
             variant="bordered"
             onPress={closeHandler(handleRepeat)}

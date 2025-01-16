@@ -1,4 +1,4 @@
-import { useAnswers } from '@/entities/test-question';
+import { SavedAnswerWithKey } from '@/entities/test-passing';
 import {
   Table,
   TableBody,
@@ -17,11 +17,15 @@ const tableClassNames = {
   tr: 'px-5 outline-none outline-offset-1 outline-4 hover:outline-second/40 rounded-md',
 };
 
-export const AnswersTable = () => {
+export const AnswersTable = ({
+  answers,
+}: {
+  answers: SavedAnswerWithKey[];
+}) => {
   const navigate = useNavigate();
   const { testId } = useParams();
 
-  const getAnswersArray = useAnswers(state => state.getAnswersArray)();
+  const questions = answers.map(answer => Boolean(answer.data));
 
   return (
     <Table
@@ -36,7 +40,7 @@ export const AnswersTable = () => {
         <TableColumn>Состояние</TableColumn>
       </TableHeader>
       <TableBody emptyContent="Нет результатов">
-        {getAnswersArray.map((has, index) => (
+        {questions.map((has, index) => (
           <TableRow
             className="cursor-pointer"
             onClick={() => navigate(`/tests/${testId}?question=${index + 1}`)}

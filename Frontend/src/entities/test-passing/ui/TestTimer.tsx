@@ -1,27 +1,38 @@
-import { useEffect, useState } from 'react';
 import { getDurationFormat } from '@/shared/common/utils/dayjs';
+import { useTestFinish } from '../api/mutations/useFinishTest';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const TestTimer = ({ time }: { time: number | undefined }) => {
-  const [remainingTime, setRemainingTime] = useState(time ?? 0);
+type TestTimerProps = {
+  time: string;
+  testId: string;
+};
+
+const getTimerDuration = (time: string) =>
+  Math.max(0, new Date(time).getTime() - Date.now());
+
+export const TestTimer = ({ time, testId }: TestTimerProps) => {
+  const [formattedTime, setFormattedTime] = useState<string | number>(
+    getTimerDuration(time)
+  );
+  const { mutateAsync } = useTestFinish();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!time || time <= 0) return;
-
-    const startTime = Date.now();
     const interval = setInterval(() => {
-      const elapsedTime = Date.now() - startTime;
-      const newRemainingTime = Math.max((time ?? 0) - elapsedTime, 0);
-      setRemainingTime(newRemainingTime);
-
-      if (newRemainingTime <= 0) {
-        clearInterval(interval);
+      const duration = Math.max(0, getTimerDuration(time));
+      setFormattedTime(duration);
+      if (duration <= 0) {
+        mutateAsync(testId).then(() => navigate(`/tests/${testId}/results`));
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [time]);
+  }, []);
 
-  const formattedTime = getDurationFormat(remainingTime, 'HH:mm:ss');
-
-  return <p className="text-[16px] text-center">{formattedTime}</p>;
+  return (
+    <p className="text-[16px] text-center">
+      {getDurationFormat(formattedTime, 'HH:mm:ss')}
+    </p>
+  );
 };

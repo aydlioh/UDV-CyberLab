@@ -6,5 +6,5 @@ const difficultyLabels: { [key: string]: string } = {
 };
 
 export const getTestDifficulty = (difficulty: string): string => {
-  return difficultyLabels[difficulty] ?? difficultyLabels.unknown;
+  return difficultyLabels[difficulty.toLowerCase()] ?? difficultyLabels.unknown;
 };

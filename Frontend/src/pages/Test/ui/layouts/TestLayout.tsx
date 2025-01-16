@@ -1,8 +1,8 @@
 import { Sidebar, testRoutes } from '@/widgets/sidebar';
 import { Spinner, StickyElement } from '@/shared/ui';
-import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useMediaQuery } from '@/shared/hooks';
+import { QueryBoundary } from '@/shared/common/components';
 
 export const TestLayout = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
@@ -14,15 +14,15 @@ export const TestLayout = () => {
             <Sidebar links={testRoutes} withLogout />
           </StickyElement>
         )}
-        <Suspense
-          fallback={
+        <QueryBoundary
+          fallbackLoader={
             <div className="flex justify-center items-center w-full">
               <Spinner size="page" color="primary" />
             </div>
           }
         >
           <Outlet />
-        </Suspense>
+        </QueryBoundary>
       </div>
     </main>
   );

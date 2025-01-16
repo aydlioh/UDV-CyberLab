@@ -1,28 +1,26 @@
 import { Button } from '@/shared/ui';
 import clsx from 'clsx';
 import { useScrollContainer } from '@/shared/hooks';
-import { useAnswers } from '@/entities/test-question';
+import { useAnswers } from '@/entities/test-passing';
 
 type QuestionsPaginatorProps = {
-  ids: string[];
   current: number;
   setCurrent: (value: number) => void;
 };
 
 export const QuestionsPaginator = ({
-  ids,
   current,
   setCurrent,
 }: QuestionsPaginatorProps) => {
-  const answers = useAnswers(state => state.answers);
+  const questions = useAnswers(state => state.answers).map(answer => Boolean(answer.data));
   const container = useScrollContainer();
-
+  
   return (
     <div
       ref={container}
       className="relative flex gap-2 overflow-x-scroll without-scrollbar scroll-smooth p-2"
     >
-      {ids.map((id, index) => {
+      {questions.map((has, index) => {
         index += 1;
         return (
           <Button
@@ -35,7 +33,7 @@ export const QuestionsPaginator = ({
               'text-[18px] !duration-300',
               index === current
                 ? 'bg-foreground text-white'
-                : answers[id]
+                : has
                   ? 'bg-secondary'
                   : 'bg-white text-foreground'
             )}

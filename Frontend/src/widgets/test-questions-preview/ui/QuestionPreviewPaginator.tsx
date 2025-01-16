@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useScrollContainer } from '@/shared/hooks';
 
 type QuestionsPreviewPaginatorProps = {
-  ids: string[];
+  ids: (string | undefined)[];
   current: number;
   setCurrent: (value: number) => void;
 };

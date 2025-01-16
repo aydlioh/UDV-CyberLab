@@ -1,4 +1,4 @@
-import { ITestAttempt } from '@/entities/test-passing';
+import { ITestResult } from '@/entities/test-info';
 import { getPercentage } from '@/shared/common/utils';
 import {
   Table,
@@ -18,7 +18,7 @@ const tableClassNames = {
   tr: 'px-5 outline-none outline-offset-1 outline-4 hover:outline-second/40 rounded-md',
 };
 
-export const TestResultTable = ({ results }: { results: ITestAttempt }) => {
+export const TestResultTable = ({ results }: { results: ITestResult }) => {
   const navigate = useNavigate();
 
   return (
@@ -34,11 +34,13 @@ export const TestResultTable = ({ results }: { results: ITestAttempt }) => {
         <TableColumn>Баллы</TableColumn>
       </TableHeader>
       <TableBody emptyContent="Нет результатов" items={results.attempts}>
-        {({ id, attempt, score, maxScore }) => (
+        {({ attemptId, attempt, score, maxScore }) => (
           <TableRow
             className="cursor-pointer"
-            onClick={() => navigate(`/tests/${results.testId}/results/${id}`)}
-            key={id}
+            onClick={() =>
+              navigate(`/tests/${results.testId}/results/${attemptId}`)
+            }
+            key={attemptId}
           >
             <TableCell className="pl-[40px] w-1/2">{attempt}</TableCell>
             <TableCell>{getPercentage(score, maxScore)}%</TableCell>

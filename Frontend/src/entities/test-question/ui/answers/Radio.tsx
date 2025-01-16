@@ -1,24 +1,31 @@
+import { SavedAnswer, SavedVariantAnswerDTO } from '@/entities/test-passing';
+import { VariantQuestionDTO } from '@/shared/api/dto';
 import { Radio, RadioGroup } from '@/shared/ui';
 
 export const RadioAnswer = ({
-  answers,
-  setAnswer,
+  question,
+  setCurrentAnswer,
   currentAnswer,
 }: {
-  answers: string[];
-  setAnswer?: (answer: string) => void;
-  currentAnswer: string;
+  question: VariantQuestionDTO;
+  setCurrentAnswer: (answer: SavedAnswer) => void;
+  currentAnswer: SavedVariantAnswerDTO;
 }) => {
   return (
     <RadioGroup
       classNames={{
         wrapper: 'gap-[10px]',
       }}
-      value={currentAnswer || ''}
-      onValueChange={setAnswer}
+      value={String(currentAnswer && currentAnswer.selectedAnswers[0]) || ''}
+      onValueChange={answer =>
+        setCurrentAnswer?.({
+          selectedAnswers: [Number(answer)],
+          questionId: question.id,
+        })
+      }
     >
-      {answers.map((answer: string, index: number) => (
-        <Radio key={index} value={answer}>
+      {question.stringAnswers.map((answer: string, index: number) => (
+        <Radio key={index} value={String(index)}>
           {answer}
         </Radio>
       ))}

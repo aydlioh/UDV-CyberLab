@@ -3,10 +3,10 @@ import { ITestCard } from '../types';
 import { mapStateToStatus } from './mapStateToStatus';
 
 export const mapTestCard = (dto: TestCardDTO): ITestCard => ({
-  id: dto.id,
+  id: dto.testId || dto.id,
   owner: dto.ownerId,
-  title: dto.name,
-  totalPoints: dto.attemptNumber,
+  title: dto.testName || dto.name || '',
+  totalPoints: dto.maxPoints,
   currentPoints: dto.scoredPoints,
   status: mapStateToStatus(dto.state),
 });

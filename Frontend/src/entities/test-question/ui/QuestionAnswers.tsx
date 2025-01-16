@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-import { QuestionAnswersType, QuestionType } from '@/shared/types';
 import {
   CheckboxAnswer,
   FileAnswer,
@@ -7,53 +6,69 @@ import {
   SelectAnswer,
   TextAnswer,
 } from './answers';
-import { AnswersInputType } from '../model/types';
+import {
+  SavedAnswer,
+  SavedComplianceAnswerDTO,
+  SavedFileAnswerDTO,
+  SavedOpenAnswerDTO,
+  SavedVariantAnswerDTO,
+} from '@/entities/test-passing';
+import { QuestionDTO, QuestionType } from '@/shared/api/dto';
 
 type QuestionAnswersProps = {
-  type: string;
-  answers?: QuestionAnswersType[];
-  setCurrent?: (answer: AnswersInputType) => void;
-  current?: AnswersInputType;
+  type: QuestionType;
+  question: QuestionDTO;
+  setCurrentAnswer: (answer: SavedAnswer) => void;
+  currentAnswer?: SavedAnswer | null;
 };
 
 export const QuestionAnswers = ({
   type,
-  answers,
-  setCurrent,
-  current,
+  question,
+  setCurrentAnswer,
+  currentAnswer,
 }: QuestionAnswersProps) => {
   switch (type) {
-    case QuestionType.Checkbox:
-      return (
-        <CheckboxAnswer
-          answers={answers as string[]}
-          currentAnswers={(current as string[]) ?? []}
-          setAnswer={setCurrent}
-        />
-      );
-    case QuestionType.Radio:
+    case 'QuestionVariant':
+      if (question.isMultipleChoice) {
+        return (
+          <CheckboxAnswer
+            question={question}
+            setCurrentAnswer={setCurrentAnswer}
+            currentAnswer={currentAnswer as SavedVariantAnswerDTO}
+          />
+        );
+      }
       return (
         <RadioAnswer
-          answers={answers as string[]}
-          currentAnswer={current as string}
-          setAnswer={setCurrent}
+          question={question}
+          setCurrentAnswer={setCurrentAnswer}
+          currentAnswer={currentAnswer as SavedVariantAnswerDTO}
         />
       );
-    case QuestionType.Text:
+    case 'QuestionOpen':
       return (
-        <TextAnswer currentAnswer={current as string} setAnswer={setCurrent} />
+        <TextAnswer
+          question={question}
+          setCurrentAnswer={setCurrentAnswer}
+          currentAnswer={currentAnswer as SavedOpenAnswerDTO}
+        />
       );
-    case QuestionType.Select:
+    case 'QuestionCompliance':
       return (
         <SelectAnswer
-          currentAnswer={current as Record<string, string>}
-          answers={answers as { title: string; items: string[] }[]}
-          setAnswer={setCurrent}
+          question={question}
+          setCurrentAnswer={setCurrentAnswer}
+          currentAnswer={currentAnswer as SavedComplianceAnswerDTO}
         />
       );
-    case QuestionType.File:
+    case 'QuestionFile':
       return (
-        <FileAnswer currentAnswer={current as File} setAnswer={setCurrent} />
+        <FileAnswer
+          question={question}
+          setCurrentAnswer={setCurrentAnswer}
+          currentAnswer={currentAnswer as SavedFileAnswerDTO}
+        />
       );
     default:
       return <></>;

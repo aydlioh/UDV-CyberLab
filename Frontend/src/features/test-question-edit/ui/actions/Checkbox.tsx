@@ -3,15 +3,11 @@ import { IoAdd } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 
 export const CheckboxAction = ({
-  answers,
-  correctAnswers,
-  changeAnswers,
-  changeCorrectAnswers,
+  question,
+  changeQuestion,
 }: {
-  answers?: string[];
-  correctAnswers?: string[];
-  changeAnswers?: (value: string[]) => void;
-  changeCorrectAnswers?: (value: string[]) => void;
+  question?: string[];
+  changeQuestion:
 }) => {
   const handleAddNewAnswer = (newAnswer: string) => {
     changeAnswers?.([...(answers ?? []), newAnswer]);

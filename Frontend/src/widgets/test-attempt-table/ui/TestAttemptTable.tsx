@@ -1,4 +1,4 @@
-import { ITestResult } from '@/entities/test-passing';
+import { ITestAttempt } from '@/entities/test-passing';
 import {
   Table,
   TableBody,
@@ -22,7 +22,7 @@ export const TestAttemptTable = ({
   result,
   testId,
 }: {
-  result: ITestResult;
+  result: ITestAttempt;
   testId: string;
 }) => {
   const navigate = useNavigate();

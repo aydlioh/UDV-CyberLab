@@ -1,15 +1,15 @@
-import { QuestionAnswersType, QuestionType } from '@/shared/types';
-import { Button, Card, Input, Select, SelectItem, Textarea } from '@/shared/ui';
 import { SetStateAction, useCallback, useState } from 'react';
+import { Button, Card, Input, Select, SelectItem, Textarea } from '@/shared/ui';
 import { questionTypes } from '../const/questionTypes';
-import { QuestionEditType, SelectActionCorrectType } from '../model/types';
 import { FaTrashAlt } from 'react-icons/fa';
 import { ActionsSwitcher } from './actions/ActionsSwitcher';
+import { QuestionDTO, QuestionType } from '@/shared/api/dto';
+import { useDeleteQuestion } from '../api/mutations/useDeleteQuestion';
 
 type QuestionEditCardProps = {
   index: number;
-  question: QuestionEditType;
-  setQuestion: React.Dispatch<SetStateAction<QuestionEditType[]>>;
+  question: QuestionDTO;
+  setQuestion: React.Dispatch<SetStateAction<QuestionDTO[]>>;
 };
 
 const selectClassNames = {
@@ -23,30 +23,26 @@ export const QuestionEditCard = ({
   question,
   setQuestion,
 }: QuestionEditCardProps) => {
-  const [currentSettings, setCurrentSettings] =
-    useState<QuestionEditType>(question);
+  const [currentSettings, setCurrentSettings] = useState<QuestionDTO>(question);
+  const { mutateAsync } = useDeleteQuestion();
 
   const handleDeleteQuestion = useCallback(() => {
     setQuestion(prev => prev.filter(q => q.id !== question.id));
-  }, [question.id, setQuestion]);
+    if (question.id) {
+      mutateAsync(question.id);
+    }
+  }, [mutateAsync, question.id, setQuestion]);
 
-  const handleChangeCorrectAnswers = useCallback(
-    (value: QuestionAnswersType[] | string | SelectActionCorrectType[]) => {
-      setCurrentSettings(prev => ({ ...prev, correctAnswers: value }));
-    },
-    []
-  );
-
-  const handleChangeAnswers = useCallback((value: QuestionAnswersType[]) => {
-    setCurrentSettings(prev => ({ ...prev, answers: value }));
+  const handleChangeAnswers = useCallback((value: Partial<QuestionDTO>) => {
+    // setCurrentSettings(prev => ({ ...prev, answers: value }));
   }, []);
 
   const handleChangeType = useCallback(
     (value: QuestionType) => {
-      if (value === QuestionType.Checkbox || value === QuestionType.Radio) {
+      if (value === 'QuestionVariant') {
         if (
-          currentSettings.type === QuestionType.Radio ||
-          currentSettings.type === QuestionType.Checkbox
+          question.questionTypeName === 'QuestionVariant' &&
+          question.isMultipleChoice
         ) {
           setCurrentSettings(prev => ({
             ...prev,
@@ -70,7 +66,7 @@ export const QuestionEditCard = ({
         }));
       }
     },
-    [currentSettings.type]
+    [question.isMultipleChoice, question.questionTypeName]
   );
 
   return (
@@ -78,32 +74,34 @@ export const QuestionEditCard = ({
       <div>
         <h4 className="text-[16px] mb-3">Вопрос {index}</h4>
         <div className="mb-[13px] flex flex-row justify-between items-center">
-          <Select
-            color="white"
-            aria-label="Тип вопроса"
-            size="sm"
-            listboxProps={selectClassNames}
-            popoverProps={{
-              placement: 'bottom-end',
-            }}
-            selectedKeys={[currentSettings.type ?? '']}
-            onChange={e => handleChangeType(e.target.value as QuestionType)}
-            placeholder="Тип вопроса"
-            className="sm:max-w-[213px] w-full"
-            classNames={{
-              trigger: 'h-[40px] min-h-8 px-3',
-              value: 'text-[13px] text-foreground/50',
-              mainWrapper: 'h-[40px]',
-            }}
-          >
-            {questionTypes.map(({ label, key }) => (
-              <SelectItem key={key}>{label}</SelectItem>
-            ))}
-          </Select>
+          {question.id && (
+            <Select
+              color="white"
+              aria-label="Тип вопроса"
+              size="sm"
+              listboxProps={selectClassNames}
+              popoverProps={{
+                placement: 'bottom-end',
+              }}
+              selectedKeys={[currentSettings.questionTypeName ?? '']}
+              onChange={e => handleChangeType(e.target.value as QuestionType)}
+              placeholder="Тип вопроса"
+              className="sm:max-w-[213px] w-full"
+              classNames={{
+                trigger: 'h-[40px] min-h-8 px-3',
+                value: 'text-[13px] text-foreground/50',
+                mainWrapper: 'h-[40px]',
+              }}
+            >
+              {questionTypes.map(({ label, key }) => (
+                <SelectItem key={key}>{label}</SelectItem>
+              ))}
+            </Select>
+          )}
         </div>
         <Textarea
           className="mb-3"
-          value={currentSettings.question ?? ''}
+          value={currentSettings.text ?? ''}
           onValueChange={e =>
             setCurrentSettings(prev => ({ ...prev, question: e }))
           }
@@ -116,20 +114,17 @@ export const QuestionEditCard = ({
           aria-label="Текст вопроса"
           placeholder="Вопрос"
         />
-        {currentSettings.type && (
+        {currentSettings.questionTypeName && (
           <ActionsSwitcher
-            type={currentSettings.type}
-            correctAnswers={currentSettings.correctAnswers}
-            answers={currentSettings.answers}
-            changeAnswers={handleChangeAnswers}
-            changeCorrectAnswers={handleChangeCorrectAnswers}
+            question={currentSettings}
+            changeQuestion={handleChangeAnswers}
           />
         )}
         <div className="flex justify-between mt-4">
           <div className="flex flex-row gap-2 items-center">
             <p className="text-[13px]">Баллы: </p>
             <Input
-              value={String(currentSettings.maxScore)}
+              value={String(currentSettings.points)}
               onValueChange={e =>
                 setCurrentSettings(prev => ({ ...prev, maxScore: Number(e) }))
               }

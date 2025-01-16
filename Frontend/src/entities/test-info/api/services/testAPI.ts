@@ -4,27 +4,25 @@ import {
   CreateTestDTO,
   UpdateTestDTO,
   TestDetailsDTO,
-  TestDTO,
-  UpdateTestTitleDTO,
-  UpdateTestSettingsDTO,
+  TestStatisticsDTO,
+  TestResultDTO,
+  TestPreviewDTO,
 } from '../../model/dto';
-import { ITest, ITestCard, ITestDetails } from '../../model/types';
-import { mapTest, mapTestCard, mapTestDetails } from '../../model/mappers';
-
-type UpdateTestType = {
-  id: string;
-  body: UpdateTestDTO;
-};
-
-type UpdateTestTitleType = {
-  id: string;
-  body: UpdateTestTitleDTO;
-};
-
-type UpdateTestSettingsType = {
-  id: string;
-  body: UpdateTestSettingsDTO;
-};
+import {
+  ITestPreview,
+  ITestCard,
+  ITestDetails,
+  ITestStatistics,
+  ITestResult,
+} from '../../model/types';
+import {
+  mapTestPreview,
+  mapTestCard,
+  mapTestDetails,
+  mapTestStatistics,
+  mapTestResult,
+} from '../../model/mappers';
+import { IProfile, TestDTO } from '@/shared/api/dto';
 
 class TestApi {
   public async getTestDetailsById(id: string): Promise<ITestDetails> {
@@ -32,6 +30,53 @@ class TestApi {
       `/api/Test/${id}/short`
     );
     return mapTestDetails(response);
+  }
+
+  public async getTestResultsById(id: string): Promise<ITestResult> {
+    const response = await axiosClient.get<TestResultDTO[]>(
+      `/api/Test/${id}/results`
+    );
+    return mapTestResult(response);
+  }
+
+  public async getUserTestPreviewById({
+    id,
+    attemptId,
+  }: {
+    id: string;
+    attemptId: string;
+  }): Promise<{ test: TestDTO; answers: TestPreviewDTO }> {
+    const test = await axiosClient.get<TestDTO>(`/api/Test/${id}`);
+    const answers = await axiosClient.get<TestPreviewDTO>(
+      `/api/Test/results/${attemptId}/preview`
+    );
+    return { test, answers };
+  }
+
+  public async getTestStatisticsById(id: string): Promise<ITestStatistics> {
+    try {
+      const response = await axiosClient.get<TestStatisticsDTO[]>(
+        `/api/Test/statistics/${id}`
+      );
+
+      const users = await axiosClient.get<IProfile[]>('/api/user/users');
+
+      return mapTestStatistics(
+        response.map(dto => ({
+          ...dto,
+          userName:
+            users.find(user => user.userId === dto.userId)?.userName ||
+            'Неизвестный',
+        }))
+      );
+    } catch {
+      return {
+        testId: '',
+        title: 'Статистика по тесту пуста',
+        maxScore: 0,
+        users: [],
+      };
+    }
   }
 
   public async deleteTestById(id: string): Promise<void> {
@@ -42,27 +87,13 @@ class TestApi {
     return await axiosClient.post('/api/Test', body);
   }
 
-  public async updateTestById({ id, body }: UpdateTestType): Promise<string> {
-    return await axiosClient.put(`/api/Test/${id}`, body);
+  public async updateTestById(body: UpdateTestDTO): Promise<string> {
+    return await axiosClient.put('/api/Test', body);
   }
 
-  public async updateTestTitleById({
-    id,
-    body,
-  }: UpdateTestTitleType): Promise<string> {
-    return await axiosClient.put(`/api/Test/${id}`, body);
-  }
-
-  public async updateTestSettingsById({
-    id,
-    body,
-  }: UpdateTestSettingsType): Promise<string> {
-    return await axiosClient.put(`/api/Test/${id}`, body);
-  }
-
-  public async getTestById(id: string): Promise<ITest> {
+  public async getTestPreviewById(id: string): Promise<ITestPreview> {
     const response = await axiosClient.get<TestDTO>(`/api/Test/${id}`);
-    return mapTest(response);
+    return mapTestPreview(response);
   }
 
   public async getTests(): Promise<ITestCard[]> {

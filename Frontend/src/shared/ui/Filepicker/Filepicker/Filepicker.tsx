@@ -26,13 +26,15 @@ export const Filepicker = ({ onFileSelect, currentFile }: FilepickerProps) => {
         handleFileChange={onFileSelect}
         handleClick={handleClick}
       />
-      <input
-        tabIndex={-1}
-        ref={fileInputRef}
-        type="file"
-        onChange={handleFileInput}
-        className="hidden"
-      />
+      {onFileSelect && (
+        <input
+          tabIndex={-1}
+          ref={fileInputRef}
+          type="file"
+          onChange={handleFileInput}
+          className="hidden"
+        />
+      )}
       {currentFile && <FilePreview currentFile={currentFile} />}
     </div>
   );

@@ -1,17 +1,31 @@
+import { PreviewQuestionDTO } from '@/entities/test-info';
+import { SavedAnswer, SavedFileAnswerDTO } from '@/entities/test-passing';
+import { FileQuestionDTO } from '@/shared/api/dto';
 import { Filepicker } from '@/shared/ui';
+import { useState } from 'react';
 
 export const FileAnswer = ({
-  setAnswer,
-  currentAnswer,
+  question,
+  setCurrentAnswer,
 }: {
-  setAnswer?: (answer: File) => void;
-  currentAnswer: File;
+  previewAnswer?: PreviewQuestionDTO;
+  question: FileQuestionDTO;
+  setCurrentAnswer?: (answer: SavedAnswer) => void;
+  currentAnswer?: SavedFileAnswerDTO | null;
 }) => {
+  const [file, setFile] = useState<File | null>(null);
+
   return (
     <>
       <Filepicker
-        currentFile={currentAnswer}
-        onFileSelect={setAnswer}
+        currentFile={file}
+        onFileSelect={file => {
+          setCurrentAnswer?.({
+            userFileContent: 'answer',
+            questionId: question.id,
+          });
+          setFile(file);
+        }}
       />
     </>
   );

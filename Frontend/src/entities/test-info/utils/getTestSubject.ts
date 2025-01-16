@@ -21,6 +21,6 @@ const subjectLabels: { [key: string]: string } = {
 };
 
 export const getTestSubject = (subject: string): string => {
-  return subjectLabels[subject] ?? subjectLabels.unknown;
+  return subjectLabels[subject.toLowerCase()] ?? subjectLabels.unknown;
 };
 

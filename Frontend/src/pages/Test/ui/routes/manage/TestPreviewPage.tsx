@@ -1,33 +1,23 @@
+import { useTestEditing } from '@/entities/test-editing';
 import { TestTitle } from '@/entities/test-info';
-import { testWithQuestionsMOCK } from '@/entities/test-passing/MOCK';
 import { QuestionsPreview } from '@/widgets/test-questions-preview';
-import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const TestPreviewPage = () => {
-  // TODO_1 запрос useTest (взять оттуда тесты)
-  const { testId } = useParams();
+  const { testId: id = '' } = useParams();
   const navigate = useNavigate();
+  const { data } = useTestEditing(id);
 
   const handleFinishClick = () => navigate('/tests/my/created');
-  const handleStartClick = () => navigate(`/tests/manage/${testId}/settings`);
-
-  const memoizedTestId = useMemo(() => testId, [testId]);
-
-  if (!memoizedTestId) {
-    return null;
-  }
-
-  const data = testWithQuestionsMOCK;
+  const handleStartClick = () => navigate(`/tests/manage/${data.id}/settings`);
 
   return (
     <section className="w-full">
-      <TestTitle title={data.title} />
+      <TestTitle title={data.name} />
       <QuestionsPreview
-        isPreview
         id={data.id}
         questions={data.questions}
-        totalQuestions={data.totalQuestions}
+        totalQuestions={data.questionsCount}
         handleFinish={handleFinishClick}
         handleStart={handleStartClick}
       />

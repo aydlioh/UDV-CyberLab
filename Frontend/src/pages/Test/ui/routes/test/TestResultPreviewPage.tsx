@@ -1,33 +1,32 @@
-import { TestTitle } from '@/entities/test-info';
-import { testWithQuestionsMOCK } from '@/entities/test-passing/MOCK';
+import { TestTitle, useTestPreview } from '@/entities/test-info';
 import { QuestionsPreview } from '@/widgets/test-questions-preview';
-import { useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const TestPreviewPage = () => {
-  const { testId, resultId } = useParams();
+  const { state } = useLocation();
+  const { testId = '', attemptId = '' } = useParams();
+  const {
+    data: { test, answers },
+  } = useTestPreview({ testId, attemptId });
+
   const navigate = useNavigate();
 
   const handlePreviewFinish = () =>
-    navigate(`/tests/${testId}/results/${resultId}`);
+    navigate(state ? state.from : `/tests/${testId}/results/${attemptId}`);
 
-  const memoizedTestId = useMemo(() => testId, [testId]);
-
-  if (!memoizedTestId) {
-    return null;
-  }
-
-  const data = testWithQuestionsMOCK;
+  // TODO_1 Убрать
+  const handlePreviewStart = () =>
+    navigate(state ? state.from : `/tests/${testId}/results`);
 
   return (
     <section className="w-full">
-      <TestTitle title={data.title} />
+      <TestTitle title={test.name} />
       <QuestionsPreview
-        isPreview
-        id={data.id}
-        questions={data.questions}
-        totalQuestions={data.totalQuestions}
-        handleStart={handlePreviewFinish}
+        answers={answers}
+        id={test.id}
+        questions={test.questions}
+        totalQuestions={test.questions.length}
+        handleStart={handlePreviewStart}
         handleFinish={handlePreviewFinish}
       />
     </section>

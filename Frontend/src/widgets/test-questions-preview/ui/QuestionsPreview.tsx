@@ -1,14 +1,15 @@
 import { parseAsInteger, useQueryState } from 'nuqs';
 import { useEffect } from 'react';
 import { QuestionPreviewCard } from '@/entities/test-question';
-import { IQuestion } from '@/shared/types';
 import { QuestionsPreviewPaginator } from './QuestionPreviewPaginator';
 import { QuestionsPreviewSwitcher } from './QuestionPreviewSwitcher';
+import { QuestionDTO } from '@/shared/api/dto';
+import { TestPreviewDTO } from '@/entities/test-info';
 
 type QuestionsPreviewProps = {
   id: string;
-  isPreview?: boolean;
-  questions: IQuestion[];
+  answers?: TestPreviewDTO;
+  questions: QuestionDTO[];
   totalQuestions: number;
   endContent?: React.ReactNode;
   handleFinish?: () => void;
@@ -17,7 +18,7 @@ type QuestionsPreviewProps = {
 
 export const QuestionsPreview = ({
   id,
-  // isPreview = false,
+  answers,
   questions,
   totalQuestions,
   endContent,
@@ -39,6 +40,9 @@ export const QuestionsPreview = ({
 
   if (!questions.length) return null;
 
+  const question = questions[currentQuestion - 1];
+  const answer = answers && answers.questions.find(a => a.questionId === question.id);
+
   return (
     <div className="flex flex-col w-full pb-10">
       <div className="w-full max-w-[712px] mb-[8px]">
@@ -50,7 +54,7 @@ export const QuestionsPreview = ({
       </div>
       <div className="flex flex-row gap-1 items-start mb-[12px]">
         <div className="w-full max-w-[712px] ">
-          <QuestionPreviewCard {...questions[currentQuestion - 1]} />
+          <QuestionPreviewCard key={question.id} question={question} answer={answer} />
         </div>
         {endContent}
       </div>

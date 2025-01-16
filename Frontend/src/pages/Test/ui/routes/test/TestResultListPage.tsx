@@ -1,19 +1,26 @@
-import { TestTitle } from '@/entities/test-info';
-import { testResultsMOCK } from '@/entities/test-passing/MOCK/testResults';
+import { TestTitle, useTestResults } from '@/entities/test-info';
+import { useAnswers } from '@/entities/test-passing';
 import { BackButton, Card } from '@/shared/ui';
 import { TestResultChart } from '@/widgets/test-result-chart';
 import { TestResultTable } from '@/widgets/test-result-table';
+import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 const TestResultListPage = () => {
-  const { testId } = useParams();
+  const { testId: id = '' } = useParams();
+  const { data } = useTestResults(id);
+  const reset = useAnswers(state => state.reset);
 
-  if (!testId) return null;
-
-  const data = testResultsMOCK;
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   if (data.totalAttempts === 1) {
-    return <Navigate to={`/tests/${testId}/results/${data.attempts[0].id}`} />;
+    return (
+      <Navigate
+        to={`/tests/${data.testId}/results/${data.attempts[0].attemptId}`}
+      />
+    );
   }
 
   return (

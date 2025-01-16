@@ -1,6 +1,6 @@
 import { difficultyFilters, subjectFilters } from '@/entities/filter';
 import { Card, Input, Select, SelectItem } from '@/shared/ui';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 type TestTitleEditProps = {
   initTitle?: string;
@@ -14,7 +14,7 @@ const selectClassNames = {
   },
 };
 
-export const TestTitleEdit = ({
+export const TestTitleEdit = memo(({
   initTitle,
   initDifficulty,
   initSubject,
@@ -87,4 +87,4 @@ export const TestTitleEdit = ({
       </div>
     </Card>
   );
-};
+});

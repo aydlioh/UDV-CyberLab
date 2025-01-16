@@ -52,11 +52,11 @@ export const testRoutes: RouteObject[] = [
                 element: <TestResultListPage />,
               },
               {
-                path: ':resultId',
+                path: ':attemptId',
                 element: <TestResultPage />,
               },
               {
-                path: ':resultId/preview',
+                path: ':attemptId/preview',
                 element: <TestResultPreviewPage />,
               }
             ],

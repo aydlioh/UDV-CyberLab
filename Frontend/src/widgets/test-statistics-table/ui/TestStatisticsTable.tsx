@@ -1,4 +1,4 @@
-import { ITestStatistics } from '@/entities/test-passing';
+import { ITestStatistics } from '@/entities/test-info';
 import { getPercentage } from '@/shared/common/utils';
 import {
   Table,
@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@nextui-org/react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const tableClassNames = {
   wrapper: 'p-2',
@@ -19,9 +20,14 @@ const tableClassNames = {
 
 export const TestStatisticsTable = ({
   results,
+  testId,
 }: {
+  testId: string;
   results: ITestStatistics;
 }) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
   return (
     <Table
       shadow="none"
@@ -32,17 +38,29 @@ export const TestStatisticsTable = ({
     >
       <TableHeader>
         <TableColumn className="sm:pl-[40px] pl-5">№</TableColumn>
-        <TableColumn className="sm:pl-[40px] pl-5">ФИО Студента</TableColumn>
+        <TableColumn className="sm:pl-[40px] pl-5">Студент</TableColumn>
         <TableColumn>Баллы</TableColumn>
       </TableHeader>
-      <TableBody emptyContent="Нет результатов" items={results.users}>
-        {({ id, score, name }) => (
-          <TableRow className="cursor-pointer" key={id}>
-            <TableCell className="sm:pl-[40px] pl-5">{id}</TableCell>
-            <TableCell className="sm:pl-[40px] pl-5">{name}</TableCell>
-            <TableCell>{getPercentage(score, results.maxScore)}%</TableCell>
+      <TableBody emptyContent="Нет результатов">
+        {results.users.map((user, index) => (
+          <TableRow
+            onClick={() =>
+              navigate(`/tests/${testId}/results/${user.attemptId}`, {
+                state: {
+                  from: pathname,
+                },
+              })
+            }
+            className="cursor-pointer"
+            key={index}
+          >
+            <TableCell className="sm:pl-[40px] pl-5">{index + 1}</TableCell>
+            <TableCell className="sm:pl-[40px] pl-5">{user.name}</TableCell>
+            <TableCell>
+              {getPercentage(user.score, results.maxScore)}%
+            </TableCell>
           </TableRow>
-        )}
+        ))}
       </TableBody>
     </Table>
   );

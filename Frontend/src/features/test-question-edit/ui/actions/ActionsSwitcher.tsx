@@ -1,66 +1,37 @@
 /* eslint-disable indent */
-import { QuestionAnswersType, QuestionType } from '@/shared/types';
-import {
-  QuestionEditType,
-  SelectActionCorrectType,
-  SelectActionType,
-} from '../../model/types';
 import { CheckboxAction } from './Checkbox';
 import { RadioAction } from './Radio';
 import { FileAction } from './File';
 import { TextAction } from './Text';
 import { SelectAction } from './Select';
+import { QuestionDTO } from '@/shared/api/dto';
 
-type Actions = {
-  changeCorrectAnswers: (
-    value: QuestionAnswersType[] | string | SelectActionCorrectType[]
-  ) => void;
-  changeAnswers: (value: QuestionAnswersType[]) => void;
+type ActionsSwitcherProps = {
+  changeQuestion: (value: Partial<QuestionDTO>) => void;
+  question: QuestionDTO;
 };
 
 export const ActionsSwitcher = ({
-  answers,
-  correctAnswers,
-  type,
-  changeCorrectAnswers,
-  changeAnswers,
-}: Omit<QuestionEditType, 'id' | 'question' | 'maxScore'> & Actions) => {
-  switch (type) {
-    case QuestionType.Checkbox:
+  question,
+  changeQuestion,
+}: ActionsSwitcherProps) => {
+  switch (question.questionTypeName) {
+    case 'QuestionVariant':
+      if (question.isMultipleChoice) {
+        return (
+          <CheckboxAction question={question} changeQuestion={changeQuestion} />
+        );
+      }
       return (
-        <CheckboxAction
-          answers={answers as string[]}
-          correctAnswers={correctAnswers as string[]}
-          changeAnswers={changeAnswers}
-          changeCorrectAnswers={changeCorrectAnswers}
-        />
+        <RadioAction question={question} changeQuestion={changeQuestion} />
       );
-    case QuestionType.Radio:
+    case 'QuestionOpen':
+      return <TextAction question={question} changeQuestion={changeQuestion} />;
+    case 'QuestionCompliance':
       return (
-        <RadioAction
-          answers={answers as string[]}
-          correctAnswer={correctAnswers as string}
-          changeAnswers={changeAnswers}
-          changeCorrectAnswers={changeCorrectAnswers}
-        />
+        <SelectAction question={question} changeQuestion={changeQuestion} />
       );
-    case QuestionType.Text:
-      return (
-        <TextAction
-          correctAnswers={correctAnswers as string[]}
-          changeCorrectAnswers={changeCorrectAnswers}
-        />
-      );
-    case QuestionType.Select:
-      return (
-        <SelectAction
-          answers={answers as SelectActionType[]}
-          correctAnswers={correctAnswers as SelectActionCorrectType[]}
-          changeAnswers={changeAnswers}
-          changeCorrectAnswers={changeCorrectAnswers}
-        />
-      );
-    case QuestionType.File:
+    case 'QuestionFile':
       return <FileAction />;
     default:
       return <></>;

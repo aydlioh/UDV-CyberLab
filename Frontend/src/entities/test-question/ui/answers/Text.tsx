@@ -1,23 +1,27 @@
+import { SavedAnswer, SavedOpenAnswerDTO } from '@/entities/test-passing';
+import { VariantQuestionDTO } from '@/shared/api/dto';
 import { Textarea } from '@/shared/ui';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export const TextAnswer = ({
-  setAnswer,
+  question,
+  setCurrentAnswer,
   currentAnswer,
 }: {
-  setAnswer?: (answer: string) => void;
-  currentAnswer: string;
+  question: VariantQuestionDTO;
+  setCurrentAnswer: (answer: SavedAnswer) => void;
+  currentAnswer?: SavedOpenAnswerDTO | null;
 }) => {
   const isUnmounting = useRef(false);
-  const [value, setValue] = useState(currentAnswer ?? '');
+  const [value, setValue] = useState(currentAnswer?.answerText ?? '');
 
   const saveAnswer = useCallback(() => {
     if (isUnmounting.current) return;
 
-    if (setAnswer) {
-      setAnswer(value);
+    if (setCurrentAnswer) {
+      setCurrentAnswer({ answerText: value, questionId: question.id });
     }
-  }, [setAnswer, value]);
+  }, [question.id, setCurrentAnswer, value]);
 
   useEffect(() => {
     isUnmounting.current = false;
@@ -30,7 +34,7 @@ export const TextAnswer = ({
 
   return (
     <Textarea
-      isDisabled={!setAnswer}
+      isDisabled={!setCurrentAnswer}
       minRows={1}
       maxRows={6}
       placeholder="Развернутый ответ"

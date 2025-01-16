@@ -1,4 +1,3 @@
-import { ITestAttempt } from '@/entities/test-passing';
 import { getPercentage } from '@/shared/common/utils';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,8 +11,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { ChartTooltip } from './ChartTooltip';
+import { ITestResult } from '@/entities/test-info';
 
-export const TestResultChart = ({ results }: { results: ITestAttempt }) => {
+export const TestResultChart = ({ results }: { results: ITestResult }) => {
   const navigate = useNavigate();
   const data = useMemo(
     () =>

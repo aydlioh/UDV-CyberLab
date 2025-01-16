@@ -7,20 +7,11 @@ import {
 } from '@/entities/test-info';
 import { useAuth } from '@/entities/user';
 import { useTestDetailsModalStore } from '../model/store';
-import { useEffect } from 'react';
 
 export const TestDetailsContent = () => {
   const testId = useTestDetailsModalStore(state => state.testId);
   const userId = useAuth(state => state.user?.userId);
   const { data, isLoading, error } = useTestDetails(testId ?? '');
-
-  useEffect(() => {
-    return () => {
-      if (testId) {
-        close();
-      }
-    };
-  }, []);
 
   if (error || !testId) return null;
 

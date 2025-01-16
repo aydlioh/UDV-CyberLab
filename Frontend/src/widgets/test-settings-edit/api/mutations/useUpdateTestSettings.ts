@@ -5,6 +5,6 @@ import { useMutation } from '@tanstack/react-query';
 export const useUpdateTestSettings = () => {
   return useMutation({
     mutationKey: ['test-settings/update'],
-    mutationFn: testApi.updateTestSettingsById,
+    mutationFn: testApi.updateTestById,
   });
 };

@@ -1,33 +1,38 @@
+import { SavedAnswer, SavedComplianceAnswerDTO } from '@/entities/test-passing';
+import { ComplianceQuestionDTO } from '@/shared/api/dto';
 import { useMediaQuery } from '@/shared/hooks';
 import { Select, SelectItem } from '@/shared/ui';
 
 export const SelectAnswer = ({
-  answers,
-  setAnswer,
+  question,
+  setCurrentAnswer,
   currentAnswer,
 }: {
-  answers: {
-    title: string;
-    items: string[];
-  }[];
-  setAnswer?: (answer: Record<string, string>) => void;
-  currentAnswer: Record<string, string>;
+  question: ComplianceQuestionDTO;
+  setCurrentAnswer: (answer: SavedAnswer) => void;
+  currentAnswer?: SavedComplianceAnswerDTO | null;
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const handleChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
-    title: string
+    key: string
   ) => {
-    if (setAnswer) {
-      setAnswer({ ...currentAnswer, [title]: event.target.value });
+    if (setCurrentAnswer) {
+      setCurrentAnswer({
+        questionId: question.id,
+        userCompliances: {
+          ...currentAnswer?.userCompliances,
+          [key]: event.target.value,
+        },
+      });
     }
   };
 
   return (
     <>
-      {answers.map(({ title, items }) => (
-        <div key={title} className="flex flex-col gap-1">
+      {Object.entries(question.compliances).map(([key, title]) => (
+        <div key={key} className="flex flex-col gap-1">
           <p>{title}</p>
           <Select
             size="sm"
@@ -39,12 +44,14 @@ export const SelectAnswer = ({
             popoverProps={{
               placement: isMobile ? 'top-start' : 'right-start',
             }}
-            selectedKeys={[currentAnswer ? currentAnswer[title] : '']}
-            onChange={e => handleChange(e, title)}
+            selectedKeys={[
+              currentAnswer ? currentAnswer.userCompliances[key] : '',
+            ]}
+            onChange={e => handleChange(e, key)}
             label="Выбрать ответ"
             className="sm:max-w-[300px] w-full"
           >
-            {items.map(item => (
+            {question.variants[key].map(item => (
               <SelectItem key={item}>{item}</SelectItem>
             ))}
           </Select>

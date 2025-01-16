@@ -1,28 +1,77 @@
-import { IQuestion } from '@/shared/types';
 import { Card } from '@/shared/ui';
 import { QuestionTitle } from './QuestionTitle';
 import { QuestionAnswers } from './QuestionAnswers';
-import { useAnswers } from '../model/store';
-import { AnswersInputType } from '../model/types';
+import { QuestionDTO } from '@/shared/api/dto';
+import { parseData, SavedAnswer, useAnswers, useSaveAnswer } from '@/entities/test-passing';
+import { useEffect, useRef, useState } from 'react';
 
-export const QuestionCard = ({ question, type, answers, id }: IQuestion) => {
-  const setAnswer = useAnswers(state => state.setAnswer);
-  const current = useAnswers(state => state.answers[id || question]);
+type QuestionCardProps = {
+  question: QuestionDTO;
+  testId: string;
+  attemptTestId: string;
+  savedAnswer: SavedAnswer | null;
+};
 
-  const setCurrent = (answer: AnswersInputType) => {
-    setAnswer(id || question, answer);
+export const QuestionCard = ({
+  question,
+  savedAnswer,
+  testId,
+  attemptTestId,
+}: QuestionCardProps) => {
+  const saveAnswer = useAnswers(state => state.saveAnswer);
+  const ref = useRef<SavedAnswer | null>();
+  const { mutateAsync, isPending } = useSaveAnswer();
+  const [answer, setAnswer] = useState(savedAnswer);
+
+  const setCurrentAnswer = (answer: SavedAnswer) => {
+    ref.current = answer;
+    setAnswer(answer);
+    saveAnswer(question.id, answer);
   };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      const newData = { ...savedAnswer, ...ref.current } as SavedAnswer;
+
+      if (!isPending) {
+        mutateAsync({
+          id: testId,
+          body: parseData(attemptTestId, newData, question.questionTypeName),
+        });
+      }
+
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [mutateAsync]);
+
+  useEffect(() => {
+    return () => {
+      if (!ref.current) return;
+      const newData = { ...savedAnswer, ...ref.current };
+      mutateAsync({
+        id: testId,
+        body: parseData(attemptTestId, newData, question.questionTypeName),
+      });
+    };
+  }, []);
 
   return (
     <Card className="relative">
       <div className="p-[40px] flex flex-col gap-[20px] z-1">
-        <QuestionTitle question={question} />
+        <QuestionTitle question={question.text} />
         <QuestionAnswers
-          key={id}
-          type={type}
-          answers={answers}
-          setCurrent={setCurrent}
-          current={current}
+          key={question.id}
+          type={question.questionTypeName}
+          question={question}
+          setCurrentAnswer={setCurrentAnswer}
+          currentAnswer={answer}
         />
       </div>
     </Card>

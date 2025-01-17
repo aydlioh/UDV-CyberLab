@@ -1,12 +1,8 @@
 import { TestTitle, useTestPreview } from '@/entities/test-info';
 import { QuestionsPreview } from '@/widgets/test-questions-preview';
-import { useMemo } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const TestPreviewPage = () => {
-  const { state } = useLocation();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const redirectPath = useMemo(() => state?.from, []);
   const { testId = '', attemptId = '' } = useParams();
   const {
     data: { test, answers },
@@ -15,11 +11,7 @@ const TestPreviewPage = () => {
   const navigate = useNavigate();
 
   const handlePreviewFinish = () =>
-    navigate(redirectPath || `/tests/${testId}/results/${attemptId}`);
-
-  // TODO_1 Убрать
-  const handlePreviewStart = () =>
-    navigate(redirectPath || `/tests/${testId}/results`);
+    navigate(`/tests/${testId}/results/${attemptId}`);
 
   return (
     <section className="w-full">
@@ -29,7 +21,7 @@ const TestPreviewPage = () => {
         id={test.id}
         questions={test.questions}
         totalQuestions={test.questions.length}
-        handleStart={handlePreviewStart}
+        handleStart={handlePreviewFinish}
         handleFinish={handlePreviewFinish}
       />
     </section>

@@ -33,7 +33,8 @@ export const QuestionEditCard = ({
     }
   }, [mutateAsync, question.id, setQuestion]);
 
-  const handleChangeAnswers = useCallback((value: Partial<QuestionDTO>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleChangeAnswers = useCallback((_: Partial<QuestionDTO>) => {
     // setCurrentSettings(prev => ({ ...prev, answers: value }));
   }, []);
 

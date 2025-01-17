@@ -1,15 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { testApi } from '../services/testAPI';
 import { CreateTestDTO } from '../../model/dto';
+import dayjs from 'dayjs';
 
 const createTestMock: CreateTestDTO = {
   name: 'Новый тест',
   description: '',
   theme: '',
   difficulty: '',
-  attemptsCount: 0,
-  startTestTime: '2025-01-11T08:53:45.619Z',
-  endTestTime: '2025-02-11T08:53:45.619Z',
+  attemptsCount: 1,
+  startTestTime: dayjs().toISOString(),
+  endTestTime: dayjs().add(1, 'month').toISOString(),
   passTestTime: '10:00:00',
   maxPoints: 0,
 };

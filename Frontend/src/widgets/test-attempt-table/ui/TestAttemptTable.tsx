@@ -1,4 +1,4 @@
-import { ITestAttempt } from '@/entities/test-passing';
+import { TestAttemptDTO } from '@/entities/test-info';
 import {
   Table,
   TableBody,
@@ -22,7 +22,7 @@ export const TestAttemptTable = ({
   result,
   testId,
 }: {
-  result: ITestAttempt;
+  result: TestAttemptDTO;
   testId: string;
 }) => {
   const navigate = useNavigate();
@@ -39,29 +39,29 @@ export const TestAttemptTable = ({
         <TableColumn className="pl-[40px]">Вопрос</TableColumn>
         <TableColumn>Баллы</TableColumn>
       </TableHeader>
-      <TableBody emptyContent="Нет результатов" items={result.results}>
-        {({ id, number, score, maxScore }) => (
+      <TableBody emptyContent="Нет результатов" items={result.questions}>
+        {result.questions.map((question, index) => (
           <TableRow
             className="cursor-pointer"
             onClick={() =>
               navigate(
-                `/tests/${testId}/results/${result.id}/preview?question=${id}`
+                `/tests/${testId}/results/${result.id}/preview?question=${index + 1}`
               )
             }
-            key={id}
+            key={question.id}
           >
-            <TableCell className="pl-[40px] w-1/2">{number}</TableCell>
+            <TableCell className="pl-[40px] w-1/2">{index + 1}</TableCell>
             <TableCell
               className={clsx(
                 'text-red-300',
-                score === maxScore && 'text-green-500',
-                score === 0 && 'text-red-500'
+                question.scoredPoints === question.maxPoints && 'text-green-500',
+                question.scoredPoints === 0 && 'text-red-500'
               )}
             >
-              {score}/{maxScore}
+              {question.scoredPoints}/{question.maxPoints}
             </TableCell>
           </TableRow>
-        )}
+        ))}
       </TableBody>
     </Table>
   );

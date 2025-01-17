@@ -3,11 +3,10 @@ export interface CreateTestDTO {
   description: string;
   theme: string;
   difficulty: string;
-  attemptsCount: number;
-
+  maxPoints: number;
+  
   startTestTime: string;
   endTestTime: string;
   passTestTime?: string;
-
-  maxPoints: number;
+  attemptsCount: number;
 }

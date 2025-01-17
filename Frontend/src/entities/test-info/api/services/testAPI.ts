@@ -7,6 +7,7 @@ import {
   TestStatisticsDTO,
   TestResultDTO,
   TestPreviewDTO,
+  TestAttemptDTO,
 } from '../../model/dto';
 import {
   ITestPreview,
@@ -37,6 +38,13 @@ class TestApi {
       `/api/Test/${id}/results`
     );
     return mapTestResult(response);
+  }
+
+  public async getUserTestById(attemptId: string): Promise<TestAttemptDTO> {
+    const response = await axiosClient.get<TestAttemptDTO>(
+      `/api/Test/results/${attemptId}`
+    );
+    return response;
   }
 
   public async getUserTestPreviewById({

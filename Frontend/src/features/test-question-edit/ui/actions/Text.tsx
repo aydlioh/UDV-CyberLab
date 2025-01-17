@@ -1,32 +1,36 @@
-import { Button, Input } from '@/shared/ui';
-import { Switch } from '@nextui-org/react';
-import { IoMdClose } from 'react-icons/io';
-import { IoAdd } from 'react-icons/io5';
+import { OpenQuestionDTO } from '@/shared/api/dto';
+import { Input } from '@/shared/ui';
 
 export const TextAction = ({
-  correctAnswers,
-  changeCorrectAnswers,
+  question,
 }: {
-  correctAnswers?: string[];
-  changeCorrectAnswers?: (value: string[]) => void;
+  question: OpenQuestionDTO;
+  changeQuestion: (value: Partial<OpenQuestionDTO>) => void;
 }) => {
-  const handleChangeAnswer = (index: number, value: string) => {
-    changeCorrectAnswers?.(
-      correctAnswers?.map((answer, i) => (i === index ? value : answer)) ?? []
-    );
-  };
+  // const handleChangeAnswer = (index: number, value: string) => {
+  //   changeCorrectAnswers?.(
+  //     correctAnswers?.map((answer, i) => (i === index ? value : answer)) ?? []
+  //   );
+  // };
 
-  const handleAddNewAnswer = (newAnswer: string) => {
-    changeCorrectAnswers?.([...(correctAnswers ?? []), newAnswer]);
-  };
+  // const handleAddNewAnswer = (newAnswer: string) => {
+  //   changeCorrectAnswers?.([...(correctAnswers ?? []), newAnswer]);
+  // };
 
-  const handleDeleteAnswer = (index: number) => {
-    changeCorrectAnswers?.(correctAnswers?.filter((_, i) => i !== index) ?? []);
-  };
+  // const handleDeleteAnswer = (index: number) => {
+  //   changeCorrectAnswers?.(correctAnswers?.filter((_, i) => i !== index) ?? []);
+  // };
 
   return (
     <div>
-      <div className="flex flex-row gap-2 items-center mb-3">
+      <Input
+        value={question?.answer}
+        // onValueChange={value => handleChangeAnswer(index, value)}
+        className="w-full mr-2"
+        variant="underlined"
+      />
+      {/* //TODO_1 Доделать */}
+      {/* <div className="flex flex-row gap-2 items-center mb-3">
         <span className="text-[13px]">Начислять баллы за любой ответ</span>
         <Switch
           size="sm"
@@ -38,9 +42,9 @@ export const TextAction = ({
           }}
           aria-label="Automatic updates"
         />
-      </div>
+      </div> */}
       <div>
-        {correctAnswers?.length ? (
+        {/* {correctAnswers?.length ? (
           <>
             <p className="text-second text-[13px] my-2">
               Принимаемые варианты ответа:
@@ -92,7 +96,7 @@ export const TextAction = ({
               Добавить
             </Button>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

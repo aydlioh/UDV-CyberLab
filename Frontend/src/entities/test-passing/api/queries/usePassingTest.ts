@@ -4,17 +4,18 @@ import { useEffect } from 'react';
 import { useAnswers } from '../../model/store';
 
 export const usePassingTest = (id: string, attemptId: string) => {
-  const { data, isSuccess } = useSuspenseQuery({
+  const setQuestions = useAnswers(state => state.setQuestions);
+  const { data } = useSuspenseQuery({
     queryKey: ['test/passing', id],
     queryFn: async () =>
       await testPassingApi.getPassingTestById({ id, attemptId }),
   });
 
   useEffect(() => {
-    useAnswers
-      .getState()
-      .setQuestions(data?.questions || [], data?.totalQuestions || 0);
-  }, [isSuccess, data]);
+    if (data) {
+      setQuestions(data.questions, data.totalQuestions);
+    }
+  }, [data, setQuestions]);
 
   return { data };
 };

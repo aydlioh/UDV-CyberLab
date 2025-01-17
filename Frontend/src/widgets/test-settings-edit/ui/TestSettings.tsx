@@ -1,150 +1,99 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Card, Input } from '@/shared/ui';
-import { useState } from 'react';
-import { DatePicker, Switch, TimeInput } from '@nextui-org/react';
+import { useEffect, useRef, useState } from 'react';
+import { DateRangePicker, Switch, TimeInput } from '@nextui-org/react';
+import { TestEditingDTO } from '@/entities/test-editing';
+import {
+  parseAbsoluteToLocal,
+  parseTime,
+  Time,
+  ZonedDateTime,
+} from '@internationalized/date';
+import { useUpdateTestSettings } from '../api/mutations/useUpdateTestSettings';
 
-// TODO_1 добавить когда время начала/конца будет опциональным
-// const selectClassNames = {
-//   itemClasses: {
-//     base: 'data-[hover=true]:bg-controls data-[selectable=true]:focus:text-foreground data-[hover=true]:text-foreground data-[selectable=true]:focus:bg-controls',
-//   },
-// };
+export const TestSettings = ({ data }: { data: TestEditingDTO }) => {
+  const { mutate } = useUpdateTestSettings();
+  const ref = useRef<TestEditingDTO | null>(null);
+  const [isLimited, _] = useState<boolean>(true);
+  const [withTimeLimit, setWithTimeLimit] = useState<boolean>(
+    Boolean(data.passTestTime)
+  );
 
-export const TestSettings = () => {
-  // TODO_1 добавить когда время начала/конца будет опциональным
-  // const [startDateType, setStartDateType] = useState<string>('');
-  // const [endDateType, setEndDateType] = useState<string>('');
-  const [isLimited, setIsLimited] = useState<boolean>(false);
-  const [withTimeLimit, setWithTimeLimit] = useState<boolean>(false);
+  const [testDates, setTestDates] = useState<{
+    start: ZonedDateTime;
+    end: ZonedDateTime;
+  }>({
+    start: parseAbsoluteToLocal(data.startTestTime),
+    end: parseAbsoluteToLocal(data.endTestTime),
+  });
 
-  const [startDate, setStartDate] = useState<string | null>(null);
-  const [endDate, setEndDate] = useState<string | null>(null);
-  const [attemptsCount, setAttemptsCount] = useState<number>(1);
-  const [testDuration, setTestDuration] = useState<string | null>(null);
+  const [attemptsCount, setAttemptsCount] = useState<number>(
+    data.attemptsCount
+  );
+
+  const [testDuration, setTestDuration] = useState<Time | null>(
+    data.passTestTime ? parseTime(data.passTestTime) : null
+  );
+  useEffect(() => {
+    return () => {
+      if (ref.current) {
+        mutate(ref.current);
+      }
+    };
+  }, [mutate]);
+
+  useEffect(() => {
+    ref.current = {
+      ...data,
+      startTestTime: testDates.start.toAbsoluteString(),
+      endTestTime: testDates.end.toAbsoluteString(),
+      attemptsCount,
+      passTestTime: withTimeLimit ? testDuration?.toString() : undefined,
+    };
+  }, [attemptsCount, data, testDates.end, testDates.start, testDuration, withTimeLimit]);
 
   return (
     <Card className="sm:p-[40px] p-[25px]">
       <div className="mb-6">
         <div className="flex sm:flex-row flex-col gap-3 mb-4">
-          <div className="sm:w-1/2 flex flex-col gap-4">
-            {/* // TODO_1 добавить когда время начала/конца будет опциональным */}
-            {/* <Select
-              color="white"
-              aria-label="Время открытия теста"
-              label="Время открытия теста"
-              listboxProps={selectClassNames}
-              popoverProps={{
-                placement: 'bottom-end',
-              }}
-              selectedKeys={[startDateType]}
-              onChange={e => setStartDateType(e.target.value)}
-              className="w-full"
-              classNames={{
-                value: 'text-[16px] text-foreground/50',
-              }}
-            >
-              {startDates.map(({ label, key }) => (
-                <SelectItem key={key}>{label}</SelectItem>
-              ))}
-            </Select>
-            {startDateType === 'fixed' && endDateType !== 'fixed' && ( */}
-            <DatePicker
-              isRequired
-              errorMessage="Заполните дату и время открытия"
-              dateInputClassNames={{
-                input: 'text-[16px] text-foreground',
-                inputWrapper:
-                  'hover:bg-controls focus-within:hover:bg-controls',
-              }}
-              classNames={{
-                timeInput: 'text-[16px] text-foreground',
-                selectorIcon:
-                  'text-foreground/90 group-data-[invalid=true]:text-rose-500',
-              }}
-              radius="sm"
-              size="lg"
-              aria-label="Время открытия"
-            />
-            {/* )} */}
-          </div>
-          <div className="sm:w-1/2 flex flex-col gap-4">
-            {/* // TODO_1 добавить когда время начала/конца будет опциональным */}
-            {/* <Select
-              color="white"
-              aria-label="Время закрытия теста"
-              label="Время закрытия теста"
-              listboxProps={selectClassNames}
-              popoverProps={{
-                placement: 'bottom-end',
-              }}
-              selectedKeys={[endDateType]}
-              onChange={e => setEndDateType(e.target.value)}
-              className="w-full"
-              classNames={{
-                value: 'text-[16px] text-foreground/50',
-              }}
-            >
-              {endDates.map(({ label, key }) => (
-                <SelectItem key={key}>{label}</SelectItem>
-              ))}
-            </Select>
-            {endDateType === 'fixed' && startDateType !== 'fixed' && ( */}
-            <DatePicker
-              isRequired
-              errorMessage="Заполните дату и время закрытия"
-              dateInputClassNames={{
-                input: 'text-[16px] text-foreground',
-                inputWrapper:
-                  'hover:bg-controls focus-within:hover:bg-controls',
-              }}
-              classNames={{
-                timeInput: 'text-[16px] text-foreground',
-                selectorIcon:
-                  'text-foreground/90 group-data-[invalid=true]:text-rose-500',
-              }}
-              radius="sm"
-              size="lg"
-              aria-label="Время закрытия"
-            />
-            {/* )} */}
-          </div>
+          <div className="sm:w-1/2 flex flex-col gap-4"></div>
+          <div className="sm:w-1/2 flex flex-col gap-4"></div>
         </div>
-        {/* // TODO_1 добавить когда время начала/конца будет опциональным */}
-        {/* {startDateType === 'fixed' && endDateType === 'fixed' && (
-          <div>
-            <DateRangePicker
-              isRequired
-              calendarProps={{
-                classNames: {
-                  title: 'text-[15px] text-foreground',
-                  prevButton:
-                    'text-foreground/80 data-[hover=true]:bg-second/10',
-                  nextButton:
-                    'text-foreground/80 data-[hover=true]:bg-second/10',
-                  gridHeaderCell: 'text-foreground/80',
-                  cellButton:
-                    'data-[outside-month=true]:text-second/40 data-[selected=true]:data-[selection-start=true]:data-[range-selection=true]:bg-main-gradient data-[selected=true]:data-[selection-end=true]:data-[range-selection=true]:bg-second-gradient data-[selected=true]:data-[range-selection=true]:before:bg-second/15 data-[selected=true]:data-[range-selection=true]:text-foreground hover:bg-second/10 data-[outside-month=true]:hover:bg-transparent',
-                },
-              }}
-              errorMessage="Заполните дату и время экзамена"
-              classNames={{
-                timeInput: 'text-[16px] text-foreground',
-                selectorIcon:
-                  'text-foreground/90 group-data-[invalid=true]:text-rose-500',
-              }}
-              radius="sm"
-              size="lg"
-              aria-label="Время"
-            />
-          </div>
-        )} */}
+        <DateRangePicker
+          label="Время теста"
+          labelPlacement="inside"
+          isRequired
+          value={testDates as any}
+          onChange={e => setTestDates(e as any)}
+          calendarProps={{
+            classNames: {
+              title: 'text-[15px] text-foreground',
+              prevButton: 'text-foreground/80 data-[hover=true]:bg-second/10',
+              nextButton: 'text-foreground/80 data-[hover=true]:bg-second/10',
+              gridHeaderCell: 'text-foreground/80',
+              cellButton:
+                'data-[outside-month=true]:text-second/40 data-[selected=true]:data-[selection-start=true]:data-[range-selection=true]:bg-main-gradient data-[selected=true]:data-[selection-end=true]:data-[range-selection=true]:bg-second-gradient data-[selected=true]:data-[range-selection=true]:before:bg-second/15 data-[selected=true]:data-[range-selection=true]:text-foreground hover:bg-second/10 data-[outside-month=true]:hover:bg-transparent',
+            },
+          }}
+          errorMessage="Неверный формат даты и времени теста"
+          classNames={{
+            timeInput: 'text-[16px] text-foreground',
+            selectorIcon:
+              'text-foreground/90 group-data-[invalid=true]:text-rose-500',
+          }}
+          radius="sm"
+          size="lg"
+          aria-label="Время"
+        />
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
           <div className="flex flex-row gap-2 items-center">
             <p>Ограничить количество попыток</p>
             <Switch
-              value={String(isLimited)}
-              onValueChange={setIsLimited}
+              isSelected
+              isDisabled
               size="sm"
               classNames={{
                 thumb:
@@ -161,7 +110,8 @@ export const TestSettings = () => {
                 Количество попыток:
               </p>
               <Input
-                defaultValue="1"
+                value={String(attemptsCount)}
+                onChange={e => setAttemptsCount(Number(e.target.value))}
                 isRequired
                 color="white"
                 size="sm"
@@ -180,8 +130,8 @@ export const TestSettings = () => {
           <div className="flex flex-row gap-2 items-center">
             <p>Ограничить по времени</p>
             <Switch
-              value={String(withTimeLimit)}
-              onValueChange={setWithTimeLimit}
+              isSelected={withTimeLimit}
+              onChange={e => setWithTimeLimit(e.target.checked)}
               size="sm"
               classNames={{
                 thumb:
@@ -198,6 +148,10 @@ export const TestSettings = () => {
                 Длительность теста:
               </p>
               <TimeInput
+                value={testDuration as any}
+                onChange={(e: any) => {
+                  setTestDuration(e);
+                }}
                 isRequired
                 className="w-[60px]"
                 hideTimeZone

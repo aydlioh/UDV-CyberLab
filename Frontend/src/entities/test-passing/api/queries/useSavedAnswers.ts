@@ -4,14 +4,17 @@ import { useEffect } from 'react';
 import { useAnswers } from '../../model/store';
 
 export const useSavedAnswers = (id: string) => {
-  const { data, isSuccess } = useSuspenseQuery({
+  const saveAnswers = useAnswers(state => state.saveAnswers);
+  const { data } = useSuspenseQuery({
     queryKey: ['test/savedAnswers', id],
     queryFn: async () => await testPassingApi.getSavedAnswers(id),
   });
 
   useEffect(() => {
-    useAnswers.getState().saveAnswers(data);
-  }, [isSuccess, data]);
+    if (data) {
+      saveAnswers(data);
+    }
+  }, [saveAnswers, data]);
 
   return { data };
 };

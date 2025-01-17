@@ -12,13 +12,26 @@ export const TestEditList = ({ questions }: TestEditListProps) => {
   const [editList, setEditList] = useState<QuestionDTO[]>(questions);
 
   const handleAddQuestion = useCallback(
-    () => setEditList(prev => [...prev, { id: crypto.randomUUID() } as QuestionDTO]),
+    () =>
+      setEditList(prev => [
+        ...prev,
+        { id: crypto.randomUUID() } as QuestionDTO,
+      ]),
     [setEditList]
   );
 
   return (
     <div>
       <ul className="flex flex-col gap-3 mb-2">
+        {editList.map((question, index) => (
+          <li key={question.id}>
+            <QuestionEditCard
+              setQuestion={setEditList}
+              index={index + 1}
+              question={question}
+            />
+          </li>
+        ))}
         {editList.map((question, index) => (
           <li key={question.id}>
             <QuestionEditCard

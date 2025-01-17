@@ -8,6 +8,7 @@ export * from './model/types/ITestStatistics';
 export * from './model/types/ITestResult';
 
 export * from './model/dto/TestPreviewDTO';
+export * from './model/dto/TestAttemptDTO';
 
 export * from './utils/getTestStatus';
 
@@ -21,6 +22,7 @@ export * from './api/queries/useTestDetails';
 export * from './api/queries/useTestPreview';
 export * from './api/queries/useTestStatistics';
 export * from './api/queries/useTestResults';
+export * from './api/queries/useTestAttempt';
 
 export * from './api/mutations/useCreateTest';
 export * from './api/mutations/useDeleteTest';

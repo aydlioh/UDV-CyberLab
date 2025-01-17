@@ -1,11 +1,15 @@
 import { TestSettings } from '@/widgets/test-settings-edit';
 import { SettingsTestSwitcher } from './ui/SettingsTestSwitcher';
+import { useTestEditing } from '@/entities/test-editing';
+import { useParams } from 'react-router-dom';
 
 const TestSettingsPage = () => {
-  // TODO_1 запрос useTest
+  const { testId = '' } = useParams();
+  const { data } = useTestEditing(testId);
+
   return (
     <section className="flex flex-col gap-[12px]">
-      <TestSettings />
+      <TestSettings data={data} />
       <SettingsTestSwitcher />
     </section>
   );

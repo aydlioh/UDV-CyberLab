@@ -11,7 +11,7 @@ type QuestionsProps = {
   id: string;
   attemptTestId: string;
   questions: QuestionDTO[];
-  otherAnswers: SavedAnswerWithKey[];
+  answers: SavedAnswerWithKey[];
   savedAnswers: SavedAnswer[];
   totalQuestions: number;
   endContent?: React.ReactNode;
@@ -22,7 +22,7 @@ export const Questions = ({
   attemptTestId,
   questions,
   savedAnswers,
-  otherAnswers,
+  answers,
   totalQuestions,
   endContent,
 }: QuestionsProps) => {
@@ -62,7 +62,7 @@ export const Questions = ({
         <div className="w-full max-w-[712px] ">
           <QuestionCard
             savedAnswer={
-              otherAnswers.find(a => a.id === q.id)?.data ||
+              answers.find(a => a.id === q.id)?.data ||
               savedAnswers.find(a => a.questionId === q.id) ||
               null
             }

@@ -1,5 +1,4 @@
 export * from './model/types/ITestPassing';
-export * from './model/types/ITestAttempt';
 
 export * from './model/dto/SavedAnswersDTO';
 
@@ -12,4 +11,5 @@ export * from './api/mutations/useStartTest';
 export * from './api/mutations/useSaveAnswer';
 
 export * from './model/store';
+export * from './model/hooks/useCurrentTest';
 export * from './utils/parseData';

@@ -7,9 +7,7 @@ import { useTestEditing } from '@/entities/test-editing';
 const EditCustomPage = () => {
   const { testId: id = '' } = useParams();
   const { data } = useTestEditing(id);
-
-  console.log(data);
-
+  
   return (
     <section className="flex flex-col gap-[12px]">
       <TestTitleEdit

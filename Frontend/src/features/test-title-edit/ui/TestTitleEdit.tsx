@@ -31,7 +31,7 @@ export const TestTitleEdit = memo(({
           value={title}
           onChange={e => setTitle(e.target.value)}
           placeholder="Название теста"
-          className="sm:max-w-[308px]"
+          className="sm:max-w-[400px]"
           classNames={{
             inputWrapper: 'h-[40px] px-3',
             input:

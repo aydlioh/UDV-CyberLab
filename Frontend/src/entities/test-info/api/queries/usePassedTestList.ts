@@ -5,5 +5,6 @@ export const usePassedTestList = () => {
   return useSuspenseQuery({
     queryKey: ['tests', { passed: true }],
     queryFn: testApi.getPassedTests,
+    staleTime: 2000,
   });
 };

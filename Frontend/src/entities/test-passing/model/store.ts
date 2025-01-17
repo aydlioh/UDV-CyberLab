@@ -1,10 +1,12 @@
 import { create } from 'zustand';
 import { SavedAnswer, SavedAnswerWithKey } from './dto';
+import { QuestionDTO } from '@/shared/api/dto';
 
 type AnswersState = {
   count: number;
   answers: SavedAnswerWithKey[];
-  saveAnswers: (answers: SavedAnswerWithKey[], totalQuestions: number) => void;
+  saveAnswers: (answers: SavedAnswer[]) => void;
+  setQuestions: (questions: QuestionDTO[], totalQuestions: number) => void;
   saveAnswer: (id: string, answer: SavedAnswer) => void;
   reset: () => void;
   getAnswersBooleanArray: () => boolean[];
@@ -13,8 +15,23 @@ type AnswersState = {
 export const useAnswers = create<AnswersState>((set, get) => ({
   count: 0,
   answers: [],
-  saveAnswers: (answers: SavedAnswerWithKey[], totalQuestions: number) =>
-    set({ answers, count: totalQuestions }),
+  setQuestions: (questions, totalQuestions: number) =>
+    set({
+      answers: questions.map(question => ({
+        id: question.id,
+        data: null,
+      })),
+      count: totalQuestions,
+    }),
+  saveAnswers: savedAnswers =>
+    set({
+      answers: get().answers.map(question => ({
+        id: question.id,
+        data:
+          savedAnswers.find(answer => answer.questionId === question.id) ||
+          null,
+      })),
+    }),
   saveAnswer: (id: string, answer: SavedAnswer) => {
     set({
       answers: get().answers.map(a =>

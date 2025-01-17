@@ -1,6 +1,6 @@
 import { axiosClient } from '@/shared/api';
 import { ITestPassing } from '../../model/types/ITestPassing';
-import { SavedAnswersDTO, UserTestDTO } from '../../model/dto';
+import { SavedAnswer, SavedAnswersDTO, UserTestDTO } from '../../model/dto';
 import { TestDTO } from '@/shared/api/dto';
 import { mapTestPassing } from '../../model/mappers';
 
@@ -10,11 +10,26 @@ type SaveAnswerType = {
 };
 
 class TestPassingApi {
-  public async getSavedAnswers(id: string): Promise<SavedAnswersDTO> {
-    return await axiosClient.get(`/api/TestPassing/${id}/answers`);
+  public async getSavedAnswers(id: string): Promise<SavedAnswer[]> {
+    try {
+      const answers = await axiosClient.get<SavedAnswersDTO>(
+        `/api/TestPassing/${id}/answers`
+      );
+
+      const savedAnswers = [
+        ...answers.openAnswers,
+        ...answers.variantAnswers,
+        ...answers.complianceAnswers,
+        ...answers.fileAnswers,
+      ];
+
+      return savedAnswers;
+    } catch {
+      return [];
+    }
   }
 
-  public async startTest(id: string): Promise<void> {
+  public async startTest(id: string): Promise<{ userTestId: string }> {
     return await axiosClient.post(`/api/TestPassing/${id}/start`, {});
   }
 
@@ -26,31 +41,22 @@ class TestPassingApi {
     return await axiosClient.post(`/api/TestPassing/${id}/finish`, {});
   }
 
-  public async getPassingTestById(id: string): Promise<ITestPassing | null> {
-    // TODO_1 Разделить запросы
+  public async getPassingTestById({
+    id,
+    attemptId,
+  }: {
+    id: string;
+    attemptId: string;
+  }): Promise<ITestPassing | null> {
     try {
       const test = await axiosClient.get<TestDTO>(`/api/Test/${id}`);
-      const answers = await this.getSavedAnswers(id);
       const userTest = await axiosClient.get<UserTestDTO>(
-        `/api/Test/userTest/${answers.userTestId}`
+        `/api/Test/userTest/${attemptId}`
       );
-
-      const savedAnswers = [
-        ...answers.openAnswers,
-        ...answers.variantAnswers,
-        ...answers.complianceAnswers,
-        ...answers.fileAnswers,
-      ];
 
       return mapTestPassing({
         testInfo: test,
-        answers: test.questions.map(question => ({
-          id: question.id,
-          data:
-            savedAnswers.find(answer => answer.questionId === question.id) ||
-            null,
-        })),
-        userTestId: answers.userTestId,
+        userTestId: attemptId,
         leftTestTime: userTest.leftTestTime,
       });
     } catch (e) {

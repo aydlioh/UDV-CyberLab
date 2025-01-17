@@ -5,13 +5,14 @@ import { QuestionCard } from '@/entities/test-question';
 import { QuestionsSwitcher } from './QuestionsSwitcher';
 import { useMediaQuery } from '@/shared/hooks';
 import { QuestionDTO } from '@/shared/api/dto';
-import { SavedAnswerWithKey } from '@/entities/test-passing';
+import { SavedAnswer, SavedAnswerWithKey } from '@/entities/test-passing';
 
 type QuestionsProps = {
   id: string;
   attemptTestId: string;
   questions: QuestionDTO[];
-  savedAnswers: SavedAnswerWithKey[];
+  otherAnswers: SavedAnswerWithKey[];
+  savedAnswers: SavedAnswer[];
   totalQuestions: number;
   endContent?: React.ReactNode;
 };
@@ -21,6 +22,7 @@ export const Questions = ({
   attemptTestId,
   questions,
   savedAnswers,
+  otherAnswers,
   totalQuestions,
   endContent,
 }: QuestionsProps) => {
@@ -59,7 +61,11 @@ export const Questions = ({
       <div className="flex flex-row gap-1 items-start mb-[12px]">
         <div className="w-full max-w-[712px] ">
           <QuestionCard
-            savedAnswer={savedAnswers.find(a => a.id === q.id)?.data || null}
+            savedAnswer={
+              otherAnswers.find(a => a.id === q.id)?.data ||
+              savedAnswers.find(a => a.questionId === q.id) ||
+              null
+            }
             key={q.id}
             testId={id}
             attemptTestId={attemptTestId}

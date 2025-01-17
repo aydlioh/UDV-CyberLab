@@ -19,18 +19,25 @@ export const TestResultChart = ({ results }: { results: ITestResult }) => {
     () =>
       results.attempts.map(item => ({
         id: item.attempt,
+        attemptId: item.attemptId,
         value: getPercentage(item.score, item.maxScore),
       })),
     [results.attempts]
   );
 
   return (
-    <ResponsiveContainer className="sm:mt-[20px] mt-1" width="100%" height={360}>
+    <ResponsiveContainer
+      className="sm:mt-[20px] mt-1"
+      width="100%"
+      height={360}
+    >
       <LineChart
         margin={{ top: 40, right: 30, left: 0, bottom: 25 }}
         onClick={e => {
           if (e.activeLabel) {
-            navigate(`/tests/${results.testId}/results/${e.activeLabel}`);
+            navigate(
+              `/tests/${results.testId}/results/${e.activePayload?.[0].payload.attemptId}`
+            );
           }
         }}
         data={data}

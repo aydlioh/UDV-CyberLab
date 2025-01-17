@@ -2,8 +2,13 @@ import { Card } from '@/shared/ui';
 import { QuestionTitle } from './QuestionTitle';
 import { QuestionAnswers } from './QuestionAnswers';
 import { QuestionDTO } from '@/shared/api/dto';
-import { parseData, SavedAnswer, useAnswers, useSaveAnswer } from '@/entities/test-passing';
-import { useEffect, useRef, useState } from 'react';
+import {
+  parseData,
+  SavedAnswer,
+  useAnswers,
+  useSaveAnswer,
+} from '@/entities/test-passing';
+import { useEffect, useRef } from 'react';
 
 type QuestionCardProps = {
   question: QuestionDTO;
@@ -21,18 +26,15 @@ export const QuestionCard = ({
   const saveAnswer = useAnswers(state => state.saveAnswer);
   const ref = useRef<SavedAnswer | null>();
   const { mutateAsync, isPending } = useSaveAnswer();
-  const [answer, setAnswer] = useState(savedAnswer);
 
-  const setCurrentAnswer = (answer: SavedAnswer) => {
-    ref.current = answer;
-    setAnswer(answer);
-    saveAnswer(question.id, answer);
+  const setCurrentAnswer = (a: SavedAnswer) => {
+    ref.current = a;
+    saveAnswer(question.id, a);
   };
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       const newData = { ...savedAnswer, ...ref.current } as SavedAnswer;
-
       if (!isPending) {
         mutateAsync({
           id: testId,
@@ -71,7 +73,7 @@ export const QuestionCard = ({
           type={question.questionTypeName}
           question={question}
           setCurrentAnswer={setCurrentAnswer}
-          currentAnswer={answer}
+          currentAnswer={savedAnswer}
         />
       </div>
     </Card>

@@ -8,5 +8,8 @@ export interface ITestPassing {
   totalQuestions: number;
   leftTestTime?: string;
   questions: QuestionDTO[];
+}
+
+export interface ITestPassingSavedAnswers {
   savedAnswers: SavedAnswerWithKey[];
 }

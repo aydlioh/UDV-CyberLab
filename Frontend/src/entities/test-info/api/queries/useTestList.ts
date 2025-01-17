@@ -9,5 +9,6 @@ export const useTestList = (
   return useSuspenseQuery({
     queryKey: ['tests', ...[search, subject, difficulty].filter(Boolean)],
     queryFn: async () => await testApi.getTests(),
+    staleTime: 2000,
   });
 };

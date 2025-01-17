@@ -7,7 +7,7 @@ export const useSaveAnswer = () => {
     mutationKey: ['test/answer'],
     mutationFn: testPassingApi.saveAnswer,
     onSuccess: () => {
-      queryClient.refetchQueries({ queryKey: ['test/passing'] });
+      queryClient.refetchQueries({ queryKey: ['test/savedAnswers'] });
     },
   });
 };

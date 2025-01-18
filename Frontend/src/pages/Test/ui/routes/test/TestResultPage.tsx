@@ -31,9 +31,7 @@ const TestResultPage = () => {
         nextLabel="Подробнее"
         handlePrev={() => navigate(redirectPath || `/tests/${testId}/results`)}
         handleNext={() =>
-          navigate(
-            redirectPath || `/tests/${testId}/results/${data.id}/preview`
-          )
+          navigate(`/tests/${testId}/results/${data.id}/preview`)
         }
       />
     </section>

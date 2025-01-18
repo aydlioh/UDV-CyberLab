@@ -21,7 +21,7 @@ export const FileAnswer = ({
         currentFile={file}
         onFileSelect={file => {
           setCurrentAnswer?.({
-            userFileContent: 'answer',
+            userFileContent: 'string',
             questionId: question.id,
           });
           setFile(file);

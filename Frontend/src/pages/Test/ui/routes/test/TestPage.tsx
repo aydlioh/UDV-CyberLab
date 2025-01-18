@@ -10,7 +10,8 @@ const TestPage = () => {
   if (!test) {
     return <Navigate to="/tests" />;
   }
-
+  console.log(answers);
+  console.log(savedAnswers);
   return (
     <section className="w-full">
       <TestTitle title={test.title} />

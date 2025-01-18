@@ -1,5 +1,5 @@
 import { parseAsInteger, useQueryState } from 'nuqs';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { QuestionsPaginator } from './QuestionsPaginator';
 import { QuestionCard } from '@/entities/test-question';
 import { QuestionsSwitcher } from './QuestionsSwitcher';
@@ -27,10 +27,22 @@ export const Questions = ({
   endContent,
 }: QuestionsProps) => {
   const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
-
   const [currentQuestion, setCurrentQuestion] = useQueryState(
     'question',
     parseAsInteger.withDefault(1).withOptions({ history: 'push' })
+  );
+
+  const question = useMemo(
+    () => questions[currentQuestion - 1],
+    [currentQuestion, questions]
+  );
+
+  const answer = useMemo(
+    () =>
+      answers.find(a => a.id === question.id)?.data ||
+      savedAnswers.find(a => a.questionId === question.id) ||
+      null,
+    [question, answers, savedAnswers]
   );
 
   useEffect(() => {
@@ -47,8 +59,6 @@ export const Questions = ({
 
   if (!questions.length) return null;
 
-  const q = questions[currentQuestion - 1];
-
   return (
     <div className="flex flex-col w-full pb-10">
       <div className="w-full max-w-[712px] mb-2">
@@ -61,15 +71,11 @@ export const Questions = ({
       <div className="flex flex-row gap-1 items-start mb-[12px]">
         <div className="w-full max-w-[712px] ">
           <QuestionCard
-            savedAnswer={
-              answers.find(a => a.id === q.id)?.data ||
-              savedAnswers.find(a => a.questionId === q.id) ||
-              null
-            }
-            key={q.id}
+            savedAnswer={answer}
+            key={question.id}
             testId={id}
             attemptTestId={attemptTestId}
-            question={q}
+            question={question}
           />
         </div>
         {!isMobile && endContent}

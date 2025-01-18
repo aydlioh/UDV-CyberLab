@@ -26,7 +26,6 @@ export const TestAttemptTable = ({
   testId: string;
 }) => {
   const navigate = useNavigate();
-
   return (
     <Table
       shadow="none"
@@ -40,28 +39,37 @@ export const TestAttemptTable = ({
         <TableColumn>Баллы</TableColumn>
       </TableHeader>
       <TableBody emptyContent="Нет результатов" items={result.questions}>
-        {result.questions.map((question, index) => (
-          <TableRow
-            className="cursor-pointer"
-            onClick={() =>
-              navigate(
-                `/tests/${testId}/results/${result.id}/preview?question=${index + 1}`
-              )
-            }
-            key={question.id}
-          >
-            <TableCell className="pl-[40px] w-1/2">{index + 1}</TableCell>
-            <TableCell
-              className={clsx(
-                'text-red-300',
-                question.scoredPoints === question.maxPoints && 'text-green-500',
-                question.scoredPoints === 0 && 'text-red-500'
-              )}
+        <>
+          {result.questions.map((question, index) => (
+            <TableRow
+              className="cursor-pointer"
+              onClick={() =>
+                navigate(
+                  `/tests/${testId}/results/${result.id}/preview?question=${index + 1}`
+                )
+              }
+              key={question.id}
             >
-              {question.scoredPoints}/{question.maxPoints}
+              <TableCell className="pl-[40px] w-1/2">{index + 1}</TableCell>
+              <TableCell
+                className={clsx(
+                  'text-red-300',
+                  question.scoredPoints === question.maxPoints &&
+                    'text-green-500',
+                  question.scoredPoints === 0 && 'text-red-500'
+                )}
+              >
+                {question.scoredPoints}/{question.maxPoints}
+              </TableCell>
+            </TableRow>
+          ))}
+          <TableRow className="cursor-pointer">
+            <TableCell className="pl-[40px] w-1/2 font-bold">Всего</TableCell>
+            <TableCell className=" font-bold">
+              {result.scoredPoints}/{result.maxPoints}
             </TableCell>
           </TableRow>
-        ))}
+        </>
       </TableBody>
     </Table>
   );

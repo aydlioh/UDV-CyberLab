@@ -1,34 +1,21 @@
 import { OpenQuestionDTO } from '@/shared/api/dto';
-import { Input } from '@/shared/ui';
+import { InputWithFocus } from './InputWithFocus';
 
 export const TextAction = ({
   question,
+  changeQuestion,
 }: {
   question: OpenQuestionDTO;
   changeQuestion: (value: Partial<OpenQuestionDTO>) => void;
 }) => {
-  // const handleChangeAnswer = (index: number, value: string) => {
-  //   changeCorrectAnswers?.(
-  //     correctAnswers?.map((answer, i) => (i === index ? value : answer)) ?? []
-  //   );
-  // };
-
-  // const handleAddNewAnswer = (newAnswer: string) => {
-  //   changeCorrectAnswers?.([...(correctAnswers ?? []), newAnswer]);
-  // };
-
-  // const handleDeleteAnswer = (index: number) => {
-  //   changeCorrectAnswers?.(correctAnswers?.filter((_, i) => i !== index) ?? []);
-  // };
+  const handleChangeAnswer = (value: string) => {
+    changeQuestion({ answer: value });
+  };
 
   return (
     <div>
-      <Input
-        value={question?.answer}
-        // onValueChange={value => handleChangeAnswer(index, value)}
-        className="w-full mr-2"
-        variant="underlined"
-      />
+      <InputWithFocus value={question.answer} onChange={handleChangeAnswer} />
+
       {/* //TODO_1 Доделать */}
       {/* <div className="flex flex-row gap-2 items-center mb-3">
         <span className="text-[13px]">Начислять баллы за любой ответ</span>
@@ -42,9 +29,9 @@ export const TextAction = ({
           }}
           aria-label="Automatic updates"
         />
-      </div> */}
+      </div>
       <div>
-        {/* {correctAnswers?.length ? (
+        {correctAnswers?.length ? (
           <>
             <p className="text-second text-[13px] my-2">
               Принимаемые варианты ответа:
@@ -96,8 +83,8 @@ export const TextAction = ({
               Добавить
             </Button>
           </div>
-        )} */}
-      </div>
+        )}
+      </div> */}
     </div>
   );
 };

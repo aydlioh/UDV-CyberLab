@@ -1,4 +1,3 @@
-import { TestTitleEdit } from '@/features/test-title-edit';
 import { EditTestSwitcher } from './ui/EditTestSwitcher';
 import { FileDropArea } from '@/shared/ui/Filepicker/FileDropArea/FileDropArea';
 import { useState } from 'react';
@@ -8,7 +7,7 @@ const EditAIPage = () => {
 
   return (
     <section className="flex flex-col gap-[12px]">
-      <TestTitleEdit />
+      {/* <TestTitleEdit /> */}
       <FileDropArea currentFile={file} onFileSelect={setFile} />
       <EditTestSwitcher />
     </section>

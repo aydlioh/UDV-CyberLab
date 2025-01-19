@@ -17,7 +17,7 @@ const TestPreviewPage = () => {
       <QuestionsPreview
         id={data.id}
         questions={data.questions}
-        totalQuestions={data.questionsCount}
+        totalQuestions={data.questions.length}
         handleFinish={handleFinishClick}
         handleStart={handleStartClick}
       />

@@ -1,30 +1,46 @@
 import { VariantQuestionDTO } from '@/shared/api/dto';
-import { Button, Input, Radio, RadioGroup } from '@/shared/ui';
+import { Button, Radio, RadioGroup } from '@/shared/ui';
 import { IoMdClose } from 'react-icons/io';
 import { IoAdd } from 'react-icons/io5';
+import { InputWithFocus } from './InputWithFocus';
 
 export const RadioAction = ({
   question,
+  changeQuestion,
 }: {
   question: VariantQuestionDTO;
   changeQuestion: (value: Partial<VariantQuestionDTO>) => void;
 }) => {
-  // const handleAddNewAnswer = (newAnswer: string) => {
-  //   changeAnswers?.([...(answers ?? []), newAnswer]);
-  // };
+  const handleAddNewAnswer = () => {
+    changeQuestion({
+      stringAnswers: [
+        ...question.stringAnswers,
+        `Вариант ${question.stringAnswers?.length + 1}`,
+      ],
+    });
+  };
 
-  // const handleDeleteAnswer = (index: number) => {
-  //   if (correctAnswer === answers?.[index]) {
-  //     changeCorrectAnswers?.('');
-  //   }
-  //   changeAnswers?.(answers?.filter((_, i) => i !== index) ?? []);
-  // };
+  const handleDeleteAnswer = (index: number) => {
+    const arr = question.stringAnswers;
+    changeQuestion({
+      correctAnswers: question.correctAnswers.filter(i => i !== index),
+      stringAnswers: [...arr.slice(0, index), ...arr.slice(index + 1)],
+    });
+  };
 
-  // const handleChangeAnswer = (index: number, value: string) => {
-  //   changeAnswers?.(
-  //     answers?.map((answer, i) => (i === index ? value : answer)) ?? []
-  //   );
-  // };
+  const handleChangeAnswer = (index: number, value: string) => {
+    changeQuestion({
+      stringAnswers: question.stringAnswers.map((answer, i) =>
+        i === index ? value : answer
+      ),
+    });
+  };
+
+  const handleCheckAnswer = (answer: number) => {
+    changeQuestion({
+      correctAnswers: [answer],
+    });
+  };
 
   return (
     <>
@@ -32,23 +48,21 @@ export const RadioAction = ({
         <>
           <RadioGroup
             value={String(question.correctAnswers[0]) || ''}
-            onValueChange={() => {}}
+            onValueChange={e => handleCheckAnswer(Number(e))}
           >
             {question.stringAnswers?.map((answer: string, index: number) => (
-              <div key={index} className="flex justify-between items-center">
+              <div key={index + answer} className="flex justify-between items-center">
                 <Radio color="success" key={index} value={String(index)} />
-                <Input
+                <InputWithFocus
                   value={answer}
-                  // onValueChange={value => handleChangeAnswer(index, value)}
-                  className="w-full mr-2"
-                  variant="underlined"
+                  onChange={value => handleChangeAnswer(index, value)}
                 />
                 <Button
                   isIconOnly
                   radius="sm"
                   variant="light"
                   size="sm"
-                  // onPress={() => handleDeleteAnswer(index)}
+                  onPress={() => handleDeleteAnswer(index)}
                 >
                   <IoMdClose size={16} />
                 </Button>
@@ -60,7 +74,7 @@ export const RadioAction = ({
             variant="light"
             className="text-[13px] mt-2"
             size="sm"
-            // onPress={() => handleAddNewAnswer(`Вариант ${answers?.length + 1}`)}
+            onPress={handleAddNewAnswer}
             startContent={<IoAdd size={16} />}
           >
             Добавить
@@ -74,7 +88,7 @@ export const RadioAction = ({
             variant="light"
             className="text-[13px] mt-2"
             size="sm"
-            // onPress={() => handleAddNewAnswer('Вариант 1')}
+            onPress={handleAddNewAnswer}
           >
             Добавить
           </Button>

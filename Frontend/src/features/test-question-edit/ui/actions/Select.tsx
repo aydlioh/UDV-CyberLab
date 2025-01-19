@@ -1,113 +1,110 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComplianceQuestionDTO } from '@/shared/api/dto';
-import { Button, Input, Radio, RadioGroup, Textarea } from '@/shared/ui';
+import { Button, Radio, RadioGroup } from '@/shared/ui';
 import { IoMdClose } from 'react-icons/io';
 import { IoAdd } from 'react-icons/io5';
+import { InputWithFocus } from './InputWithFocus';
+import { TextareaWithFocus } from './TextareaWithFocus';
 
 export const SelectAction = ({
   question,
+  changeQuestion,
 }: {
   question: ComplianceQuestionDTO;
   changeQuestion: (value: Partial<ComplianceQuestionDTO>) => void;
 }) => {
-  // const handleQuestionTitleChange = (index: number, value: string) => {
-  //   changeAnswers?.(
-  //     answers?.map((answer, i) =>
-  //       i === index ? { ...answer, title: value } : answer
-  //     ) ?? []
-  //   );
-  //   changeCorrectAnswers?.(
-  //     correctAnswers?.map((answer, i) =>
-  //       i === index ? { ...answer, title: value } : answer
-  //     ) ?? []
-  //   );
-  // };
+  const complianceArray = Object.entries(question.compliances);
 
-  // const handleDeleteQuestion = (index: number) => {
-  //   changeAnswers?.(answers?.filter((_, i) => i !== index) ?? []);
-  //   changeCorrectAnswers?.(correctAnswers?.filter((_, i) => i !== index) ?? []);
-  // };
+  const handleChangeCorrectAnswer = (key: string, value: string) => {
+    changeQuestion({
+      rightCompliances: {
+        ...question.rightCompliances,
+        [key]: value,
+      },
+    });
+  };
 
-  // const handleChangeAnswer = (
-  //   qIndex: number,
-  //   aIndex: number,
-  //   value: string
-  // ) => {
-  //   changeAnswers?.(
-  //     answers?.map((question, qi) =>
-  //       qi === qIndex
-  //         ? {
-  //             ...question,
-  //             items: question.items.map((item, ai) =>
-  //               ai === aIndex ? value : item
-  //             ),
-  //           }
-  //         : question
-  //     ) ?? []
-  //   );
-  // };
+  const handleQuestionTitleChange = (key: string, value: string) => {
+    changeQuestion({
+      compliances: {
+        ...question.compliances,
+        [key]: value,
+      },
+    });
+  };
 
-  // const handleDeleteAnswer = (qIndex: number, aIndex: number) => {
-  //   changeAnswers?.(
-  //     answers?.map((question, qi) =>
-  //       qi === qIndex
-  //         ? {
-  //             ...question,
-  //             items: question.items.filter((_, ai) => ai !== aIndex),
-  //           }
-  //         : question
-  //     ) ?? []
-  //   );
-  // };
+  const handleDeleteQuestion = (key: string) => {
+    const { [key]: _1, ...compliances } = question.compliances;
+    const { [key]: _2, ...rightCompliances } = question.rightCompliances;
+    const { [key]: _3, ...variants } = question.variants;
 
-  // const handleAddNewAnswer = (qIndex: number) => {
-  //   changeAnswers?.(
-  //     answers?.map((question, qi) =>
-  //       qi === qIndex
-  //         ? {
-  //             ...question,
-  //             items: [
-  //               ...question.items,
-  //               `Вариант ${question.items.length + 1}`,
-  //             ],
-  //           }
-  //         : question
-  //     ) ?? []
-  //   );
-  // };
+    changeQuestion({
+      compliances,
+      rightCompliances,
+      variants,
+    });
+  };
 
-  // const handleNewQuestion = () => {
-  //   const title = `Вопрос ${(answers?.length || 0) + 1}`;
-  //   changeAnswers?.([...(answers ?? []), { title, items: [] }]);
-  //   changeCorrectAnswers?.([...(correctAnswers ?? []), { title, item: '' }]);
-  // };
+  const handleNewQuestion = () => {
+    changeQuestion({
+      compliances: {
+        ...question.compliances,
+        [crypto.randomUUID()]: `Вопрос на сопоставление ${complianceArray.length + 1}`,
+      },
+    });
+  };
+
+  const handleChangeAnswer = (key: string, aIndex: number, value: string) => {
+    // TODO_1 rightCOmplaince?
+    changeQuestion({
+      variants: {
+        ...question.variants,
+        [key]: question.variants[key].map((answer, i) =>
+          i === aIndex ? value : answer
+        ),
+      },
+    });
+  };
+
+  const handleDeleteAnswer = (key: string, aIndex: number) => {
+    const variants = question.variants[key] || [];
+
+    changeQuestion({
+      variants: {
+        ...question.variants,
+        [key]: [...variants.slice(0, aIndex), ...variants.slice(aIndex + 1)],
+      },
+    });
+  };
+
+  const handleAddNewAnswer = (key: string) => {
+    const variants = question.variants[key] || [];
+
+    changeQuestion({
+      variants: {
+        ...question.variants,
+        [key]: [...variants, `Вариант ${variants?.length + 1}`],
+      },
+    });
+  };
 
   return (
     <div>
-      {Object.entries(question.compliances).length ? (
+      {complianceArray.length ? (
         <>
-          {Object.entries(question.compliances).map(([key, title]) => (
+          {complianceArray.map(([key, title]) => (
             <div key={key}>
               <div className="flex flex-row items-center gap-2">
-                <Textarea
-                  value={title ?? ''}
-                  // onValueChange={value =>
-                  //   handleQuestionTitleChange(qIndex, value)
-                  // }
-                  classNames={{
-                    inputWrapper: 'rounded-[8px]',
-                    input: 'without-scrollbar',
-                  }}
-                  minRows={1}
-                  color="white"
-                  aria-label="Текст вопроса"
-                  placeholder="Вопрос"
+                <TextareaWithFocus
+                  value={title}
+                  onChange={value => handleQuestionTitleChange(key, value)}
                 />
                 <Button
                   isIconOnly
                   size="md"
                   radius="sm"
                   variant="light"
-                  // onPress={() => handleDeleteQuestion(qIndex)}
+                  onPress={() => handleDeleteQuestion(key)}
                 >
                   <IoMdClose size={16} />
                 </Button>
@@ -118,18 +115,14 @@ export const SelectAction = ({
                     <p className="text-[13px] mb-3">Варианты списка:</p>
                     <RadioGroup
                       value={question.rightCompliances[key] || ''}
-                      // onValueChange={item =>
-                      //   changeCorrectAnswers?.(
-                      //     correctAnswers?.map(ca =>
-                      //       ca.title === title ? { ...ca, item } : ca
-                      //     ) ?? []
-                      //   )
-                      // }
+                      onValueChange={(value: string) =>
+                        handleChangeCorrectAnswer(key, value)
+                      }
                     >
                       {question.variants[key]?.map(
                         (answer: string, aIndex: number) => (
                           <div
-                            key={aIndex}
+                            key={aIndex + answer + key}
                             className="flex justify-between items-center"
                           >
                             <Radio
@@ -137,20 +130,18 @@ export const SelectAction = ({
                               key={aIndex}
                               value={answer}
                             />
-                            <Input
+                            <InputWithFocus
                               value={answer}
-                              // onValueChange={value =>
-                              //   handleChangeAnswer(qIndex, aIndex, value)
-                              // }
-                              className="w-full mr-2"
-                              variant="underlined"
+                              onChange={value =>
+                                handleChangeAnswer(key, aIndex, value)
+                              }
                             />
                             <Button
                               isIconOnly
                               radius="sm"
                               variant="light"
                               size="sm"
-                              // onPress={() => handleDeleteAnswer(qIndex, aIndex)}
+                              onPress={() => handleDeleteAnswer(key, aIndex)}
                             >
                               <IoMdClose size={16} />
                             </Button>
@@ -163,7 +154,7 @@ export const SelectAction = ({
                       variant="light"
                       className="text-[13px] mt-2"
                       size="sm"
-                      // onPress={() => handleAddNewAnswer(qIndex)}
+                      onPress={() => handleAddNewAnswer(key)}
                       startContent={<IoAdd size={16} />}
                     >
                       Добавить
@@ -177,7 +168,7 @@ export const SelectAction = ({
                       variant="light"
                       className="text-[13px] mt-2"
                       size="sm"
-                      // onPress={() => handleAddNewAnswer(qIndex)}
+                      onPress={() => handleAddNewAnswer(key)}
                     >
                       Добавить
                     </Button>
@@ -192,7 +183,7 @@ export const SelectAction = ({
             className="text-[13px] mt-2"
             size="sm"
             startContent={<IoAdd size={16} />}
-            // onPress={handleNewQuestion}
+            onPress={handleNewQuestion}
           >
             Добавить вопрос
           </Button>
@@ -205,7 +196,7 @@ export const SelectAction = ({
             variant="light"
             className="text-[13px] mt-2"
             size="sm"
-            // onPress={handleNewQuestion}
+            onPress={handleNewQuestion}
           >
             Добавить вопрос
           </Button>

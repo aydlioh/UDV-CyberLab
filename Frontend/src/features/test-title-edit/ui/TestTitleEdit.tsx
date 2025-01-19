@@ -1,90 +1,92 @@
 import { difficultyFilters, subjectFilters } from '@/entities/filter';
-import { Card, Input, Select, SelectItem } from '@/shared/ui';
-import { memo, useState } from 'react';
+import { Card, Input } from '@/shared/ui';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { TitleSelect } from './TitleSelect';
+import { useUpdateTestTitle } from '../api/mutations/useUpdateTestTitle';
+import { getTestInfo, TestEditingDTO } from '@/entities/test-editing';
+import { UpdateTestDTO } from '@/entities/test-info';
 
 type TestTitleEditProps = {
   initTitle?: string;
   initDifficulty?: string;
   initSubject?: string;
+  data: TestEditingDTO;
 };
 
-const selectClassNames = {
-  itemClasses: {
-    base: 'data-[hover=true]:bg-controls data-[selectable=true]:focus:text-foreground data-[hover=true]:text-foreground data-[selectable=true]:focus:bg-controls',
-  },
-};
+export const TestTitleEdit = memo(
+  ({ initTitle, initDifficulty, initSubject, data }: TestTitleEditProps) => {
+    const ref = useRef<UpdateTestDTO | null>(null);
+    const [title, setTitle] = useState<string>(initTitle ?? '');
+    const [difficulty, setDifficulty] = useState<string>(initDifficulty ?? '');
+    const [subject, setSubject] = useState<string>(initSubject ?? '');
 
-export const TestTitleEdit = memo(({
-  initTitle,
-  initDifficulty,
-  initSubject,
-}: TestTitleEditProps) => {
-  const [title, setTitle] = useState<string>(initTitle ?? '');
-  const [difficulty, setDifficulty] = useState<string>(initDifficulty ?? '');
-  const [subject, setSubject] = useState<string>(initSubject ?? '');
+    const { mutate } = useUpdateTestTitle();
 
-  return (
-    <Card className="py-[24px] sm:px-[40px] px-[20px]">
-      <div className="flex flex-col sm:gap-[24px] gap-4">
-        <Input
-          color="white"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          placeholder="Название теста"
-          className="sm:max-w-[400px]"
-          classNames={{
-            inputWrapper: 'h-[40px] px-3',
-            input:
-              'placeholder:text-[16px] text-[16px] placeholder:text-foreground/50',
-          }}
-        />
-        <div className="flex sm:flex-row flex-col sm:gap-[24px] gap-2">
-          <Select
+    const handleChangeTitle = useCallback(
+      (value: string) => {
+        ref.current = { ...getTestInfo(data), name: value };
+        setTitle(value);
+      },
+      [data]
+    );
+
+    const handleChangeDifficulty = useCallback(
+      (value: string) => {
+        ref.current = { ...getTestInfo(data), difficulty: value };
+        setDifficulty(value);
+      },
+      [data]
+    );
+
+    const handleChangeSubject = useCallback(
+      (value: string) => {
+        ref.current = { ...getTestInfo(data), theme: value };
+        setSubject(value);
+      },
+      [data]
+    );
+
+    useEffect(() => {
+      return () => {
+        if (ref.current) {
+          mutate(ref.current);
+        }
+      };
+    }, [mutate]);
+
+    return (
+      <Card className="py-[24px] sm:px-[40px] px-[20px]">
+        <div className="flex flex-col sm:gap-[24px] gap-4">
+          <Input
             color="white"
-            aria-label="Сложность теста"
-            size="sm"
-            listboxProps={selectClassNames}
-            popoverProps={{
-              placement: 'bottom-end',
-            }}
-            selectedKeys={[difficulty]}
-            onChange={e => setDifficulty(e.target.value)}
-            placeholder="Сложность"
-            className="sm:max-w-[213px] w-full"
+            value={title}
+            onChange={e => handleChangeTitle(e.target.value)}
+            placeholder="Название теста"
+            className="sm:max-w-[400px]"
             classNames={{
-              trigger: 'h-[40px] min-h-8 px-3',
-              value: 'text-[13px] text-foreground/50',
-              mainWrapper: 'h-[40px]',
+              inputWrapper: 'h-[40px] px-3',
+              input:
+                'placeholder:text-[16px] text-[16px] placeholder:text-foreground/50',
             }}
-          >
-            {difficultyFilters.map(({ label, key }) => (
-              <SelectItem key={key}>{label}</SelectItem>
-            ))}
-          </Select>
-          <Select
-            color="white"
-            aria-label="Тематика теста"
-            size="sm"
-            listboxProps={selectClassNames}
-            popoverProps={{
-              placement: 'bottom-end',
-            }}
-            selectedKeys={[subject]}
-            onChange={e => setSubject(e.target.value)}
-            placeholder="Тематика"
-            className="sm:max-w-[213px] w-full"
-            classNames={{
-              trigger: 'h-[40px] min-h-8 px-3',
-              value: 'text-[13px] text-foreground/50',
-              mainWrapper: 'h-[40px]',
-            }}
-          >
-            {subjectFilters.map(({ label, key }) => (
-              <SelectItem key={key}>{label}</SelectItem>
-            ))}
-          </Select>
+          />
+          <div className="flex sm:flex-row flex-col sm:gap-[24px] gap-2">
+            <TitleSelect
+              value={difficulty}
+              handleDataChange={handleChangeDifficulty}
+              items={difficultyFilters}
+              placeholder="Сложность"
+              aria-label="Сложность теста"
+            />
+            <TitleSelect
+              value={subject}
+              handleDataChange={handleChangeSubject}
+              items={subjectFilters}
+              placeholder="Тематика"
+              aria-label="Тематика теста"
+            />
+          </div>
         </div>
-      </div>
-    </Card>
-  );
-});
+      </Card>
+    );
+  }
+);

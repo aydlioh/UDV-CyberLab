@@ -8,6 +8,7 @@ export const useUpdateTestTitle = () => {
     mutationFn: testApi.updateTestById,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tests'] });
+      queryClient.refetchQueries({ queryKey: ['test/editing'] });
     },
   });
 };

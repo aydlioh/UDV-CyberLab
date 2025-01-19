@@ -13,8 +13,8 @@ export type CreateOpenQuestionDTO = WithoutId<OpenQuestionDTO> & TestId;
 export type CreateVariantQuestionDTO = WithoutId<VariantQuestionDTO> & TestId;
 
 export interface UpdateQuestionDTO {
-  openAnswer: OpenQuestionDTO & TestId;
-  variantAnswer: VariantQuestionDTO & TestId;
-  complianceAnswer: ComplianceQuestionDTO & TestId;
-  fileAnswer: FileQuestionDTO & TestId;
+  openAnswer?: OpenQuestionDTO & TestId;
+  variantAnswer?: VariantQuestionDTO & TestId;
+  complianceAnswer?: ComplianceQuestionDTO & TestId;
+  fileAnswer?: FileQuestionDTO & TestId;
 }

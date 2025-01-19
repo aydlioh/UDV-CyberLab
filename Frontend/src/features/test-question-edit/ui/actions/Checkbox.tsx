@@ -1,28 +1,46 @@
-import { Button, Checkbox, CheckboxGroup, Input } from '@/shared/ui';
+import { Button, Checkbox, CheckboxGroup } from '@/shared/ui';
 import { IoAdd } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import { VariantQuestionDTO } from '@/shared/api/dto';
+import { InputWithFocus } from './InputWithFocus';
 
 export const CheckboxAction = ({
   question,
+  changeQuestion,
 }: {
   question: VariantQuestionDTO;
   changeQuestion: (value: Partial<VariantQuestionDTO>) => void;
 }) => {
-  // const handleAddNewAnswer = (newAnswer: string) => {
-  //   changeAnswers?.([...(answers ?? []), newAnswer]);
-  // };
+  const handleAddNewAnswer = () => {
+    changeQuestion({
+      stringAnswers: [
+        ...question.stringAnswers,
+        `Вариант ${question.stringAnswers?.length + 1}`,
+      ],
+    });
+  };
 
-  // const handleDeleteAnswer = (index: number) => {
-  //   changeAnswers?.(answers?.filter((_, i) => i !== index) ?? []);
-  //   changeCorrectAnswers?.(correctAnswers?.filter((_, i) => i !== index) ?? []);
-  // };
+  const handleDeleteAnswer = (index: number) => {
+    const arr = question.stringAnswers;
+    changeQuestion({
+      correctAnswers: question.correctAnswers.filter(i => i !== index),
+      stringAnswers: [...arr.slice(0, index), ...arr.slice(index + 1)],
+    });
+  };
 
-  // const handleChangeAnswer = (index: number, value: string) => {
-  //   changeAnswers?.(
-  //     answers?.map((answer, i) => (i === index ? value : answer)) ?? []
-  //   );
-  // };
+  const handleChangeAnswer = (index: number, value: string) => {
+    changeQuestion({
+      stringAnswers: question.stringAnswers.map((answer, i) =>
+        i === index ? value : answer
+      ),
+    });
+  };
+
+  const handleCheckAnswers = (answers: number[]) => {
+    changeQuestion({
+      correctAnswers: answers,
+    });
+  };
 
   return (
     <>
@@ -30,10 +48,13 @@ export const CheckboxAction = ({
         <>
           <CheckboxGroup
             value={question.correctAnswers.map(String) ?? []}
-            onValueChange={() => {}}
+            onValueChange={e => handleCheckAnswers(e.map(Number))}
           >
             {question.stringAnswers?.map((answer: string, index: number) => (
-              <div key={index} className="flex justify-between items-center">
+              <div
+                key={index + answer}
+                className="flex justify-between items-center"
+              >
                 <Checkbox
                   color="success"
                   classNames={{
@@ -43,18 +64,16 @@ export const CheckboxAction = ({
                   size="md"
                   value={String(index)}
                 />
-                <Input
+                <InputWithFocus
                   value={answer}
-                  // onValueChange={value => handleChangeAnswer(index, value)}
-                  className="w-full mr-2"
-                  variant="underlined"
+                  onChange={value => handleChangeAnswer(index, value)}
                 />
                 <Button
                   isIconOnly
                   radius="sm"
                   variant="light"
                   size="sm"
-                  // onPress={() => handleDeleteAnswer(index)}
+                  onPress={() => handleDeleteAnswer(index)}
                 >
                   <IoMdClose size={16} />
                 </Button>
@@ -66,7 +85,7 @@ export const CheckboxAction = ({
             variant="light"
             className="text-[13px] mt-2"
             size="sm"
-            // onPress={() => handleAddNewAnswer(`Вариант ${answers?.length + 1}`)}
+            onPress={handleAddNewAnswer}
             startContent={<IoAdd size={16} />}
           >
             Добавить
@@ -80,7 +99,7 @@ export const CheckboxAction = ({
             variant="light"
             className="text-[13px] mt-2"
             size="sm"
-            // onPress={() => handleAddNewAnswer('Вариант 1')}
+            onPress={handleAddNewAnswer}
           >
             Добавить
           </Button>

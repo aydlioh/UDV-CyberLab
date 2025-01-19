@@ -4,7 +4,7 @@ export type QuestionType =
   | 'QuestionCompliance'
   | 'QuestionVariant';
 
-type BaseQuestionDTO = {
+export type BaseQuestionDTO = {
   testId: string;
   id: string;
   sortOrder: number;
@@ -30,7 +30,7 @@ export interface VariantQuestionDTO extends BaseQuestionDTO {
 }
 
 export interface ComplianceQuestionDTO extends BaseQuestionDTO {
-  variantJson: string;
+  variantsJson: string;
   compliances: { [key: string]: string };
   rightCompliances: { [key: string]: string };
   variants: { [key: string]: string[] };

@@ -5,5 +5,6 @@ export const useTestEditing = (id: string) => {
   return useSuspenseQuery({
     queryKey: ['test/editing', id],
     queryFn: async () => await testEditingApi.getTestForEditingById(id),
+    staleTime: 5000,
   });
 };

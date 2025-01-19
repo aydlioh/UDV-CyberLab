@@ -7,7 +7,7 @@ export const useUpdateTestSettings = () => {
     mutationKey: ['test-settings/update'],
     mutationFn: testApi.updateTestById,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['test/editing'] });
+      queryClient.refetchQueries({ queryKey: ['test/editing'] });
     },
   });
 };

@@ -31,17 +31,22 @@ export const QuestionsPreview = ({
   );
 
   useEffect(() => {
-    if (currentQuestion < 1) {
-      setCurrentQuestion(1);
-    } else if (currentQuestion > totalQuestions) {
-      setCurrentQuestion(totalQuestions);
+    if (currentQuestion < 1 || currentQuestion > totalQuestions) {
+      const validQuestion = Math.min(
+        Math.max(currentQuestion, 1),
+        totalQuestions
+      );
+      if (validQuestion !== currentQuestion) {
+        setCurrentQuestion(validQuestion);
+      }
     }
   }, [currentQuestion, totalQuestions, setCurrentQuestion]);
 
   if (!questions.length) return null;
 
   const question = questions[currentQuestion - 1];
-  const answer = answers && answers.questions.find(a => a.questionId === question.id);
+  const answer =
+    answers && answers.questions.find(a => a.questionId === question.id);
 
   return (
     <div className="flex flex-col w-full pb-10">
@@ -54,7 +59,11 @@ export const QuestionsPreview = ({
       </div>
       <div className="flex flex-row gap-1 items-start mb-[12px]">
         <div className="w-full max-w-[712px] ">
-          <QuestionPreviewCard key={question.id} question={question} answer={answer} />
+          <QuestionPreviewCard
+            key={question.id}
+            question={question}
+            answer={answer}
+          />
         </div>
         {endContent}
       </div>

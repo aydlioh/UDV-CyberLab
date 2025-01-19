@@ -20,30 +20,32 @@ export const TestTitleEdit = memo(
     const [difficulty, setDifficulty] = useState<string>(initDifficulty ?? '');
     const [subject, setSubject] = useState<string>(initSubject ?? '');
 
-    const { mutate } = useUpdateTestTitle();
+    const { mutate } = useUpdateTestTitle(data.id);
 
     const handleChangeTitle = useCallback(
       (value: string) => {
-        ref.current = { ...getTestInfo(data), name: value };
+        ref.current = { ...getTestInfo(data), theme: subject, difficulty: difficulty, name: value };
         setTitle(value);
       },
-      [data]
+      [data, difficulty, subject]
     );
 
     const handleChangeDifficulty = useCallback(
       (value: string) => {
-        ref.current = { ...getTestInfo(data), difficulty: value };
+        ref.current = { ...getTestInfo(data), theme: subject, difficulty: value, name: title };
+        console.log(ref.current);
         setDifficulty(value);
       },
-      [data]
+      [data, subject, title]
     );
 
     const handleChangeSubject = useCallback(
       (value: string) => {
-        ref.current = { ...getTestInfo(data), theme: value };
+        ref.current = { ...getTestInfo(data), difficulty: difficulty, name: title, theme: value };
+        console.log(ref.current);
         setSubject(value);
       },
-      [data]
+      [data, difficulty, title]
     );
 
     useEffect(() => {

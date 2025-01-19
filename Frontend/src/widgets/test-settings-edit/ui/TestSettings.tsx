@@ -19,56 +19,11 @@ type TestDate = {
 };
 
 export const TestSettings = ({ data }: { data: TestEditingDTO }) => {
-  const { mutate } = useUpdateTestSettings();
+  const { mutate } = useUpdateTestSettings(data.id);
   const ref = useRef<UpdateTestDTO | null>(null);
   const [isLimited, _] = useState<boolean>(true);
   const [withTimeLimit, setWithTimeLimit] = useState<boolean>(
     Boolean(data.passTestTime)
-  );
-
-  const handleChangeWithTimeLimit = useCallback(
-    (value: boolean) => {
-      ref.current = {
-        ...getTestInfo(data),
-        passTestTime: value ? data.passTestTime : undefined,
-      };
-      setWithTimeLimit(value);
-    },
-    [data]
-  );
-
-  const handleChangeTestDuration = useCallback(
-    (value: Time | null) => {
-      ref.current = {
-        ...getTestInfo(data),
-        passTestTime: value?.toString(),
-      };
-      setTestDuration(value);
-    },
-    [data]
-  );
-
-  const handleChangeAttemptsCount = useCallback(
-    (value: number) => {
-      ref.current = {
-        ...getTestInfo(data),
-        attemptsCount: value,
-      };
-      setAttemptsCount(value);
-    },
-    [data]
-  );
-
-  const handleChangeTestDates = useCallback(
-    (dates: TestDate) => {
-      ref.current = {
-        ...getTestInfo(data),
-        startTestTime: dates.start.toAbsoluteString(),
-        endTestTime: dates.end.toAbsoluteString(),
-      };
-      setTestDates(dates);
-    },
-    [data]
   );
 
   const [testDates, setTestDates] = useState<{
@@ -85,6 +40,62 @@ export const TestSettings = ({ data }: { data: TestEditingDTO }) => {
 
   const [testDuration, setTestDuration] = useState<Time | null>(
     data.passTestTime ? parseTime(data.passTestTime) : null
+  );
+
+  const handleChangeWithTimeLimit = useCallback(
+    (value: boolean) => {
+      ref.current = {
+        ...getTestInfo(data),
+        attemptsCount,
+        startTestTime: testDates.start.toAbsoluteString(),
+        endTestTime: testDates.end.toAbsoluteString(),
+        passTestTime: value ? data.passTestTime : undefined,
+      };
+      setWithTimeLimit(value);
+    },
+    [attemptsCount, data, testDates.end, testDates.start]
+  );
+
+  const handleChangeTestDuration = useCallback(
+    (value: Time | null) => {
+      ref.current = {
+        ...getTestInfo(data),
+        attemptsCount,
+        startTestTime: testDates.start.toAbsoluteString(),
+        endTestTime: testDates.end.toAbsoluteString(),
+        passTestTime: value?.toString(),
+      };
+      setTestDuration(value);
+    },
+    [attemptsCount, data, testDates.end, testDates.start]
+  );
+
+  const handleChangeAttemptsCount = useCallback(
+    (value: number) => {
+      ref.current = {
+        ...getTestInfo(data),
+        attemptsCount: value,
+        startTestTime: testDates.start.toAbsoluteString(),
+        endTestTime: testDates.end.toAbsoluteString(),
+        passTestTime: withTimeLimit ? testDuration?.toString() : undefined,
+      };
+      setAttemptsCount(value);
+    },
+    [data, testDates.end, testDates.start, testDuration, withTimeLimit]
+  );
+
+  const handleChangeTestDates = useCallback(
+    (dates: TestDate) => {
+      ref.current = {
+        ...getTestInfo(data),
+        attemptsCount,
+        passTestTime: withTimeLimit ? testDuration?.toString() : undefined,
+        startTestTime: dates.start.toAbsoluteString(),
+        endTestTime: dates.end.toAbsoluteString(),
+      };
+      setTestDates(dates);
+    },
+    [attemptsCount, data, testDuration, withTimeLimit]
   );
 
   useEffect(() => {

@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { testEditingApi } from '@/entities/test-editing';
 
-export const useEditVariantQuestion = () => {
+export const useEditVariantQuestion = (testId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ['question/variant'],
     mutationFn: testEditingApi.createVariantQuestion,
     onSuccess: () => {
-      queryClient.refetchQueries({ queryKey: ['test/editing'] });
+      queryClient.invalidateQueries({ queryKey: ['test/editing', testId] });
     },
   });
 };

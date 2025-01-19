@@ -55,35 +55,3 @@ export const QuestionTypeEdit = memo(
     );
   }
 );
-
-// const handleChangeType = useCallback(
-//   (value: QuestionType) => {
-//     if (value === 'QuestionVariant') {
-//       if (
-//         question.questionTypeName === 'QuestionVariant' &&
-//         question.isMultipleChoice
-//       ) {
-//         setCurrentSettings(prev => ({
-//           ...prev,
-//           type: value as QuestionType,
-//           correctAnswers: [],
-//         }));
-//       } else {
-//         setCurrentSettings(prev => ({
-//           ...prev,
-//           type: value as QuestionType,
-//           answers: [],
-//           correctAnswers: [],
-//         }));
-//       }
-//     } else {
-//       setCurrentSettings(prev => ({
-//         ...prev,
-//         type: value as QuestionType,
-//         answers: [],
-//         correctAnswers: [],
-//       }));
-//     }
-//   },
-//   [question.isMultipleChoice, question.questionTypeName]
-// );

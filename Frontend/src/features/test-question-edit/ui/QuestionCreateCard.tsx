@@ -43,10 +43,10 @@ export const QuestionCreateCard = memo(
   ({ index, question, setQuestion }: QuestionCreateCardProps) => {
     const ref = useRef<QuestionDTO | null>(null);
 
-    const complianceQuestion = useEditComplianceQuestion();
-    const fileQuestion = useEditFileQuestion();
-    const textQuestion = useEditTextQuestion();
-    const variantQuestion = useEditVariantQuestion();
+    const complianceQuestion = useEditComplianceQuestion(question.testId);
+    const fileQuestion = useEditFileQuestion(question.testId);
+    const textQuestion = useEditTextQuestion(question.testId);
+    const variantQuestion = useEditVariantQuestion(question.testId);
 
     const [currentSettings, setCurrentSettings] = useState<QuestionDTO>(() => ({
       ...question,

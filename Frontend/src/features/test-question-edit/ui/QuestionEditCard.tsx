@@ -26,8 +26,8 @@ export const QuestionEditCard = memo(
     const [currentSettings, setCurrentSettings] =
       useState<QuestionDTO>(question);
 
-    const updateQuestion = useUpdateQuestion();
-    const deleteQuestion = useDeleteQuestion();
+    const updateQuestion = useUpdateQuestion(question.testId);
+    const deleteQuestion = useDeleteQuestion(question.testId);
 
     const handleDeleteQuestion = useCallback(() => {
       deleteQuestion.mutate(question.id);

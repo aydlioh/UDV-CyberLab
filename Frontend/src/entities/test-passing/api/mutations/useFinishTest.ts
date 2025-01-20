@@ -9,6 +9,7 @@ export const useTestFinish = () => {
     mutationFn: testPassingApi.finishTest,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['test/result'] });
+      queryClient.invalidateQueries({ queryKey: ['test/passing'] });
       currentTestService.destroy();
     },
   });

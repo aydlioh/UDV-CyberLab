@@ -5,7 +5,7 @@ import { useAnswers } from '../../model/store';
 
 export const usePassingTest = (id: string, attemptId: string) => {
   const setQuestions = useAnswers(state => state.setQuestions);
-  const { data } = useSuspenseQuery({
+  const { data, isFetching } = useSuspenseQuery({
     queryKey: ['test/passing', id],
     queryFn: async () =>
       await testPassingApi.getPassingTestById({ id, attemptId }),
@@ -17,5 +17,5 @@ export const usePassingTest = (id: string, attemptId: string) => {
     }
   }, [data, setQuestions]);
 
-  return { data };
+  return { data, isFetching };
 };

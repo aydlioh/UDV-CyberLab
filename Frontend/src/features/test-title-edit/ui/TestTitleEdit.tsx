@@ -33,7 +33,6 @@ export const TestTitleEdit = memo(
     const handleChangeDifficulty = useCallback(
       (value: string) => {
         ref.current = { ...getTestInfo(data), theme: subject, difficulty: value, name: title };
-        console.log(ref.current);
         setDifficulty(value);
       },
       [data, subject, title]
@@ -42,7 +41,6 @@ export const TestTitleEdit = memo(
     const handleChangeSubject = useCallback(
       (value: string) => {
         ref.current = { ...getTestInfo(data), difficulty: difficulty, name: title, theme: value };
-        console.log(ref.current);
         setSubject(value);
       },
       [data, difficulty, title]

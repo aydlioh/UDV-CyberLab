@@ -3,9 +3,18 @@ import { TestStatus, useCurrentTest } from '@/entities/test-passing';
 import { Navigate } from 'react-router-dom';
 import { TestExit } from '@/features/test-exit';
 import { TestTitle } from '@/entities/test-info';
+import { Spinner } from '@/shared/ui';
 
 const TestPage = () => {
-  const { testId, test, savedAnswers, answers } = useCurrentTest();
+  const { testId, test, isFetching, savedAnswers, answers, attemptId } = useCurrentTest();
+
+  if (isFetching) {
+    return (
+      <div className="flex justify-center items-center w-full">
+        <Spinner size="page" color="primary" />
+      </div>
+    );
+  }
 
   if (!test) {
     return <Navigate to="/tests" />;
@@ -16,7 +25,7 @@ const TestPage = () => {
       <TestTitle title={test.title} />
       <Questions
         id={testId}
-        attemptTestId={test.userTestId}
+        attemptTestId={attemptId}
         questions={test.questions}
         savedAnswers={savedAnswers}
         answers={answers}

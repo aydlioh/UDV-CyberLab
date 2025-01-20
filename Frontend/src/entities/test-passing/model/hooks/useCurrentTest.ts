@@ -8,9 +8,16 @@ import { useAnswers } from '../store';
 export const useCurrentTest = () => {
   const { testId = '' } = useParams();
   const attemptId = useMemo(() => currentTestService.get()?.userTestId, []);
-  const { data: test } = usePassingTest(testId, attemptId || '');
+  const { data: test, isFetching } = usePassingTest(testId, attemptId || '');
   const { data: savedAnswers } = useSavedAnswers(testId);
   const answers = useAnswers(state => state.answers);
 
-  return { testId, test, savedAnswers, answers };
+  return {
+    isFetching,
+    testId,
+    test,
+    savedAnswers,
+    answers,
+    attemptId: attemptId || test?.userTestId || '',
+  };
 };

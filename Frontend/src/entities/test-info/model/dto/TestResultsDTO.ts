@@ -1,9 +1,15 @@
 import { TestDTO } from '@/shared/api/dto';
 
 export interface TestResultDTO {
+  id: string;
   testId: string;
   userId: string;
-  id: string;
+  attemptNumber: number;
+  leftAttemptsCount: number;
   scoredPoints: number;
+  leftTestTime: string;
+  isChecked: boolean;
   test: TestDTO;
 }
+
+

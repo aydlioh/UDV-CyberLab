@@ -11,7 +11,7 @@ import { QuestionDTO } from '@/shared/api/dto';
 
 class TestEditingApi {
   public async getTestForEditingById(id: string): Promise<TestEditingDTO> {
-    return await axiosClient.get(`/api/Test/${id}`);
+    return await axiosClient.get(`/api/Test/${id}?isNeedAnswer=true`);
   }
 
   public async getQuestionById(id: string): Promise<QuestionDTO> {

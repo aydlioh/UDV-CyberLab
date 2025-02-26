@@ -55,7 +55,6 @@ export const SelectAction = ({
   };
 
   const handleChangeAnswer = (key: string, aIndex: number, value: string) => {
-    // TODO_1 rightCOmplaince?
     changeQuestion({
       variants: {
         ...question.variants,

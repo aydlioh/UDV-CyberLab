@@ -11,11 +11,11 @@ import { useTestDetailsModalStore } from '../model/store';
 export const TestDetailsContent = () => {
   const testId = useTestDetailsModalStore(state => state.testId);
   const userId = useAuth(state => state.user?.userId);
-  const { data, isLoading, error } = useTestDetails(testId ?? '');
+  const { data, isLoading, isFetching, error } = useTestDetails(testId ?? '');
 
   if (error || !testId) return null;
 
-  if (!data || isLoading) {
+  if (!data || isLoading || isFetching) {
     return (
       <ModalContent>
         <ModalSpinner />

@@ -1,7 +1,7 @@
-import { tokenService } from '@/shared/services';
-import { UserRole, UserInfo } from './types';
 import { create } from 'zustand';
+import { tokenService } from '@/shared/services';
 import { IProfile } from '@/shared/api/dto';
+import { UserRole, UserInfo } from './types';
 
 type AuthState = {
   isAuthorized: boolean;
@@ -16,7 +16,7 @@ type AuthState = {
 export const useAuth = create<AuthState>((set, get) => ({
   isAuthorized: false,
   user: null,
-  setUser: (user: IProfile) => set({ user: { ...user, role: 2 } }),
+  setUser: (user: IProfile) => set({ user }),
   login: () => set({ isAuthorized: true }),
   logout: () => {
     tokenService.destroy();

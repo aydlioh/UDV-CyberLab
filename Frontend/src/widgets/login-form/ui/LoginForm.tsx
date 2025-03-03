@@ -1,10 +1,9 @@
 import { PasswordInput } from '@/features/inputs';
-import { StatusSwitcher } from '@/features/status-switcher';
-import { useLogin, AuthStatus } from '@/entities/user';
+import { StatusSwitcher, useStatusSwitcher } from '@/features/status-switcher';
+import { useLogin } from '@/entities/user';
 import { Button, Input, Spinner } from '@/shared/ui';
 import { loginSchema } from '../lib/login-schema';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -12,7 +11,7 @@ import { z } from 'zod';
 type LoginType = z.infer<typeof loginSchema>;
 
 export const LoginForm = () => {
-  const [userStatus, setUserStatus] = useState<AuthStatus>(AuthStatus.STUDENT);
+  const { userStatus } = useStatusSwitcher();
   const { login, isPending, error } = useLogin();
 
   const {
@@ -40,7 +39,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-      <StatusSwitcher status={userStatus} setStatus={setUserStatus} />
+      <StatusSwitcher />
       <Input
         isRequired
         isInvalid={isEmailError}

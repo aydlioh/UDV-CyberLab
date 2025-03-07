@@ -1,13 +1,13 @@
 export enum AuthStatus {
-  STUDENT = 0,
-  ADMIN = 1,
-  TEACHER = 2,
+  STUDENT,
+  ADMIN,
+  TEACHER,
 }
 
 export enum UserRole {
-  STUDENT = 0,
-  ADMIN = 1,
-  TEACHER = 2,
+  STUDENT,
+  ADMIN,
+  TEACHER,
 }
 
 export type UserInfo = {

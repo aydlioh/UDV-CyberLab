@@ -33,6 +33,7 @@ const TestResultListPage = () => {
   if (sortedData.totalAttempts === 1) {
     return (
       <Navigate
+        replace
         to={`/tests/${sortedData.testId}/results/${sortedData.attempts[0].attemptId}`}
       />
     );

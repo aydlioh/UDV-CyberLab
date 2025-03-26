@@ -9,7 +9,7 @@ export const registerSchema = z.object({
   password: z
     .string()
     .nonempty('Пожалуйста, введите пароль')
-    .min(5, 'Пароль должен быть не менее 5 символов')
+    .min(6, 'Пароль должен быть не менее 6 символов')
     .refine(val => /[A-Z]/.test(val), {
       message: 'Пароль должен содержать хотя бы одну заглавную букву',
     })

@@ -1,11 +1,10 @@
 import { PasswordInput } from '@/features/inputs';
 import { StatusSwitcher, useStatusSwitcher } from '@/features/status-switcher';
-import { useRegister } from '@/entities/user';
+import { registerSchema, useRegister } from '@/entities/user';
 import { Button, Input, Spinner } from '@/shared/ui';
 import { Link } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { registerSchema } from '../lib/register-schema';
 import { z } from 'zod';
 
 type RegisterType = z.infer<typeof registerSchema>;

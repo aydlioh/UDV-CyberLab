@@ -1,7 +1,7 @@
 import {
   convertEditTestTypeToString,
   useEditTestNavigation,
-} from '@/entities/test-edit-nav';
+} from '@/features/test-edit-nav';
 import { QueryBoundary } from '@/shared/common/components';
 import { useMediaQuery } from '@/shared/hooks';
 import { Spinner, StickyElement } from '@/shared/ui';

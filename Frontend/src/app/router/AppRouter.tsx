@@ -1,4 +1,4 @@
-import { mainRoutes, authRoutes, testRoutes } from '@/pages';
+import { mainRoutes, authRoutes, testRoutes, projectsRoutes } from '@/pages';
 import { AuthGuard, NoAuthGuard } from './guards';
 import { useRoutes } from 'react-router-dom';
 import { NotFoundPage } from '@/pages/Error';
@@ -22,6 +22,7 @@ const routes = [
         children: [
           ...mainRoutes,
           ...testRoutes,
+          ...projectsRoutes,
           ...eventsRoutes,
           ...labsRoutes,
           ...materialsRoutes,

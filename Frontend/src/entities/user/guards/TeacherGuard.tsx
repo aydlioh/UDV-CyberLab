@@ -1,7 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth, useUserStatus } from '@/entities/user';
 
-export const TeacherGuard = () => {
+type TeacherGuardProps = {
+  redirectPath: string;
+};
+
+export const TeacherGuard = ({ redirectPath }: TeacherGuardProps) => {
   const user = useAuth(state => state.user);
   const { isTeacher } = useUserStatus();
 
@@ -13,5 +17,5 @@ export const TeacherGuard = () => {
     return <Outlet />;
   }
 
-  return <Navigate to="/tests" />;
+  return <Navigate to={redirectPath} />;
 };

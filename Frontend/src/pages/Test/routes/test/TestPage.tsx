@@ -1,12 +1,12 @@
 import { Questions } from '@/widgets/test-questions';
 import { TestStatus, useCurrentTest } from '@/entities/test-passing';
-import { Navigate } from 'react-router-dom';
 import { TestExit } from '@/features/test-exit';
 import { TestTitle } from '@/entities/test-info';
 import { Spinner } from '@/shared/ui';
 
 const TestPage = () => {
-  const { testId, test, isFetching, savedAnswers, answers, attemptId } = useCurrentTest();
+  const { testId, test, isFetching, savedAnswers, answers, attemptId } =
+    useCurrentTest();
 
   if (isFetching) {
     return (
@@ -17,7 +17,7 @@ const TestPage = () => {
   }
 
   if (!test) {
-    return <Navigate to="/tests" />;
+    return null;
   }
 
   return (

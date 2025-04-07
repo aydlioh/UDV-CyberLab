@@ -1,6 +1,6 @@
 import { Navigate, RouteObject } from 'react-router-dom';
-import { ManageTestLayout, MyTestLayout, TestLayout } from './ui/layouts';
-import { TeacherGuard, TestGuard } from './ui/guards';
+import { ManageTestLayout, MyTestLayout, TestLayout } from './layouts';
+import { TestGuard } from './guards';
 import {
   TestsPage,
   TestPage,
@@ -17,7 +17,8 @@ import {
   EditGeneratePage,
   EditAIPage,
   TestResultPreviewPage,
-} from './ui/routes';
+} from './routes';
+import { TeacherGuard } from '@/entities/user';
 
 export const testRoutes: RouteObject[] = [
   {
@@ -58,7 +59,7 @@ export const testRoutes: RouteObject[] = [
               {
                 path: ':attemptId/preview',
                 element: <TestResultPreviewPage />,
-              }
+              },
             ],
           },
         ],
@@ -76,7 +77,7 @@ export const testRoutes: RouteObject[] = [
             element: <MyPassedTestsPage />,
           },
           {
-            element: <TeacherGuard />,
+            element: <TeacherGuard redirectPath="/tests" />,
             children: [
               {
                 path: 'created',
@@ -87,7 +88,7 @@ export const testRoutes: RouteObject[] = [
         ],
       },
       {
-        element: <TeacherGuard />,
+        element: <TeacherGuard redirectPath="/tests" />,
         children: [
           {
             element: <ManageTestLayout />,

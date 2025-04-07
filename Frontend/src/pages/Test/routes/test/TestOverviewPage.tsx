@@ -1,7 +1,7 @@
 import { AnswersTable } from '@/widgets/test-answers-table';
 import { ContentSwitcher } from '@/features/content-switcher';
 import { Card } from '@/shared/ui';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { TestTitle } from '@/entities/test-info';
 import { useCurrentTest, useTestFinish } from '@/entities/test-passing';
 
@@ -10,10 +10,6 @@ const TestOverviewPage = () => {
   const { mutateAsync } = useTestFinish();
   const { testId, test, answers } = useCurrentTest();
 
-  if (!test) {
-    return <Navigate to="/tests" />;
-  }
-
   const handlePrevClick = () => navigate(-1);
 
   const handleNextClick = () => {
@@ -21,6 +17,10 @@ const TestOverviewPage = () => {
       navigate(`/tests/${testId}/results`, { replace: true });
     });
   };
+
+  if (!test) {
+    return null;
+  }
 
   return (
     <div className="max-w-[712px] w-full flex flex-col gap-[12px] min-h-svh">

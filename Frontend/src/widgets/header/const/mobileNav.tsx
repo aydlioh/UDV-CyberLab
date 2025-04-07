@@ -8,6 +8,13 @@ export const mobileNav = [
     links: [{ label: 'Учебные материалы', path: '/education-materials' }],
   },
   {
+    label: 'Витрина проектов',
+    links: [
+      { label: 'Все проектов', path: '/projects' },
+      { label: 'Мои проекты', path: '/projects/my' },
+    ],
+  },
+  {
     label: 'Тестирование',
     path: '/tests',
     links: [

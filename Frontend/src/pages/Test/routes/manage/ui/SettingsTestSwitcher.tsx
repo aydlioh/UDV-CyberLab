@@ -1,4 +1,4 @@
-import { useEditTestNavigation } from '@/entities/test-edit-nav';
+import { useEditTestNavigation } from '@/features/test-edit-nav';
 import { ContentSwitcher } from '@/features/content-switcher';
 import { useNavigate, useParams } from 'react-router-dom';
 

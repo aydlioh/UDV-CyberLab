@@ -13,12 +13,13 @@ export const ListFormatSwitcher = () => {
       showArrow
       content="Формат размещения"
       placement="right"
+      closeDelay={100}
     >
       <Button
         type="button"
         fullWidth
-        variant="light"
         isIconOnly
+        color="white"
         size="md"
         radius="sm"
         onPress={() => setFormat(format === 'grid' ? 'rows' : 'grid')}

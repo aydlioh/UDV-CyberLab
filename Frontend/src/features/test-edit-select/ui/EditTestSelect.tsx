@@ -5,7 +5,7 @@ import {
   useEditTestNavigation,
   parseUrlToStatus,
   getEditStatusUrl,
-} from '@/entities/test-edit-nav';
+} from '@/features/test-edit-nav';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigation } from '@/shared/hooks';

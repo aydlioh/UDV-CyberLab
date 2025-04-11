@@ -1,6 +1,6 @@
 ## Entities
 
-- [ ] Project Card (photo, title, shortDescription, author, rating, commentsCount, viewsCount)
+- [X] Project Card (photo, title, shortDescription, author, rating, commentsCount, viewsCount)
 - [ ] Project Card Slot
 - [ ] Project Full Info (фулл инфа)
 - [ ] Project Comment Card (имя, комментарий, дата создания)

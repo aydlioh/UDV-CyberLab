@@ -17,7 +17,7 @@ export const ProjectListLayout = () => {
   return (
     <div className="w-full max-w-[712px] flex flex-col gap-3">
       <StickyElement shadow={!isTablet} className="top-[75px] z-10">
-        <div className="flex md:flex-row flex-col justify-between md:items-center items-start">
+        <div className="flex sm:flex-row flex-col justify-between items-center">
           <div className="flex flex-row gap-2 w-full items-center">
             <div className="max-w-[234px] w-full">
               <ProjectSortingSelect sort={sort} setSort={setSort} />

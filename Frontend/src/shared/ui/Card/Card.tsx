@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 
-type CardProps = {
-  children?: React.ReactNode;
-  className?: string;
-};
-
-export const Card = ({ children, className }: CardProps) => {
+export const Card = ({
+  children,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <div className={clsx('bg-white rounded-[20px]', className)}>{children}</div>
+    <div className={clsx('bg-white rounded-[20px]', className)} {...props}>
+      {children}
+    </div>
   );
 };

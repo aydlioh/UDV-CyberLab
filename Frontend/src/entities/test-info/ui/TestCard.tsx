@@ -18,7 +18,7 @@ export const TestCard = ({ test, onClick, rightContent }: TestCardProps) => {
     <li
       tabIndex={0}
       onClick={onClick}
-      onKeyPress={handleKeyPress}
+      onKeyDown={handleKeyPress}
       className="bg-white custom-outline h-[64px] rounded-[10px] cursor-pointer hover:bg-white/65 duration-200 drop-shadow-base"
     >
       <div className="flex flex-row justify-between items-center px-4 py-3 h-full">

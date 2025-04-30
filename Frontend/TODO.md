@@ -1,16 +1,16 @@
 ## Entities
 
-- [ ] Project Card (photo, title, shortDescription, author, rating, commentsCount, viewsCount)
-- [ ] Project Card Slot
+- [X] Project Card (photo, title, shortDescription, author, rating, commentsCount, viewsCount)
+- [X] Project Card Slot
 - [ ] Project Full Info (фулл инфа)
 - [ ] Project Comment Card (имя, комментарий, дата создания)
 - [ ] Project Comment Slot
 
 ## Features
 
-- [ ] Select (популярные, Непопулярные, С высоким рейтингом, С низким рейтингом)
-- [ ] Create Project Button
-- [ ] Переключатель положения карточек (таблица, лента)
+- [X] Select (популярные, Непопулярные, С высоким рейтингом, С низким рейтингом)
+- [X] Create Project Button
+- [X] Переключатель положения карточек (таблица, лента)
 - [ ] Delete Comment Button
 - [ ] Create Comment Form (textarea, button)
 
@@ -24,6 +24,6 @@
 - [ ] Comments
 
 ## Pages
-- [ ] Мои проекты
-- [ ] Все проекты
-- [ ] Страница проекта
+- [X] Мои проекты
+- [X] Все проекты
+- [X] Страница проекта

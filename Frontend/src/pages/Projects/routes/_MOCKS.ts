@@ -7,7 +7,7 @@ export const projectsListMock: ProjectCardDTO[] = [
     photo:
       'https://avatars.mds.yandex.net/i?id=4dac695074265c0e107f58e9db7e4cfc_l-10871821-images-thumbs&n=13',
     shortDescription: 'Short description of project one.',
-    author: 'Author One',
+    author: 'pbiryuchev',
     rating: 2.5,
     commentsCount: 10,
     viewsCount: 100,
@@ -31,7 +31,7 @@ export const projectsListMock: ProjectCardDTO[] = [
       'https://nypost.com/wp-content/uploads/sites/2/2022/08/Ryan-Gosling-84.jpg',
     shortDescription:
       'Очень интересное краткое описание прекрасного проекта, чтобы все знали какой он классный ',
-    author: 'Author Three',
+    author: 'pbiryuchev',
     rating: 4.2,
     commentsCount: 5,
     viewsCount: 200,

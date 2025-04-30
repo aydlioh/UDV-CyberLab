@@ -1,6 +1,7 @@
 import { SortingType } from '../model/types';
 
 export const projectSorting: SortingType[] = [
+  { label: 'Новинки', key: 'new' },
   { label: 'Популярные', key: 'popular' },
   { label: 'Непопулярные', key: 'unpopular' },
   { label: 'С высоким рейтингом', key: 'high_rating' },

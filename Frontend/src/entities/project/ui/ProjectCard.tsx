@@ -9,11 +9,17 @@ import { useMediaQuery } from '@/shared/hooks';
 type ProjectCardProps = {
   onClick?: () => void;
   project: ProjectCardDTO;
+  actionSlot?: React.ReactNode;
   type: 'row' | 'card';
 };
 
-export const ProjectCard = ({ project, onClick, type }: ProjectCardProps) => {
-  const isMobile = useMediaQuery({query: '(max-width: 640px)'});
+export const ProjectCard = ({
+  project,
+  onClick,
+  type,
+  actionSlot,
+}: ProjectCardProps) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
@@ -60,6 +66,7 @@ export const ProjectCard = ({ project, onClick, type }: ProjectCardProps) => {
               </div>
             </div>
           </div>
+          <div className="absolute top-2 right-2">{actionSlot}</div>
         </div>
       </Card>
     );
@@ -70,7 +77,7 @@ export const ProjectCard = ({ project, onClick, type }: ProjectCardProps) => {
       tabIndex={0}
       onClick={onClick}
       onKeyDown={handleKeyPress}
-      className="drop-shadow-base hover:bg-white/80 transition-colors cursor-pointer custom-outline py-[10px] px-[24px] rounded-[12px] md:h-[331px] h-[430px] w-full"
+      className="drop-shadow-base hover:bg-white/80 transition-colors cursor-pointer custom-outline py-[10px] px-[24px] rounded-[12px] md:h-[331px] h-[430px] w-full relative"
     >
       <div className="flex flex-col gap-[10px] h-full">
         <p className="font-medium text-sm text-center">{project.title}</p>
@@ -97,6 +104,7 @@ export const ProjectCard = ({ project, onClick, type }: ProjectCardProps) => {
             />
           </div>
         </div>
+        <div className="absolute top-2 right-2 z-10">{actionSlot}</div>
       </div>
     </Card>
   );

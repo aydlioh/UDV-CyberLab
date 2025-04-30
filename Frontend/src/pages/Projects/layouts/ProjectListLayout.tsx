@@ -1,18 +1,19 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useQueryState } from 'nuqs';
 import { Spinner, StickyElement } from '@/shared/ui';
 import { useMediaQuery } from '@/shared/hooks';
 import { QueryBoundary } from '@/shared/common/components';
-import { useUserStatus } from '@/entities/user';
 import { ProjectSortingSelect } from '@/features/project-sorting-select';
 import { CreateProjectButton } from '@/features/project-create-button';
 import { ListFormatSwitcher } from '@/features/list-format-switcher';
+import { useProjectEditModal } from '@/features/project-edit-modal';
 
 export const ProjectListLayout = () => {
+  const open = useProjectEditModal(state => state.open);
+  const { pathname } = useLocation();
   const [sort, setSort] = useQueryState('sord', { defaultValue: '' });
 
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
-  const { isTeacher } = useUserStatus();
 
   return (
     <div className="w-full max-w-[712px] flex flex-col gap-3">
@@ -24,8 +25,12 @@ export const ProjectListLayout = () => {
             </div>
             <ListFormatSwitcher />
           </div>
-          <div className="bg-background rounded-xl self-end mt-3 sm:w-auto w-full drop-shadow-md">
-            {isTeacher && <CreateProjectButton />}
+          <div className="bg-background rounded-xl sm:mt-0 mt-3 self-end sm:w-auto w-full drop-shadow-md">
+            {pathname === '/projects/my' && (
+              <CreateProjectButton
+                handleClick={() => open({ isEditing: false })}
+              />
+            )}
           </div>
         </div>
       </StickyElement>

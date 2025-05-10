@@ -3,7 +3,7 @@ import { StatusSwitcher, useStatusSwitcher } from '@/features/status-switcher';
 import { loginSchema, useLogin } from '@/entities/user';
 import { Button, Input, Spinner } from '@/shared/ui';
 import { Link } from 'react-router-dom';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -14,8 +14,8 @@ export const LoginForm = () => {
   const { login, isPending, error } = useLogin();
 
   const {
-    register: registerInput,
     handleSubmit,
+    control,
     reset,
     formState: { errors },
   } = useForm<LoginType>({
@@ -23,14 +23,11 @@ export const LoginForm = () => {
   });
 
   const onReset = () => {
-    reset({
-      email: '',
-      password: '',
-    });
+    reset();
   };
 
   const onSubmit: SubmitHandler<LoginType> = data => {
-    login({ ...data, role: Number(userStatus) }).then(onReset);
+    login({ ...data, role: Number(userStatus) }).finally(onReset);
   };
 
   const isEmailError = errors.email !== undefined || Boolean(error);
@@ -39,26 +36,42 @@ export const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
       <StatusSwitcher />
-      <Input
-        isRequired
-        isInvalid={isEmailError}
-        errorMessage={errors.email?.message}
-        {...registerInput('email')}
-        label="E-mail"
-        placeholder="Введите почту"
-        type="email"
-        autoComplete="email"
+      <Controller
+        name="email"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <Input
+            isRequired
+            isInvalid={isEmailError}
+            errorMessage={errors.email?.message}
+            {...field}
+            label="E-mail"
+            placeholder="Введите почту"
+            type="email"
+            autoComplete="email"
+          />
+        )}
       />
-      <PasswordInput
-        isRequired
-        isInvalid={isPasswordError}
-        errorMessage={errors.password?.message || error?.message}
-        {...registerInput('password')}
-        label="Password"
-        placeholder="Введите пароль"
-        type="password"
-        autoComplete="new-password"
+
+      <Controller
+        name="password"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <PasswordInput
+            isRequired
+            isInvalid={isPasswordError}
+            errorMessage={errors.password?.message || error?.message}
+            {...field}
+            label="Password"
+            placeholder="Введите пароль"
+            type="password"
+            autoComplete="new-password"
+          />
+        )}
       />
+
       <p>
         <span className="text-small duration-200 hover:text-orange cursor-pointer">
           Забыли пароль?

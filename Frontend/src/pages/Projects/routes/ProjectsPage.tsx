@@ -1,10 +1,12 @@
+import { useProjectList } from '@/entities/project';
 import { ProjectList } from '@/widgets/project-list';
-import { projectsListMock } from './_MOCKS';
 
 const ProjectsPage = () => {
+  const { data } = useProjectList();
+
   return (
     <div>
-      <ProjectList projects={projectsListMock} />
+      <ProjectList projects={data} />
     </div>
   );
 };

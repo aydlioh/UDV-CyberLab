@@ -11,7 +11,7 @@ import { useProjectEditModal } from '@/features/project-edit-modal';
 export const ProjectListLayout = () => {
   const open = useProjectEditModal(state => state.open);
   const { pathname } = useLocation();
-  const [sort, setSort] = useQueryState('sord', { defaultValue: '' });
+  const [sort, setSort] = useQueryState('sort', { defaultValue: '' });
 
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
 

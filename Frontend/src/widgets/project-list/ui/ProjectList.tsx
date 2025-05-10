@@ -31,7 +31,7 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
         })}
       >
         {projects.map(project => (
-          <li key={project.id}>
+          <li key={project.id || project.shortDescription}>
             <ProjectCard
               type={format === 'rows' ? 'row' : 'card'}
               onClick={() => handleNavigate(project.id)}

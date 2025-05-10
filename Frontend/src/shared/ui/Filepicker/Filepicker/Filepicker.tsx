@@ -5,9 +5,14 @@ import { useFilepicker } from '../hooks';
 type FilepickerProps = {
   currentFile: File | null;
   onFileSelect?: (file: File) => void;
+  withPreview?: boolean;
 };
 
-export const Filepicker = ({ onFileSelect, currentFile }: FilepickerProps) => {
+export const Filepicker = ({
+  onFileSelect,
+  currentFile,
+  withPreview = true,
+}: FilepickerProps) => {
   const {
     fileInputRef,
     handleClick,
@@ -35,7 +40,7 @@ export const Filepicker = ({ onFileSelect, currentFile }: FilepickerProps) => {
           className="hidden"
         />
       )}
-      {currentFile && <FilePreview currentFile={currentFile} />}
+      {withPreview && currentFile && <FilePreview currentFile={currentFile} />}
     </div>
   );
 };

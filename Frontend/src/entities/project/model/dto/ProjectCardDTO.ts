@@ -1,10 +1,10 @@
 export interface ProjectCardDTO {
   id: string;
-  title: string;
-  photo: string;
+  name: string;
+  logoPath: string;
+  ownerName: string;
   shortDescription: string;
-  author: string;
   rating: number;
-  commentsCount: number;
   viewsCount: number;
+  commentsCount: number;
 }

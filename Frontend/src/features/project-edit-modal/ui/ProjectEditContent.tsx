@@ -1,5 +1,5 @@
 import { ModalBody, ModalContent } from '@/shared/ui';
-import { EditProjectForm } from './EditProjectForm/EditProjectForm';
+import { ProjectEditForm } from './ProjectEditForm/ProjectEditForm';
 import { useProjectEditModal } from '../model/store';
 
 export const ProjectEditContent = () => {
@@ -17,7 +17,7 @@ export const ProjectEditContent = () => {
     <ModalContent>
       <ModalBody>
         <section className="w-full flex flex-col sm:gap-[80px] gap-[15px]">
-          <EditProjectForm
+          <ProjectEditForm
             label={
               options?.isEditing
                 ? 'Редактирование проекта'

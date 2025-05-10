@@ -3,8 +3,9 @@ import { ProjectCardDTO } from '../model/dto/ProjectCardDTO';
 import { ProjectStats } from './ProjectStats';
 import { ProjectRating } from './ProjectRating';
 import { Image } from '@nextui-org/react';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useMediaQuery } from '@/shared/hooks';
+import { useImageSrc } from '../api/queries/useImageSrc';
 
 type ProjectCardProps = {
   onClick?: () => void;
@@ -19,13 +20,17 @@ export const ProjectCard = ({
   type,
   actionSlot,
 }: ProjectCardProps) => {
+  const { data: imgSrc, isLoading } = useImageSrc(project.logoPath);
   const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter') {
-      onClick?.();
-    }
-  };
+  const handleKeyPress = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Enter') {
+        onClick?.();
+      }
+    },
+    [onClick]
+  );
 
   const isRow = useMemo(() => type === 'row', [type]);
 
@@ -42,9 +47,10 @@ export const ProjectCard = ({
             <Image
               shadow="sm"
               radius="md"
+              isLoading={isLoading || !imgSrc}
               isBlurred={true}
-              src={project.photo}
-              alt={project.title}
+              src={imgSrc}
+              alt={project.name}
               className="overflow-hidden object-cover object-center h-full w-full"
               classNames={{
                 wrapper: '!max-w-[160px] h-full',
@@ -53,10 +59,10 @@ export const ProjectCard = ({
           </div>
 
           <div className="flex flex-col w-full">
-            <p className="font-medium text-sm mb-4">{project.title}</p>
+            <p className="font-medium text-sm mb-4">{project.name}</p>
             <p className="text-xs line-clamp-6">{project.shortDescription}</p>
             <div className="mt-auto flex flex-row justify-between items-center">
-              <p className="text-xs">Автор: {project.author}</p>
+              <p className="text-xs">Автор: {project.ownerName}</p>
               <div className="flex flex-row gap-7 justify-between items-center">
                 <ProjectRating rating={project.rating} />
                 <ProjectStats
@@ -80,13 +86,14 @@ export const ProjectCard = ({
       className="drop-shadow-base hover:bg-white/80 transition-colors cursor-pointer custom-outline py-[10px] px-[24px] rounded-[12px] md:h-[331px] h-[430px] w-full relative"
     >
       <div className="flex flex-col gap-[10px] h-full">
-        <p className="font-medium text-sm text-center">{project.title}</p>
+        <p className="font-medium text-sm text-center">{project.name}</p>
         <Image
           shadow="sm"
           radius="md"
           isBlurred={true}
-          src={project.photo}
-          alt={project.title}
+          isLoading={isLoading || !imgSrc}
+          src={imgSrc || project.logoPath}
+          alt={project.name}
           className="w-full md:h-[160px] sm:h-[220px] h-[260px] overflow-hidden object-cover object-center"
           classNames={{
             wrapper: '!max-w-full',
@@ -95,7 +102,7 @@ export const ProjectCard = ({
 
         <p className="text-xs line-clamp-4">{project.shortDescription}</p>
         <div className="mt-auto flex flex-col">
-          <p className="text-xs line-clamp-4">Автор: {project.author}</p>
+          <p className="text-xs line-clamp-4">Автор: {project.ownerName}</p>
           <div className="flex justify-between items-center">
             <ProjectRating rating={project.rating} />
             <ProjectStats

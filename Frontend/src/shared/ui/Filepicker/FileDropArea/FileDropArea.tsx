@@ -1,15 +1,30 @@
 import clsx from 'clsx';
 import { useDragAndDrop } from '../hooks/useDragAndDrop';
 import { useFilepicker } from '../hooks/useFilepicker';
+import { FileDropAreaPreview } from './FileDropAreaPreview';
+
+type ClassnamesType = {
+  container?: string;
+  title?: string;
+  description?: string;
+};
 
 type FileDropAreaProps = {
+  classNames?: ClassnamesType;
   currentFile: File | null;
   onFileSelect: (file: File) => void;
+  withPreview?: boolean;
+  filePatterns?: string;
+  children?: React.ReactNode;
 };
 
 export const FileDropArea = ({
   currentFile,
   onFileSelect,
+  classNames,
+  withPreview = false,
+  filePatterns = 'image/*,.doc,.docx,.pdf',
+  children,
 }: FileDropAreaProps) => {
   const {
     fileInputRef,
@@ -29,38 +44,50 @@ export const FileDropArea = ({
 
   return (
     <button
+      type="button"
       className={clsx(
-        'relative cursor-pointer h-[342px] w-full custom-outline border-second border-2 border-dashed rounded-[20px] duration-200',
+        'group relative cursor-pointer custom-outline border-second border-2 border-dashed rounded-[20px] duration-200',
         isDragOver
           ? 'border-foreground animate-pulse duration-300'
-          : 'border-second'
+          : 'border-second',
+        classNames?.container
       )}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onClick={handleClick}
     >
-      <div className="flex h-full items-center justify-center sm:gap-[10px] gap-1.5 flex-col">
-        <h4 className="sm:text-[24px] text-[22px]">Загрузите файл</h4>
-        <span className='sm:text-[16px] text-[14px]'>
-          {isSelected ? (
-            'Файл выбран'
-          ) : (
-            <>
-              Перетащите файл или{' '}
-              <span className="text-second">нажмите загрузить</span>
-            </>
-          )}
-        </span>
+      <div className="flex justify-center items-center">
+        {children ? (
+          children
+        ) : (
+          <div className="flex h-full items-center justify-center flex-col">
+            <h4 className={clsx('mb-2', classNames?.title)}>Загрузите файл</h4>
+            <span
+              className={clsx(' text-foreground/70', classNames?.description)}
+            >
+              {currentFile ? (
+                'Файл выбран'
+              ) : (
+                <>
+                  Перетащите файл или{' '}
+                  <span className="font-bold">нажмите загрузить</span>
+                </>
+              )}
+            </span>
+          </div>
+        )}
       </div>
 
       <input
+        accept={filePatterns}
         tabIndex={-1}
         type="file"
         ref={fileInputRef}
-        className="absolute opacity-0 pointer-events-none"
+        className="absolute hidden pointer-events-none"
         onChange={handleFileInput}
       />
+      {withPreview && currentFile && <FileDropAreaPreview file={currentFile} />}
     </button>
   );
 };

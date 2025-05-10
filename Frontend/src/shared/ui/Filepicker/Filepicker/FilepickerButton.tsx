@@ -31,7 +31,7 @@ export const FilepickerButton = ({
     <Button
       isDisabled={!handleFileChange}
       className={clsx(
-        'border-2 duration-300 border-dashed',
+        'border-2 duration-300 border-dashedz',
         isDragOver ? 'border-foreground' : 'border-foreground/60'
       )}
       color="secondary"

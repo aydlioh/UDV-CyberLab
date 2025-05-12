@@ -44,10 +44,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
         </div>
       </div>
 
-      <div className="mt-10 text-sm break-words">
-        {project.description}{' '}
-        wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-      </div>
+      <div className="mt-10 text-sm break-words">{project.description}</div>
 
       <div>{/* Photos */}</div>
 

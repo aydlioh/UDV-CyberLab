@@ -4,10 +4,7 @@ import { ProjectCard, ProjectCardDTO } from '@/entities/project';
 import { useAuth } from '@/entities/user';
 import { useListFormat } from '@/features/list-format-switcher/model/store';
 import { ProjectEditButton } from '@/features/project-edit-button';
-import {
-  ProjectEditModal,
-  useProjectEditModal,
-} from '@/features/project-edit-modal';
+import { useProjectEditModal } from '@/features/project-edit-modal';
 
 type ProjectListProps = {
   projects: ProjectCardDTO[];
@@ -26,7 +23,7 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
   return (
     <>
       <ul
-        className={clsx('grid gap-2 mt-6 mb-20', {
+        className={clsx('grid gap-2', {
           'md:grid-cols-3 sm:grid-cols-2': format === 'grid',
         })}
       >
@@ -47,7 +44,6 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
           </li>
         ))}
       </ul>
-      <ProjectEditModal />
     </>
   );
 };

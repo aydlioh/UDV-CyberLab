@@ -20,6 +20,6 @@ export type UserInfo = {
 export type UserCardType = {
   login: string;
   email: string;
-  img: string;
+  img?: string;
   role: UserRole;
 }

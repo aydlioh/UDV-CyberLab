@@ -26,7 +26,7 @@ class ProjectApi {
     return await axiosClient.post('/api/ProjectCard', fm, fileConfig);
   }
 
-  public async getImage(path: string): Promise<string> {
+  public async getFile(path: string): Promise<string> {
     const base64: { item1: string; item2: string } = await axiosClient.get(
       '/api/Files/file',
       {

@@ -17,5 +17,5 @@ export const useProfile = () => {
     }
   }, [data, isSuccess, setUser]);
 
-  return { isPending };
+  return { isPending, data };
 };

@@ -5,9 +5,9 @@ const ProjectsPage = () => {
   const { data } = useProjectList();
 
   return (
-    <div>
+    <section className='mt-4 mb-20'>
       <ProjectList projects={data} />
-    </div>
+    </section>
   );
 };
 

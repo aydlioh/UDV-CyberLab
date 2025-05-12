@@ -5,7 +5,7 @@ import { ProjectRating } from './ProjectRating';
 import { Image } from '@nextui-org/react';
 import { useCallback, useMemo } from 'react';
 import { useMediaQuery } from '@/shared/hooks';
-import { useImageSrc } from '../api/queries/useImageSrc';
+import { useFileSrc } from '../api/queries/useFileSrc';
 
 type ProjectCardProps = {
   onClick?: () => void;
@@ -20,7 +20,7 @@ export const ProjectCard = ({
   type,
   actionSlot,
 }: ProjectCardProps) => {
-  const { data: imgSrc, isLoading } = useImageSrc(project.logoPath);
+  const { data: imgSrc, isLoading } = useFileSrc(project.logoPath);
   const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
 
   const handleKeyPress = useCallback(
@@ -86,7 +86,7 @@ export const ProjectCard = ({
       className="drop-shadow-base hover:bg-white/80 transition-colors cursor-pointer custom-outline py-[10px] px-[24px] rounded-[12px] md:h-[331px] h-[430px] w-full relative"
     >
       <div className="flex flex-col gap-[10px] h-full">
-        <p className="font-medium text-sm text-center">{project.name}</p>
+        <p className="font-medium text-sm text-center line-clamp-1">{project.name}</p>
         <Image
           shadow="sm"
           radius="md"

@@ -1,8 +1,9 @@
-import { Avatar, Badge } from '@nextui-org/react';
+import { Badge } from '@nextui-org/react';
 import { UserCardType, UserRole } from '../model/types';
 
 import { RiGraduationCapFill } from 'react-icons/ri';
 import { FaLock } from 'react-icons/fa';
+import { UserImage } from './UserImage';
 
 export const UserCard = ({ login, email, img, role }: UserCardType) => {
   return (
@@ -20,19 +21,20 @@ export const UserCard = ({ login, email, img, role }: UserCardType) => {
               )
             }
           >
-            <Avatar
-              color={role === UserRole.TEACHER ? 'primary' : 'warning'}
+            <UserImage
               isBordered
               size="lg"
               radius="lg"
               src={img}
+              username={login}
+              color={role === UserRole.TEACHER ? 'primary' : 'warning'}
             />
           </Badge>
         ) : (
-          <Avatar size="lg" radius="lg" src={img} />
+          <UserImage username={login} size="lg" radius="lg" src={img} />
         )}
 
-        <div className='flex justify-center flex-col'>
+        <div className="flex justify-center flex-col">
           <p className="text-[16px] font-bold">{login}</p>
           <p className="text-[12px] text-foreground/80">{email}</p>
         </div>

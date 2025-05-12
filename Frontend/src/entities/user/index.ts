@@ -12,4 +12,7 @@ export * from './api/mutations/useLogout';
 export * from './api/queries/useProfile';
 
 export * from './ui/UserCard';
+export * from './ui/UserImage';
 export * from './guards/TeacherGuard';
+
+export * from './utils/getImageFallback';

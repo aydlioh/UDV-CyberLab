@@ -7,11 +7,11 @@ import {
 } from '@nextui-org/react';
 import { HeaderProfileContent } from './HeaderProfileContent';
 import { useState } from 'react';
-import { useProfile } from '@/entities/user';
+import { useProfile, UserImage } from '@/entities/user';
 
 export const HeaderProfile = () => {
   const [open, setOpen] = useState(false);
-  const { isPending } = useProfile();
+  const { isPending, data } = useProfile();
 
   return (
     <>
@@ -44,11 +44,9 @@ export const HeaderProfile = () => {
               radius="sm"
               className="min-w-0 w-[50px] h-[50px] p-1"
             >
-              <Avatar
-                isBordered
-                className="transition-transform"
+              <UserImage
+                username={data.userName}
                 // TODO Аватарка для профиля
-                src="" //https://i.pravatar.cc/150?u=a042581f4e29026024d
               />
             </Button>
           </PopoverTrigger>

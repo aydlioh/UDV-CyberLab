@@ -6,7 +6,10 @@ import { QueryBoundary } from '@/shared/common/components';
 import { ProjectSortingSelect } from '@/features/project-sorting-select';
 import { CreateProjectButton } from '@/features/project-create-button';
 import { ListFormatSwitcher } from '@/features/list-format-switcher';
-import { useProjectEditModal } from '@/features/project-edit-modal';
+import {
+  ProjectEditModal,
+  useProjectEditModal,
+} from '@/features/project-edit-modal';
 
 export const ProjectListLayout = () => {
   const open = useProjectEditModal(state => state.open);
@@ -42,6 +45,7 @@ export const ProjectListLayout = () => {
         }
       >
         <Outlet />
+        <ProjectEditModal />
       </QueryBoundary>
     </div>
   );

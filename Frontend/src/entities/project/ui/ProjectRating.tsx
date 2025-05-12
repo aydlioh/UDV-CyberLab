@@ -3,11 +3,14 @@ import { IoIosStar } from 'react-icons/io';
 
 type ProjectRatingProps = {
   rating: number;
+  starSize?: number;
 };
 
-export const ProjectRating = ({ rating }: ProjectRatingProps) => {
+export const ProjectRating = ({
+  rating,
+  starSize = 18,
+}: ProjectRatingProps) => {
   const clampedRating = Math.min(rating, 5);
-  const starSize = 18;
 
   return (
     <Tooltip

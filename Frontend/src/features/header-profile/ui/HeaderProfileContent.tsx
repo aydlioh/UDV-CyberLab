@@ -25,8 +25,7 @@ export const HeaderProfileContent = ({
         role={user.role}
         login={user.userName}
         email={user.email}
-        // TODO Аватарка для профиля
-        img="" // https://i.pravatar.cc/150?u=a042581f4e29026024d
+        // TODO: Image
       />
       <Divider className="my-1 bg-background" />
       <Button

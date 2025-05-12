@@ -7,7 +7,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
   // const { isLoading, data: imgSrc } = useFileSrc(project.logoPath);
 
   return (
-    <Card className="drop-shadow-base hover:bg-white/80 transition-colors  custom-outline py-[22px] px-[30px] max-w-[712px] rounded-[12px] w-full">
+    <Card className="drop-shadow-base custom-outline py-[30px] px-[30px] max-w-[712px] rounded-[12px] w-full">
       <div className="flex flex-row gap-7 h-full">
         <div className="h-[160px] max-w-[160px] w-full">
           <Image

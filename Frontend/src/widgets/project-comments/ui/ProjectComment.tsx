@@ -16,7 +16,7 @@ export const ProjectComment = ({ comment }: ProjectCommentType) => {
   const isExpanded = comment.message.length > 250;
 
   return (
-    <Card className="drop-shadow-base w-full hover:bg-white/80 transition-colors rounded-lg custom-outline pt-[10px] pb-[20px] px-[15px] flex flex-row gap-4 min-h-[80px]">
+    <Card className="drop-shadow-base w-full rounded-lg custom-outline pt-[10px] pb-[20px] px-[15px] flex flex-row gap-4 min-h-[80px]">
       <div>
         <UserImage username={comment.author} />
       </div>

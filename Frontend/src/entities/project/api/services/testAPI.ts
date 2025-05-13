@@ -3,6 +3,8 @@ import { CreateProjectDTO } from '../../model/dto/CreateProjectDTO';
 import { ProjectCardDTO } from '../../model/dto/ProjectCardDTO';
 import { ProjectDTO } from '../../model/dto/ProjectDTO';
 
+type ProjectFiles = { logo: string; documentation: string };
+
 class ProjectApi {
   public async getAll(): Promise<ProjectCardDTO[]> {
     return await axiosClient.get('/api/ProjectCard/allShort');
@@ -39,9 +41,20 @@ class ProjectApi {
     return `data:${base64.item2};base64,${base64.item1}`;
   }
 
-  // public async updateProject(body: UpdateQuestionDTO): Promise<void> {
-  //   return await axiosClient.put('/api/Questions', body);
-  // }
+  public async getProjectFiles(id: string): Promise<ProjectFiles> {
+    const base64: ProjectFiles & {
+      logoMimeType: string;
+      documentationMimeType: string;
+    } = await axiosClient.get(`/api/Files/${id}/files`);
+
+    return {
+      logo: `data:${base64.logoMimeType};base64,${base64.logo}`,
+      documentation: `data:${base64.documentationMimeType};base64,${base64.documentation}`,
+    };
+  }
+
+  // TODO:
+  // public async updateProject(body: UpdateProjectDTO): Promise<void> { }
 }
 
 export const projectApi = new ProjectApi();

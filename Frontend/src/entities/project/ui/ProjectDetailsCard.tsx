@@ -2,9 +2,28 @@ import { Card, Image } from '@nextui-org/react';
 import { ProjectDTO } from '../model/dto/ProjectDTO';
 import { ProjectRating } from './ProjectRating';
 import { ProjectStats } from './ProjectStats';
+import { useProjectFiles } from '../api/queries/useProjectFiles';
 
 export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
-  // const { isLoading, data: imgSrc } = useFileSrc(project.logoPath);
+  const {
+    data: { logo, documentation },
+  } = useProjectFiles(project.id);
+
+  const onFileDownload = (fileName = 'document') => {
+    const [header, base64Data] = documentation.split(';base64,');
+    const mimeType = header.split(':')[1];
+
+    const bytes = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
+    const blob = new Blob([bytes], { type: mimeType });
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+  };
 
   return (
     <Card className="drop-shadow-base custom-outline py-[30px] px-[30px] max-w-[712px] rounded-[12px] w-full">
@@ -15,7 +34,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
             radius="md"
             // isLoading={isLoading || !imgSrc}
             isBlurred={true}
-            // src={imgSrc}
+            src={logo}
             alt={project.name}
             className="overflow-hidden object-cover object-center h-full w-full"
             classNames={{
@@ -52,8 +71,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
         <ul className="list-disc text-sm flex flex-col text-blue-500 gap-2 pl-6">
           <li>
             <a
-              href={project.documentation}
-              download
+              onClick={() => onFileDownload(project.name)}
               className="hover:underline cursor-pointer"
             >
               Скачать документацию

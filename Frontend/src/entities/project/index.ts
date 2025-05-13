@@ -9,4 +9,5 @@ export * from './model/dto/ProjectDTO';
 export * from './api/queries/useProjectList';
 export * from './api/queries/useProjectDetails';
 export * from './api/queries/useFileSrc';
+export * from './api/queries/useProjectFiles';
 export * from './api/mutations/useCreateProject';

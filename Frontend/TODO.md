@@ -14,3 +14,6 @@
 ## Widgets
 - [ ] Create Project Modal (markdown для краткого описания и подробного описания)
 - [ ] Edit Project Modal (точно также)
+
+# GLOBAL
+- [ ] Мобильная верстка (буквально фотку поправить в project details card)

@@ -1,10 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { projectApi } from '../services/testAPI';
 
-export const useFileSrc = (path: string) => {
+export const useProjectFiles = (id: string) => {
   return useSuspenseQuery({
-    queryKey: ['file', path],
-    queryFn: async () => await projectApi.getFile(path),
+    queryKey: ['files', id],
+    queryFn: async () => await projectApi.getProjectFiles(id),
     staleTime: 60 * 60 * 1000,
   });
 };

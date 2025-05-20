@@ -5,6 +5,7 @@ import { useAuth } from '@/entities/user';
 import { useListFormat } from '@/features/list-format-switcher/model/store';
 import { ProjectEditButton } from '@/features/project-edit-button';
 import { useProjectEditModal } from '@/features/project-edit-modal';
+import { EmptyProjectList } from './EmptyProjectList';
 
 type ProjectListProps = {
   projects: ProjectCardDTO[];
@@ -15,6 +16,10 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
   const user = useAuth(state => state.user);
   const navigate = useNavigate();
   const format = useListFormat(state => state.format);
+
+  if (!projects.length) {
+    return <EmptyProjectList />;
+  }
 
   const handleNavigate = (id: string) => {
     navigate(`/projects/${id}`);

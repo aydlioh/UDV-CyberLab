@@ -27,8 +27,8 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
 
   return (
     <Card className="drop-shadow-base custom-outline py-[30px] px-[30px] max-w-[712px] rounded-[12px] w-full">
-      <div className="flex flex-row gap-7 h-full">
-        <div className="h-[160px] max-w-[160px] w-full">
+      <div className="flex sm:flex-row flex-col gap-7 h-full">
+        <div className="sm:h-[160px] sm:max-w-[160px] w-full">
           <Image
             shadow="sm"
             radius="md"
@@ -38,7 +38,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
             alt={project.name}
             className="overflow-hidden object-cover object-center h-full w-full"
             classNames={{
-              wrapper: '!max-w-[160px] h-full',
+              wrapper: 'sm:!max-w-[160px] h-full',
             }}
           />
         </div>
@@ -50,7 +50,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
           <p className="text-sm line-clamp-6 break-words">
             {project.shortDescription}
           </p>
-          <div className="mt-auto flex flex-row justify-between items-center">
+          <div className="sm:mt-auto mt-4 flex flex-row justify-between items-center">
             <p className="text-xs">Автор: {project.ownerName}</p>
             <div className="flex flex-row gap-7 justify-between items-center">
               <ProjectRating rating={project.rating} />

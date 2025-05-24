@@ -12,6 +12,10 @@ class ProjectApi {
     return await axiosClient.get('/api/ProjectCard/allShort');
   }
 
+  public async getAllMy(): Promise<ProjectCardDTO[]> {
+    return await axiosClient.get('/api/ProjectCard/myCards');
+  }
+
   public async getDetailsById(id: string): Promise<ProjectDTO> {
     return await axiosClient.get(`/api/ProjectCard/${id}`);
   }

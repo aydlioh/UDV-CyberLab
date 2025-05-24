@@ -168,9 +168,9 @@ export const ProjectEditForm = ({
           )}
         />
 
-        <div>
+        <div className='md:block hidden'>
           <p className="text-sm mb-2">Фотографии проекта</p>
-          <div className="md:grid grid-cols-3 gap-5 w-full h-40 hidden">
+          <div className="grid grid-cols-3 gap-5 w-full h-40">
             {images.map((image, index) => (
               <div key={index} className="flex justify-center">
                 <FileDropArea

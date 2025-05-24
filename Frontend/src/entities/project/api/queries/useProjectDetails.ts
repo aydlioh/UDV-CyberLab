@@ -8,12 +8,7 @@ const createProjectDetailsConfig = (id: string) => ({
 });
 
 export const useSuspenseProjectDetails = (id: string) => {
-  return useSuspenseQuery({
-    queryKey: ['projects', id],
-    queryFn: async () => await projectApi.getDetailsById(id),
-    staleTime: 2000,
-    
-  });
+  return useSuspenseQuery(createProjectDetailsConfig(id));
 };
 
 export const useProjectDetails = (id: string) => {

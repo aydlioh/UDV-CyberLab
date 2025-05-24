@@ -1,9 +1,9 @@
 import { ProjectList } from '@/widgets/project-list';
-import { useProjectList } from '@/entities/project';
+import { useMyProjectList } from '@/entities/project/api/queries/useMyProjectList';
 // import { useQueryState } from 'nuqs';
 
 const MyProjectsPage = () => {
-  const { data } = useProjectList();
+  const { data } = useMyProjectList();
   // const [sort] = useQueryState('sort', { defaultValue: '' });
 
   return (

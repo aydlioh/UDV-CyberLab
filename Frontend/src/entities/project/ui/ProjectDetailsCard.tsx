@@ -2,12 +2,12 @@ import { Card, Image } from '@nextui-org/react';
 import { ProjectDTO } from '../model/dto/ProjectDTO';
 import { ProjectRating } from './ProjectRating';
 import { ProjectStats } from './ProjectStats';
-import { useProjectFiles } from '../api/queries/useProjectFiles';
+import { useSuspenseProjectFiles } from '../api/queries/useProjectFiles';
 
 export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
   const {
     data: { logo, documentation },
-  } = useProjectFiles(project.id);
+  } = useSuspenseProjectFiles(project.id);
 
   const onFileDownload = (fileName = 'document') => {
     const [header, base64Data] = documentation.split(';base64,');

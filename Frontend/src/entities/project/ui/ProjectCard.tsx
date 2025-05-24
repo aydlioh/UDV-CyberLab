@@ -20,7 +20,7 @@ export const ProjectCard = ({
   type,
   actionSlot,
 }: ProjectCardProps) => {
-  const { data: imgSrc, isLoading } = useFileSrc(project.logoPath);
+  const { data: imgSrc, isLoading } = useFileSrc(project.logoPath, project.id);
   const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
 
   const handleKeyPress = useCallback(

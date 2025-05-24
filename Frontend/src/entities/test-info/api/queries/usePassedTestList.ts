@@ -6,5 +6,6 @@ export const usePassedTestList = () => {
     queryKey: ['tests', { passed: true }],
     queryFn: testApi.getPassedTests,
     staleTime: 2000,
+    refetchInterval: 5000,
   });
 };

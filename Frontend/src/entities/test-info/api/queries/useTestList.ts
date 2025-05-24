@@ -10,5 +10,6 @@ export const useTestList = (
     queryKey: ['tests', ...[search, subject, difficulty].filter(Boolean)],
     queryFn: async () => await testApi.getTests(),
     staleTime: 2000,
+    refetchInterval: 5000,
   });
 };

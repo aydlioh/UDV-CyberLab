@@ -1,4 +1,4 @@
-import { ProjectDTO, useProjectFiles } from '@/entities/project';
+import { ProjectDTO, useSuspenseProjectFiles } from '@/entities/project';
 import { SiGoogledocs } from 'react-icons/si';
 import { CgWebsite } from 'react-icons/cg';
 import { ProjectDetailsButton } from './ProjectDetailsButton';
@@ -10,7 +10,7 @@ export const ProjectDetailsActions = ({
 }) => {
   const {
     data: { documentation },
-  } = useProjectFiles(project.id);
+  } = useSuspenseProjectFiles(project.id);
 
   const handleDocsOpen = (fileName = 'document') => {
     const [header, base64Data] = documentation.split(';base64,');

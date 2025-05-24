@@ -4,8 +4,6 @@ export interface ProjectDTO {
   description: string;
   shortDescription: string;
   ownerName: string;
-  logoPath: string;
-  documentation: string;
   landingURL: string;
   rating: number;
   viewsCount: number;

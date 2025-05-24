@@ -1,12 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { ProjectDetailsCard, useProjectDetails } from '@/entities/project';
+import {
+  ProjectDetailsCard,
+  useSuspenseProjectDetails,
+} from '@/entities/project';
 import { BackButton } from '@/shared/ui';
 import { ProjectDetailsActions } from '@/features/project-details-button';
 import { ProjectComments } from '@/widgets/project-comments';
 
 const ProjectPreviewPage = () => {
   const { projectId = '' } = useParams();
-  const { data } = useProjectDetails(projectId);
+  const { data } = useSuspenseProjectDetails(projectId);
 
   return (
     <section className="w-full max-w-[712px] flex flex-col gap-1 items-start mb-20">

@@ -3,7 +3,7 @@ export interface CreateProjectDTO {
   description: string;
   shortDescription: string;
   ownerName: string;
-  landingUrl: string;
+  landingURL: string;
   logoPhoto: File;
   projectPhoto?: File;
   documentation: File; 

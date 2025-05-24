@@ -1,27 +1,28 @@
 import { Button, FileDropArea, Input, Textarea } from '@/shared/ui';
-import { projectSchema } from './schema';
-import { z } from 'zod';
+import { ProjectFormInputs, projectSchema } from './schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
-import { useCreateProject } from '@/entities/project';
+import { UpdateProjectDTO } from '@/entities/project';
 import clsx from 'clsx';
-import { useAuth } from '@/entities/user';
 import { useProjectEditModal } from '../../model/store';
 
 type ProjectEditFormProps = {
   label: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any;
+  defaultData?: UpdateProjectDTO;
+  onSubmit: (data: ProjectFormInputs) => Promise<void>;
+  isPending: boolean;
 };
 
-type ProjectFormInputs = z.infer<typeof projectSchema>;
-
-export const ProjectEditForm = ({ label }: ProjectEditFormProps) => {
+export const ProjectEditForm = ({
+  label,
+  defaultData,
+  onSubmit,
+  isPending,
+}: ProjectEditFormProps) => {
+  const [isFilesDirty, setIsFilesDirty] = useState(false);
   const close = useProjectEditModal(state => state.close);
-  const user = useAuth(state => state.user);
-  const { mutateAsync, isPending } = useCreateProject();
   const [images, setImages] = useState<File[]>([]);
 
   const {
@@ -31,15 +32,17 @@ export const ProjectEditForm = ({ label }: ProjectEditFormProps) => {
     watch,
     setValue,
     trigger,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<ProjectFormInputs>({
     resolver: zodResolver(projectSchema),
+    defaultValues: defaultData,
   });
 
   const logo = watch('logoPhoto');
   const docs = watch('documentation');
 
   const onFileChange = (file: File, type: 'logoPhoto' | 'documentation') => {
+    setIsFilesDirty(true);
     setValue(type, file);
     trigger(type);
   };
@@ -49,23 +52,21 @@ export const ProjectEditForm = ({ label }: ProjectEditFormProps) => {
     close();
   };
 
-  const onSubmit: SubmitHandler<ProjectFormInputs> = data => {
-    if (user?.userName) {
-      mutateAsync({ ...data, ownerName: user.userName }).then(onReset);
-    }
+  const onSubmitHandler: SubmitHandler<ProjectFormInputs> = formData => {
+    onSubmit(formData).then(onReset);
   };
 
   const isNameError = errors.name !== undefined;
   const isShortDescriptionError = errors.shortDescription !== undefined;
   const isDescriptionError = errors.description !== undefined;
-  const isLandingUrlError = errors.landingUrl !== undefined;
+  const isLandingUrlError = errors.landingURL !== undefined;
 
   const isLogoError = errors.logoPhoto !== undefined;
   const isDocumentationError = errors.documentation !== undefined;
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmitHandler)}
       className="max-w-[524px] w-full mx-auto"
     >
       <h2 className="mb-5 text-2xl text-center">{label}</h2>
@@ -151,7 +152,7 @@ export const ProjectEditForm = ({ label }: ProjectEditFormProps) => {
         />
 
         <Controller
-          name="landingUrl"
+          name="landingURL"
           control={control}
           defaultValue=""
           render={({ field }) => (
@@ -160,7 +161,7 @@ export const ProjectEditForm = ({ label }: ProjectEditFormProps) => {
               radius="sm"
               size="md"
               isInvalid={isLandingUrlError}
-              errorMessage={errors.landingUrl?.message}
+              errorMessage={errors.landingURL?.message}
               {...field}
               placeholder="Ссылка на лендинг"
             />
@@ -244,6 +245,7 @@ export const ProjectEditForm = ({ label }: ProjectEditFormProps) => {
       </div>
       <div className="w-full text-end sm:mt-10 mt-4">
         <Button
+          isDisabled={!isFilesDirty ? !isDirty : !isFilesDirty}
           isLoading={isPending}
           type="submit"
           className="sm:w-[160px] w-full"

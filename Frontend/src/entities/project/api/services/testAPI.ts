@@ -2,6 +2,8 @@ import { axiosClient, fileConfig } from '@/shared/api';
 import { CreateProjectDTO } from '../../model/dto/CreateProjectDTO';
 import { ProjectCardDTO } from '../../model/dto/ProjectCardDTO';
 import { ProjectDTO } from '../../model/dto/ProjectDTO';
+import { UpdateProjectDTO } from '../../model/dto/UpdateProjectDTO';
+import { createFileUrl } from '@/shared/common/utils/file';
 
 type ProjectFiles = { logo: string; documentation: string };
 
@@ -21,11 +23,28 @@ class ProjectApi {
     fm.append('Description', body.description);
     fm.append('ShortDescription', body.shortDescription);
     fm.append('Documentation', body.documentation);
-    fm.append('LandingURL', body.landingUrl);
+    fm.append('LandingURL', body.landingURL);
     fm.append('OwnerName', body.ownerName);
     fm.append('LogoPhoto', body.logoPhoto);
 
     return await axiosClient.post('/api/ProjectCard', fm, fileConfig);
+  }
+
+  public async update(body: UpdateProjectDTO): Promise<string> {
+    const fm = new FormData();
+
+    fm.append('Id', body.id);
+
+    if (body.name) fm.append('Name', body.name);
+    if (body.description) fm.append('Description', body.description);
+    if (body.shortDescription)
+      fm.append('ShortDescription', body.shortDescription);
+    if (body.documentation) fm.append('Documentation', body.documentation);
+    if (body.landingURL) fm.append('LandingURL', body.landingURL);
+    if (body.ownerName) fm.append('OwnerName', body.ownerName);
+    if (body.logoPhoto) fm.append('LogoPhoto', body.logoPhoto);
+
+    return await axiosClient.put('/api/ProjectCard', fm, fileConfig);
   }
 
   public async getFile(path: string): Promise<string> {
@@ -38,7 +57,7 @@ class ProjectApi {
       }
     );
 
-    return `data:${base64.item2};base64,${base64.item1}`;
+    return createFileUrl(base64.item1, base64.item2);
   }
 
   public async getProjectFiles(id: string): Promise<ProjectFiles> {
@@ -48,13 +67,13 @@ class ProjectApi {
     } = await axiosClient.get(`/api/Files/${id}/files`);
 
     return {
-      logo: `data:${base64.logoMimeType};base64,${base64.logo}`,
-      documentation: `data:${base64.documentationMimeType};base64,${base64.documentation}`,
+      logo: createFileUrl(base64.logo, base64.logoMimeType),
+      documentation: createFileUrl(
+        base64.documentation,
+        base64.documentationMimeType
+      ),
     };
   }
-
-  // TODO:
-  // public async updateProject(body: UpdateProjectDTO): Promise<void> { }
 }
 
 export const projectApi = new ProjectApi();

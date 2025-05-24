@@ -41,7 +41,9 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
               actionSlot={
                 user?.userName === project.ownerName && (
                   <ProjectEditButton
-                    handleClick={() => open({ isEditing: true })}
+                    handleClick={() =>
+                      open({ isEditing: true, projectId: project.id })
+                    }
                   />
                 )
               }

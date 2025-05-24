@@ -1,6 +1,6 @@
 import { Modal } from '@/shared/ui';
 import { useProjectEditModal } from '../model/store';
-import { ProjectEditContent } from './ProjectEditContent';
+import { ProjectModalContent } from './ProjectModalContent';
 
 export const ProjectEditModal = () => {
   const { isOpen, setOpen } = useProjectEditModal();
@@ -15,7 +15,7 @@ export const ProjectEditModal = () => {
         wrapper: 'without-scrollbar',
       }}
     >
-      <ProjectEditContent />
+      <ProjectModalContent />
     </Modal>
   );
 };

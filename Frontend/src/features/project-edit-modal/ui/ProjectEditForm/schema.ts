@@ -14,7 +14,7 @@ export const projectSchema = z.object({
     .min(1, 'Пожалуйста, введите подробное описание проекта')
     .max(1000, 'Подробное описание проекта не должно превышать 1000 символов'),
   ownerName: z.string().nonempty().optional(),
-  landingUrl: z.string().url('Пожалуйста, введите корректный URL'),
+  landingURL: z.string().url('Пожалуйста, введите корректный URL'),
   logoPhoto: z.instanceof(File, {
     message: 'Пожалуйста, загрузите логотип проекта',
   }),
@@ -23,3 +23,5 @@ export const projectSchema = z.object({
     message: 'Пожалуйста, загрузите документацию проекта',
   }),
 });
+
+export type ProjectFormInputs = z.infer<typeof projectSchema>;

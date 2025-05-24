@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 export const DevelopmentPage = () => {
   const { pathname } = useLocation();
   return (
-    <section className="pt-2 min-h-[calc(100svh-60px)]">
+    <section className="pt-2 min-h-[calc(100svh-100px)]">
       <div className='flex justify-center'>
         <div className="bg-header px-5 py-10 rounded-lg w-full max-w-[400px] flex flex-col items-center gap-8">
           <BsBuildingsFill size={100} />

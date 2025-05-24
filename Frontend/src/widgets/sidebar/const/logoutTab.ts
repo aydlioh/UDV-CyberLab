@@ -1,6 +1,6 @@
-import { MdPersonOutline } from 'react-icons/md';
+import { CiLogout } from 'react-icons/ci';
 
 export const logoutTabData = {
   label: 'Выйти',
-  icon: MdPersonOutline,
+  icon: CiLogout,
 };

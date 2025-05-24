@@ -1,12 +1,19 @@
-import { mainRoutes, authRoutes, testRoutes, projectsRoutes } from '@/pages';
+import { lazy } from 'react';
+import {
+  mainRoutes,
+  authRoutes,
+  testRoutes,
+  projectsRoutes,
+  eventsRoutes,
+  labsRoutes,
+  materialsRoutes,
+  adminRoutes,
+} from '@/pages';
 import { AuthGuard, NoAuthGuard } from './guards';
 import { useRoutes } from 'react-router-dom';
 import { NotFoundPage } from '@/pages/Error';
+import { AdminGuard } from './guards/AdminGuard';
 
-import { lazy } from 'react';
-import { eventsRoutes } from '@/pages/Event';
-import { labsRoutes } from '@/pages/Lab';
-import { materialsRoutes } from '@/pages/Materials';
 const AppLayout = lazy(() => import('./AppLayout'));
 
 const routes = [
@@ -26,6 +33,10 @@ const routes = [
           ...eventsRoutes,
           ...labsRoutes,
           ...materialsRoutes,
+          {
+            element: <AdminGuard />,
+            children: [...adminRoutes],
+          },
         ],
       },
     ],

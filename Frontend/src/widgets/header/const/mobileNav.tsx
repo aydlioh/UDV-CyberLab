@@ -27,4 +27,16 @@ export const mobileNav = [
       { label: 'База тестов', path: '/tests' },
     ],
   },
+  {
+    adminOnly: true,
+    label: 'Администрирование',
+    path: '/admin',
+    links: [
+      { label: 'Пользователи', path: '/admin/users' },
+      { label: 'Витрина проектов', path: '/admin/projects' },
+      { label: 'Тесты', path: '/admin/tests' },
+      { label: 'Новости', path: '/admin/news' },
+      { label: 'Учебные материалы', path: '/admin/education-materials' },
+    ],
+  },
 ];

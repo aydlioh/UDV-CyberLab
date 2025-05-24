@@ -23,10 +23,12 @@ export const ProjectListLayout = () => {
       <StickyElement shadow={!isTablet} className="top-[75px] z-10">
         <div className="flex sm:flex-row flex-col justify-between items-center">
           <div className="flex flex-row gap-2 w-full items-center">
-            <div className="max-w-[234px] w-full">
+            <div className="sm:max-w-[234px] w-full">
               <ProjectSortingSelect sort={sort} setSort={setSort} />
             </div>
-            <ListFormatSwitcher />
+            <div className="sm:block hidden">
+              <ListFormatSwitcher />
+            </div>
           </div>
           <div className="bg-background rounded-xl sm:mt-0 mt-3 self-end sm:w-auto w-full drop-shadow-md">
             {pathname === '/projects/my' && (

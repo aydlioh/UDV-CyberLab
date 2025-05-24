@@ -1,7 +1,6 @@
-import { Card } from '@/shared/ui';
+import { Card, Rating } from '@/shared/ui';
 import { ProjectCardDTO } from '../model/dto/ProjectCardDTO';
 import { ProjectStats } from './ProjectStats';
-import { ProjectRating } from './ProjectRating';
 import { Image } from '@nextui-org/react';
 import { useCallback, useMemo } from 'react';
 import { useMediaQuery } from '@/shared/hooks';
@@ -64,7 +63,7 @@ export const ProjectCard = ({
             <div className="mt-auto flex flex-row justify-between items-center">
               <p className="text-xs">Автор: {project.ownerName}</p>
               <div className="flex flex-row gap-7 justify-between items-center">
-                <ProjectRating rating={project.rating} />
+                <Rating rating={project.rating} />
                 <ProjectStats
                   commentsCount={project.commentsCount}
                   viewsCount={project.viewsCount}
@@ -104,7 +103,7 @@ export const ProjectCard = ({
         <div className="mt-auto flex flex-col">
           <p className="text-xs line-clamp-4">Автор: {project.ownerName}</p>
           <div className="flex justify-between items-center">
-            <ProjectRating rating={project.rating} />
+            <Rating rating={project.rating} />
             <ProjectStats
               commentsCount={project.commentsCount}
               viewsCount={project.viewsCount}

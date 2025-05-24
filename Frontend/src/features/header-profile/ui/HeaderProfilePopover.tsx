@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui';
+import { Button, UserImage } from '@/shared/ui';
 import {
   Avatar,
   Popover,
@@ -7,7 +7,7 @@ import {
 } from '@nextui-org/react';
 import { HeaderProfileContent } from './HeaderProfileContent';
 import { useState } from 'react';
-import { useProfile, UserImage } from '@/entities/user';
+import { useProfile } from '@/entities/user';
 
 export const HeaderProfile = () => {
   const [open, setOpen] = useState(false);

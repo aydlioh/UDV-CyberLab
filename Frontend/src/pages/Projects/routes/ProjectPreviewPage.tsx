@@ -6,6 +6,7 @@ import {
 import { BackButton } from '@/shared/ui';
 import { ProjectDetailsActions } from '@/features/project-details-button';
 import { ProjectComments } from '@/widgets/project-comments';
+import { ProjectCommentForm } from '@/widgets/project-comment-form';
 
 const ProjectPreviewPage = () => {
   const { projectId = '' } = useParams();
@@ -19,6 +20,7 @@ const ProjectPreviewPage = () => {
       </div>
       <div className="flex flex-col gap-6">
         <ProjectDetailsCard project={data} />
+        <ProjectCommentForm projectId={data.id} />
         <ProjectComments projectId={data.id} />
       </div>
     </section>

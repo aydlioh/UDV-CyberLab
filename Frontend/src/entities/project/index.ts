@@ -1,6 +1,5 @@
 export * from './ui/ProjectCard';
 export * from './ui/ProjectDetailsCard';
-export * from './ui/ProjectRating';
 
 export * from './model/dto/ProjectCardDTO';
 export * from './model/dto/CreateProjectDTO';

@@ -37,3 +37,11 @@ export const getDurationFormat = (duration: string | number, regex: string) => {
 
 export const getDateFormat = (date: string, regex: string) =>
   dayjs(date).format(regex);
+
+export const getCommentDate = (date: string) =>
+  getDateFormat(
+    date,
+    new Date(date).toLocaleDateString() === new Date().toLocaleDateString()
+      ? 'Сегодня в HH:mm'
+      : 'DD.MM.YYYY в HH:mm '
+  );

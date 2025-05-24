@@ -13,3 +13,5 @@ export * from './Modal';
 export * from './Scrollbar';
 export * from './Sticky';
 export * from './Errors';
+export * from './Rating';
+export * from './UserAvatar';

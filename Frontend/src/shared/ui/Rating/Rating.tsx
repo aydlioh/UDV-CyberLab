@@ -1,15 +1,12 @@
 import { Tooltip } from '@nextui-org/react';
 import { IoIosStar } from 'react-icons/io';
 
-type ProjectRatingProps = {
+type RatingProps = {
   rating: number;
   starSize?: number;
 };
 
-export const ProjectRating = ({
-  rating,
-  starSize = 18,
-}: ProjectRatingProps) => {
+export const Rating = ({ rating, starSize = 18 }: RatingProps) => {
   const clampedRating = Math.min(rating, 5);
 
   return (

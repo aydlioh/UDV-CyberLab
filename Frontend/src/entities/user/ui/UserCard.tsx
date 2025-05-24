@@ -3,7 +3,7 @@ import { UserCardType, UserRole } from '../model/types';
 
 import { RiGraduationCapFill } from 'react-icons/ri';
 import { FaLock } from 'react-icons/fa';
-import { UserImage } from './UserImage';
+import { UserImage } from '@/shared/ui';
 
 export const UserCard = ({ login, email, img, role }: UserCardType) => {
   return (

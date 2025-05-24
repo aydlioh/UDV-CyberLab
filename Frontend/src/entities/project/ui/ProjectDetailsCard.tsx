@@ -1,8 +1,8 @@
 import { Card, Image } from '@nextui-org/react';
 import { ProjectDTO } from '../model/dto/ProjectDTO';
-import { ProjectRating } from './ProjectRating';
 import { ProjectStats } from './ProjectStats';
 import { useSuspenseProjectFiles } from '../api/queries/useProjectFiles';
+import { Rating } from '@/shared/ui';
 
 export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
   const {
@@ -53,7 +53,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
           <div className="sm:mt-auto mt-4 flex flex-row justify-between items-center">
             <p className="text-xs">Автор: {project.ownerName}</p>
             <div className="flex flex-row gap-7 justify-between items-center">
-              <ProjectRating rating={project.rating} />
+              <Rating rating={project.rating} />
               <ProjectStats
                 commentsCount={project.commentsCount}
                 viewsCount={project.viewsCount}

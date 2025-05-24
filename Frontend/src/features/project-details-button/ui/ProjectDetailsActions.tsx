@@ -1,7 +1,7 @@
 import { ProjectDTO, useSuspenseProjectFiles } from '@/entities/project';
 import { SiGoogledocs } from 'react-icons/si';
 import { CgWebsite } from 'react-icons/cg';
-import { ProjectDetailsButton } from './ProjectDetailsButton';
+import { ActionButton } from '@/shared/ui';
 
 export const ProjectDetailsActions = ({
   project,
@@ -34,12 +34,14 @@ export const ProjectDetailsActions = ({
 
   return (
     <div className="flex flex-row gap-1">
-      <ProjectDetailsButton
+      <ActionButton
+        className="text-xl border-foreground/20"
         onClick={handleProjectOpen}
         label="Демонстрационный проект"
         icon={CgWebsite}
       />
-      <ProjectDetailsButton
+      <ActionButton
+        className="text-xl border-foreground/20"
         onClick={() => handleDocsOpen(project.name)}
         label="Скачать документацию"
         icon={SiGoogledocs}

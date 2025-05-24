@@ -1,18 +1,19 @@
 import { Button } from '@/shared/ui';
-import { Tooltip } from '@nextui-org/react';
+import { ButtonProps, Tooltip, TooltipProps } from '@nextui-org/react';
 import { IconType } from 'react-icons';
 
-type ProjectDetailsButtonProps = {
-  label: string;
-  onClick: () => void;
+type ActionButtonProps = ButtonProps & {
   icon: IconType;
+  label?: string;
+  tooltipProps?: TooltipProps;
 };
 
-export const ProjectDetailsButton = ({
+export const ActionButton = ({
   label,
-  onClick,
   icon,
-}: ProjectDetailsButtonProps) => {
+  tooltipProps,
+  ...buttonProps
+}: ActionButtonProps) => {
   const Icon = icon;
 
   return (
@@ -25,17 +26,17 @@ export const ProjectDetailsButton = ({
       offset={2}
       size="sm"
       content={label}
+      {...tooltipProps}
     >
       <Button
-        className="border-foreground/20"
-        onPress={onClick}
+        variant="faded"
         radius="sm"
         size="lg"
         isIconOnly
         color="white"
-        variant="faded"
+        {...buttonProps}
       >
-        <Icon size={20} />
+        <Icon />
       </Button>
     </Tooltip>
   );

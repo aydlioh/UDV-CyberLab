@@ -1,8 +1,12 @@
 import { axiosClient } from '@/shared/api';
 
 class AdminApi {
-  public async deleteComment(id: string): Promise<boolean> {
-    return await axiosClient.delete(`/api/Admin/comment/${id}`);
+  public async deleteComment(commentId: string): Promise<boolean> {
+    return await axiosClient.delete(`/api/Admin/comment/${commentId}`);
+  }
+
+  public async deleteProject(projectId: string): Promise<boolean> {
+    return await axiosClient.delete(`/api/Admin/project/${projectId}`);
   }
 }
 

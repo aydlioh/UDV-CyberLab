@@ -1,6 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import { AdminLayout } from './layouts/AdminLayout';
 import { DevelopmentPage } from '../Error';
+import { ProjectsPage, UsersPage } from './routes';
 
 export const adminRoutes: RouteObject[] = [
   {
@@ -8,15 +9,15 @@ export const adminRoutes: RouteObject[] = [
     children: [
       {
         path: '/admin',
-        element: <DevelopmentPage />,
+        element: <UsersPage />,
       },
       {
         path: '/admin/users',
-        element: <DevelopmentPage />,
+        element: <UsersPage />,
       },
       {
         path: '/admin/projects',
-        element: <DevelopmentPage />,
+        element: <ProjectsPage />,
       },
       {
         path: '/admin/tests',

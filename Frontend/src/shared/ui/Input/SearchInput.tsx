@@ -31,7 +31,6 @@ export const SearchInput = ({
   return (
     <Input
       role="search"
-      {...props}
       startContent={<MdSearch className="text-foreground text-[28px]" />}
       size="lg"
       placeholder="Поиск..."
@@ -39,6 +38,7 @@ export const SearchInput = ({
       onChange={e => setValue(e.target.value)}
       isClearable
       onClear={() => setValue('')}
+      {...props}
       classNames={{
         inputWrapper: `bg-search data-[hover=true]:bg-white group-data-[focus=true]:bg-white group-data-[has-value=true]:bg-white ${props.classNames?.inputWrapper}`,
         input: 'text-[14px]',

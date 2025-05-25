@@ -1,7 +1,6 @@
-import { PasswordInput } from '@/features/inputs';
 import { StatusSwitcher, useStatusSwitcher } from '@/features/status-switcher';
 import { loginSchema, useLogin } from '@/entities/user';
-import { Button, Input, Spinner } from '@/shared/ui';
+import { Button, Input, PasswordInput, Spinner } from '@/shared/ui';
 import { Link } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

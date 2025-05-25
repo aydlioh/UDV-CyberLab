@@ -1,4 +1,5 @@
 export * from './ui/Comment';
+export * from './ui/CommentDetails';
 
 export * from './model/dto/CommentDTO';
 export * from './model/dto/CreateCommentDTO';

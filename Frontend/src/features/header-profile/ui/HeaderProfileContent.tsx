@@ -1,4 +1,4 @@
-import { useAuth, UserCard } from '@/entities/user';
+import { useAuth, UserCard, useUserStatus } from '@/entities/user';
 import { useLogoutModal } from '@/features/logout-modal';
 import { Button } from '@/shared/ui';
 import { Divider } from '@nextui-org/react';
@@ -14,6 +14,7 @@ export const HeaderProfileContent = ({
   const navigate = useNavigate();
   const logout = useLogoutModal(state => state.open);
   const user = useAuth(state => state.user);
+  const { isAdmin } = useUserStatus();
 
   const handleLogout = () => {
     setPopoverOpen?.(false);
@@ -35,17 +36,20 @@ export const HeaderProfileContent = ({
         email={user.email}
         // TODO: Image
       />
-      <Button
-        onPress={handleAdminPanel}
-        startContent={<MdAdminPanelSettings size={22} />}
-        type="button"
-        fullWidth
-        variant="light"
-        size="md"
-        radius="sm"
-      >
-        Панель управления
-      </Button>
+      {isAdmin && (
+        <Button
+          onPress={handleAdminPanel}
+          startContent={<MdAdminPanelSettings size={22} />}
+          type="button"
+          fullWidth
+          variant="light"
+          size="md"
+          radius="sm"
+        >
+          Панель управления
+        </Button>
+      )}
+
       <Divider className="my-1 bg-background" />
       <Button
         onPress={handleLogout}

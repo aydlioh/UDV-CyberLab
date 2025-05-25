@@ -3,30 +3,26 @@ import { Card } from '@nextui-org/react';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { CommentDTO } from '../model/dto/CommentDTO';
-import { getCommentDate } from '@/shared/common/utils/dayjs';
+import { CommentDetails } from './CommentDetails';
 
 type CommentType = {
   comment: CommentDTO;
   actionSlot?: React.ReactNode;
 };
+
 export const Comment = ({ comment, actionSlot }: CommentType) => {
   const [isFullView, setIsFullView] = useState(false);
   const isExpanded = comment.text.length > 250;
 
   return (
-    <Card className="drop-shadow-base w-full rounded-lg custom-outline pt-[10px] pb-[20px] px-[15px] flex flex-row gap-4 min-h-[80px]">
-      <div>
+    <Card className="drop-shadow-base max-w-full w-full rounded-lg custom-outline pt-[10px] pb-[20px] px-[15px] flex flex-row gap-4 min-h-[80px]">
+      <div className="flex-shrink-0">
         <UserImage username={comment.authorName} />
       </div>
-      <div className="w-full">
-        <div className="flex justify-between items-center mb-1">
-          <p className="text-sm font-bold line-clamp-1">{comment.authorName}</p>
-          <p className="text-[12px] font-bold">
-            {getCommentDate(comment.createdAt)}
-          </p>
-        </div>
-        <div className="flex flex-row gap-2 justify-between">
-          <div className='w-full'>
+      <div className="flex-1 min-w-0 overflow-hidden">
+        <CommentDetails comment={comment} />
+        <div className="w-full flex flex-row gap-2 justify-between">
+          <div className="w-full flex-1 min-w-0">
             <span
               className={clsx(
                 'text-sm break-words',

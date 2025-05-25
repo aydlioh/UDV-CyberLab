@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { IoSend } from 'react-icons/io5';
 
 const commentSchema = z.object({
-  text: z.string().min(1, 'Комментарий не может быть пустым'),
+  text: z.string().trim().min(1, 'Комментарий не может быть пустым'),
 });
 
 type CommentInput = z.infer<typeof commentSchema>;
@@ -26,7 +26,9 @@ export const ProjectCommentForm = ({ projectId }: { projectId: string }) => {
   });
 
   const onReset = () => {
-    reset();
+    reset({
+      text: '',
+    });
   };
 
   const onSubmit: SubmitHandler<CommentInput> = data => {
@@ -38,7 +40,7 @@ export const ProjectCommentForm = ({ projectId }: { projectId: string }) => {
   };
 
   return (
-    <Card className="drop-shadow-base w-full rounded-lg custom-outline pt-[10px] pb-[20px] px-[15px] flex flex-row gap-4 min-h-[80px]">
+    <Card className="drop-shadow-base w-full rounded-xl custom-outline pt-[10px] pb-[20px] px-[15px] flex flex-row gap-4 min-h-[80px]">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-row gap-1"
@@ -72,6 +74,7 @@ export const ProjectCommentForm = ({ projectId }: { projectId: string }) => {
             radius="sm"
             disabled={isPending}
             isLoading={isPending}
+            className="border-foreground/10"
           >
             <IoSend className="text-[22px]" />
           </Button>

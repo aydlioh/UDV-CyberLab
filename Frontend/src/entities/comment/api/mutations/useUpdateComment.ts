@@ -7,7 +7,7 @@ export const useUpdateComment = () => {
     mutationKey: ['comment/update'],
     mutationFn: commentApi.update,
     onSuccess: (data: { projectId: string }) => {
-      queryClient.invalidateQueries({ queryKey: ['projects', data.projectId] });
+      queryClient.invalidateQueries({ queryKey: ['comments', data.projectId] });
     },
   });
 };

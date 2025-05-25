@@ -28,7 +28,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
   return (
     <Card className="drop-shadow-base custom-outline py-[30px] px-[30px] max-w-[712px] rounded-[12px] w-full">
       <div className="flex sm:flex-row flex-col gap-7 h-full">
-        <div className="sm:h-[160px] sm:max-w-[160px] w-full">
+        <div className="sm:h-[160px] sm:max-w-[160px] max-w-full">
           <Image
             shadow="sm"
             radius="md"
@@ -38,7 +38,7 @@ export const ProjectDetailsCard = ({ project }: { project: ProjectDTO }) => {
             alt={project.name}
             className="overflow-hidden object-cover object-center h-full w-full"
             classNames={{
-              wrapper: 'sm:!max-w-[160px] h-full',
+              wrapper: 'sm:!max-w-[160px] w-full h-full',
             }}
           />
         </div>

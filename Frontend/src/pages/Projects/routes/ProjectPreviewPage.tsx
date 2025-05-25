@@ -13,14 +13,16 @@ const ProjectPreviewPage = () => {
   const { data } = useSuspenseProjectDetails(projectId);
 
   return (
-    <section className="w-full max-w-[712px] flex flex-col gap-1 items-start mb-20">
+    <section className="w-full sm:max-w-[712px] flex flex-col gap-1 items-start mb-20">
       <div className="flex flex-row justify-between w-full">
         <BackButton />
         <ProjectDetailsActions project={data} />
       </div>
-      <div className="flex flex-col gap-6">
-        <ProjectDetailsCard project={data} />
-        <ProjectCommentForm projectId={data.id} />
+      <div className="flex flex-col gap-4 w-full">
+        <div className='flex flex-col gap-2 w-full'>
+          <ProjectDetailsCard project={data} />
+          <ProjectCommentForm projectId={data.id} />
+        </div>
         <ProjectComments projectId={data.id} />
       </div>
     </section>

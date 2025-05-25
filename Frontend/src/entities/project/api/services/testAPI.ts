@@ -8,8 +8,10 @@ import { createFileUrl } from '@/shared/common/utils/file';
 type ProjectFiles = { logo: string; documentation: string };
 
 class ProjectApi {
-  public async getAll(): Promise<ProjectCardDTO[]> {
-    return await axiosClient.get('/api/ProjectCard/allShort');
+  public async getAll(sortOrder: number = 0): Promise<ProjectCardDTO[]> {
+    return await axiosClient.get('/api/ProjectCard/allShort', {
+      params: { sortOrder },
+    });
   }
 
   public async getAllMy(): Promise<ProjectCardDTO[]> {

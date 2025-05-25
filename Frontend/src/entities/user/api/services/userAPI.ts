@@ -2,6 +2,7 @@ import { axiosClient } from '@/shared/api';
 import { IProfile } from '@/shared/api/dto';
 import { tokenService } from '@/shared/services';
 import { AxiosError } from 'axios';
+import { UserInfo } from '../../model/types';
 
 class UserApi {
   public async getProfile(): Promise<IProfile> {
@@ -14,6 +15,10 @@ class UserApi {
       }
       throw error;
     }
+  }
+
+  public async getAllUsers(): Promise<UserInfo[]> {
+    return await axiosClient.get<UserInfo[]>('/api/user/users');
   }
 }
 

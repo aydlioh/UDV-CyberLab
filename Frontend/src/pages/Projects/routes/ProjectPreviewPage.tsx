@@ -7,6 +7,7 @@ import { BackButton } from '@/shared/ui';
 import { ProjectDetailsActions } from '@/features/project-details-button';
 import { ProjectComments } from '@/widgets/project-comments';
 import { ProjectCommentForm } from '@/widgets/project-comment-form';
+import { ProjectRatingModal } from '@/features/project-rating-modal';
 
 const ProjectPreviewPage = () => {
   const { projectId = '' } = useParams();
@@ -19,12 +20,13 @@ const ProjectPreviewPage = () => {
         <ProjectDetailsActions project={data} />
       </div>
       <div className="flex flex-col gap-4 w-full">
-        <div className='flex flex-col gap-2 w-full'>
+        <div className="flex flex-col gap-2 w-full">
           <ProjectDetailsCard project={data} />
           <ProjectCommentForm projectId={data.id} />
         </div>
         <ProjectComments projectId={data.id} />
       </div>
+      <ProjectRatingModal />
     </section>
   );
 };

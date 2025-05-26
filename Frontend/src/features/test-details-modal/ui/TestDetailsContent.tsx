@@ -9,11 +9,13 @@ import { useAuth } from '@/entities/user';
 import { useTestDetailsModalStore } from '../model/store';
 
 export const TestDetailsContent = () => {
-  const testId = useTestDetailsModalStore(state => state.testId);
+  const options = useTestDetailsModalStore(state => state.options);
   const userId = useAuth(state => state.user?.userId);
-  const { data, isLoading, isFetching, error } = useTestDetails(testId ?? '');
+  const { data, isLoading, isFetching, error } = useTestDetails(
+    options?.testId ?? ''
+  );
 
-  if (error || !testId) return null;
+  if (error || !options?.testId) return null;
 
   if (!data || isLoading || isFetching) {
     return (

@@ -3,9 +3,9 @@ import { Modal } from '@/shared/ui';
 import { TestDetailsContent } from './TestDetailsContent';
 
 export const TestDetailsModal = () => {
-  const { isOpen, close, setOpen, testId } = useTestDetailsModalStore();
+  const { isOpen, close, setOpen, options } = useTestDetailsModalStore();
 
-  if (!testId) return null;
+  if (!options?.testId) return null;
 
   const handleClose = () => {
     setTimeout(close, 300);

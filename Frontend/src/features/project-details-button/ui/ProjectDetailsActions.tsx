@@ -2,12 +2,15 @@ import { ProjectDTO, useSuspenseProjectFiles } from '@/entities/project';
 import { SiGoogledocs } from 'react-icons/si';
 import { CgWebsite } from 'react-icons/cg';
 import { ActionButton } from '@/shared/ui';
+import { IoStarSharp } from 'react-icons/io5';
+import { useProjectRatingModal } from '@/features/project-rating-modal';
 
 export const ProjectDetailsActions = ({
   project,
 }: {
   project: Pick<ProjectDTO, 'landingURL' | 'name' | 'id'>;
 }) => {
+  const open = useProjectRatingModal(state => state.open);
   const {
     data: { documentation },
   } = useSuspenseProjectFiles(project.id);
@@ -32,8 +35,18 @@ export const ProjectDetailsActions = ({
     window.open(project.landingURL, '_blank');
   };
 
+  const handleOpenRatingModal = () => {
+    open({ projectId: project.id });
+  };
+
   return (
     <div className="flex flex-row gap-1">
+      <ActionButton
+        className="text-2xl bg-yellow-500/30 text-yellow-500 border-yellow/30"
+        onPress={handleOpenRatingModal}
+        label="Оценить проект"
+        icon={IoStarSharp}
+      />
       <ActionButton
         className="text-xl border-foreground/20"
         onPress={handleProjectOpen}

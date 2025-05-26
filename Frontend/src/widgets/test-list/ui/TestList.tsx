@@ -18,7 +18,7 @@ export const TestList = ({ tests }: { tests: ITestCard[] }) => {
       <ul className="flex flex-col gap-2 mb-10">
         {tests.map(test => (
           <TestCard
-            onClick={() => open(test.id)}
+            onClick={() => open({ testId: test.id })}
             key={test.id}
             test={test}
             rightContent={<TestCardTools test={test} />}

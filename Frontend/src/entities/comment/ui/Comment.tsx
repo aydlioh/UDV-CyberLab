@@ -19,7 +19,7 @@ export const Comment = ({ comment, actionSlot }: CommentType) => {
       <div className="flex-shrink-0">
         <UserImage username={comment.authorName} />
       </div>
-      <div className="flex-1 min-w-0 overflow-hidden">
+      <div className="flex-1 min-w-0">
         <CommentDetails comment={comment} />
         <div className="w-full flex flex-row gap-2 justify-between">
           <div className="w-full flex-1 min-w-0">

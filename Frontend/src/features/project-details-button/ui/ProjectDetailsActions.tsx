@@ -36,13 +36,13 @@ export const ProjectDetailsActions = ({
     <div className="flex flex-row gap-1">
       <ActionButton
         className="text-xl border-foreground/20"
-        onClick={handleProjectOpen}
+        onPress={handleProjectOpen}
         label="Демонстрационный проект"
         icon={CgWebsite}
       />
       <ActionButton
         className="text-xl border-foreground/20"
-        onClick={() => handleDocsOpen(project.name)}
+        onPress={() => handleDocsOpen(project.name)}
         label="Скачать документацию"
         icon={SiGoogledocs}
       />

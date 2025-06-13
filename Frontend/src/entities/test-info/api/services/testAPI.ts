@@ -110,11 +110,8 @@ class TestApi {
     return mapTestPreview(response);
   }
 
-  public async getTests({
-    search,
-    subject,
-    difficulty,
-  }: GetTestsParams): Promise<ITestCard[]> {
+  public async getTests(params: GetTestsParams): Promise<ITestCard[]> {
+    console.log(params);
     const response = await axiosClient.get<TestCardDTO[]>('/api/Test');
     return response.map(mapTestCard);
   }

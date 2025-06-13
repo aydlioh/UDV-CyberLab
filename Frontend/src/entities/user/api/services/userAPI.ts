@@ -1,8 +1,8 @@
 import { axiosClient } from '@/shared/api';
 import { IProfile } from '@/shared/api/dto';
 import { tokenService } from '@/shared/services';
+import { UserInfo } from '@/shared/types';
 import { AxiosError } from 'axios';
-import { UserInfo } from '../../model/types';
 
 class UserApi {
   public async getProfile(): Promise<IProfile> {

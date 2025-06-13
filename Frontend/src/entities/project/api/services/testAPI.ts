@@ -7,10 +7,15 @@ import { createFileUrl } from '@/shared/common/utils/file';
 
 type ProjectFiles = { logo: string; documentation: string };
 
+type GetAllParams = { sortOrder?: number; search?: string };
+
 class ProjectApi {
-  public async getAll(sortOrder: number = 0): Promise<ProjectCardDTO[]> {
+  public async getAll(params: GetAllParams): Promise<ProjectCardDTO[]> {
     return await axiosClient.get('/api/ProjectCard/allShort', {
-      params: { sortOrder },
+      params: {
+        sortOrder: params.sortOrder,
+        searchQuery: params.search,
+      },
     });
   }
 

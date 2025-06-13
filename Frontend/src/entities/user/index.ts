@@ -10,7 +10,6 @@ export * from './api/mutations/useLogin';
 export * from './api/mutations/useRegister';
 export * from './api/mutations/useLogout';
 export * from './api/queries/useProfile';
-export * from './api/queries/useUserList';
 
 export * from './ui/UserCard';
 export * from './ui/UserChip';

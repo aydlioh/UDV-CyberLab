@@ -1,4 +1,7 @@
 import { axiosClient } from '@/shared/api';
+import { UserInfo } from '@/shared/types';
+
+type GetUsersParams = { search?: string };
 
 class AdminApi {
   public async deleteComment(commentId: string): Promise<boolean> {
@@ -11,6 +14,14 @@ class AdminApi {
 
   public async deleteUser(userId: string): Promise<boolean> {
     return await axiosClient.delete(`/api/Admin/user/${userId}`);
+  }
+
+  public async getUsers(params: GetUsersParams): Promise<UserInfo[]> {
+    return await axiosClient.get('/api/Admin/users', {
+      params: {
+        searchName: params.search,
+      },
+    });
   }
 }
 

@@ -5,9 +5,9 @@ import { useQueryState } from 'nuqs';
 
 const ProjectsPage = () => {
   const [sort] = useQueryState('sort', { defaultValue: '' });
-  const { data } = useProjectList(
-    ProjectSorting[sort as keyof typeof ProjectSorting]
-  );
+  const { data } = useProjectList({
+    sortOrder: ProjectSorting[sort as keyof typeof ProjectSorting],
+  });
 
   return (
     <section className="mt-4 mb-20">

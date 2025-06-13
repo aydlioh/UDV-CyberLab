@@ -6,16 +6,12 @@ import {
   useTestDetails,
 } from '@/entities/test-info';
 import { useAuth } from '@/entities/user';
-import { useTestDetailsModalStore } from '../model/store';
 
-export const TestDetailsContent = () => {
-  const options = useTestDetailsModalStore(state => state.options);
+export const TestDetailsContent = ({ testId }: { testId: string | null }) => {
   const userId = useAuth(state => state.user?.userId);
-  const { data, isLoading, isFetching, error } = useTestDetails(
-    options?.testId ?? ''
-  );
+  const { data, isLoading, isFetching, error } = useTestDetails(testId ?? '');
 
-  if (error || !options?.testId) return null;
+  if (error || !testId) return null;
 
   if (!data || isLoading || isFetching) {
     return (

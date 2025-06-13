@@ -12,7 +12,11 @@ export const TestListWithFilters = ({
   difficulty,
   subject,
 }: Filters) => {
-  const { data } = useTestList(search, difficulty, subject);
+  const { data } = useTestList({
+    search,
+    difficulty,
+    subject,
+  });
 
   return <TestList tests={data} />;
 };

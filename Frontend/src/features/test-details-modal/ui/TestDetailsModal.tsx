@@ -18,7 +18,7 @@ export const TestDetailsModal = () => {
       onClose={handleClose}
       size="lg"
     >
-      <TestDetailsContent />
+      <TestDetailsContent testId={options.testId} />
     </Modal>
   );
 };

@@ -111,8 +111,9 @@ class TestApi {
   }
 
   public async getTests(params: GetTestsParams): Promise<ITestCard[]> {
-    console.log(params);
-    const response = await axiosClient.get<TestCardDTO[]>('/api/Test');
+    const response = await axiosClient.get<TestCardDTO[]>('/api/Test', {
+      params,
+    });
     return response.map(mapTestCard);
   }
 

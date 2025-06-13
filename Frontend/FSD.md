@@ -64,9 +64,6 @@
 
 ### Shared
 
-##### Shared:Важное
-TODO
-
 ##### Shared:Схема
 * assets/
 * ui/
@@ -105,9 +102,6 @@ TODO
     * consts/
     * stores/
     * hooks/
-
-##### Shared:Пояснение
-TODO
 
 ### Entities
 
@@ -197,9 +191,6 @@ TODO
         * entity.store.ts         (public)
         * types.ts
 
-##### Features:Пояснение
-TODO
-
 ### Widgets
 
 ##### Widgets:Важное
@@ -224,13 +215,7 @@ TODO
         * entity.store.ts         (public)
         * types.ts
 
-##### Widgets:Пояснение
-TODO
-
 ### Pages
-
-##### Pages:Важное
-TODO
 
 ##### Pages:Схема
 
@@ -247,14 +232,7 @@ TODO
         * types.ts
         * consts.ts
 
-##### Pages:Пояснение
-TODO
-
-
 ### App
-
-##### App:Важное
-TODO
 
 ##### App:Схема
 * main.tsx   <-- (точка входа)
@@ -265,6 +243,3 @@ TODO
     * modal-router.ts
 * providers/
 * styles/
-
-##### App:Пояснение
-TODO

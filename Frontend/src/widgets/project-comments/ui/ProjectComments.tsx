@@ -5,7 +5,7 @@ import {
   CommentActionsTrigger,
 } from '@/features/comment-actions';
 import { sortingByDate } from '@/shared/common/utils/sorting';
-import { Button, Spinner } from '@/shared/ui';
+import { Spinner } from '@/shared/ui';
 import { useState } from 'react';
 import { CommentEditForm } from './CommentEditForm';
 
@@ -29,11 +29,12 @@ export const ProjectComments = ({ projectId }: { projectId: string }) => {
           </li>
         ))}
       </ul>
-      <div className="mt-4 flex justify-center">
+      {/* TODO */}
+      {/* <div className="mt-4 flex justify-center">
         <Button variant="light" size="md" radius="md" className="w-[120px]">
           Загрузить еще
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

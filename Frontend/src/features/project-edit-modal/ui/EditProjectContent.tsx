@@ -35,7 +35,7 @@ export const ModalProjectEdit = ({ projectId }: { projectId: string }) => {
   }
 
   const logoPhoto = parseAndCreateFile(filesData?.logo);
-  const documentation = parseAndCreateFile(filesData?.documentation);
+  const documentation = parseAndCreateFile(filesData?.documentation, data.name);
 
   const onEditSubmit = async (formData: ProjectFormInputs) => {
     const payload: Partial<UpdateProjectDTO> = {};

@@ -67,7 +67,10 @@ export const FileDropArea = ({
               className={clsx(' text-foreground/70', classNames?.description)}
             >
               {currentFile ? (
-                'Файл выбран'
+                <p className='line-clamp-1'>
+                  Файл выбран{' '}
+                  <span className="font-bold">{currentFile.name}</span>
+                </p>
               ) : (
                 <>
                   Перетащите файл или{' '}

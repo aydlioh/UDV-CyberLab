@@ -1,12 +1,14 @@
-export const parseAndCreateFile = (fileStr: string): File => {
+export const parseAndCreateFile = (
+  fileStr: string,
+  fileName: string = 'default'
+): File => {
   const [header, base64Data] = fileStr.split(';base64,');
   const mimeType = header.split(':')[1];
 
   const bytes = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
-  const extension = mimeType.split('/')[1];
   const blob = new Blob([bytes], { type: mimeType });
 
-  return new File([blob], `file-${Date.now()}.${extension}`, { type: mimeType });
+  return new File([blob], fileName, { type: mimeType });
 };
 
 export const createFile = (file: string, mimeType: string): File => {

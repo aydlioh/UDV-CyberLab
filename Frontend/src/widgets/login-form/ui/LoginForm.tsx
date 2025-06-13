@@ -1,4 +1,4 @@
-import { StatusSwitcher, useStatusSwitcher } from '@/features/status-switcher';
+import { StatusSwitcher, useRoleSwitcher } from '@/features/status-switcher';
 import { loginSchema, useLogin } from '@/entities/user';
 import { Button, Input, PasswordInput, Spinner } from '@/shared/ui';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { z } from 'zod';
 type LoginType = z.infer<typeof loginSchema>;
 
 export const LoginForm = () => {
-  const { userStatus } = useStatusSwitcher();
+  const { userRole } = useRoleSwitcher();
   const { login, isPending, error } = useLogin();
 
   const {
@@ -26,7 +26,7 @@ export const LoginForm = () => {
   };
 
   const onSubmit: SubmitHandler<LoginType> = data => {
-    login({ ...data, role: Number(userStatus) }).finally(onReset);
+    login({ ...data, role: Number(userRole) }).finally(onReset);
   };
 
   const isEmailError = errors.email !== undefined || Boolean(error);

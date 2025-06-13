@@ -5,6 +5,12 @@ import { getImageFallback } from '@/shared/common/utils/user';
 
 type UserImageProps = { username: string } & AvatarProps;
 
+const textSize = {
+  sm: 'text-md',
+  md: 'text-md',
+  lg: 'text-lg',
+};
+
 export const UserImage = ({ username, ...props }: UserImageProps) => {
   const { firstTwoLetters, color } = useMemo(
     () => getImageFallback(username),
@@ -19,7 +25,11 @@ export const UserImage = ({ username, ...props }: UserImageProps) => {
       }}
       {...props}
       showFallback
-      fallback={<div className="text-lg">{firstTwoLetters}</div>}
+      fallback={
+        <div className={clsx(textSize[props.size || 'lg'])}>
+          {firstTwoLetters}
+        </div>
+      }
     />
   );
 };

@@ -31,9 +31,7 @@ export const HeaderProfileContent = ({
   return (
     <div>
       <UserCard
-        role={user.role}
-        login={user.userName}
-        email={user.email}
+        user={user}
         // TODO: Image
       />
       {isAdmin && (

@@ -1,4 +1,4 @@
-import { StatusSwitcher, useStatusSwitcher } from '@/features/status-switcher';
+import { StatusSwitcher, useRoleSwitcher } from '@/features/status-switcher';
 import { registerSchema, useRegister } from '@/entities/user';
 import { Button, Input, PasswordInput, Spinner } from '@/shared/ui';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { z } from 'zod';
 type RegisterType = z.infer<typeof registerSchema>;
 
 export const RegistrationForm = () => {
-  const { userStatus } = useStatusSwitcher();
+  const { userRole } = useRoleSwitcher();
   const { register, isPending, error } = useRegister();
 
   const {
@@ -26,7 +26,7 @@ export const RegistrationForm = () => {
   };
 
   const onSubmit: SubmitHandler<RegisterType> = data => {
-    register({ ...data, role: Number(userStatus) }).then(onReset);
+    register({ ...data, role: Number(userRole) }).then(onReset);
   };
 
   const isEmailError = errors.email !== undefined || Boolean(error);

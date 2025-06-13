@@ -8,6 +8,10 @@ class AdminApi {
   public async deleteProject(projectId: string): Promise<boolean> {
     return await axiosClient.delete(`/api/Admin/project/${projectId}`);
   }
+
+  public async deleteUser(userId: string): Promise<boolean> {
+    return await axiosClient.delete(`/api/Admin/user/${userId}`);
+  }
 }
 
 export const adminApi = new AdminApi();

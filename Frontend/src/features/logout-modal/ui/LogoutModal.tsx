@@ -1,6 +1,6 @@
-import { Button, Modal, ModalBody, ModalContent, UserImage } from '@/shared/ui';
+import { Button, Modal, ModalBody, ModalContent } from '@/shared/ui';
 import { useLogoutModal } from '../model/store';
-import { useAuth, UserRole, useUser } from '@/entities/user';
+import { useAuth, UserCard, useUser } from '@/entities/user';
 import { Divider } from '@nextui-org/react';
 
 export const LogoutModal = () => {
@@ -24,15 +24,8 @@ export const LogoutModal = () => {
           <div>
             <p className="text-[22px] text-center">Выйти из аккаунта?</p>
             {user && (
-              <div className="flex flex-col items-center my-2">
-                <UserImage username={user.userName} size="lg" />
-                <div className="text-center">
-                  <p className="text-[16px] font-bold">{user.userName}</p>
-                  <p className="text-[12px] text-foreground/80">{user.email}</p>
-                  {user.role === UserRole.ADMIN && (
-                    <p className="text-green-500 font-bold">Администратор</p>
-                  )}
-                </div>
+              <div className="mt-4">
+                <UserCard user={user} orientation="vertical" />
               </div>
             )}
           </div>

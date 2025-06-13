@@ -8,7 +8,12 @@ export const useTestList = (
 ) => {
   return useSuspenseQuery({
     queryKey: ['tests', ...[search, subject, difficulty].filter(Boolean)],
-    queryFn: async () => await testApi.getTests(),
+    queryFn: async () =>
+      await testApi.getTests({
+        search,
+        subject,
+        difficulty,
+      }),
     staleTime: 2000,
     refetchInterval: 5000,
   });

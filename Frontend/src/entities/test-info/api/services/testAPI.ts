@@ -25,6 +25,12 @@ import {
 } from '../../model/mappers';
 import { IProfile, TestDTO } from '@/shared/api/dto';
 
+type GetTestsParams = {
+  search?: string;
+  subject?: string;
+  difficulty?: string;
+};
+
 class TestApi {
   public async getTestDetailsById(id: string): Promise<ITestDetails> {
     const response = await axiosClient.get<TestDetailsDTO>(
@@ -104,7 +110,11 @@ class TestApi {
     return mapTestPreview(response);
   }
 
-  public async getTests(): Promise<ITestCard[]> {
+  public async getTests({
+    search,
+    subject,
+    difficulty,
+  }: GetTestsParams): Promise<ITestCard[]> {
     const response = await axiosClient.get<TestCardDTO[]>('/api/Test');
     return response.map(mapTestCard);
   }

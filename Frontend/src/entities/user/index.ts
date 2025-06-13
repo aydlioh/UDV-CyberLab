@@ -13,4 +13,9 @@ export * from './api/queries/useProfile';
 export * from './api/queries/useUserList';
 
 export * from './ui/UserCard';
+export * from './ui/UserChip';
+
 export * from './guards/TeacherGuard';
+
+export * from './utils/get-role-name';
+export * from './utils/types';

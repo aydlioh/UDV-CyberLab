@@ -5,7 +5,7 @@ import { EmptyAdminProjectList } from './EmptyAdminProjectList';
 import { ProjectDeleteButton } from '@/features/project-delete-button';
 import {
   ProjectDeleteModal,
-  useDeleteModal,
+  useDeleteProjectModal,
 } from '@/features/project-delete-modal';
 
 type AdminProjectListProps = {
@@ -13,7 +13,7 @@ type AdminProjectListProps = {
 };
 
 export const AdminProjectList = ({ projects }: AdminProjectListProps) => {
-  const { open } = useDeleteModal();
+  const { open } = useDeleteProjectModal();
 
   const navigate = useNavigate();
 

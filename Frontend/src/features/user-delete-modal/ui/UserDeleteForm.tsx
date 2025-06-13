@@ -3,26 +3,27 @@ import { ModalBody, Divider } from '@nextui-org/react';
 import { useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
-import { useDeleteProjectModal } from '../model/store';
+import { useDeleteUserModal } from '../model/store';
 import { Button, Input } from '@/shared/ui';
-import { useModerationDeleteProject } from '@/entities/admin';
+import { useDeleteUser } from '@/entities/admin';
+import { UserCard } from '@/entities/user';
 
-const createDeleteProjectSchema = (ownerName: string) =>
+const createDeleteUserSchema = (ownerName: string) =>
   z.object({
     username: z
       .string()
       .trim()
-      .min(1, 'Укажите имя создателя проекта')
+      .min(1, 'Подтвердите почту пользователя')
       .refine(value => value === ownerName, {
-        message: 'Имя создателя проекта не совпадает',
+        message: 'Почта пользователя не совпадает',
       }),
   });
 
-type DeleteProjectInput = z.infer<ReturnType<typeof createDeleteProjectSchema>>;
+type DeleteUserInput = z.infer<ReturnType<typeof createDeleteUserSchema>>;
 
-export const ProjectDeleteForm = () => {
-  const { mutateAsync, isPending } = useModerationDeleteProject();
-  const { options, setOpen } = useDeleteProjectModal();
+export const UserDeleteForm = () => {
+  const { mutateAsync, isPending } = useDeleteUser();
+  const { options, setOpen } = useDeleteUserModal();
 
   const {
     handleSubmit,
@@ -30,8 +31,8 @@ export const ProjectDeleteForm = () => {
     reset,
     setError,
     formState: { errors },
-  } = useForm<DeleteProjectInput>({
-    resolver: zodResolver(createDeleteProjectSchema(options?.ownerName || '')),
+  } = useForm<DeleteUserInput>({
+    resolver: zodResolver(createDeleteUserSchema(options?.email || '')),
   });
 
   const onReset = useCallback(() => {
@@ -41,8 +42,8 @@ export const ProjectDeleteForm = () => {
   }, [reset]);
 
   const onSubmit = () => {
-    if (options?.projectId) {
-      mutateAsync(options?.projectId)
+    if (options?.userId) {
+      mutateAsync(options?.userId)
         .then(handleReturn)
         .catch(error => setError('username', error));
     }
@@ -56,18 +57,9 @@ export const ProjectDeleteForm = () => {
   return (
     <ModalBody className="py-5 px-10">
       <p className="text-[20px] mb-2 mx-5 text-center">
-        Вы действительно хотите удалить проект?
+        Вы действительно хотите удалить пользователя?
       </p>
-      <div className="flex flex-col gap-2 text-[14px]">
-        <div>
-          <p className="font-bold">Название проекта:</p>
-          <p>{options?.name}</p>
-        </div>
-        <div>
-          <p className="font-bold">Создатель проекта:</p>
-          <p>{options?.ownerName}</p>
-        </div>
-      </div>
+      {options && <UserCard user={options} orientation="vertical" />}
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="username"
@@ -77,7 +69,7 @@ export const ProjectDeleteForm = () => {
             <Input
               isRequired
               {...field}
-              label="Имя создателя проекта"
+              label="Email пользователя"
               autoComplete="new-password"
               variant="underlined"
               isInvalid={!!errors.username}

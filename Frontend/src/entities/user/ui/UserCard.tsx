@@ -1,41 +1,94 @@
-import { Badge } from '@nextui-org/react';
-import { UserCardType, UserRole } from '../model/types';
+import { Badge, Tooltip } from '@nextui-org/react';
+import { UserCardType } from '../model/types';
 
 import { RiGraduationCapFill } from 'react-icons/ri';
 import { FaLock } from 'react-icons/fa';
 import { UserImage } from '@/shared/ui';
+import clsx from 'clsx';
+import { getRoleName } from '../utils/get-role-name';
+import { isAdmin, isTeacher } from '../utils/types';
 
-export const UserCard = ({ login, email, img, role }: UserCardType) => {
+type UserCardProps = {
+  user: UserCardType;
+  orientation?: 'horizontal' | 'vertical';
+  imgSize?: 'sm' | 'md' | 'lg';
+  withoutBadge?: boolean;
+};
+
+export const UserCard = ({
+  user: { userName, email, img, role },
+  orientation = 'horizontal',
+  imgSize = 'lg',
+  withoutBadge = false,
+}: UserCardProps) => {
   return (
-    <div className="p-2">
-      <div className="flex flex-row gap-[15px]">
-        {role === UserRole.TEACHER || role === UserRole.ADMIN ? (
-          <Badge
-            color={role === UserRole.TEACHER ? 'primary' : 'warning'}
-            className="border-white"
-            content={
-              role === UserRole.TEACHER ? (
-                <RiGraduationCapFill className="p-[2px]" size={18} />
-              ) : (
-                <FaLock className="p-[3px]" size={18} />
-              )
-            }
-          >
+    <div className="p-1.5">
+      <div
+        className={clsx(
+          'flex gap-[15px]',
+          orientation === 'vertical'
+            ? 'flex-col justify-center items-center text-center'
+            : 'flex-row'
+        )}
+      >
+        {withoutBadge ? (
+          <div className="text-center">
             <UserImage
-              isBordered
-              size="lg"
+              username={userName}
+              size={imgSize}
               radius="lg"
               src={img}
-              username={login}
-              color={role === UserRole.TEACHER ? 'primary' : 'warning'}
             />
-          </Badge>
+          </div>
         ) : (
-          <UserImage username={login} size="lg" radius="lg" src={img} />
+          <Tooltip
+            showArrow
+            placement="bottom"
+            radius="sm"
+            delay={500}
+            offset={2}
+            closeDelay={0}
+            size="sm"
+            content={getRoleName(role)}
+          >
+            <div>
+              {isTeacher(role) || isAdmin(role) ? (
+                <Badge
+                  color={isTeacher(role) ? 'primary' : 'warning'}
+                  className="border-white"
+                  content={
+                    <div>
+                      {isTeacher(role) ? (
+                        <RiGraduationCapFill className="p-[2px]" size={18} />
+                      ) : (
+                        <FaLock className="p-[3px]" size={18} />
+                      )}
+                    </div>
+                  }
+                >
+                  <UserImage
+                    isBordered
+                    size={imgSize}
+                    radius="lg"
+                    src={img}
+                    username={userName}
+                    color={isTeacher(role) ? 'primary' : 'warning'}
+                  />
+                </Badge>
+              ) : (
+                <UserImage
+                  username={userName}
+                  size={imgSize}
+                  radius="lg"
+                  src={img}
+                />
+              )}
+            </div>
+          </Tooltip>
         )}
 
         <div className="flex justify-center flex-col">
-          <p className="text-[16px] font-bold">{login}</p>
+          <p className="text-[16px] font-bold">{userName}</p>
           <p className="text-[12px] text-foreground/80">{email}</p>
         </div>
       </div>

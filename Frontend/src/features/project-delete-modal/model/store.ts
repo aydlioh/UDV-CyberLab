@@ -1,6 +1,6 @@
 import { createModalStore } from '@/shared/stores';
 
-export const useDeleteModal = createModalStore<{
+export const useDeleteProjectModal = createModalStore<{
   projectId: string;
   ownerName: string;
   name: string;

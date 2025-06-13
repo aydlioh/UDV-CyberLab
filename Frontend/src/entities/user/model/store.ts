@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { tokenService } from '@/shared/services';
 import { IProfile } from '@/shared/api/dto';
-import { UserRole, UserInfo } from './types';
+import { UserInfo, UserRole } from '@/shared/types';
 
 type AuthState = {
   isAuthorized: boolean;

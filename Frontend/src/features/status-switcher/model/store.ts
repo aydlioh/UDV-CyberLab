@@ -1,12 +1,12 @@
-import { AuthStatus } from '@/entities/user';
+import { UserRole } from '@/shared/types';
 import { create } from 'zustand';
 
-type StatusSwitcherStore = {
-  userStatus: AuthStatus;
-  setUserStatus: (userStatus: AuthStatus) => void;
+type RoleSwitcherStore = {
+  userRole: UserRole;
+  setUserRole: (userRole: UserRole) => void;
 };
 
-export const useStatusSwitcher = create<StatusSwitcherStore>(set => ({
-  userStatus: AuthStatus.STUDENT,
-  setUserStatus: userStatus => set({ userStatus }),
+export const useRoleSwitcher = create<RoleSwitcherStore>(set => ({
+  userRole: UserRole.STUDENT,
+  setUserRole: userRole => set({ userRole }),
 }));
